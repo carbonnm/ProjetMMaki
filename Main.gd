@@ -39,17 +39,26 @@ func _input(event : InputEvent) -> void:
 				_current_line.default_color = RCC.color
 				_lines.add_child(_current_line)
 			
-	# Draw the lines at the position of the mouse
+	# Draw the lines or move the camera
 	if event is InputEventMouseMotion && RCC.visible == false:
 		if event.button_mask == BUTTON_MASK_LEFT:
-			_current_line.add_point(get_global_mouse_position())
+			# move the camera position relative to where the event input happen if Key_alt
+			# is pressed (to work with laptop pads)
+			if event.alt :
+				_camera.position -= event.relative * _camera.zoom
+				_background.position = _camera.position
+			# Draw the line at the position
+			else:
+				_current_line.add_point(get_global_mouse_position())
 		
 	# Move the camera position relative to where the event input happen
 	if event is InputEventMouseMotion:
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			_camera.position -= event.relative * _camera.zoom
 			_background.position = _camera.position
-	
+		
+#	if event is InputEventScreenTouch:
+		
 
 func _process(delta):
 #	_background.rect_size = get_viewport_rect().size * _camera.zoom
