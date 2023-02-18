@@ -1,5 +1,7 @@
 extends Node2D
 
+signal Line_count(counter)
+
 onready var _background := $Background
 onready var _camera := $Camera2D
 onready var _lines := $Lines
@@ -38,6 +40,9 @@ func _input(event : InputEvent) -> void:
 				_current_line.width = 10.0 * _camera.zoom.x
 				_current_line.default_color = RCC.color
 				_lines.add_child(_current_line)
+#				ajouter tous les enfants dans un dictionnaire puis les tester avec 
+#				la position de la souris pour voir si il y a un match
+				emit_signal("Line_count",_lines.get_child_count())
 			
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion && RCC.visible == false:
@@ -76,3 +81,10 @@ func zoom_at_point(zoom_change, point):
 	_camera.zoom = zoom1
 	_camera.global_position = pos1
 	_background.global_position = _camera.global_position
+
+
+
+
+
+
+	
