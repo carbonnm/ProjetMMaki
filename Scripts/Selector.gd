@@ -12,10 +12,10 @@ func _ready():
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, _size), Color(0,0,100,0.1))
 
-func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+func _on_Area2D_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	_selected_area.append(area)
 
-func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+func _on_Area2D_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	_selected_area.erase(area)
 
 func _exit_tree():

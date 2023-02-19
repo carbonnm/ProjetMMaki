@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-0.png-ad73aed19b00fd55eeaf2db0cae8f8ff.stex"
+path="res://.import/GrassBackground.png-fd23d4713515110940a0b5bfbc17ed96.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixil-frame-0.png"
-dest_files=[ "res://.import/pixil-frame-0.png-ad73aed19b00fd55eeaf2db0cae8f8ff.stex" ]
+source_file="res://Assets/Graphics/GrassBackground.png"
+dest_files=[ "res://.import/GrassBackground.png-fd23d4713515110940a0b5bfbc17ed96.stex" ]
 
 [params]
 

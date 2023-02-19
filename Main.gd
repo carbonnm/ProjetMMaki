@@ -2,7 +2,7 @@ extends Node2D
 
 signal Line_count(counter)
 
-var LINE := preload("res://Line.gd")
+var LINE := preload("res://Scripts/Line.gd")
 
 onready var _background := $Background
 onready var _camera := $Camera2D
@@ -53,25 +53,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				if _current_line != null and is_instance_valid(_current_line):
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
-				
-#				var area = Area2D.new()
-#				_lines.add_child(area)
-#
-#				_current_line = Line2D.new()
-#				# The camera zoom is always the same value on each axis, so 
-#				# we'll use x for ease of use
-#				_current_line.width = linewidth * _camera.zoom.x
-#				_current_line.default_color = RCC.color
-#				area.add_child(_current_line)
-#				_current_line.add_point(get_global_mouse_position())
-#
-#				var c_shape = CollisionShape2D.new()
-#				var shape = RectangleShape2D.new()
-#				c_shape.shape = shape
-#				area.add_child(c_shape)
-#
-#				c_shape.position = mouse_position
-				
+					
 				_current_line = LINE.new()
 				_lines.add_child(_current_line)
 				_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, get_global_mouse_position())
@@ -81,7 +63,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			
 			elif event.button_index == BUTTON_LEFT and Modes.Select:
 				Select_rect = Area2D.new()
-				Select_rect.set_script(load("res://DrawRectangle.gd"))
+				Select_rect.set_script(load("res://Scripts/Selector.gd"))
 				Select_rect.connect("SendArea", self, "RetrieveArea")
 				self.add_child(Select_rect)
 				
