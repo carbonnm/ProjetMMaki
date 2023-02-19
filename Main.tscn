@@ -37,6 +37,10 @@ region_enabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
 current = true
+limit_left = -1000000000
+limit_top = -1000000000
+limit_right = 1000000000
+limit_bottom = 1000000000
 
 [node name="RightClickContainer" type="VBoxContainer" parent="."]
 visible = false

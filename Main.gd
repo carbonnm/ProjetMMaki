@@ -8,6 +8,9 @@ onready var _lines := $Lines
 
 onready var RCC := $RightClickContainer
 
+const ZOOMMIN = Vector2(0.01,0.01)
+const ZOOMMAX = Vector2(10000,10000)
+
 var _pressed := false
 var _current_line: Line2D
 var zoom_speed:Vector2 = Vector2(0.1,0.1)
@@ -20,12 +23,12 @@ func _input(event : InputEvent) -> void:
 			var mouse_position = event.position
 			# zoom
 			if event.button_index == BUTTON_WHEEL_UP:
-#				if zoom > zoom_min:
-				zoom_at_point(1/zoom_step,mouse_position)
+				if _camera.zoom > ZOOMMIN:
+					zoom_at_point(1/zoom_step,mouse_position)
 			# unzoom
 			if event.button_index == BUTTON_WHEEL_DOWN:
-#				if zoom < zoom_max:
-				zoom_at_point(zoom_step,mouse_position)
+				if _camera.zoom < ZOOMMAX:
+					zoom_at_point(zoom_step,mouse_position)
 				
 			# Create a new Line2D on left click
 			if event.button_index == BUTTON_LEFT:
