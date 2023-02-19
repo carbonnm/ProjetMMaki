@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://MainMenu.gd" type="Script" id=2]
 
 [sub_resource type="Theme" id=1]
 
@@ -35,27 +36,30 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Node2D"]
+position = Vector2( 4, 12 )
+script = ExtResource( 2 )
+mainScene = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 1.0
-margin_top = 3.0
-margin_right = 895.0
-margin_bottom = 537.0
+margin_top = -7.0
+margin_right = 1023.0
+margin_bottom = 572.0
 color = Color( 0.776471, 0.752941, 0.752941, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 4.0
 margin_top = 3.0
-margin_right = 894.0
-margin_bottom = 535.0
+margin_right = 1023.0
+margin_bottom = 560.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 890.0
-margin_bottom = 532.0
+margin_right = 1019.0
+margin_bottom = 557.0
 
 [node name="Titre" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 890.0
-margin_bottom = 264.0
+margin_right = 1019.0
+margin_bottom = 276.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = SubResource( 1 )
@@ -64,21 +68,21 @@ text = "MMaki"
 align = 1
 
 [node name="HoldButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 268.0
-margin_right = 890.0
-margin_bottom = 532.0
+margin_top = 280.0
+margin_right = 1019.0
+margin_bottom = 557.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HoldButtonContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HoldButtons"]
-margin_right = 890.0
-margin_bottom = 264.0
+margin_right = 1019.0
+margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer"]
-margin_right = 890.0
-margin_bottom = 264.0
+[node name="CreateButton" type="Button" parent="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer"]
+margin_right = 1019.0
+margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
@@ -86,3 +90,23 @@ custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Créer une présentation"
+
+[node name="HoldButtonContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HoldButtons"]
+margin_top = 140.0
+margin_right = 1019.0
+margin_bottom = 277.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer2"]
+margin_right = 1019.0
+margin_bottom = 137.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "Options"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer/CreateButton" to="." method="_on_CreateButton_button_up"]
