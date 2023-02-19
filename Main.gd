@@ -10,6 +10,7 @@ onready var RCC := $RightClickContainer
 
 const ZOOMMIN = Vector2(0.01,0.01)
 const ZOOMMAX = Vector2(10000,10000)
+const LINEWIDTH = 4.0
 
 var _pressed := false
 var _current_line: Line2D
@@ -40,7 +41,7 @@ func _input(event : InputEvent) -> void:
 				_current_line = Line2D.new()
 				# The camera zoom is always the same value on each axis, so 
 				# we'll use x for ease of use
-				_current_line.width = 10.0 * _camera.zoom.x
+				_current_line.width = LINEWIDTH * _camera.zoom.x
 				_current_line.default_color = RCC.color
 				_lines.add_child(_current_line)
 #				ajouter tous les enfants dans un dictionnaire puis les tester avec 
@@ -68,7 +69,7 @@ func _input(event : InputEvent) -> void:
 #	if event is InputEventScreenTouch:
 		
 
-func _process(delta):
+func _process(_delta):
 #	_background.rect_size = get_viewport_rect().size * _camera.zoom
 	var Cam_relative_position:Vector2 = get_viewport_rect().size * _camera.zoom
 	_background.region_rect = Rect2(0, 0, Cam_relative_position.x, Cam_relative_position.y)
