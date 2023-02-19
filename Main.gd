@@ -10,7 +10,7 @@ onready var RCC := $RightClickContainer
 
 const ZOOMMIN = Vector2(0.01,0.01)
 const ZOOMMAX = Vector2(10000,10000)
-const LINEWIDTH = 4.0
+var linewidth: float = 4.0
 
 var _pressed := false
 var _current_line: Line2D
@@ -45,9 +45,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				
 			# Create a new Line2D on left click
 			if event.button_index == BUTTON_LEFT and Modes.Drawing:
-				# Delete the previous line if it didn't have any points.
+				# Delete the previous line if it didn't have any points or less than 2.
+				# less than 2 because a bug could occure if you spam left click on a laptop
 				if _current_line != null:
-					if _current_line.points.size() == 0:
+					if _current_line.points.size() <= 2:
 						_current_line.get_parent().queue_free()
 				
 				var area = Area2D.new()
@@ -56,9 +57,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				_current_line = Line2D.new()
 				# The camera zoom is always the same value on each axis, so 
 				# we'll use x for ease of use
-				_current_line.width = LINEWIDTH * _camera.zoom.x
+				_current_line.width = linewidth * _camera.zoom.x
 				_current_line.default_color = RCC.color
 				area.add_child(_current_line)
+				_current_line.add_point(get_global_mouse_position())
 				
 				var c_shape = CollisionShape2D.new()
 				var shape = RectangleShape2D.new()
@@ -91,7 +93,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# is pressed (to work with laptop pads)
 			if event.alt :
 				_camera.position -= event.relative * _camera.zoom
-				_background.position = _camera.position
+				_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom) 
 			# Draw the line at the position
 			elif Modes.Drawing :
 				_current_line.add_point(get_global_mouse_position())
@@ -112,15 +114,6 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			_camera.position -= event.relative * _camera.zoom
 			_background.rect_position = _camera.position - (Vector2(512,300) * _camera.zoom)
-		
-#	if event is InputEventScreenTouch:
-		
-
-func _process(_delta):
-#	_background.rect_size = get_viewport_rect().size * _camera.zoom
-	var Cam_relative_position:Vector2 = get_viewport_rect().size * _camera.zoom
-#	_background.region_rect = Rect2(0, 0, Cam_relative_position.x, Cam_relative_position.y)
-#	_background.rect_size = 
 
 func zoom_at_point(zoom_change, point):
 	var pos0:Vector2 = _camera.global_position # camera position
@@ -143,7 +136,7 @@ func _on_Selection_pressed() -> void:
 func _on_Drawing_pressed() -> void:
 	Change_mode("Drawing")
 
-func Change_mode(_mode) -> void:
+func Change_mode(_mode:String) -> void:
 	for mode in Modes:
 		# Modes[mode] = mode == _mode
 		if mode == _mode:
