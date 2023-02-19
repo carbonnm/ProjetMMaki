@@ -8,6 +8,10 @@ onready var _lines := $Lines
 
 onready var RCC := $RightClickContainer
 
+const ZOOMMIN = Vector2(0.01,0.01)
+const ZOOMMAX = Vector2(10000,10000)
+const LINEWIDTH = 4.0
+
 var _pressed := false
 var _current_line: Line2D
 var zoom_speed:Vector2 = Vector2(0.1,0.1)
@@ -32,12 +36,12 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			var mouse_position = event.position
 			# zoom
 			if event.button_index == BUTTON_WHEEL_UP:
-#				if zoom > zoom_min:
-				zoom_at_point(1/zoom_step,mouse_position)
+				if _camera.zoom > ZOOMMIN:
+					zoom_at_point(1/zoom_step,mouse_position)
 			# unzoom
 			if event.button_index == BUTTON_WHEEL_DOWN:
-#				if zoom < zoom_max:
-				zoom_at_point(zoom_step,mouse_position)
+				if _camera.zoom < ZOOMMAX:
+					zoom_at_point(zoom_step,mouse_position)
 				
 			# Create a new Line2D on left click
 			if event.button_index == BUTTON_LEFT and Modes.Drawing:
@@ -52,7 +56,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				_current_line = Line2D.new()
 				# The camera zoom is always the same value on each axis, so 
 				# we'll use x for ease of use
-				_current_line.width = 10.0 * _camera.zoom.x
+				_current_line.width = LINEWIDTH * _camera.zoom.x
 				_current_line.default_color = RCC.color
 				area.add_child(_current_line)
 				
@@ -112,7 +116,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 #	if event is InputEventScreenTouch:
 		
 
-func _process(delta):
+func _process(_delta):
 #	_background.rect_size = get_viewport_rect().size * _camera.zoom
 	var Cam_relative_position:Vector2 = get_viewport_rect().size * _camera.zoom
 #	_background.region_rect = Rect2(0, 0, Cam_relative_position.x, Cam_relative_position.y)
