@@ -164,9 +164,41 @@ margin_right = 145.0
 margin_bottom = 52.0
 text = "BETAAAAAA"
 
+[node name="ActionMenu" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 861.0
+margin_top = 140.0
+margin_right = 982.0
+margin_bottom = 282.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Delete" type="Button" parent="ActionMenu"]
+margin_right = 121.0
+margin_bottom = 70.0
+text = "Delete"
+icon = ExtResource( 4 )
+
+[node name="Button2" type="Button" parent="ActionMenu"]
+margin_top = 74.0
+margin_right = 121.0
+margin_bottom = 94.0
+
+[node name="Button" type="Button" parent="ActionMenu"]
+margin_top = 98.0
+margin_right = 121.0
+margin_bottom = 118.0
+
+[node name="Button4" type="Button" parent="ActionMenu"]
+margin_top = 122.0
+margin_right = 121.0
+margin_bottom = 142.0
+
 [connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="Background" to="." method="_on_Background_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Selection" to="." method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
+[connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]

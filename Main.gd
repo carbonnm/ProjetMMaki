@@ -2,9 +2,12 @@ extends Node2D
 
 signal Line_count(counter)
 
+var LINE := preload("res://Line.gd")
+
 onready var _background := $Background
 onready var _camera := $Camera2D
 onready var _lines := $Lines
+onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
 
@@ -13,7 +16,7 @@ const ZOOMMAX = Vector2(10000,10000)
 var linewidth: float = 4.0
 
 var _pressed := false
-var _current_line: Line2D
+var _current_line
 var zoom_speed:Vector2 = Vector2(0.1,0.1)
 var zoom_step = 1.1 # speed of the zoom
 var selected_lines : Array
@@ -47,34 +50,43 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			if event.button_index == BUTTON_LEFT and Modes.Drawing:
 				# Delete the previous line if it didn't have any points or less than 2.
 				# less than 2 because a bug could occure if you spam left click on a laptop
-				if _current_line != null:
-					if _current_line.points.size() <= 2:
-						_current_line.get_parent().queue_free()
+				if _current_line != null and is_instance_valid(_current_line):
+					if _current_line._line.points.size() <= 2:
+						_current_line.queue_free()
 				
-				var area = Area2D.new()
-				_lines.add_child(area)
+#				var area = Area2D.new()
+#				_lines.add_child(area)
+#
+#				_current_line = Line2D.new()
+#				# The camera zoom is always the same value on each axis, so 
+#				# we'll use x for ease of use
+#				_current_line.width = linewidth * _camera.zoom.x
+#				_current_line.default_color = RCC.color
+#				area.add_child(_current_line)
+#				_current_line.add_point(get_global_mouse_position())
+#
+#				var c_shape = CollisionShape2D.new()
+#				var shape = RectangleShape2D.new()
+#				c_shape.shape = shape
+#				area.add_child(c_shape)
+#
+#				c_shape.position = mouse_position
 				
-				_current_line = Line2D.new()
-				# The camera zoom is always the same value on each axis, so 
-				# we'll use x for ease of use
-				_current_line.width = linewidth * _camera.zoom.x
-				_current_line.default_color = RCC.color
-				area.add_child(_current_line)
+				_current_line = LINE.new()
+				_lines.add_child(_current_line)
+				_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, get_global_mouse_position())
 				_current_line.add_point(get_global_mouse_position())
-				
-				var c_shape = CollisionShape2D.new()
-				var shape = RectangleShape2D.new()
-				c_shape.shape = shape
-				area.add_child(c_shape)
-				
-				c_shape.position = mouse_position
 				
 				emit_signal("Line_count",_lines.get_child_count())
 			
-			elif event.button_index == BUTTON_LEFT and Modes.Select :
+			elif event.button_index == BUTTON_LEFT and Modes.Select:
 				Select_rect = Area2D.new()
 				Select_rect.set_script(load("res://DrawRectangle.gd"))
+				Select_rect.connect("SendArea", self, "RetrieveArea")
 				self.add_child(Select_rect)
+				
+				DrawLineContainer(false)
+				
 				var c_shape = CollisionShape2D.new()
 				var shape = RectangleShape2D.new()
 				c_shape.shape = shape
@@ -135,6 +147,7 @@ func _on_Selection_pressed() -> void:
 
 func _on_Drawing_pressed() -> void:
 	Change_mode("Drawing")
+	DrawLineContainer(false)
 
 func Change_mode(_mode:String) -> void:
 	for mode in Modes:
@@ -143,3 +156,22 @@ func Change_mode(_mode:String) -> void:
 			Modes[mode] = true
 		else:
 			Modes[mode] = false
+
+func RetrieveArea(areas:Array):
+	selected_lines = areas.duplicate()
+	DrawLineContainer(true)
+	_action_menu.show()
+
+func DrawLineContainer(drawing:bool):
+	for line in selected_lines:
+		# lancer la fonction _draw setup dans Line.gd
+		line.draw = drawing
+		# lance la fonction draw() de godot (update() lance draw())
+		line.update()
+
+# delete les ligne selectionnées
+func _on_Delete_pressed():
+	for area in selected_lines:
+		area.queue_free()
+	selected_lines.clear()
+	_action_menu.hide()
