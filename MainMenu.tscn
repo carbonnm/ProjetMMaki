@@ -1,112 +1,101 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 40
-outline_color = Color( 0.0862745, 0.0235294, 0.0235294, 1 )
+size = 29
+outline_color = Color( 0.87451, 0.0901961, 0.0901961, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.886275, 0.717647, 0.717647, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.623529, 0.384314, 0.384314, 0.392157 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color( 0.913725, 0.764706, 0.764706, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.113725, 0.101961, 0.101961, 0.686275 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color( 0.976471, 0.921569, 0.921569, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.686275, 0.466667, 0.466667, 0.784314 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color( 0.917647, 0.815686, 0.815686, 1 )
 
 [node name="MainMenu" type="Node2D"]
-position = Vector2( 4, 12 )
 script = ExtResource( 2 )
-mainScene = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 1.0
-margin_top = -7.0
-margin_right = 1023.0
-margin_bottom = 572.0
-color = Color( 0.776471, 0.752941, 0.752941, 1 )
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 1023.0
-margin_bottom = 560.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 1019.0
-margin_bottom = 557.0
+[node name="DivisionVertTitre" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
 
-[node name="Titre" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 1019.0
-margin_bottom = 276.0
+[node name="Titre" type="Label" parent="MarginContainer/DivisionVertTitre"]
+margin_right = 1024.0
+margin_bottom = 298.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-theme = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.501961, 0.101961, 0.101961, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "MMaki"
 align = 1
 
-[node name="HoldButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 280.0
-margin_right = 1019.0
-margin_bottom = 557.0
+[node name="DivisionVertBoutons" type="VBoxContainer" parent="MarginContainer/DivisionVertTitre"]
+margin_left = 50.0
+margin_top = 160.0
+margin_right = 980.0
+margin_bottom = 550.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HoldButtonContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HoldButtons"]
-margin_right = 1019.0
-margin_bottom = 136.0
+[node name="ContainerBoutonCreer" type="MarginContainer" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons"]
+margin_right = 930.0
+margin_bottom = 193.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CreateButton" type="Button" parent="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer"]
-margin_right = 1019.0
-margin_bottom = 136.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
+[node name="BoutonCreer" type="Button" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonCreer"]
+margin_right = 930.0
+margin_bottom = 193.0
+custom_colors/font_color_disabled = Color( 0.890196, 0.137255, 0.137255, 1 )
+custom_colors/font_color = Color( 0.741176, 0.0784314, 0.0784314, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Créer une présentation"
 
-[node name="HoldButtonContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HoldButtons"]
-margin_top = 140.0
-margin_right = 1019.0
-margin_bottom = 277.0
+[node name="ContainerBoutonOptions" type="MarginContainer" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons"]
+margin_top = 197.0
+margin_right = 930.0
+margin_bottom = 390.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer2"]
-margin_right = 1019.0
-margin_bottom = 137.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
+[node name="BoutonOptions" type="Button" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonOptions"]
+margin_right = 930.0
+margin_bottom = 193.0
+custom_colors/font_color_disabled = Color( 0.890196, 0.137255, 0.137255, 1 )
+custom_colors/font_color = Color( 0.741176, 0.0784314, 0.0784314, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Options"
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/HoldButtons/HoldButtonContainer/CreateButton" to="." method="_on_CreateButton_button_up"]
+[connection signal="button_up" from="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
