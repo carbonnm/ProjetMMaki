@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/pixil-frame-0.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/CanvasLayer.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/FPS CHECK.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/LineCounter.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.9, 0.9, 0.9, 1 )
@@ -35,13 +36,14 @@ margin_bottom = 600.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
 current = true
 limit_left = -1000000000
 limit_top = -1000000000
 limit_right = 1000000000
 limit_bottom = 1000000000
+script = ExtResource( 10 )
 
 [node name="Lines" type="Node2D" parent="."]
 
