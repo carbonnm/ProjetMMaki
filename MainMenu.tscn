@@ -156,7 +156,7 @@ custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Créer une présentation"
 
-[node name="Litttlearrow" type="AnimatedSprite" parent="ContainerBoutonCreer"]
+[node name="Littlearrow" type="AnimatedSprite" parent="ContainerBoutonCreer"]
 modulate = Color( 0.772549, 0.380392, 0.380392, 1 )
 position = Vector2( 426.288, 34.8491 )
 scale = Vector2( 0.116441, 0.105965 )
@@ -184,7 +184,7 @@ custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Options"
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ContainerBoutonOptions"]
+[node name="Littlearrow" type="AnimatedSprite" parent="ContainerBoutonOptions"]
 modulate = Color( 0.678431, 0.431373, 0.219608, 1 )
 position = Vector2( 405.371, 37.1177 )
 scale = Vector2( 0.163427, 0.115607 )

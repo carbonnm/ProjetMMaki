@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
 [ext_resource path="res://Newcanvasoptions.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -142,20 +143,101 @@ font_data = ExtResource( 2 )
 [sub_resource type="Theme" id=17]
 default_font = SubResource( 8 )
 
+[sub_resource type="DynamicFont" id=29]
+font_data = ExtResource( 8 )
+
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.85098, 0.847059, 0.396078, 1 )
 
+[sub_resource type="StyleBoxFlat" id=30]
+
 [sub_resource type="StyleBoxFlat" id=23]
+
+[sub_resource type="DynamicFont" id=31]
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.772549, 0.611765, 0.133333, 1 )
 
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.772549, 0.611765, 0.133333, 1 )
+
 [sub_resource type="StyleBoxFlat" id=24]
+
+[sub_resource type="DynamicFont" id=40]
+size = 17
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
 
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
+
 [sub_resource type="StyleBoxFlat" id=25]
+
+[sub_resource type="Shader" id=34]
+code = "shader_type canvas_item;
+
+uniform vec4 topleft:hint_color;
+uniform vec4 topright:hint_color;
+uniform vec4 bottomleft:hint_color;
+uniform vec4 bottomright:hint_color;
+
+void fragment() {
+	vec2 uv_corner = vec3(UV, 0.0).xy;
+	vec4 top = mix(topleft, topright, uv_corner.x);
+	vec4 bottom = mix(bottomleft, bottomright, uv_corner.x);
+	COLOR =  mix(top, bottom, uv_corner.y);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=35]
+shader = SubResource( 34 )
+shader_param/topleft = Color( 1, 1, 1, 1 )
+shader_param/topright = Color( 0.564706, 0.831373, 0.847059, 1 )
+shader_param/bottomleft = Color( 0.698039, 0.87451, 0.67451, 1 )
+shader_param/bottomright = Color( 0.937255, 0.901961, 0.976471, 1 )
+
+[sub_resource type="Theme" id=36]
+
+[sub_resource type="StyleBoxFlat" id=37]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=38]
+size = 15
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=39]
+default_font = SubResource( 38 )
+
+[sub_resource type="Theme" id=41]
+
+[sub_resource type="StyleBoxFlat" id=42]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 0.611765, 0.580392, 0.580392, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=44]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
+corner_detail = 9
 
 [node name="Newcanvasoptions" type="Node2D"]
 script = ExtResource( 7 )
@@ -280,8 +362,14 @@ margin_left = 290.663
 margin_top = 287.156
 margin_right = 534.663
 margin_bottom = 331.156
+custom_fonts/font = SubResource( 29 )
 custom_styles/hover = SubResource( 26 )
+custom_styles/pressed = SubResource( 30 )
 custom_styles/normal = SubResource( 23 )
+pressed = true
+text = "  Titre"
+items = [ "  Titre", null, false, 0, null, "  Titre2", null, false, 1, null, "Titre3", null, false, 2, null, "Titre4", null, false, 3, null ]
+selected = 0
 
 [node name="Subtitle" type="RichTextLabel" parent="Page/Optionmenu"]
 margin_left = 77.7444
@@ -299,8 +387,13 @@ margin_left = 292.582
 margin_top = 345.796
 margin_right = 536.582
 margin_bottom = 389.796
+custom_fonts/font = SubResource( 31 )
 custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 32 )
 custom_styles/normal = SubResource( 24 )
+text = "  Sous-titre"
+items = [ "  Sous-titre", null, false, 0, null, "  Sous-titre1", null, false, 1, null, "  Sous-titre2", null, false, 2, null, "  Sous-titre 3", null, false, 3, null ]
+selected = 0
 
 [node name="Subsubtitle" type="RichTextLabel" parent="Page/Optionmenu"]
 margin_left = 77.7445
@@ -318,10 +411,77 @@ margin_left = 290.663
 margin_top = 402.482
 margin_right = 534.663
 margin_bottom = 446.482
+custom_fonts/font = SubResource( 40 )
 custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 33 )
 custom_styles/normal = SubResource( 25 )
+text = "  Sous-sous-titre"
+items = [ "  Sous-sous-titre", null, false, 0, null, "  Sous-sous-titre1", null, false, 1, null, " Sous-sous-titre2", null, false, 2, null, "  Sous-sous-titre3", null, false, 3, null ]
+selected = 0
+
+[node name="Colorfontsmenu" type="Panel" parent="Page"]
+material = SubResource( 35 )
+margin_left = 658.0
+margin_top = 286.35
+margin_right = 867.0
+margin_bottom = 482.35
+theme = SubResource( 36 )
+custom_styles/panel = SubResource( 37 )
+
+[node name="Colorchoice" type="RichTextLabel" parent="Page/Colorfontsmenu"]
+margin_left = 33.0
+margin_top = 9.01102
+margin_right = 256.0
+margin_bottom = 32.011
+theme = SubResource( 39 )
+custom_colors/default_color = Color( 0.027451, 0.0156863, 0.0156863, 1 )
+bbcode_enabled = true
+bbcode_text = "Choix de la couleur"
+text = "Choix de la couleur"
+
+[node name="ColorPickerButtonTitle" type="ColorPickerButton" parent="Page/Colorfontsmenu"]
+margin_left = 99.0
+margin_top = 45.0551
+margin_right = 111.0
+margin_bottom = 65.0551
+theme = SubResource( 41 )
+custom_styles/normal = SubResource( 42 )
+color = Color( 0.6, 0.6, 0.6, 1 )
+
+[node name="Line2D" type="Line2D" parent="Page/Colorfontsmenu"]
+position = Vector2( -517, -136.167 )
+scale = Vector2( 1.12291, 1.00122 )
+points = PoolVector2Array( 476, 217, 635, 217 )
+width = 5.0
+default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
+
+[node name="ColorPickerButtonSubtitle" type="ColorPickerButton" parent="Page/Colorfontsmenu"]
+margin_left = 101.0
+margin_top = 104.127
+margin_right = 113.0
+margin_bottom = 124.127
+custom_styles/normal = SubResource( 43 )
+color = Color( 0.6, 0.6, 0.6, 1 )
+
+[node name="Line2D2" type="Line2D" parent="Page/Colorfontsmenu"]
+position = Vector2( -537, -75.0918 )
+scale = Vector2( 1.15968, 1.00245 )
+points = PoolVector2Array( 476, 217, 635, 217 )
+width = 5.0
+default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
+
+[node name="ColorPickerButtonSubsubtitle" type="ColorPickerButton" parent="Page/Colorfontsmenu"]
+margin_left = 103.0
+margin_top = 164.201
+margin_right = 115.0
+margin_bottom = 184.201
+custom_styles/normal = SubResource( 44 )
+color = Color( 0.6, 0.6, 0.6, 1 )
 
 [connection signal="button_up" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
 [connection signal="mouse_entered" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_entered"]
+[connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonTitle" to="." method="_on_ColorPickerButtonTitle_color_changed"]
+[connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubtitle" to="." method="_on_ColorPickerButtonSubtitle_color_changed"]
+[connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubsubtitle" to="." method="_on_ColorPickerButtonSubsubtitle_color_changed"]

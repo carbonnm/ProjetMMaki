@@ -2,21 +2,27 @@ extends Node2D
 
 export var mainScene : PackedScene
 
+#Going to the next scene (the new canvas options menu)
 func _on_BoutonCreer_button_up():
 	get_tree().change_scene("res://Newcanvasoptions.tscn")
+	
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+#AESTHETIC (little arrow animation on creation and options button hovering)
+#-------------------------
 
-#AESTHETIC (launches little arrow animation on mouse entered)
+#launches little arrow animation on mouse entered
 func _on_BoutonCreer_mouse_entered():
-	get_child(4).get_child(1).playing = true
+	get_node("ContainerBoutonCreer/Littlearrow").playing = true
 
-#AESTHETIC (stops little arrow animation on mouse entered)
+#stops little arrow animation on mouse entered
 func _on_BoutonCreer_mouse_exited():
-	get_child(4).get_child(1).playing = false
+	get_node("ContainerBoutonCreer/Littlearrow").playing = false
 
-#AESTHETIC (launches little arrow animation on mouse entered)
+#launches little arrow animation on mouse entered
 func _on_BoutonOptions_mouse_entered():
-	get_child(5).get_child(1).playing = true
+	get_node("ContainerBoutonOptions/Littlearrow").playing = true
 
-#AESTHETIC (stops little arrow animation on mouse entered)
+#stops little arrow animation on mouse entered
 func _on_BoutonOptions_mouse_exited():
-	get_child(5).get_child(1).playing = false
+	get_node("ContainerBoutonOptions/Littlearrow").playing = false
