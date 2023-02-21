@@ -98,8 +98,8 @@ position = Vector2( 512, 241.707 )
 scale = Vector2( 1.62367, 1.38417 )
 texture = ExtResource( 4 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 12, 93 )
+[node name="Fallingleafsparticles" type="CPUParticles2D" parent="."]
+position = Vector2( 13, 92 )
 scale = Vector2( 3.52578, 6.0247 )
 amount = 15
 lifetime = 0.9

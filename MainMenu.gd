@@ -7,16 +7,16 @@ func _on_BoutonCreer_button_up():
 
 #AESTHETIC (launches little arrow animation on mouse entered)
 func _on_BoutonCreer_mouse_entered():
-	get_child(2).get_child(1).playing = true
+	get_child(4).get_child(1).playing = true
 
 #AESTHETIC (stops little arrow animation on mouse entered)
 func _on_BoutonCreer_mouse_exited():
-	get_child(2).get_child(1).playing = false
+	get_child(4).get_child(1).playing = false
 
 #AESTHETIC (launches little arrow animation on mouse entered)
 func _on_BoutonOptions_mouse_entered():
-	get_child(3).get_child(1).playing = true
+	get_child(5).get_child(1).playing = true
 
 #AESTHETIC (stops little arrow animation on mouse entered)
 func _on_BoutonOptions_mouse_exited():
-	get_child(3).get_child(1).playing = false
+	get_child(5).get_child(1).playing = false

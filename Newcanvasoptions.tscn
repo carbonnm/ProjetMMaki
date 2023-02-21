@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -28,6 +28,12 @@ shader_param/topright = Color( 0.823529, 0.807843, 0.392157, 1 )
 shader_param/bottomleft = Color( 0.207843, 0.65098, 0.654902, 1 )
 shader_param/bottomright = Color( 1, 0.72549, 0.129412, 1 )
 
+[sub_resource type="StyleBoxFlat" id=7]
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
 [sub_resource type="DynamicFont" id=3]
 size = 61
 outline_size = 1
@@ -38,7 +44,7 @@ font_data = ExtResource( 1 )
 default_font = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 35
+size = 30
 outline_color = Color( 0.0352941, 0.0235294, 0.0235294, 1 )
 font_data = ExtResource( 2 )
 
@@ -56,22 +62,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.811765, 0.898039, 0.898039, 1 )
 
-[node name="Optionmenu" type="ColorRect" parent="Page"]
+[node name="Optionmenu" type="Panel" parent="Page"]
 material = SubResource( 2 )
-margin_left = 231.0
-margin_top = 40.049
-margin_right = 820.0
-margin_bottom = 569.049
+margin_left = 118.0
+margin_top = 26.0
+margin_right = 890.0
+margin_bottom = 566.0
 rect_scale = Vector2( 1.04265, 1.02444 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.811765, 0.898039, 0.898039, 1 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="Options" type="RichTextLabel" parent="Page/Optionmenu"]
-margin_left = 157.0
-margin_top = 17.0417
-margin_right = 657.0
-margin_bottom = 117.042
+margin_left = 255.118
+margin_top = 29.3513
+margin_right = 518.118
+margin_bottom = 129.351
 rect_scale = Vector2( 1.05581, 1.05621 )
 theme = SubResource( 4 )
 custom_colors/default_color = Color( 0.239216, 0.239216, 0.239216, 1 )
@@ -80,10 +86,11 @@ bbcode_text = "Options"
 text = "Options"
 
 [node name="Name" type="RichTextLabel" parent="Page/Optionmenu"]
-margin_left = 27.0
-margin_top = 130.318
-margin_right = 227.0
-margin_bottom = 180.318
+margin_left = 80.5636
+margin_top = 141.745
+margin_right = 280.564
+margin_bottom = 191.745
+rect_pivot_offset = Vector2( -1.10455, 63.1949 )
 theme = SubResource( 6 )
 custom_colors/default_color = Color( 0.363281, 0.363281, 0.363281, 1 )
 bbcode_enabled = true
@@ -91,12 +98,24 @@ bbcode_text = "Nom : "
 text = "Nom : "
 
 [node name="Inputname" type="LineEdit" parent="Page/Optionmenu"]
-margin_left = 26.0
-margin_top = 173.424
-margin_right = 526.0
-margin_bottom = 223.424
+margin_left = 90.1545
+margin_top = 190.612
+margin_right = 524.154
+margin_bottom = 233.612
 rect_scale = Vector2( 0.972689, 1.15527 )
 text = "Entrez le nom de votre nouveau canvas"
 script = ExtResource( 3 )
+
+[node name="Fontoptions" type="RichTextLabel" parent="Page/Optionmenu"]
+margin_left = 70.9727
+margin_top = 270.754
+margin_right = 670.973
+margin_bottom = 320.754
+rect_pivot_offset = Vector2( -1.10455, 63.1949 )
+theme = SubResource( 6 )
+custom_colors/default_color = Color( 0.363281, 0.363281, 0.363281, 1 )
+bbcode_enabled = true
+bbcode_text = "Style polices de caractères: "
+text = "Style polices de caractères: "
 
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_entered"]
