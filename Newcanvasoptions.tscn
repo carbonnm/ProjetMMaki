@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -63,20 +63,20 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.913725, 0.764706, 0.764706, 1 )
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.976471, 0.921569, 0.921569, 1 )
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.466667, 0.415686, 0.498039, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 0.917647, 0.815686, 0.815686, 1 )
+bg_color = Color( 0.345098, 0.286275, 0.0117647, 1 )
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color( 0.823529, 0.658824, 0.345098, 1 )
-border_blend = true
+border_color = Color( 0.905882, 0.87451, 0.815686, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -142,12 +142,18 @@ font_data = ExtResource( 2 )
 [sub_resource type="Theme" id=17]
 default_font = SubResource( 8 )
 
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.85098, 0.847059, 0.396078, 1 )
+
 [sub_resource type="StyleBoxFlat" id=23]
 
 [sub_resource type="StyleBoxFlat" id=18]
-bg_color = Color( 0.772549, 0.752941, 0.133333, 1 )
+bg_color = Color( 0.772549, 0.611765, 0.133333, 1 )
 
 [sub_resource type="StyleBoxFlat" id=24]
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 
@@ -188,13 +194,14 @@ size_flags_vertical = 3
 margin_right = 450.0
 margin_bottom = 74.0
 theme = SubResource( 10 )
-custom_colors/font_color_disabled = Color( 0.537255, 0.796078, 0.25098, 1 )
-custom_colors/font_color = Color( 0.423529, 0.560784, 0.333333, 1 )
+custom_colors/font_color_disabled = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color_focus = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color = Color( 0.752941, 0.756863, 0.658824, 1 )
 custom_colors/font_color_hover = Color( 0.2, 0.203922, 0.196078, 1 )
+custom_colors/font_color_pressed = Color( 0.752941, 0.756863, 0.658824, 1 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 14 )
+custom_styles/pressed = SubResource( 28 )
 custom_styles/normal = SubResource( 15 )
 text = "Créer une présentation"
 
@@ -241,7 +248,8 @@ custom_styles/normal = SubResource( 22 )
 align = 1
 clear_button_enabled = true
 placeholder_text = "   Entrez le nom de votre nouveau canvas"
-placeholder_alpha = 1.0
+placeholder_alpha = 0.836
+caret_blink = true
 script = ExtResource( 3 )
 
 [node name="Fontoptions" type="RichTextLabel" parent="Page/Optionmenu"]
@@ -272,6 +280,7 @@ margin_left = 290.663
 margin_top = 287.156
 margin_right = 534.663
 margin_bottom = 331.156
+custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 23 )
 
 [node name="Subtitle" type="RichTextLabel" parent="Page/Optionmenu"]
@@ -309,6 +318,7 @@ margin_left = 290.663
 margin_top = 402.482
 margin_right = 534.663
 margin_bottom = 446.482
+custom_styles/hover = SubResource( 27 )
 custom_styles/normal = SubResource( 25 )
 
 [connection signal="button_up" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]

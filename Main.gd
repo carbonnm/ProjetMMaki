@@ -25,6 +25,12 @@ var Modes = {
 
 func _ready() -> void:
 	_camera.connect("zoom_changed", self, "UpdateBackground")
+	#Test recupération du nom de canvas
+	var canvas_name = SceneSwitcher.get_param("namecanvas")
+	#print(canvas_name)
+
+
+
 
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

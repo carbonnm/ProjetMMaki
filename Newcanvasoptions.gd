@@ -8,10 +8,15 @@ func _ready():
 	
 	pass # Replace with function body.
 
-#To the new canvas 
+#Moves to the new canvas 
 func _on_BoutonCreer_button_up():
-	get_tree().change_scene("res://Main.tscn")
-
+	var name_canvas = get_child(0).get_child(0).get_child(3).new_name
+	#Need for a name to have been entered !
+	if not(name_canvas ==""):
+		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas})
+	else:
+		print("Besoin d'un titre pour le nouveau canvas, Faudra afficher un ptit message ~")
+	
 	
 #AESTHETIC (launches little arrow animation on mouse entered)
 func _on_BoutonCreer_mouse_entered():

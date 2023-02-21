@@ -14,6 +14,10 @@ config/name="MMaki"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SceneSwitcher="*res://SceneSwitcher.gd"
+
 [display]
 
 window/size/test_width=1280
