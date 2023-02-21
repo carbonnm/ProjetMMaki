@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://Assets/Graphics/homepage/parallax homescreen.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.740741, 1 )
+colors = PoolColorArray( 0.494118, 0.85098, 0.203922, 1, 0.798306, 0.907093, 0.206875, 1, 0.898039, 0.92549, 0.207843, 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 26
@@ -89,10 +93,27 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.811765, 0.898039, 0.898039, 1 )
 
-[node name="ParallaxHomescreen" type="Sprite" parent="ColorRect"]
-position = Vector2( 512, 240 )
-scale = Vector2( 1.62367, 1.38586 )
+[node name="ParallaxHomescreen" type="Sprite" parent="."]
+position = Vector2( 512, 241.707 )
+scale = Vector2( 1.62367, 1.38417 )
 texture = ExtResource( 4 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 12, 93 )
+scale = Vector2( 3.52578, 6.0247 )
+amount = 15
+lifetime = 0.9
+speed_scale = 0.1
+randomness = 0.24
+lifetime_randomness = 0.44
+emission_shape = 2
+emission_rect_extents = Vector2( 300, 1 )
+spread = 180.0
+gravity = Vector2( 0, 111 )
+color = Color( 0.333333, 0.701961, 0.180392, 1 )
+color_ramp = SubResource( 13 )
+hue_variation = 0.51
+hue_variation_random = 0.55
 
 [node name="Titre" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )

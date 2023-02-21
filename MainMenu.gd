@@ -3,7 +3,7 @@ extends Node2D
 export var mainScene : PackedScene
 
 func _on_BoutonCreer_button_up():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://Newcanvasoptions.tscn")
 
 #AESTHETIC (launches little arrow animation on mouse entered)
 func _on_BoutonCreer_mouse_entered():
