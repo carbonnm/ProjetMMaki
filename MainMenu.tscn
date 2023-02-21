@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -6,24 +6,27 @@
 [ext_resource path="res://Assets/Graphics/homepage/parallax homescreen.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Fonts/Harukaze.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Gradient" id=13]
 offsets = PoolRealArray( 0, 0.740741, 1 )
 colors = PoolColorArray( 0.494118, 0.85098, 0.203922, 1, 0.798306, 0.907093, 0.206875, 1, 0.898039, 0.92549, 0.207843, 1 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 26
-extra_spacing_top = 3
-font_data = ExtResource( 3 )
+size = 57
+extra_spacing_top = 1
+extra_spacing_char = 1
+extra_spacing_space = 3
+font_data = ExtResource( 7 )
 
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 7 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=10]
-default_font = SubResource( 9 )
+default_font = SubResource( 14 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 29
@@ -119,26 +122,22 @@ hue_variation_random = 0.55
 modulate = Color( 0, 0, 0, 1 )
 margin_left = 386.0
 margin_top = 147.0
-margin_right = 926.0
-margin_bottom = 447.0
-rect_scale = Vector2( 3.52578, 6.0247 )
+margin_right = 586.0
+margin_bottom = 247.0
+rect_scale = Vector2( 1.89974, 3.01013 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = SubResource( 8 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=9]MMaki
-
-"
+bbcode_text = "[wave amp=9] MMaki[/wave]"
 tab_size = 1
-text = "MMaki
-
-"
+text = " MMaki"
 
 [node name="ContainerBoutonCreer" type="MarginContainer" parent="."]
-margin_left = 297.0
-margin_top = 453.0
-margin_right = 747.0
-margin_bottom = 528.0
+margin_left = 319.0
+margin_top = 450.0
+margin_right = 769.0
+margin_bottom = 525.0
 rect_scale = Vector2( 0.87265, 0.832148 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -165,10 +164,10 @@ frames = SubResource( 11 )
 frame = 1
 
 [node name="ContainerBoutonOptions" type="MarginContainer" parent="."]
-margin_left = 319.0
-margin_top = 525.0
-margin_right = 769.0
-margin_bottom = 600.0
+margin_left = 339.0
+margin_top = 522.0
+margin_right = 789.0
+margin_bottom = 597.0
 rect_scale = Vector2( 0.794334, 0.889062 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
