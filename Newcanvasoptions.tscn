@@ -192,7 +192,7 @@ size_flags_vertical = 3
 
 [node name="BoutonCreer" type="Button" parent="Page/Optionmenu/ContainerBoutonCreer"]
 margin_right = 450.0
-margin_bottom = 74.0
+margin_bottom = 75.0
 theme = SubResource( 10 )
 custom_colors/font_color_disabled = Color( 0.752941, 0.756863, 0.658824, 1 )
 custom_colors/font_color_focus = Color( 0.752941, 0.756863, 0.658824, 1 )
