@@ -1,19 +1,44 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Assets/Fonts/FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Graphics/homepage/parallax homescreen.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-size = 70
+[sub_resource type="DynamicFont" id=7]
+size = 26
+extra_spacing_top = 3
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
 font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 29
-outline_color = Color( 0.87451, 0.0901961, 0.0901961, 1 )
-font_data = ExtResource( 1 )
+outline_color = Color( 0.0196078, 0.054902, 0.12549, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.886275, 0.717647, 0.717647, 1 )
+bg_color = Color( 0.682353, 0.670588, 0.329412, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.917647, 0.815686, 0.815686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.913725, 0.764706, 0.764706, 1 )
@@ -23,55 +48,87 @@ bg_color = Color( 0.976471, 0.921569, 0.921569, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.917647, 0.815686, 0.815686, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.823529, 0.658824, 0.345098, 1 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 15
+shadow_size = 1
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 2.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 602.0
+rect_scale = Vector2( 1, 0.998777 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+color = Color( 0.811765, 0.898039, 0.898039, 1 )
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="ParallaxHomescreen" type="Sprite" parent="ColorRect"]
+position = Vector2( 512, 240 )
+scale = Vector2( 1.62367, 1.38586 )
+texture = ExtResource( 4 )
 
-[node name="DivisionVertTitre" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 1024.0
-margin_bottom = 600.0
-
-[node name="Titre" type="Label" parent="MarginContainer/DivisionVertTitre"]
-margin_right = 1024.0
-margin_bottom = 298.0
+[node name="Titre" type="RichTextLabel" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 386.0
+margin_top = 147.0
+margin_right = 926.0
+margin_bottom = 447.0
+rect_scale = Vector2( 3.52578, 6.0247 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_colors/font_color = Color( 0.501961, 0.101961, 0.101961, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "MMaki"
-align = 1
+theme = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[wave]MMaki
 
-[node name="DivisionVertBoutons" type="VBoxContainer" parent="MarginContainer/DivisionVertTitre"]
-margin_left = 50.0
-margin_top = 160.0
-margin_right = 980.0
-margin_bottom = 550.0
+"
+tab_size = 1
+text = "MMaki
+
+"
+
+[node name="ContainerBoutonCreer" type="MarginContainer" parent="."]
+margin_left = 297.0
+margin_top = 453.0
+margin_right = 747.0
+margin_bottom = 528.0
+rect_scale = Vector2( 0.87265, 0.832148 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ContainerBoutonCreer" type="MarginContainer" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons"]
-margin_right = 930.0
-margin_bottom = 193.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="BoutonCreer" type="Button" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonCreer"]
-margin_right = 930.0
-margin_bottom = 193.0
-custom_colors/font_color_disabled = Color( 0.890196, 0.137255, 0.137255, 1 )
-custom_colors/font_color = Color( 0.741176, 0.0784314, 0.0784314, 1 )
+[node name="BoutonCreer" type="Button" parent="ContainerBoutonCreer"]
+margin_right = 450.0
+margin_bottom = 75.0
+theme = SubResource( 10 )
+custom_colors/font_color_disabled = Color( 0.537255, 0.796078, 0.25098, 1 )
+custom_colors/font_color = Color( 0.423529, 0.560784, 0.333333, 1 )
+custom_colors/font_color_hover = Color( 0.929412, 0.964706, 0.858824, 1 )
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
@@ -79,18 +136,27 @@ custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Créer une présentation"
 
-[node name="ContainerBoutonOptions" type="MarginContainer" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons"]
-margin_top = 197.0
-margin_right = 930.0
-margin_bottom = 390.0
+[node name="Litttlearrow" type="AnimatedSprite" parent="ContainerBoutonCreer"]
+modulate = Color( 0.772549, 0.380392, 0.380392, 1 )
+position = Vector2( 426.288, 34.8491 )
+scale = Vector2( 0.116441, 0.105965 )
+frames = SubResource( 11 )
+frame = 1
+
+[node name="ContainerBoutonOptions" type="MarginContainer" parent="."]
+margin_left = 319.0
+margin_top = 525.0
+margin_right = 769.0
+margin_bottom = 600.0
+rect_scale = Vector2( 0.794334, 0.889062 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BoutonOptions" type="Button" parent="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonOptions"]
-margin_right = 930.0
-margin_bottom = 193.0
-custom_colors/font_color_disabled = Color( 0.890196, 0.137255, 0.137255, 1 )
-custom_colors/font_color = Color( 0.741176, 0.0784314, 0.0784314, 1 )
+[node name="BoutonOptions" type="Button" parent="ContainerBoutonOptions"]
+margin_right = 450.0
+margin_bottom = 75.0
+custom_colors/font_color_disabled = Color( 0.372549, 0.427451, 0.337255, 1 )
+custom_colors/font_color = Color( 0.423069, 0.5625, 0.333435, 1 )
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
@@ -98,4 +164,14 @@ custom_styles/focus = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Options"
 
-[connection signal="button_up" from="MarginContainer/DivisionVertTitre/DivisionVertBoutons/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ContainerBoutonOptions"]
+modulate = Color( 0.678431, 0.431373, 0.219608, 1 )
+position = Vector2( 405.371, 37.1177 )
+scale = Vector2( 0.163427, 0.115607 )
+frames = SubResource( 12 )
+
+[connection signal="button_up" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
+[connection signal="mouse_entered" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
+[connection signal="mouse_entered" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_mouse_entered"]
+[connection signal="mouse_exited" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_mouse_exited"]
