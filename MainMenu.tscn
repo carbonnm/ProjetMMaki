@@ -105,7 +105,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = SubResource( 8 )
 bbcode_enabled = true
-bbcode_text = "[wave]MMaki
+bbcode_text = "[wave amp=9]MMaki
 
 "
 tab_size = 1

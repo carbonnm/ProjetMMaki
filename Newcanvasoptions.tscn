@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 topleft:hint_color;
+uniform vec4 topright:hint_color;
+uniform vec4 bottomleft:hint_color;
+uniform vec4 bottomright:hint_color;
+
+void fragment() {
+	vec2 uv_corner = vec3(UV, 0.0).xy;
+	vec4 top = mix(topleft, topright, uv_corner.x);
+	vec4 bottom = mix(bottomleft, bottomright, uv_corner.x);
+	COLOR =  mix(top, bottom, uv_corner.y);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+render_priority = 1
+shader = SubResource( 1 )
+shader_param/topleft = Color( 1, 1, 1, 1 )
+shader_param/topright = Color( 0.823529, 0.807843, 0.392157, 1 )
+shader_param/bottomleft = Color( 0.207843, 0.65098, 0.654902, 1 )
+shader_param/bottomright = Color( 1, 0.72549, 0.129412, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 61
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[node name="Newcanvasoptions" type="Node2D"]
+
+[node name="Page" type="ColorRect" parent="."]
+margin_top = 2.0
+margin_right = 1024.0
+margin_bottom = 602.0
+rect_scale = Vector2( 1, 0.998777 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.811765, 0.898039, 0.898039, 1 )
+
+[node name="Optionmenu" type="ColorRect" parent="Page"]
+material = SubResource( 2 )
+margin_left = 231.0
+margin_top = 40.049
+margin_right = 820.0
+margin_bottom = 569.049
+rect_scale = Vector2( 1, 0.998777 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.811765, 0.898039, 0.898039, 1 )
+
+[node name="Options" type="RichTextLabel" parent="Page/Optionmenu"]
+margin_left = 157.0
+margin_top = 17.0417
+margin_right = 657.0
+margin_bottom = 117.042
+rect_scale = Vector2( 1.05581, 1.05621 )
+theme = SubResource( 4 )
+custom_colors/default_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+bbcode_enabled = true
+bbcode_text = "Options"
+text = "Options"
+
+[node name="Name" type="RichTextLabel" parent="Page/Optionmenu"]
+margin_left = 27.0
+margin_top = 130.318
+margin_right = 227.0
+margin_bottom = 180.318
+theme = SubResource( 6 )
+custom_colors/default_color = Color( 0.363281, 0.363281, 0.363281, 1 )
+bbcode_enabled = true
+bbcode_text = "Nom : "
+text = "Nom : "
+
+[node name="LineEdit" type="LineEdit" parent="Page/Optionmenu"]
+margin_left = 25.0
+margin_top = 170.417
+margin_right = 83.0
+margin_bottom = 194.417
