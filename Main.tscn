@@ -148,7 +148,7 @@ margin_bottom = 70.0
 text = "Drawing"
 icon = ExtResource( 4 )
 
-[node name="Button4" type="Button" parent="CanvasLayer/HBoxContainer"]
+[node name="Beta" type="Button" parent="CanvasLayer/HBoxContainer"]
 margin_left = 407.0
 margin_right = 517.0
 margin_bottom = 70.0
@@ -182,10 +182,12 @@ margin_bottom = 70.0
 text = "Delete"
 icon = ExtResource( 4 )
 
-[node name="Button2" type="Button" parent="ActionMenu"]
+[node name="Drag And Drop" type="Button" parent="ActionMenu"]
 margin_top = 74.0
 margin_right = 121.0
 margin_bottom = 94.0
+text = "Drag and drop"
+icon = ExtResource( 4 )
 
 [node name="Button" type="Button" parent="ActionMenu"]
 margin_top = 98.0
@@ -203,4 +205,6 @@ margin_bottom = 142.0
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Selection" to="." method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Beta" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
+[connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]

@@ -20,7 +20,8 @@ var Select_rect : Area2D
 
 var Modes = {
 	"Drawing": true,
-	"Select": false
+	"Select": false,
+	"DragAndDrop": false
 }
 
 func _ready() -> void:
@@ -45,6 +46,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					DrawLine()
 				elif Modes.Select:
 					DrawSelectionArea()
+					
+				elif Modes.DragAndDrop:
+					var selected = true
+							
 		else:
 			if Modes.Select:
 				Select_rect.queue_free()
@@ -63,6 +68,19 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				_current_line.add_point(get_global_mouse_position())
 			elif Modes.Select:
 				UpdateSelectionArea()
+			# Check if any selected lines exist
+			elif Modes.DragAndDrop:
+				if selected_lines.size() > 0:
+					# Loop through all selected lines
+					for area in selected_lines:
+						# Get the mouse position relative to the selected line's parent node
+						var mouse_pos = _lines.to_local(get_global_mouse_position())
+						
+						# Move the selected line to the new position
+						area.position += mouse_pos - area.global_position
+							
+						# Update the line's position
+						area.update()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -101,7 +119,8 @@ func _on_Delete_pressed():
 	for area in selected_lines:
 		area.queue_free()
 	selected_lines.clear()
-	_action_menu.hide()
+	_action_menu.hide()	
+
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
@@ -155,3 +174,8 @@ func DragCamera(Relative:Vector2):
 	_camera.position -= Relative
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
+
+	
+func _on_Drag_And_Drop_pressed():
+	Change_mode("DragAndDrop")
+	_action_menu.hide()
