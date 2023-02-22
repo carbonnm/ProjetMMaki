@@ -240,12 +240,14 @@ border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
 corner_detail = 9
 
 [node name="Newcanvasoptions" type="Node2D"]
+position = Vector2( 32, -134 )
 script = ExtResource( 7 )
 
 [node name="Page" type="ColorRect" parent="."]
-margin_top = 2.0
-margin_right = 1024.0
-margin_bottom = 602.0
+margin_left = -28.0
+margin_top = 130.0
+margin_right = 996.0
+margin_bottom = 730.0
 rect_scale = Vector2( 1, 0.998777 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -287,7 +289,7 @@ custom_styles/pressed = SubResource( 28 )
 custom_styles/normal = SubResource( 15 )
 text = "Créer une présentation"
 
-[node name="Litttlearrow" type="AnimatedSprite" parent="Page/Optionmenu/ContainerBoutonCreer"]
+[node name="Littlearrow" type="AnimatedSprite" parent="Page/Optionmenu/ContainerBoutonCreer"]
 modulate = Color( 0.784314, 0.690196, 0.25098, 1 )
 position = Vector2( 426.288, 34.8491 )
 scale = Vector2( 0.116441, 0.105965 )
