@@ -21,7 +21,7 @@ func set_params(lineWidth, color, pos):
 
 func add_point(pos):
 	_line.add_point(pos)
-	#comment this to avoid multiple CollishionShap
+	#comment the code below to avoid multiple CollishionShap
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
 	c_shape.position = pos
