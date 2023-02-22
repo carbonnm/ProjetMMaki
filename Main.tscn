@@ -199,6 +199,8 @@ margin_top = 122.0
 margin_right = 121.0
 margin_bottom = 142.0
 
+[node name="Area2D" type="Area2D" parent="."]
+
 [connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="Background" to="." method="_on_Background_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]

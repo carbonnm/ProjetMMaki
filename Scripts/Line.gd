@@ -8,8 +8,7 @@ var draw:bool = false
 
 func _ready() -> void:
 	_line = Line2D.new()
-	self.add_child(_line)
-	
+	self.add_child(_line)	
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
 	c_shape.shape = shape
@@ -22,6 +21,13 @@ func set_params(lineWidth, color, pos):
 
 func add_point(pos):
 	_line.add_point(pos)
+	#comment the code below to avoid multiple CollishionShap
+	c_shape = CollisionShape2D.new()
+	shape = RectangleShape2D.new()
+	c_shape.position = pos
+	c_shape.shape = shape
+	self.add_child(c_shape)
+	
 #	update()
 
 func _draw() -> void:
@@ -39,3 +45,5 @@ func _draw() -> void:
 				Max.y = point.y
 		
 		draw_rect(Rect2(Min, Max - Min), Color.aqua, false, 4)
+
+
