@@ -368,7 +368,6 @@ custom_fonts/font = SubResource( 29 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/pressed = SubResource( 30 )
 custom_styles/normal = SubResource( 23 )
-pressed = true
 text = "  Titre"
 items = [ "  Titre", null, false, 0, null, "  Titre2", null, false, 1, null, "Titre3", null, false, 2, null, "Titre4", null, false, 3, null ]
 selected = 0
@@ -423,10 +422,10 @@ selected = 0
 
 [node name="Colorfontsmenu" type="Panel" parent="Page"]
 material = SubResource( 35 )
-margin_left = 658.0
-margin_top = 286.35
-margin_right = 867.0
-margin_bottom = 482.35
+margin_left = 656.0
+margin_top = 283.347
+margin_right = 865.0
+margin_bottom = 479.347
 theme = SubResource( 36 )
 custom_styles/panel = SubResource( 37 )
 

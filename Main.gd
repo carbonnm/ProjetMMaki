@@ -25,9 +25,9 @@ var Modes = {
 
 func _ready() -> void:
 	_camera.connect("zoom_changed", self, "UpdateBackground")
-	#Recupération du nom de canvas
+	#Canvas name recuperation
 	var canvas_name = SceneSwitcher.get_param("namecanvas")
-	#Recupération des couleurs des polices de caractères
+	#Canvas font colors recuperation
 	var color_title = SceneSwitcher.get_param("titlecolor")
 	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
 	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
