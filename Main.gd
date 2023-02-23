@@ -27,11 +27,11 @@ var Modes = {
 func _ready() -> void:
 	_camera.connect("zoom_changed", self, "UpdateBackground")
 	#Canvas name recuperation
-	var canvas_name = SceneSwitcher.get_param("namecanvas")
+#	var canvas_name = SceneSwitcher.get_param("namecanvas")
 	#Canvas font colors recuperation
-	var color_title = SceneSwitcher.get_param("titlecolor")
-	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
-	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
+#	var color_title = SceneSwitcher.get_param("titlecolor")
+#	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
+#	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
 	#test :print(color_title,color_subtitle,color_subsubtitle)
 
 
@@ -53,6 +53,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					
 				elif Modes.DragAndDrop:
 					var selected = true
+					Drag_and_Drop()
 							
 		else:
 			if Modes.Select:
@@ -75,16 +76,15 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				if selected_lines.size() > 0:
+					Drag_and_Drop()
 					# Loop through all selected lines
-					for area in selected_lines:
+#					for area in selected_lines:
 						# Get the mouse position relative to the selected line's parent node
-						var mouse_pos = _lines.to_local(get_global_mouse_position())
-						
+#						var mouse_pos = _lines.to_local(get_global_mouse_position())						
 						# Move the selected line to the new position
-						area.position += mouse_pos - area.global_position
-							
+#						area.position = get_global_mouse_position()							
 						# Update the line's position
-						area.update()
+#						area.update()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -134,6 +134,7 @@ func DrawLine():
 			_current_line.queue_free()
 		
 	_current_line = LINE.new()
+	_current_line.position = get_global_mouse_position() 
 	_lines.add_child(_current_line)
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, get_global_mouse_position())
 	_current_line.add_point(get_global_mouse_position())
@@ -183,3 +184,7 @@ func DragCamera(Relative:Vector2):
 func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
+	
+func Drag_and_Drop():
+	for area in selected_lines:
+		area.position = get_global_mouse_position()
