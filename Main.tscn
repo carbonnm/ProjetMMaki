@@ -135,29 +135,29 @@ __meta__ = {
 }
 
 [node name="Settings" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_right = 1345.0
-margin_bottom = 1286.0
+margin_right = 129.0
+margin_bottom = 70.0
 text = "Settings"
 icon = ExtResource( 14 )
 
 [node name="Selection" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 1349.0
-margin_right = 1481.0
-margin_bottom = 1286.0
+margin_left = 133.0
+margin_right = 265.0
+margin_bottom = 70.0
 text = "Selection"
 icon = ExtResource( 13 )
 
 [node name="Drawing" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 1485.0
-margin_right = 1614.0
-margin_bottom = 1286.0
+margin_left = 269.0
+margin_right = 398.0
+margin_bottom = 70.0
 text = "Drawing"
 icon = ExtResource( 12 )
 
 [node name="Beta" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 1618.0
-margin_right = 1728.0
-margin_bottom = 1286.0
+margin_left = 402.0
+margin_right = 512.0
+margin_bottom = 70.0
 text = "BETA"
 icon = ExtResource( 4 )
 

@@ -193,7 +193,12 @@ func _on_Drag_And_Drop_pressed():
 func Drag_and_Drop():
 	for area in selected_lines:
 		area.position = get_global_mouse_position()
-		
+#		if selected_lines[0] == area :
+#			First_pos = area.position
+#			area.position = get_global_mouse_position()
+#		else :
+#			mouvment_direction = get_global_mouse_position() - area.position
+#			area.position = get_global_mouse_position() +  mouvment_direction
 
 
 func _on_Rescale_pressed():
