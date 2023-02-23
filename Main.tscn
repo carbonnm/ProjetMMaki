@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/pixil-frame-0.png" type="Texture" id=2]
@@ -10,9 +10,12 @@
 [ext_resource path="res://Scripts/FPS CHECK.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/LineCounter.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=10]
-[ext_resource path="res://Image/settings.png" type="Texture" id=11]
+[ext_resource path="res://Image/poubelle.png" type="Texture" id=11]
 [ext_resource path="res://Image/crayon.png" type="Texture" id=12]
 [ext_resource path="res://Image/sélection.png" type="Texture" id=13]
+[ext_resource path="res://Image/settings.png" type="Texture" id=14]
+[ext_resource path="res://Image/dragdrop.png" type="Texture" id=15]
+[ext_resource path="res://Image/zoom.png" type="Texture" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.9, 0.9, 0.9, 1 )
@@ -135,7 +138,7 @@ __meta__ = {
 margin_right = 1345.0
 margin_bottom = 1286.0
 text = "Settings"
-icon = ExtResource( 11 )
+icon = ExtResource( 14 )
 
 [node name="Selection" type="Button" parent="CanvasLayer/HBoxContainer"]
 margin_left = 1349.0
@@ -183,22 +186,21 @@ __meta__ = {
 margin_right = 121.0
 margin_bottom = 70.0
 text = "Delete"
-icon = ExtResource( 4 )
-expand_icon = true
+icon = ExtResource( 11 )
 
 [node name="Drag And Drop" type="Button" parent="ActionMenu"]
 margin_top = 74.0
 margin_right = 121.0
 margin_bottom = 94.0
 text = "Drag and drop"
-icon = ExtResource( 4 )
+icon = ExtResource( 15 )
 
 [node name="Rescale" type="Button" parent="ActionMenu"]
 margin_top = 122.0
 margin_right = 121.0
 margin_bottom = 142.0
 text = "Rescale"
-icon = ExtResource( 4 )
+icon = ExtResource( 16 )
 
 [node name="Button" type="Button" parent="ActionMenu"]
 margin_right = 12.0

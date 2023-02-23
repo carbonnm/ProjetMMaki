@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/poubelle.png-f1e57cb27cbfcb767762198e1d134035.stex"
+path="res://.import/zoom.png-7bea9d0d05bd32fb56cbecf9fd4a1209.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/poubelle.png"
-dest_files=[ "res://.import/poubelle.png-f1e57cb27cbfcb767762198e1d134035.stex" ]
+source_file="res://Image/zoom.png"
+dest_files=[ "res://.import/zoom.png-7bea9d0d05bd32fb56cbecf9fd4a1209.stex" ]
 
 [params]
 
