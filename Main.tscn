@@ -189,15 +189,16 @@ margin_bottom = 94.0
 text = "Drag and drop"
 icon = ExtResource( 4 )
 
-[node name="Button" type="Button" parent="ActionMenu"]
-margin_top = 98.0
-margin_right = 121.0
-margin_bottom = 118.0
-
-[node name="Button4" type="Button" parent="ActionMenu"]
+[node name="Rescale" type="Button" parent="ActionMenu"]
 margin_top = 122.0
 margin_right = 121.0
 margin_bottom = 142.0
+text = "Rescale"
+icon = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="ActionMenu"]
+margin_right = 12.0
+margin_bottom = 20.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -210,3 +211,4 @@ margin_bottom = 142.0
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Beta" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
+[connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]

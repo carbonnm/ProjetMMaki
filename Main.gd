@@ -21,7 +21,8 @@ var Select_rect : Area2D
 var Modes = {
 	"Drawing": true,
 	"Select": false,
-	"DragAndDrop": false
+	"DragAndDrop": false,
+	"Rescale": false
 }
 
 func _ready() -> void:
@@ -85,6 +86,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 #						area.position = get_global_mouse_position()							
 						# Update the line's position
 #						area.update()
+			elif Modes.Rescale:
+				#Check if the selection if greater than 0. 
+				if selected_lines.size() > 0:
+					Rescale()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -188,3 +193,20 @@ func _on_Drag_And_Drop_pressed():
 func Drag_and_Drop():
 	for area in selected_lines:
 		area.position = get_global_mouse_position()
+		
+
+
+func _on_Rescale_pressed():
+	Change_mode("Rescale")
+	_action_menu.hide()
+
+func Rescale():
+	if Input.is_action_pressed("ZoomImage"):
+		#Marie C : il faudra encore comment je peux faire zoomer toutes les lignes en une fois
+		pass
+		#_image.scale.x += 0.05
+		#_image.scale.y += 0.05
+	elif Input.is_action_pressed("DeZoomImage"):
+		pass
+		#_image.scale.x -= 0.05
+		#_image.scale.y -= 0.05
