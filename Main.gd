@@ -28,11 +28,11 @@ var Modes = {
 func _ready() -> void:
 	_camera.connect("zoom_changed", self, "UpdateBackground")
 	#Canvas name recuperation
-#	var canvas_name = SceneSwitcher.get_param("namecanvas")
+	var canvas_name = SceneSwitcher.get_param("namecanvas")
 	#Canvas font colors recuperation
-#	var color_title = SceneSwitcher.get_param("titlecolor")
-#	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
-#	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
+	var color_title = SceneSwitcher.get_param("titlecolor")
+	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
+	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
 	#test :print(color_title,color_subtitle,color_subsubtitle)
 
 
@@ -54,7 +54,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					
 				elif Modes.DragAndDrop:
 					var selected = true
-					Drag_and_Drop()
+#					Drag_and_Drop()
 							
 		else:
 			if Modes.Select:
@@ -77,7 +77,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				if selected_lines.size() > 0:
-					Drag_and_Drop()
+					Drag_and_Drop(event.relative)
 					# Loop through all selected lines
 #					for area in selected_lines:
 						# Get the mouse position relative to the selected line's parent node
@@ -139,7 +139,7 @@ func DrawLine():
 			_current_line.queue_free()
 		
 	_current_line = LINE.new()
-	_current_line.position = get_global_mouse_position() 
+#	_current_line.position = get_global_mouse_position() 
 	_lines.add_child(_current_line)
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, get_global_mouse_position())
 	_current_line.add_point(get_global_mouse_position())
@@ -190,15 +190,10 @@ func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
 	
-func Drag_and_Drop():
+func Drag_and_Drop(relative):
 	for area in selected_lines:
-		area.position = get_global_mouse_position()
-#		if selected_lines[0] == area :
-#			First_pos = area.position
-#			area.position = get_global_mouse_position()
-#		else :
-#			mouvment_direction = get_global_mouse_position() - area.position
-#			area.position = get_global_mouse_position() +  mouvment_direction
+		area.position += relative * _camera.zoom
+
 
 
 func _on_Rescale_pressed():

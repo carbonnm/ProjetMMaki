@@ -23,11 +23,11 @@ func set_params(lineWidth, color, pos):
 func add_point(pos):
 	# pos of the parent needed to get the global position and not the parent relativ position
 	var parentPos: Vector2 = _line.get_parent().position
-	_line.add_point(pos - parentPos)
+	_line.add_point(pos ) #- parentPos)
 	#comment the code below to avoid multiple CollishionShap
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
-	c_shape.position = pos - parentPos
+	c_shape.position = pos #- parentPos
 	c_shape.shape = shape
 	self.add_child(c_shape)
 	
