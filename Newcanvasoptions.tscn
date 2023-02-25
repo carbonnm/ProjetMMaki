@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -186,6 +186,52 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=46]
 default_font = SubResource( 45 )
 
+[sub_resource type="Shader" id=48]
+code = "shader_type canvas_item;
+
+uniform vec4 topleft:hint_color;
+uniform vec4 topright:hint_color;
+uniform vec4 bottomleft:hint_color;
+uniform vec4 bottomright:hint_color;
+
+void fragment() {
+	vec2 uv_corner = vec3(UV, 0.0).xy;
+	vec4 top = mix(topleft, topright, uv_corner.x);
+	vec4 bottom = mix(bottomleft, bottomright, uv_corner.x);
+	COLOR =  mix(top, bottom, uv_corner.y);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=49]
+shader = SubResource( 48 )
+shader_param/topleft = Color( 1, 0.980392, 0.807843, 1 )
+shader_param/topright = Color( 0.764706, 0.913725, 0.701961, 1 )
+shader_param/bottomleft = Color( 0.737255, 1, 0.996078, 1 )
+shader_param/bottomright = Color( 0.976471, 0.960784, 1, 1 )
+
+[sub_resource type="Theme" id=50]
+
+[sub_resource type="StyleBoxFlat" id=51]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=38]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=39]
+default_font = SubResource( 38 )
+
+[sub_resource type="Theme" id=41]
+
+[sub_resource type="StyleBoxFlat" id=42]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
+
 [sub_resource type="Shader" id=34]
 code = "shader_type canvas_item;
 
@@ -217,22 +263,6 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="DynamicFont" id=38]
-size = 15
-font_data = ExtResource( 2 )
-
-[sub_resource type="Theme" id=39]
-default_font = SubResource( 38 )
-
-[sub_resource type="Theme" id=41]
-
-[sub_resource type="StyleBoxFlat" id=42]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
-
 [sub_resource type="StyleBoxFlat" id=43]
 bg_color = Color( 0.611765, 0.580392, 0.580392, 1 )
 border_width_left = 1
@@ -255,9 +285,9 @@ script = ExtResource( 7 )
 
 [node name="Page" type="ColorRect" parent="."]
 margin_left = -28.0
-margin_top = 130.0
+margin_top = 132.0
 margin_right = 996.0
-margin_bottom = 730.0
+margin_bottom = 732.0
 rect_scale = Vector2( 1, 0.998777 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -440,40 +470,86 @@ margin_bottom = 204.872
 theme = SubResource( 46 )
 custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true
-bbcode_text = "Vous devez entrer un [shake rate=4 level=9] nom  [/shake] pour le nouveau canvas, puis appuyer sur  [shake rate=6 level=5] Enter  [/shake]"
+bbcode_text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas, puis appuyer sur  [shake rate=15 level=5] Enter  [/shake]"
 text = "Vous devez entrer un  nom   pour le nouveau canvas, puis appuyer sur   Enter  "
+
+[node name="Canvascolormenu" type="Panel" parent="Page"]
+material = SubResource( 49 )
+margin_left = 682.0
+margin_top = 169.0
+margin_right = 862.0
+margin_bottom = 262.0
+theme = SubResource( 50 )
+custom_styles/panel = SubResource( 51 )
+
+[node name="Line2D" type="Line2D" parent="Page/Canvascolormenu"]
+position = Vector2( -437, -172.004 )
+scale = Vector2( 0.946746, 1.00244 )
+points = PoolVector2Array( 476, 217, 635, 217 )
+width = 5.0
+default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
+
+[node name="Colorchoicecanvas" type="RichTextLabel" parent="Page/Canvascolormenu"]
+margin_left = 12.0
+margin_top = 18.229
+margin_right = 180.0
+margin_bottom = 41.229
+theme = SubResource( 39 )
+custom_colors/default_color = Color( 0.027451, 0.0156863, 0.0156863, 1 )
+bbcode_enabled = true
+bbcode_text = "Couleur du canvas"
+text = "Couleur du canvas"
+
+[node name="ColorPickerButtonCanvas" type="ColorPickerButton" parent="Page/Canvascolormenu"]
+margin_left = 84.0
+margin_top = 60.2804
+margin_right = 96.0
+margin_bottom = 80.2804
+rect_pivot_offset = Vector2( -18, -10.0127 )
+theme = SubResource( 41 )
+custom_styles/normal = SubResource( 42 )
+color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Colorfontsmenu" type="Panel" parent="Page"]
 material = SubResource( 35 )
 margin_left = 656.0
-margin_top = 283.347
+margin_top = 281.344
 margin_right = 865.0
-margin_bottom = 479.347
+margin_bottom = 477.344
+rect_pivot_offset = Vector2( -456, -108.133 )
 theme = SubResource( 36 )
 custom_styles/panel = SubResource( 37 )
 
 [node name="Colorchoice" type="RichTextLabel" parent="Page/Colorfontsmenu"]
-margin_left = 33.0
-margin_top = 9.01102
-margin_right = 256.0
-margin_bottom = 32.011
+margin_left = 22.0
+margin_top = 10.0118
+margin_right = 197.0
+margin_bottom = 33.0118
 theme = SubResource( 39 )
 custom_colors/default_color = Color( 0.027451, 0.0156863, 0.0156863, 1 )
 bbcode_enabled = true
 bbcode_text = "Choix de la couleur"
 text = "Choix de la couleur"
 
+[node name="Line2D3" type="Line2D" parent="Page/Colorfontsmenu"]
+position = Vector2( -484, -185.227 )
+scale = Vector2( 1.06256, 1.00491 )
+points = PoolVector2Array( 476, 217, 635, 217 )
+width = 5.0
+default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
+
 [node name="ColorPickerButtonTitle" type="ColorPickerButton" parent="Page/Colorfontsmenu"]
-margin_left = 99.0
-margin_top = 45.0551
-margin_right = 111.0
-margin_bottom = 65.0551
+margin_left = 100.0
+margin_top = 50.0607
+margin_right = 112.0
+margin_bottom = 70.0607
+rect_pivot_offset = Vector2( -18, -10.0127 )
 theme = SubResource( 41 )
 custom_styles/normal = SubResource( 42 )
 color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Line2D" type="Line2D" parent="Page/Colorfontsmenu"]
-position = Vector2( -517, -136.167 )
+position = Vector2( -517, -130.16 )
 scale = Vector2( 1.12291, 1.00122 )
 points = PoolVector2Array( 476, 217, 635, 217 )
 width = 5.0
@@ -506,6 +582,7 @@ color = Color( 0.6, 0.6, 0.6, 1 )
 [connection signal="mouse_entered" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_entered"]
+[connection signal="color_changed" from="Page/Canvascolormenu/ColorPickerButtonCanvas" to="." method="_on_ColorPickerButtonCanvas_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonTitle" to="." method="_on_ColorPickerButtonTitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubtitle" to="." method="_on_ColorPickerButtonSubtitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubsubtitle" to="." method="_on_ColorPickerButtonSubsubtitle_color_changed"]

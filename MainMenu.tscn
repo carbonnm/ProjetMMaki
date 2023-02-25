@@ -122,7 +122,7 @@ hue_variation_random = 0.55
 
 [node name="Titre" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 284.0
+margin_left = 288.0
 margin_top = 172.0
 margin_right = 544.0
 margin_bottom = 244.0
@@ -131,6 +131,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = SubResource( 8 )
 custom_colors/default_color = Color( 1, 0.560784, 0.560784, 1 )
+custom_constants/table_vseparation = -1
 bbcode_enabled = true
 bbcode_text = "[wave amp=9]MMaki[/wave]"
 tab_size = 1

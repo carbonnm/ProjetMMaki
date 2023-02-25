@@ -5,6 +5,9 @@ var chosen_colorTitle = Color( 0, 0, 0, 1 )
 var chosen_colorSubtitle =  Color( 0, 0, 0, 1 ) 
 var chosen_colorSubsubtitle = Color( 0, 0, 0, 1 ) 
 
+#default color for the background of the canvas is white
+var chosen_color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
+
 #default font is Arial
 
 
@@ -66,4 +69,11 @@ func _on_ColorPickerButtonSubsubtitle_color_changed(new_color):
 	var cp_subsubtitle = get_node("Page/Colorfontsmenu/ColorPickerButtonSubsubtitle")
 	#changes button to that color
 	cp_subsubtitle.get_stylebox("normal").bg_color = new_color
-	chosen_colorSubtitle =  new_color
+	chosen_colorSubsubtitle =  new_color
+
+#New color has been selected for the canvas background
+func _on_ColorPickerButtonCanvas_color_changed(new_color):
+	var cp_subsubtitle = get_node("Page/Canvascolormenu/ColorPickerButtonCanvas")
+	#changes button to that color
+	cp_subsubtitle.get_stylebox("normal").bg_color = new_color
+	chosen_color_background =  new_color
