@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -53,12 +53,12 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0.737255, 0.678431, 0.862745, 1 )
+bg_color = Color( 0.788235, 0.627451, 0, 1 )
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color( 0.745098, 0.643137, 0.478431, 1 )
+border_color = Color( 0.54902, 0.478431, 0.745098, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -175,6 +175,14 @@ bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
 bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
+
+[sub_resource type="DynamicFont" id=45]
+size = 14
+outline_color = Color( 0.662745, 0.509804, 0.576471, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=46]
+default_font = SubResource( 45 )
 
 [sub_resource type="Shader" id=34]
 code = "shader_type canvas_item;
@@ -419,6 +427,18 @@ custom_styles/normal = SubResource( 25 )
 text = "  Sous-sous-titre"
 items = [ "  Sous-sous-titre", null, false, 0, null, "  Sous-sous-titre1", null, false, 1, null, " Sous-sous-titre2", null, false, 2, null, "  Sous-sous-titre3", null, false, 3, null ]
 selected = 0
+
+[node name="Namenotentered" type="RichTextLabel" parent="Page/Optionmenu"]
+visible = false
+margin_left = 176.531
+margin_top = 126.872
+margin_right = 915.531
+margin_bottom = 204.872
+theme = SubResource( 46 )
+custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
+bbcode_enabled = true
+bbcode_text = "Vous devez entrer un [shake rate=4 level=9] nom  [/shake] pour le nouveau canvas, puis appuyer sur  [shake rate=6 level=5] Enter  [/shake]"
+text = "Vous devez entrer un  nom   pour le nouveau canvas, puis appuyer sur   Enter  "
 
 [node name="Colorfontsmenu" type="Panel" parent="Page"]
 material = SubResource( 35 )

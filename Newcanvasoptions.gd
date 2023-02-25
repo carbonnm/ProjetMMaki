@@ -20,8 +20,9 @@ func _on_BoutonCreer_button_up():
 		#passing all the arguments to the next scene
 		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas,"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle})
 		
-	
+	#No name entered => Displaying message asking to enter one
 	else:
+		get_node("Page/Optionmenu/Namenotentered").visible = true
 		print("Besoin d'un titre pour le nouveau canvas, Faudra afficher un ptit message ~")
 	
 #--------------------------------------------------------------------------
