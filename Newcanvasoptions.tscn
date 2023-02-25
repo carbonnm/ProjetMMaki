@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -152,6 +152,8 @@ bg_color = Color( 0.85098, 0.847059, 0.396078, 1 )
 [sub_resource type="StyleBoxFlat" id=30]
 
 [sub_resource type="StyleBoxFlat" id=23]
+
+[sub_resource type="AnimatedTexture" id=47]
 
 [sub_resource type="DynamicFont" id=31]
 font_data = ExtResource( 8 )
@@ -377,7 +379,8 @@ custom_styles/hover = SubResource( 26 )
 custom_styles/pressed = SubResource( 30 )
 custom_styles/normal = SubResource( 23 )
 text = "  Titre"
-items = [ "  Titre", null, false, 0, null, "  Titre2", null, false, 1, null, "Titre3", null, false, 2, null, "Titre4", null, false, 3, null ]
+icon = SubResource( 47 )
+items = [ "  Titre", SubResource( 47 ), false, 0, null, "  Titre2", null, false, 1, null, "Titre3", null, false, 2, null, "Titre4", null, false, 3, null ]
 selected = 0
 
 [node name="Subtitle" type="RichTextLabel" parent="Page/Optionmenu"]

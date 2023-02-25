@@ -6,16 +6,18 @@
 [ext_resource path="res://Assets/Graphics/homepage/parallax homescreen.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Fonts/Harukaze.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/Fonts/Apple Japanese Keyboard.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Gradient" id=13]
 offsets = PoolRealArray( 0, 0.740741, 1 )
 colors = PoolColorArray( 0.494118, 0.85098, 0.203922, 1, 0.798306, 0.907093, 0.206875, 1, 0.898039, 0.92549, 0.207843, 1 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 57
-extra_spacing_top = 1
-extra_spacing_char = 1
+size = 45
+outline_color = Color( 0.996078, 0.996078, 0.996078, 1 )
+use_filter = true
+extra_spacing_top = 2
+extra_spacing_char = 2
 extra_spacing_space = 3
 font_data = ExtResource( 7 )
 
@@ -120,18 +122,19 @@ hue_variation_random = 0.55
 
 [node name="Titre" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 386.0
-margin_top = 147.0
-margin_right = 586.0
-margin_bottom = 247.0
+margin_left = 284.0
+margin_top = 172.0
+margin_right = 544.0
+margin_bottom = 244.0
 rect_scale = Vector2( 1.89974, 3.01013 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = SubResource( 8 )
+custom_colors/default_color = Color( 1, 0.560784, 0.560784, 1 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=9] MMaki[/wave]"
+bbcode_text = "[wave amp=9]MMaki[/wave]"
 tab_size = 1
-text = " MMaki"
+text = "MMaki"
 
 [node name="ContainerBoutonCreer" type="MarginContainer" parent="."]
 margin_left = 319.0

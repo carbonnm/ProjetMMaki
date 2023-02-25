@@ -5,6 +5,9 @@ var chosen_colorTitle = Color( 0, 0, 0, 1 )
 var chosen_colorSubtitle =  Color( 0, 0, 0, 1 ) 
 var chosen_colorSubsubtitle = Color( 0, 0, 0, 1 ) 
 
+#default font is Arial
+
+
 func _ready():
 	
 	pass 
@@ -23,8 +26,7 @@ func _on_BoutonCreer_button_up():
 	#No name entered => Displaying message asking to enter one
 	else:
 		get_node("Page/Optionmenu/Namenotentered").visible = true
-		print("Besoin d'un titre pour le nouveau canvas, Faudra afficher un ptit message ~")
-	
+		
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
 #AESTHETIC (little arrow animation on creation button hovering)
