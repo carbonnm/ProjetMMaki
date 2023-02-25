@@ -13,7 +13,6 @@ onready var RCC := $RightClickContainer
 
 var linewidth: float = 4.0
 
-
 var _current_line
 var selected_lines : Array
 var Select_rect : Area2D
@@ -35,9 +34,6 @@ func _ready() -> void:
 	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
 	#test :print(color_title,color_subtitle,color_subsubtitle)
 
-
-
-
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
@@ -51,12 +47,12 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					DrawLine()
 				elif Modes.Select:
 					DrawSelectionArea()
-					
 				elif Modes.DragAndDrop:
 					var selected = true
-#					Drag_and_Drop()
-							
 		else:
+			if event.button_index == BUTTON_LEFT:
+				if Modes.Drawing:
+					Curve2D_Transformer()
 			if Modes.Select:
 				Select_rect.queue_free()
 	
@@ -71,21 +67,13 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			
 			# Draw the line at the position
 			if Modes.Drawing:
-				_current_line.add_point(get_global_mouse_position())
+				_current_line._line.add_point(get_global_mouse_position())
 			elif Modes.Select:
 				UpdateSelectionArea()
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				if selected_lines.size() > 0:
 					Drag_and_Drop(event.relative)
-					# Loop through all selected lines
-#					for area in selected_lines:
-						# Get the mouse position relative to the selected line's parent node
-#						var mouse_pos = _lines.to_local(get_global_mouse_position())						
-						# Move the selected line to the new position
-#						area.position = get_global_mouse_position()							
-						# Update the line's position
-#						area.update()
 			elif Modes.Rescale:
 				#Check if the selection if greater than 0. 
 				if selected_lines.size() > 0:
@@ -104,11 +92,7 @@ func _on_Drawing_pressed() -> void:
 
 func Change_mode(_mode:String) -> void:
 	for mode in Modes:
-		# Modes[mode] = mode == _mode
-		if mode == _mode:
-			Modes[mode] = true
-		else:
-			Modes[mode] = false
+		Modes[mode] = mode == _mode
 
 func RetrieveArea(areas:Array):
 	selected_lines = areas.duplicate()
@@ -119,17 +103,16 @@ func RetrieveArea(areas:Array):
 func DrawLineContainer(drawing:bool):
 	for line in selected_lines:
 		# lancer la fonction _draw setup dans Line.gd
-		line.draw = drawing
+		line[0].draw = drawing
 		# lance la fonction draw() de godot (update() lance draw())
-		line.update()
+		line[0].update()
 
 # delete les ligne selectionnées
 func _on_Delete_pressed():
 	for area in selected_lines:
 		area.queue_free()
 	selected_lines.clear()
-	_action_menu.hide()	
-
+	_action_menu.hide()
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
@@ -139,10 +122,9 @@ func DrawLine():
 			_current_line.queue_free()
 		
 	_current_line = LINE.new()
-#	_current_line.position = get_global_mouse_position() 
 	_lines.add_child(_current_line)
-	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, get_global_mouse_position())
-	_current_line.add_point(get_global_mouse_position())
+	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
+	_current_line._line.add_point(get_global_mouse_position())
 	
 	emit_signal("Line_count",_lines.get_child_count())
 
@@ -185,16 +167,13 @@ func DragCamera(Relative:Vector2):
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
 
-	
 func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
 	
 func Drag_and_Drop(relative):
 	for area in selected_lines:
-		area.position += relative * _camera.zoom
-
-
+		area[0].position += relative
 
 func _on_Rescale_pressed():
 	Change_mode("Rescale")
@@ -210,3 +189,16 @@ func Rescale():
 		pass
 		#_image.scale.x -= 0.05
 		#_image.scale.y -= 0.05
+
+# change the point in the ligne to make it more smooth by using an algorithm
+func Curve2D_Transformer():
+	var curve = Curve2D.new()
+	curve.bake_interval = 16.0 * _camera.zoom.x
+	for point in _current_line._line.points:
+		curve.add_point(point)
+	var new_points = curve.get_baked_points()
+	
+	_current_line._line.points = new_points
+	
+	curve = null
+	_current_line.CreateCollisions()

@@ -3,36 +3,46 @@ extends Area2D
 var _line: Line2D
 var c_shape: CollisionShape2D
 var shape: RectangleShape2D
+var zoom:Vector2
+var HitBoxs:Array
 
 var draw:bool = false
 
 func _ready() -> void:
 	_line = Line2D.new()
-	self.add_child(_line)	
-	c_shape = CollisionShape2D.new()
-	shape = RectangleShape2D.new()
-	c_shape.shape = shape
-	self.add_child(c_shape)
+	self.add_child(_line)
 
-func set_params(lineWidth, color, pos):
+func set_params(lineWidth, color, _zoom):
 	_line.width = lineWidth
 	_line.default_color = color
-	# - c_shape.get_parent().position to applied the global position and not the parent relatate position
-	c_shape.position = pos - c_shape.get_parent().position
+	zoom = _zoom
 
-func add_point(pos):
-	# pos of the parent needed to get the global position and not the parent relativ position
-	var parentPos: Vector2 = _line.get_parent().position
-	_line.add_point(pos ) #- parentPos)
-	#comment the code below to avoid multiple CollishionShap
+# create a collision shape for each point in the line
+func CreateCollisions():
+	
+	var Point_size: int = _line.points.size()
+	if Point_size < 2:
+		return
+	
+	HitBoxs.clear()
+	for index in range (Point_size-1):
+		HitBoxs.append(Create_Shape(_line.points[index], _line.points[index+1]))
+
+# create the shape
+func Create_Shape(point1:Vector2, point2:Vector2):
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
-	c_shape.position = pos #- parentPos
 	c_shape.shape = shape
+	var middle_point = point1.linear_interpolate(point2, 0.5)
+	c_shape.position = middle_point
+	shape.extents.x = point1.distance_to(point2) / 2
+	shape.extents.y = _line.width / 2
+	
+	var _rotation = point1.angle_to_point(point2)
+	c_shape.rotate(_rotation)
+	
 	self.add_child(c_shape)
 	
-#	update()
-
 func _draw() -> void:
 	if draw:
 		var Min = Vector2.INF
