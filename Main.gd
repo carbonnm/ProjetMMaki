@@ -21,7 +21,9 @@ var Modes = {
 	"Drawing": true,
 	"Select": false,
 	"DragAndDrop": false,
-	"Rescale": false
+	"Rescale": false,
+	"Copy": false,
+	"Paste": false
 }
 
 func _ready() -> void:
@@ -78,6 +80,12 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				#Check if the selection if greater than 0. 
 				if selected_lines.size() > 0:
 					Rescale()
+			elif Modes.Copy:
+				if selected_lines.size() > 0:
+					Copy()
+			elif Modes.Paste:
+				if selected_lines.size() > 0:
+					Paste()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -202,3 +210,18 @@ func Curve2D_Transformer():
 	
 	curve = null
 	_current_line.CreateCollisions()
+
+
+func _on_Copy_pressed():
+	Change_mode("Copy")
+	_action_menu.hide()
+
+func Copy():
+	pass
+
+func _on_Paste_pressed():
+	Change_mode("Paste")
+	_action_menu.hide()
+	
+func Paste():
+	pass

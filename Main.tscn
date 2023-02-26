@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/pixil-frame-0.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Image/settings.png" type="Texture" id=14]
 [ext_resource path="res://Image/dragdrop.png" type="Texture" id=15]
 [ext_resource path="res://Image/zoom.png" type="Texture" id=16]
+[ext_resource path="res://Image/copier.png" type="Texture" id=17]
+[ext_resource path="res://Image/coller.png" type="Texture" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.9, 0.9, 0.9, 1 )
@@ -202,9 +204,17 @@ margin_bottom = 142.0
 text = "Rescale"
 icon = ExtResource( 16 )
 
-[node name="Button" type="Button" parent="ActionMenu"]
+[node name="Copy" type="Button" parent="ActionMenu"]
 margin_right = 12.0
 margin_bottom = 20.0
+text = "Copy"
+icon = ExtResource( 17 )
+
+[node name="Paste" type="Button" parent="ActionMenu"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Paste"
+icon = ExtResource( 18 )
 
 [connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="Background" to="." method="_on_Background_gui_input"]
@@ -216,3 +226,5 @@ margin_bottom = 20.0
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]
+[connection signal="pressed" from="ActionMenu/Copy" to="." method="_on_Copy_pressed"]
+[connection signal="pressed" from="ActionMenu/Paste" to="." method="_on_Paste_pressed"]
