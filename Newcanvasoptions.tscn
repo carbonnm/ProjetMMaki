@@ -372,6 +372,7 @@ theme = SubResource( 20 )
 custom_styles/focus = SubResource( 21 )
 custom_styles/normal = SubResource( 22 )
 align = 1
+context_menu_enabled = false
 clear_button_enabled = true
 placeholder_text = "   Entrez le nom de votre nouveau canvas"
 placeholder_alpha = 0.836
