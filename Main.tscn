@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Titlemenuaddition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/RightClickContainer.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://addons/color_picker_text_button/styleboxflat.tres" type="StyleBox" id=5]
@@ -182,36 +183,43 @@ __meta__ = {
 }
 
 [node name="Delete" type="Button" parent="ActionMenu"]
-margin_right = 121.0
+margin_right = 167.0
 margin_bottom = 70.0
 text = "Delete"
 icon = ExtResource( 11 )
 
 [node name="Drag And Drop" type="Button" parent="ActionMenu"]
 margin_top = 74.0
-margin_right = 121.0
-margin_bottom = 94.0
+margin_right = 167.0
+margin_bottom = 144.0
 text = "Drag and drop"
 icon = ExtResource( 15 )
 
 [node name="Rescale" type="Button" parent="ActionMenu"]
-margin_top = 122.0
-margin_right = 121.0
-margin_bottom = 142.0
+margin_top = 148.0
+margin_right = 167.0
+margin_bottom = 218.0
 text = "Rescale"
 icon = ExtResource( 16 )
 
 [node name="Copy" type="Button" parent="ActionMenu"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_top = 222.0
+margin_right = 167.0
+margin_bottom = 292.0
 text = "Copy"
 icon = ExtResource( 17 )
 
 [node name="Paste" type="Button" parent="ActionMenu"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_top = 296.0
+margin_right = 167.0
+margin_bottom = 366.0
 text = "Paste"
 icon = ExtResource( 18 )
+
+[node name="Titlemenuaddition" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 299, 105 )
+scale = Vector2( 0.4, 0.4 )
 
 [connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]

@@ -45,9 +45,11 @@ func _ready() -> void:
 	get_node("BackgroundColored").color = color_background
 
 #Function to test the title addition (don't erase please)	
-#func _input(ev):
-#	if ev is InputEventKey and ev.scancode == KEY_K:
-#		print("k")
+func _input(ev):
+	if ev is InputEventKey and ev.scancode == KEY_K:
+		
+		get_node("Titlemenuaddition").visible = true
+		
 
 
 func _on_Background_gui_input(event: InputEvent) -> void:

@@ -109,4 +109,4 @@ func _on_DropdownSubsub_item_selected(index):
 #No need to press Enter anymore
 func _on_Titleinputbutton_pressed():
 	chosen_name = get_node("Page/Optionmenu/Inputname").new_name
-	print(chosen_name)
+	#print(chosen_name)
