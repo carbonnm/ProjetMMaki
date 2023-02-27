@@ -8,7 +8,10 @@ var chosen_colorSubsubtitle = Color( 0, 0, 0, 1 )
 #default color for the background of the canvas is antique white
 var chosen_color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
 
-#default font is Arial
+#default font is Arial (the path)
+var chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
+var chosen_font_subtitle =  "res://Assets/Fonts/arial_narrow_7.ttf"
+var chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
 
 
 func _ready():
@@ -27,7 +30,10 @@ func _on_BoutonCreer_button_up():
 		#passing all the arguments to the next scene
 		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas,
 		"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle,
-		"backgroundcolor":chosen_color_background})
+		"backgroundcolor":chosen_color_background,
+		"titlefont":chosen_font_title,
+		"subtitlefont":chosen_font_subtitle,
+		"subsubtitlefont":chosen_font_subsubtitle})
 		
 	#No name entered => Displaying message asking to enter one
 	else:
@@ -80,3 +86,15 @@ func _on_ColorPickerButtonCanvas_color_changed(new_color):
 	#changes button to that color
 	cp_subsubtitle.get_stylebox("normal").bg_color = new_color
 	chosen_color_background =  new_color
+
+#changes the chosen font for the title 
+func _on_DropdownTitle_item_selected(index):
+	pass # Replace with function body.
+
+#changes the chosen font for the subtitle 
+func _on_Dropdownsubtitle_item_selected(index):
+	pass # Replace with function body.
+
+#changes the chosen font for the sub-subtitle 
+func _on_DropdownSubsub_item_selected(index):
+	pass # Replace with function body.

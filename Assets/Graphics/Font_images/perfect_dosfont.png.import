@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/perfect_dosfont.png-8a3b892dac3b8ff440d8c7630607f374.stex"
+path="res://.import/perfect_dosfont.png-ceee93475cab1d3dcd0d6cd7fa893100.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/perfect_dosfont.png"
-dest_files=[ "res://.import/perfect_dosfont.png-8a3b892dac3b8ff440d8c7630607f374.stex" ]
+source_file="res://Assets/Graphics/Font_images/perfect_dosfont.png"
+dest_files=[ "res://.import/perfect_dosfont.png-ceee93475cab1d3dcd0d6cd7fa893100.stex" ]
 
 [params]
 
