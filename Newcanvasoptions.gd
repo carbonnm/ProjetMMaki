@@ -55,11 +55,10 @@ func _on_BoutonCreer_mouse_exited():
 
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
-#Handling color-pickers
+#Handling color-pickers (fonts and canvas'background)
 #-------------------------
 
 #New color has been selected for the Title 
-
 func _on_ColorPickerButtonTitle_color_changed(new_color):
 	var cp_title = get_node("Page/Colorfontsmenu/ColorPickerButtonTitle")
 	#changes button to that color
@@ -87,6 +86,11 @@ func _on_ColorPickerButtonCanvas_color_changed(new_color):
 	cp_subsubtitle.get_stylebox("normal").bg_color = new_color
 	chosen_color_background =  new_color
 
+
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+#Font selection from dropdown menu (Title, subtitle, sub-subtitle)
+#-------------------------
 #changes the chosen font for the title 
 func _on_DropdownTitle_item_selected(index):
 	pass # Replace with function body.
