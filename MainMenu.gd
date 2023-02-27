@@ -22,7 +22,12 @@ func _on_BoutonCreer_mouse_exited():
 #launches little arrow animation on mouse entered
 func _on_BoutonOptions_mouse_entered():
 	get_node("ContainerBoutonOptions/Littlearrow").playing = true
+	
 
 #stops little arrow animation on mouse entered
 func _on_BoutonOptions_mouse_exited():
 	get_node("ContainerBoutonOptions/Littlearrow").playing = false
+
+
+func _on_BoutonOptions_pressed():
+	get_node("Namenotentered").visible = true

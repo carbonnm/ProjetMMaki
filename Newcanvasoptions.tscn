@@ -189,13 +189,13 @@ bg_color = Color( 0.803922, 0.4, 0.0980392, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 
-[sub_resource type="DynamicFont" id=45]
+[sub_resource type="DynamicFont" id=53]
 size = 14
 outline_color = Color( 0.662745, 0.509804, 0.576471, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=46]
-default_font = SubResource( 45 )
+default_font = SubResource( 53 )
 
 [sub_resource type="Shader" id=48]
 code = "shader_type canvas_item;
@@ -499,7 +499,7 @@ theme = SubResource( 46 )
 custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true
 bbcode_text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas"
-text = "Vous devez entrer un  nom   pour le nouveau canvas"
+text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas"
 
 [node name="Canvascolormenu" type="Panel" parent="Page"]
 material = SubResource( 49 )
