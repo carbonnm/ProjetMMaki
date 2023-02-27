@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/Graphics/Font_images/minecraft_font.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Graphics/Font_images/arial7_font.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Graphics/Font_images/hug_font.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Graphics/arrow.png" type="Texture" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -138,6 +139,14 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=52]
+bg_color = Color( 0.611765, 0.917647, 0.988235, 1 )
+corner_radius_top_left = 250
+corner_radius_top_right = 350
+corner_radius_bottom_right = 350
+corner_radius_bottom_left = 243
+corner_detail = 14
 
 [sub_resource type="DynamicFont" id=8]
 size = 23
@@ -379,6 +388,17 @@ placeholder_alpha = 0.836
 caret_blink = true
 script = ExtResource( 3 )
 
+[node name="Titleinputbutton" type="Button" parent="Page/Optionmenu/Inputname"]
+margin_left = 397.368
+margin_top = 6.76782
+margin_right = 565.368
+margin_bottom = 167.768
+rect_scale = Vector2( 0.2, 0.2 )
+custom_styles/normal = SubResource( 52 )
+text = " "
+icon = ExtResource( 13 )
+expand_icon = true
+
 [node name="Fontoptions" type="RichTextLabel" parent="Page/Optionmenu"]
 margin_left = 71.0308
 margin_top = 234.379
@@ -470,7 +490,6 @@ items = [ "  Sous-sous-titre", null, false, 0, null, "  Sous-sous-titre1", null,
 selected = 0
 
 [node name="Namenotentered" type="RichTextLabel" parent="Page/Optionmenu"]
-visible = false
 margin_left = 177.0
 margin_top = 127.0
 margin_right = 912.0
@@ -479,7 +498,7 @@ theme = SubResource( 46 )
 custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true
 bbcode_text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas, puis appuyer sur  [shake rate=15 level=5] Enter  [/shake]"
-text = "Vous devez entrer un  nom   pour le nouveau canvas, puis appuyer sur   Enter  "
+text = "Vous devez entrer un  nom   pour le nouveau canvas"
 
 [node name="Canvascolormenu" type="Panel" parent="Page"]
 material = SubResource( 49 )
@@ -589,7 +608,8 @@ color = Color( 0.6, 0.6, 0.6, 1 )
 [connection signal="button_up" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
 [connection signal="mouse_entered" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
-[connection signal="text_entered" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_entered"]
+[connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
+[connection signal="pressed" from="Page/Optionmenu/Inputname/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
 [connection signal="item_selected" from="Page/Optionmenu/DropdownTitle" to="." method="_on_DropdownTitle_item_selected"]
 [connection signal="item_selected" from="Page/Optionmenu/Dropdownsubtitle" to="." method="_on_Dropdownsubtitle_item_selected"]
 [connection signal="item_selected" from="Page/Optionmenu/DropdownSubsub" to="." method="_on_DropdownSubsub_item_selected"]

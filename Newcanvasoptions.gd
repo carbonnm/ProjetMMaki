@@ -1,5 +1,7 @@
 extends Node2D
 
+#chosen name for the new canvas
+var chosen_name = ""
 #default colors for the fonts are black 
 var chosen_colorTitle = Color( 0, 0, 0, 1 ) 
 var chosen_colorSubtitle =  Color( 0, 0, 0, 1 ) 
@@ -23,12 +25,12 @@ func _ready():
 #CREATION BUTTON HANDLING and passing parameters to the NEXT SCENE
 #-------------------------
 func _on_BoutonCreer_button_up():
-	var name_canvas = get_node("Page/Optionmenu/Inputname").new_name
+	
 	
 	#Need for a name to have been entered for the new canvas!
-	if not(name_canvas ==""):
+	if not(chosen_name ==""):
 		#passing all the arguments to the next scene
-		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas,
+		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":chosen_name,
 		"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle,
 		"backgroundcolor":chosen_color_background,
 		"titlefont":chosen_font_title,
@@ -103,3 +105,8 @@ func _on_Dropdownsubtitle_item_selected(index):
 #changes the chosen font for the sub-subtitle 
 func _on_DropdownSubsub_item_selected(index):
 	pass # Replace with function body.
+
+#No need to press Enter anymore
+func _on_Titleinputbutton_pressed():
+	chosen_name = get_node("Page/Optionmenu/Inputname").new_name
+	print(chosen_name)

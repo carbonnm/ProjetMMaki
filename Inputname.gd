@@ -6,6 +6,9 @@ func _ready():
 	pass
 
 
-func _on_Inputname_text_entered(new_text):
+
+
+
+func _on_Inputname_text_changed(new_text):
 	print(new_text)
 	new_name = new_text
