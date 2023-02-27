@@ -38,8 +38,12 @@ func _ready() -> void:
 	#var subtitlefont : SceneSwitcher.get_param("subtitlefont")
 	#var subsubtitlefont : SceneSwitcher.get_param("subsubtitlefont")
 	
-	#Canvas background color recuperation
-	var color_background = SceneSwitcher.get_param("backgroundcolor")
+	#Canvas background color recuperation (fixing the background bug)
+	var color_background
+	if not (SceneSwitcher.get_param("backgroundcolor")):
+		color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
+	else:
+		color_background = SceneSwitcher.get_param("backgroundcolor")
 	
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background

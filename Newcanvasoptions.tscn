@@ -499,7 +499,7 @@ theme = SubResource( 46 )
 custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true
 bbcode_text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas"
-text = "Vous devez entrer un [shake rate=15 level=9] nom  [/shake] pour le nouveau canvas"
+text = "Vous devez entrer un  nom   pour le nouveau canvas"
 
 [node name="Canvascolormenu" type="Panel" parent="Page"]
 material = SubResource( 49 )
