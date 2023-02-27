@@ -34,8 +34,13 @@ func _ready() -> void:
 	var color_title = SceneSwitcher.get_param("titlecolor")
 	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
 	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
-	#test :print(color_title,color_subtitle,color_subsubtitle)
-
+	#Canvas background color recuperation
+	var color_background = SceneSwitcher.get_param("backgroundcolor")
+	
+	#sets the background color of the canvas to the chosen one in the menu
+	get_node("BackgroundColored").color = color_background
+	
+	
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true

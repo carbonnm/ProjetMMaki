@@ -5,7 +5,7 @@ var chosen_colorTitle = Color( 0, 0, 0, 1 )
 var chosen_colorSubtitle =  Color( 0, 0, 0, 1 ) 
 var chosen_colorSubsubtitle = Color( 0, 0, 0, 1 ) 
 
-#default color for the background of the canvas is white
+#default color for the background of the canvas is antique white
 var chosen_color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
 
 #default font is Arial
@@ -21,10 +21,13 @@ func _ready():
 #-------------------------
 func _on_BoutonCreer_button_up():
 	var name_canvas = get_node("Page/Optionmenu/Inputname").new_name
+	
 	#Need for a name to have been entered for the new canvas!
 	if not(name_canvas ==""):
 		#passing all the arguments to the next scene
-		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas,"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle})
+		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":name_canvas,
+		"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle,
+		"backgroundcolor":chosen_color_background})
 		
 	#No name entered => Displaying message asking to enter one
 	else:

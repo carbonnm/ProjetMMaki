@@ -463,10 +463,10 @@ selected = 0
 
 [node name="Namenotentered" type="RichTextLabel" parent="Page/Optionmenu"]
 visible = false
-margin_left = 176.531
-margin_top = 126.872
-margin_right = 915.531
-margin_bottom = 204.872
+margin_left = 177.0
+margin_top = 127.0
+margin_right = 912.0
+margin_bottom = 150.0
 theme = SubResource( 46 )
 custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true

@@ -13,9 +13,8 @@ offsets = PoolRealArray( 0, 0.740741, 1 )
 colors = PoolColorArray( 0.494118, 0.85098, 0.203922, 1, 0.798306, 0.907093, 0.206875, 1, 0.898039, 0.92549, 0.207843, 1 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 45
+size = 44
 outline_color = Color( 0.996078, 0.996078, 0.996078, 1 )
-use_filter = true
 extra_spacing_top = 2
 extra_spacing_char = 2
 extra_spacing_space = 3
