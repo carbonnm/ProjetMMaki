@@ -43,8 +43,13 @@ func _ready() -> void:
 	
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
-	
-	
+
+#Function to test the title addition (don't erase please)	
+#func _input(ev):
+#	if ev is InputEventKey and ev.scancode == KEY_K:
+#		print("k")
+
+
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
@@ -94,7 +99,8 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			DragCamera(event.relative)
-
+			
+	
 func _on_Selection_pressed() -> void:
 	Change_mode("Select")
 

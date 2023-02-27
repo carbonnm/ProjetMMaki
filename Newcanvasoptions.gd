@@ -93,7 +93,8 @@ func _on_ColorPickerButtonCanvas_color_changed(new_color):
 #-------------------------
 #changes the chosen font for the title 
 func _on_DropdownTitle_item_selected(index):
-	pass # Replace with function body.
+	if index ==0:
+		chosen_font_title = "res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf"
 
 #changes the chosen font for the subtitle 
 func _on_Dropdownsubtitle_item_selected(index):
