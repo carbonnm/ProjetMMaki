@@ -83,11 +83,12 @@ margin_right = 1019.0
 margin_bottom = 451.0
 custom_styles/panel = SubResource( 5 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Titremenu" type="RichTextLabel" parent="."]
 margin_left = 41.0
 margin_top = -6.0
 margin_right = 894.0
 margin_bottom = 110.0
+rect_pivot_offset = Vector2( -240, -152 )
 theme = SubResource( 2 )
 custom_colors/default_color = Color( 0.298039, 0.298039, 0.345098, 1 )
 bbcode_enabled = true
@@ -98,7 +99,41 @@ text = "
 Entrer votre nouveau Titre:
 "
 
-[node name="Line2D2" type="Line2D" parent="."]
+[node name="Subtitlemenu" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 43.0
+margin_top = -4.0
+margin_right = 896.0
+margin_bottom = 112.0
+rect_pivot_offset = Vector2( -240, -152 )
+theme = SubResource( 2 )
+custom_colors/default_color = Color( 0.298039, 0.298039, 0.345098, 1 )
+bbcode_enabled = true
+bbcode_text = "
+Entrer votre nouveau Sous-titre:
+"
+text = "
+Entrer votre nouveau Sous-titre:
+"
+
+[node name="Subsubtitlemenu" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 39.0
+margin_top = -7.0
+margin_right = 892.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( -240, -152 )
+theme = SubResource( 2 )
+custom_colors/default_color = Color( 0.298039, 0.298039, 0.345098, 1 )
+bbcode_enabled = true
+bbcode_text = "
+Entrer votre nouveau Sous-sous-titre:
+"
+text = "
+Entrer votre nouveau Sous-sous-titre:
+"
+
+[node name="Line" type="Line2D" parent="."]
 position = Vector2( -2750.34, -136 )
 scale = Vector2( 5.80673, 1.00245 )
 points = PoolVector2Array( 476, 217, 635, 217 )
