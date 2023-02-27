@@ -35,7 +35,7 @@ func _ready() -> void:
 	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
 	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
 	
-	#Retrieves chosen font from Title 
+	#Retrieves chosen font(s) for Title, Subtitle, Sub-subtitle
 	#var titlefont : SceneSwitcher.get_param("titlefont")
 	#var subtitlefont : SceneSwitcher.get_param("subtitlefont")
 	#var subsubtitlefont : SceneSwitcher.get_param("subsubtitlefont")
