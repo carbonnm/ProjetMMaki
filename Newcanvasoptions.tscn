@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
 [ext_resource path="res://Newcanvasoptions.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Graphics/perfect_dosfont.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Graphics/minecraft_font.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Graphics/arial7_font.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Graphics/hug_font.png" type="Texture" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -152,8 +156,6 @@ bg_color = Color( 0.85098, 0.847059, 0.396078, 1 )
 [sub_resource type="StyleBoxFlat" id=30]
 
 [sub_resource type="StyleBoxFlat" id=23]
-
-[sub_resource type="AnimatedTexture" id=47]
 
 [sub_resource type="DynamicFont" id=31]
 font_data = ExtResource( 8 )
@@ -400,17 +402,16 @@ bbcode_text = "Titre"
 text = "Titre"
 
 [node name="DropdownTitle" type="OptionButton" parent="Page/Optionmenu"]
-margin_left = 290.663
-margin_top = 287.156
-margin_right = 534.663
-margin_bottom = 331.156
+margin_left = 293.541
+margin_top = 275.428
+margin_right = 527.541
+margin_bottom = 337.428
 custom_fonts/font = SubResource( 29 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/pressed = SubResource( 30 )
 custom_styles/normal = SubResource( 23 )
-text = "  Titre"
-icon = SubResource( 47 )
-items = [ "  Titre", SubResource( 47 ), false, 0, null, "  Titre2", null, false, 1, null, "Titre3", null, false, 2, null, "Titre4", null, false, 3, null ]
+icon = ExtResource( 9 )
+items = [ "", ExtResource( 9 ), false, 0, null, "", ExtResource( 10 ), false, 1, null, "", ExtResource( 11 ), false, 2, null, "", ExtResource( 12 ), false, 3, null ]
 selected = 0
 
 [node name="Subtitle" type="RichTextLabel" parent="Page/Optionmenu"]
@@ -423,6 +424,9 @@ custom_colors/default_color = Color( 0.345098, 0.262745, 0.027451, 1 )
 bbcode_enabled = true
 bbcode_text = "Sous-titre"
 text = "Sous-titre"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Dropdownsubtitle" type="OptionButton" parent="Page/Optionmenu"]
 margin_left = 292.582
@@ -447,6 +451,9 @@ custom_colors/default_color = Color( 0.345098, 0.262745, 0.027451, 1 )
 bbcode_enabled = true
 bbcode_text = "Sous-sous-titre"
 text = "Sous-sous-titre"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="DropdownSubsub" type="OptionButton" parent="Page/Optionmenu"]
 margin_left = 290.663
