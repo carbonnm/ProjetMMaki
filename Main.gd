@@ -22,8 +22,6 @@ var Modes = {
 	"Select": false,
 	"DragAndDrop": false,
 	"Rescale": false,
-	"Copy": false,
-	"Paste": false
 }
 
 func _ready() -> void:
@@ -86,17 +84,12 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				if selected_lines.size() > 0:
+					print("dragdrop")
 					Drag_and_Drop(event.relative)
 			elif Modes.Rescale:
 				#Check if the selection if greater than 0. 
 				if selected_lines.size() > 0:
 					Rescale()
-			elif Modes.Copy:
-				if selected_lines.size() > 0:
-					Copy()
-			elif Modes.Paste:
-				if selected_lines.size() > 0:
-					Paste()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -224,15 +217,23 @@ func Curve2D_Transformer():
 
 
 func _on_Copy_pressed():
-	Change_mode("Copy")
+	print("copy")
+	var copied = selected_lines.duplicate()
 	_action_menu.hide()
 
-func Copy():
-	pass
+"""
+Marie : Code qui marche pour juste une image
+if Input.is_action_pressed("Copy"):
+		print("paste")
+elif Input.is_action_just_pressed("Paste"):
+	var newNode = $Icon.duplicate()
+	newNode.position = get_global_mouse_position()
+	add_child(newNode)
+"""
 
 func _on_Paste_pressed():
-	Change_mode("Paste")
 	_action_menu.hide()
-	
-func Paste():
-	pass
+	var copied = selected_lines.duplicate()
+	for area in copied:
+		area[0].position = get_global_mouse_position()
+		add_child(area[0])
