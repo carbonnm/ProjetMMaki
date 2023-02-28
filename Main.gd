@@ -353,3 +353,15 @@ func get_line2D_center(line2D):
 	return center
 
 	
+
+
+func _on_Create_annotation_pressed():
+	pass # Replace with function body.
+
+
+func _on_Group_items_pressed():
+	pass # Replace with function body.
+
+
+func _on_Save_canvas_pressed():
+	pass # Replace with function body.
