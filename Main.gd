@@ -54,7 +54,6 @@ func _input(ev):
 	if ev is InputEventKey and ev.scancode == KEY_K:
 		
 		get_node("Titlemenuaddition").visible = true
-		
 
 
 func _on_Background_gui_input(event: InputEvent) -> void:
@@ -247,7 +246,27 @@ func _on_Rotation_pressed():
 Rotate the selected object
 """
 func Rotate():
-	pass
+	var rotation_speed = deg2rad(1)
+	var radius:float
+	var center = Vector2.ZERO
+	
+	for indexed_area2D in selected_lines:
+		center += indexed_area2D[0].position
+	center = center/selected_lines.size()
+	
+	var angle:float
+	var coord:Vector2
+	
+	var area2D:Area2D
+	for indexed_area in selected_lines:
+		area2D = indexed_area[0]
+		angle = fmod(area2D.position.angle_to_point(center)+rotation_speed,deg2rad(360))
+		radius = area2D.position.distance_to(center)
+		coord = Vector2(cos(angle),sin(angle))*radius + center
+		
+		area2D.position = coord
+		area2D.rotation += rotation_speed
+
 
 # change the point in the ligne to make it more smooth by using an algorithm
 func Curve2D_Transformer():
@@ -256,6 +275,7 @@ func Curve2D_Transformer():
 	for point in _current_line._line.points:
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
+
 	var line_center = get_line2D_center(_current_line._line)
 
 	_current_line.position += line_center
@@ -339,3 +359,5 @@ func get_line2D_center(line2D):
 	center = center/line2D.get_point_count()
 	
 	return center
+
+	
