@@ -238,8 +238,15 @@ func Curve2D_Transformer():
 	for point in _current_line._line.points:
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
+	var line_center = get_line2D_center(_current_line._line)
+
+	_current_line.position += line_center
+	
+	for index in range(new_points.size()):
+		new_points[index] -= line_center
 	
 	_current_line._line.points = new_points
+	print(new_points)
 	
 	curve = null
 	_current_line.CreateCollisions()
@@ -266,3 +273,35 @@ func _on_Paste_pressed():
 	for area in copied:
 		area[0].position = get_global_mouse_position()
 		add_child(area[0])
+
+func line_selection_center(indexed_list_of_area2D):
+	var center:Vector2
+	var current_area2D_center:Vector2
+	var area2D:Area2D
+	var line2D:Line2D
+	
+	for indexed_area2D in selected_lines:
+		area2D = indexed_area2D[0]
+		line2D = get_child_of_type(area2D,"Line2D")
+		current_area2D_center = get_line2D_center(line2D)
+		center += current_area2D_center
+	
+	return center/selected_lines.size()
+	
+func get_child_of_type(node, type):
+	var num_of_child = node.get_child_count()
+	for i in range(num_of_child):
+		var child = node.get_child(i)
+		if child.is_class(type):
+			return child
+			
+func get_line2D_center(line2D):
+	var point_pos:Vector2
+	var center = Vector2.ZERO
+	for index in range(line2D.get_point_count()):
+		point_pos = line2D.get_point_position(index)
+		center += point_pos
+		
+	center = center/line2D.get_point_count()
+	
+	return center
