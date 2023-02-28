@@ -98,7 +98,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					print("dragdrop")
 					Drag_and_Drop(event.relative)
 			elif Modes.Rescale:
+				print("blabla")
 				#Check if the selection if greater than 0. 
+				print(selected_lines.size())
 				if selected_lines.size() > 0:
 					Rescale()
 				
@@ -191,29 +193,44 @@ func DragCamera(Relative:Vector2):
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
 
+
+"""
+Change mode to Drag and drop when drag
+"""
 func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
+
 	
 func Drag_and_Drop(relative):
 	for area in selected_lines:
 		area[0].position += relative
 
+
+"""
+Change mode to Rescale when rescale button pressed.
+"""
 func _on_Rescale_pressed():
 	Change_mode("Rescale")
+	print("Im in rescale mode")
 	_action_menu.hide()
 
+
+"""
+Rescale the selected area (zoom/dezoom)
+"""
 func Rescale():
+	"""
 	if Input.is_action_pressed("ZoomImage"):
-		#Marie C : il faudra encore comment je peux faire zoomer toutes les lignes en une fois
-		pass
 		#_image.scale.x += 0.05
 		#_image.scale.y += 0.05
 	elif Input.is_action_pressed("DeZoomImage"):
-		pass
 		#_image.scale.x -= 0.05
 		#_image.scale.y -= 0.05
-
+	"""
+	for area in selected_lines:
+		area[0].scale += Vector2(0.05, 0.05)
+		print("im rescaling")
 # change the point in the ligne to make it more smooth by using an algorithm
 func Curve2D_Transformer():
 	var curve = Curve2D.new()
