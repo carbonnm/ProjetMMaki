@@ -220,11 +220,6 @@ func _on_Rescale_pressed():
 Rescale the selected area (zoom/dezoom)
 """
 func Rescale(relative):
-	var center = Vector2.ZERO
-	for indexed_area2D in selected_lines:
-		center += indexed_area2D[0].position
-	center = center/selected_lines.size()
-	
 	for area in selected_lines:
 		if get_global_mouse_position().x - relative.x < get_global_mouse_position().x  :
 			area[0].scale += Vector2(0.03, 0.03)
