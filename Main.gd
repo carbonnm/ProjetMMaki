@@ -100,10 +100,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				#Check if the selection if greater than 0. 
 				print(selected_lines.size())
 				if selected_lines.size() > 0:
-					Rescale()
+					Rescale(event.relative)
 			elif Modes.Rotate:
 				if selected_lines.size() > 0:
-					Rotate()
+					Rotate(event.relative)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -219,19 +219,16 @@ func _on_Rescale_pressed():
 """
 Rescale the selected area (zoom/dezoom)
 """
-func Rescale():
+func Rescale(relative):
 	var center = Vector2.ZERO
 	for indexed_area2D in selected_lines:
 		center += indexed_area2D[0].position
 	center = center/selected_lines.size()
 	
-	print(center)
 	for area in selected_lines:
-		print(area[0].position)
-		print(get_line2D_center(area[0]._line))
-		if get_global_mouse_position() >= center :
+		if get_global_mouse_position().x - relative.x < get_global_mouse_position().x  :
 			area[0].scale += Vector2(0.03, 0.03)
-		elif get_global_mouse_position() <= center :
+		elif get_global_mouse_position() - relative > get_global_mouse_position():
 			area[0].scale -= Vector2(0.03, 0.03)
 		
 
@@ -245,7 +242,7 @@ func _on_Rotation_pressed():
 """
 Rotate the selected object
 """
-func Rotate():
+func Rotate(relative):
 	var rotation_speed = deg2rad(1)
 	var radius:float
 	var center = Vector2.ZERO
