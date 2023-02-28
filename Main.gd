@@ -22,6 +22,7 @@ var Modes = {
 	"Select": false,
 	"DragAndDrop": false,
 	"Rescale": false,
+	"Rotate": false
 }
 
 func _ready() -> void:
@@ -95,14 +96,15 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				if selected_lines.size() > 0:
-					print("dragdrop")
 					Drag_and_Drop(event.relative)
 			elif Modes.Rescale:
-				print("blabla")
 				#Check if the selection if greater than 0. 
 				print(selected_lines.size())
 				if selected_lines.size() > 0:
 					Rescale()
+			elif Modes.Rotate:
+				if selected_lines.size() > 0:
+					Rotate()
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -212,7 +214,6 @@ Change mode to Rescale when rescale button pressed.
 """
 func _on_Rescale_pressed():
 	Change_mode("Rescale")
-	print("Im in rescale mode")
 	_action_menu.hide()
 
 
@@ -220,17 +221,34 @@ func _on_Rescale_pressed():
 Rescale the selected area (zoom/dezoom)
 """
 func Rescale():
-	"""
-	if Input.is_action_pressed("ZoomImage"):
-		#_image.scale.x += 0.05
-		#_image.scale.y += 0.05
-	elif Input.is_action_pressed("DeZoomImage"):
-		#_image.scale.x -= 0.05
-		#_image.scale.y -= 0.05
-	"""
+	var center = Vector2.ZERO
+	for indexed_area2D in selected_lines:
+		center += indexed_area2D[0].position
+	center = center/selected_lines.size()
+	
+	print(center)
 	for area in selected_lines:
-		area[0].scale += Vector2(0.05, 0.05)
-		print("im rescaling")
+		print(area[0].position)
+		print(get_line2D_center(area[0]._line))
+		if get_global_mouse_position() >= center :
+			area[0].scale += Vector2(0.03, 0.03)
+		elif get_global_mouse_position() <= center :
+			area[0].scale -= Vector2(0.03, 0.03)
+		
+
+"""
+Change mode to Rotate when rotation button pressed
+"""
+func _on_Rotation_pressed():
+	Change_mode("Rotate")
+	_action_menu.hide()
+	
+"""
+Rotate the selected object
+"""
+func Rotate():
+	pass
+
 # change the point in the ligne to make it more smooth by using an algorithm
 func Curve2D_Transformer():
 	var curve = Curve2D.new()
@@ -246,7 +264,6 @@ func Curve2D_Transformer():
 		new_points[index] -= line_center
 	
 	_current_line._line.points = new_points
-	print(new_points)
 	
 	curve = null
 	_current_line.CreateCollisions()
@@ -269,10 +286,27 @@ elif Input.is_action_just_pressed("Paste"):
 
 func _on_Paste_pressed():
 	_action_menu.hide()
+	"""
 	var copied = selected_lines.duplicate()
 	for area in copied:
 		area[0].position = get_global_mouse_position()
 		add_child(area[0])
+	"""
+	"""
+	for area in selected_lines:
+		var copiedLine = area[0].duplicate()
+		copiedLine.position = get_global_mouse_position()
+		add_child(copiedLine)
+	"""
+	print(selected_lines)
+	for area in selected_lines:
+		print(area)
+		print(area[0])
+		var duplarea0 = area[0].duplicate()
+		duplarea0.position = get_global_mouse_position()
+		_lines.add_child(duplarea0)
+
+
 
 func line_selection_center(indexed_list_of_area2D):
 	var center:Vector2
