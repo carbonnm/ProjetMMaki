@@ -189,7 +189,7 @@ func DrawLineContainer(drawing:bool):
 # delete les ligne selectionnées
 func _on_Delete_pressed():
 	for area in selected_lines:
-		area.queue_free()
+		area[0].queue_free()
 	selected_lines.clear()
 	_action_menu.hide()
 
