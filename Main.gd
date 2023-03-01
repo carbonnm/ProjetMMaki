@@ -18,6 +18,7 @@ var linewidth: float = 4.0
 var _current_line
 var selected_lines : Array
 var Select_rect : Area2D
+var copy_lignes
 
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
@@ -332,15 +333,8 @@ func Curve2D_Transformer():
 	for point in _current_line._line.points:
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
-
-	var line_center = _current_line.get_line2D_center()
-
-	_current_line.position += line_center
 	
-	for index in range(new_points.size()):
-		new_points[index] -= line_center
-	
-	_current_line._line.points = new_points
+	Center_area2D_to_center(new_points)
 	
 	curve = null
 	_current_line.CreateCollisions()
@@ -351,9 +345,10 @@ When copy button pressed, create a duplication of the selected area
 """
 func _on_Copy_pressed():
 	_action_menu.hide()
-	for area in selected_lines:
-		var duplarea = area[0].duplicate()
+	copy_lignes = selected_lines.duplicate()
 		
+
+
 
 """
 When paste button pressed, create a duplication of the selected area
@@ -361,10 +356,12 @@ Then Paste it where the mouse actually is (to be changed with the right click)
 """
 func _on_Paste_pressed():
 	_action_menu.hide()
-	for area in selected_lines:
-		var duplarea0 = area[0].duplicate()
-		duplarea0.position = RCC.rect_position
-		_lines.add_child(duplarea0)
+	for Ligne in copy_lignes:
+		var duplarea = Ligne[0].duplicate()
+		duplarea.position = RCC.rect_position
+		_lines.add_child(duplarea)
+
+
 
 """
 Get the mean position of a list of Area2D.
@@ -464,3 +461,12 @@ func _on_PopupMenu_id_pressed(id):
 	elif id==5:
 		print("Dessin")
 
+func Center_area2D_to_center(new_points):
+	
+	var line_center = _current_line.get_line2D_center()
+	_current_line.position += line_center
+	
+	for index in range(new_points.size()):
+		new_points[index] -= line_center
+	
+	_current_line._line.points = new_points
