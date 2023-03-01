@@ -59,4 +59,13 @@ func _draw() -> void:
 		
 		draw_rect(Rect2(Min, Max - Min), Color.aqua, false, 4)
 
-
+func get_line2D_center():
+	var point_pos:Vector2
+	var center = Vector2.ZERO
+	for index in range(_line.get_point_count()):
+		point_pos = _line.get_point_position(index)
+		center += point_pos
+		
+	center = center/_line.get_point_count()
+	
+	return center

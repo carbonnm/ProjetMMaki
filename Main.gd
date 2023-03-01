@@ -273,7 +273,7 @@ func Curve2D_Transformer():
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
 
-	var line_center = get_line2D_center(_current_line._line)
+	var line_center = _current_line.get_line2D_center()
 
 	_current_line.position += line_center
 	
@@ -333,8 +333,7 @@ func line_selection_center(indexed_list_of_area2D):
 	
 	for indexed_area2D in selected_lines:
 		area2D = indexed_area2D[0]
-		line2D = get_child_of_type(area2D,"Line2D")
-		current_area2D_center = get_line2D_center(line2D)
+		current_area2D_center = area2D.get_line2D_center()
 		center += current_area2D_center
 	
 	return center/selected_lines.size()
@@ -345,20 +344,6 @@ func get_child_of_type(node, type):
 		var child = node.get_child(i)
 		if child.is_class(type):
 			return child
-			
-func get_line2D_center(line2D):
-	var point_pos:Vector2
-	var center = Vector2.ZERO
-	for index in range(line2D.get_point_count()):
-		point_pos = line2D.get_point_position(index)
-		center += point_pos
-		
-	center = center/line2D.get_point_count()
-	
-	return center
-
-	
-
 
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
