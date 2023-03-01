@@ -124,6 +124,13 @@ margin_top = 342.0
 margin_right = 200.0
 margin_bottom = 362.0
 
+[node name="Paste" type="Button" parent="RightClickContainer"]
+margin_top = 366.0
+margin_right = 200.0
+margin_bottom = 436.0
+text = "Coller"
+icon = ExtResource( 18 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )
 
@@ -235,13 +242,6 @@ margin_bottom = 292.0
 text = "Copy"
 icon = ExtResource( 17 )
 
-[node name="Paste" type="Button" parent="ActionMenu"]
-margin_top = 296.0
-margin_right = 167.0
-margin_bottom = 366.0
-text = "Paste"
-icon = ExtResource( 18 )
-
 [node name="Rotation" type="Button" parent="ActionMenu"]
 margin_right = 12.0
 margin_bottom = 20.0
@@ -259,6 +259,7 @@ scale = Vector2( 0.4, 0.4 )
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="RightClickContainer/Group items" to="." method="_on_Group_items_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
+[connection signal="pressed" from="RightClickContainer/Paste" to="." method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Selection" to="." method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
@@ -267,5 +268,4 @@ scale = Vector2( 0.4, 0.4 )
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]
 [connection signal="pressed" from="ActionMenu/Copy" to="." method="_on_Copy_pressed"]
-[connection signal="pressed" from="ActionMenu/Paste" to="." method="_on_Paste_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="." method="_on_Rotation_pressed"]
