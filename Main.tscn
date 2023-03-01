@@ -217,35 +217,36 @@ __meta__ = {
 }
 
 [node name="Delete" type="Button" parent="ActionMenu"]
-margin_right = 167.0
+margin_right = 176.0
 margin_bottom = 70.0
 text = "Supprimer"
 icon = ExtResource( 11 )
 
 [node name="Drag And Drop" type="Button" parent="ActionMenu"]
 margin_top = 74.0
-margin_right = 167.0
+margin_right = 176.0
 margin_bottom = 144.0
 text = "Déplacer"
 icon = ExtResource( 15 )
 
 [node name="Rescale" type="Button" parent="ActionMenu"]
 margin_top = 148.0
-margin_right = 167.0
+margin_right = 176.0
 margin_bottom = 218.0
 text = "Changer la taille"
 icon = ExtResource( 16 )
 
 [node name="Copy" type="Button" parent="ActionMenu"]
 margin_top = 222.0
-margin_right = 167.0
+margin_right = 176.0
 margin_bottom = 292.0
 text = "Copier"
 icon = ExtResource( 17 )
 
 [node name="Rotation" type="Button" parent="ActionMenu"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_top = 296.0
+margin_right = 176.0
+margin_bottom = 366.0
 text = "Rotation"
 icon = ExtResource( 19 )
 
