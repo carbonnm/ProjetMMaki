@@ -238,7 +238,7 @@ func _on_Rotation_pressed():
 Rotate the selected object
 """
 func Rotate(relative):
-	var rotation_speed = deg2rad(1)
+	var rotation_speed:float
 	var radius:float
 	var center = Vector2.ZERO
 	
@@ -246,13 +246,18 @@ func Rotate(relative):
 		center += indexed_area2D[0].position
 	center = center/selected_lines.size()
 	
+	var current_mouse_position = get_global_mouse_position()
+	var prev_mouse_position = current_mouse_position - relative
+	
+	rotation_speed = (current_mouse_position.angle_to_point(center) - prev_mouse_position.angle_to_point(center))
+	
 	var angle:float
 	var coord:Vector2
 	
 	var area2D:Area2D
 	for indexed_area in selected_lines:
 		area2D = indexed_area[0]
-		angle = fmod(area2D.position.angle_to_point(center)+rotation_speed,deg2rad(360))
+		angle = fmod(area2D.position.angle_to_point(center)+rotation_speed+deg2rad(360),deg2rad(360))
 		radius = area2D.position.distance_to(center)
 		coord = Vector2(cos(angle),sin(angle))*radius + center
 		
