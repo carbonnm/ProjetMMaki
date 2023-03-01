@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Titlemenuaddition.tscn" type="PackedScene" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Image/copier.png" type="Texture" id=17]
 [ext_resource path="res://Image/coller.png" type="Texture" id=18]
 [ext_resource path="res://Image/rotation.png" type="Texture" id=19]
+[ext_resource path="res://Image/annotation.png" type="Texture" id=20]
+[ext_resource path="res://Image/save.png" type="Texture" id=21]
+[ext_resource path="res://Image/text.png" type="Texture" id=22]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.9, 0.9, 0.9, 1 )
@@ -65,12 +68,12 @@ __meta__ = {
 }
 
 [node name="Width" type="SpinBox" parent="RightClickContainer"]
-margin_right = 200.0
+margin_right = 218.0
 margin_bottom = 24.0
 
 [node name="Color" type="Button" parent="RightClickContainer"]
 margin_top = 28.0
-margin_right = 200.0
+margin_right = 218.0
 margin_bottom = 92.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
@@ -84,47 +87,45 @@ dark_text_color = Color( 1, 1, 1, 1 )
 text_color_flip_threshold = 1.0
 fresh = false
 
-[node name="MenuButton" type="Button" parent="RightClickContainer"]
+[node name="Create texte" type="Button" parent="RightClickContainer"]
 margin_top = 96.0
-margin_right = 200.0
+margin_right = 218.0
 margin_bottom = 166.0
-text = "Create text"
-icon = ExtResource( 4 )
-icon_align = 1
+text = "Créer texte"
+icon = ExtResource( 22 )
 
 [node name="Create annotation" type="Button" parent="RightClickContainer"]
 margin_top = 170.0
-margin_right = 200.0
+margin_right = 218.0
 margin_bottom = 240.0
-text = "BETA"
-icon = ExtResource( 4 )
+text = "Créer annotation"
+icon = ExtResource( 20 )
 
-[node name="Draw" type="MenuButton" parent="RightClickContainer"]
+[node name="Draw" type="Button" parent="RightClickContainer"]
 margin_top = 244.0
-margin_right = 200.0
-margin_bottom = 314.0
-text = "Draw"
-icon = ExtResource( 4 )
-
-[node name="Type draw" type="PopupMenu" parent="RightClickContainer/Draw"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_right = 218.0
+margin_bottom = 312.0
+text = "Dessiner"
+icon = ExtResource( 12 )
 
 [node name="Group items" type="Button" parent="RightClickContainer"]
-margin_top = 318.0
-margin_right = 200.0
-margin_bottom = 338.0
+margin_top = 316.0
+margin_right = 218.0
+margin_bottom = 386.0
+text = "Grouper les éléments"
+icon = ExtResource( 4 )
 
 [node name="Save canvas" type="Button" parent="RightClickContainer"]
-margin_top = 342.0
-margin_right = 200.0
-margin_bottom = 362.0
+margin_top = 390.0
+margin_right = 218.0
+margin_bottom = 460.0
 text = "Enregistrer"
+icon = ExtResource( 21 )
 
 [node name="Paste" type="Button" parent="RightClickContainer"]
-margin_top = 366.0
-margin_right = 200.0
-margin_bottom = 436.0
+margin_top = 464.0
+margin_right = 218.0
+margin_bottom = 534.0
 text = "Coller"
 icon = ExtResource( 18 )
 
@@ -258,8 +259,9 @@ margin_bottom = 20.0
 [connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
-[connection signal="pressed" from="RightClickContainer/MenuButton" to="." method="_on_Create_text_pressed"]
+[connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_text_pressed"]
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
+[connection signal="pressed" from="RightClickContainer/Draw" to="." method="_on_Draw_pressed"]
 [connection signal="pressed" from="RightClickContainer/Group items" to="." method="_on_Group_items_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="." method="_on_Paste_pressed"]

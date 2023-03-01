@@ -422,25 +422,45 @@ func _on_Save_canvas_pressed():
 
 
 enum PopupIds {
-	CREATE_TITLE = 100,
-	CREATE_SUBTITLE
+	CREATE_TITLE = 1
+	CREATE_SUBTITLE = 2
+	CREATE_SUB_SUBTITLE = 3
+	
+	WRITING_DRAWING = 4
+	WRITING = 5
 }
 
 
 func _on_Create_text_pressed():
 	_pm.clear()
-	_pm.add_item("Create title", PopupIds.CREATE_TITLE)
-	_pm.add_item("Create subtitle", PopupIds.CREATE_SUBTITLE)
+	_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
+	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
+	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	_pm.connect("index_pressed", self, "_on_PopupMenu_index_pressed")
+	
+	var _mouse_pos = get_global_mouse_position()
+	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+
+
+func _on_Draw_pressed():
+	_pm.clear()
+	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
+	_pm.add_item("Dessin", PopupIds.WRITING)
+	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	
 	var _mouse_pos = get_global_mouse_position()
 	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
-	print("Title")
+	if id==1:
+		print("Titre")
+	elif id==2:
+		print("Sous-titre")
+	elif id==3:
+		print("Sous sous-titre")
+	elif id==4:
+		print("Ecriture vers Dessin")
+	elif id==5:
+		print("Dessin")
 
-
-func _on_PopupMenu_index_pressed(index):
-	print("Subtitle")
