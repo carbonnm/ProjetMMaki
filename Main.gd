@@ -11,6 +11,8 @@ onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
 
+onready var _pm = $PopupMenu
+
 var linewidth: float = 4.0
 
 var _current_line
@@ -368,3 +370,28 @@ func _on_Group_items_pressed():
 
 func _on_Save_canvas_pressed():
 	pass # Replace with function body.
+
+
+enum PopupIds {
+	CREATE_TITLE = 100,
+	CREATE_SUBTITLE
+}
+
+
+func _on_Create_text_pressed():
+	_pm.clear()
+	_pm.add_item("Create title", PopupIds.CREATE_TITLE)
+	_pm.add_item("Create subtitle", PopupIds.CREATE_SUBTITLE)
+	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
+	_pm.connect("index_pressed", self, "_on_PopupMenu_index_pressed")
+	
+	var _mouse_pos = get_global_mouse_position()
+	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+
+
+func _on_PopupMenu_id_pressed(id):
+	print("Title")
+
+
+func _on_PopupMenu_index_pressed(index):
+	print("Subtitle")
