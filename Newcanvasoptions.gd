@@ -25,7 +25,8 @@ func _ready():
 #CREATION BUTTON HANDLING and passing parameters to the NEXT SCENE
 #-------------------------
 func _on_BoutonCreer_button_up():
-	
+	#no need to push the button 
+	chosen_name = get_node("Page/Optionmenu/Inputname").new_name
 	
 	#Need for a name to have been entered for the new canvas!
 	if not(chosen_name ==""):
@@ -109,4 +110,4 @@ func _on_DropdownSubsub_item_selected(index):
 #No need to press Enter anymore
 func _on_Titleinputbutton_pressed():
 	chosen_name = get_node("Page/Optionmenu/Inputname").new_name
-	#print(chosen_name)
+	

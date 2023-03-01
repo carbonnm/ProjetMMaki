@@ -372,10 +372,10 @@ bbcode_text = "Nom : "
 text = "Nom : "
 
 [node name="Inputname" type="LineEdit" parent="Page/Optionmenu"]
-margin_left = 87.3354
-margin_top = 155.215
-margin_right = 521.335
-margin_bottom = 198.215
+margin_left = 87.0
+margin_top = 155.0
+margin_right = 554.0
+margin_bottom = 198.0
 rect_scale = Vector2( 0.972689, 1.15527 )
 theme = SubResource( 20 )
 custom_styles/focus = SubResource( 21 )
@@ -389,10 +389,10 @@ caret_blink = true
 script = ExtResource( 3 )
 
 [node name="Titleinputbutton" type="Button" parent="Page/Optionmenu/Inputname"]
-margin_left = 400.326
-margin_top = 10.9977
-margin_right = 509.326
-margin_bottom = 120.998
+margin_left = 417.433
+margin_top = 10.3378
+margin_right = 526.433
+margin_bottom = 120.338
 rect_scale = Vector2( 0.2, 0.2 )
 custom_styles/normal = SubResource( 52 )
 text = " "

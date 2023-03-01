@@ -8,3 +8,8 @@ func _ready():
 #No need to press Enter anymore
 func _on_Titleinputbutton_pressed():
 	print(get_node("Inputtitle").chosen)
+
+
+
+func _on_Exit_button_pressed():
+	visible = false
