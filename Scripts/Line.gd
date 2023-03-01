@@ -59,6 +59,13 @@ func _draw() -> void:
 		
 		draw_rect(Rect2(Min, Max - Min), Color.aqua, false, 4)
 
+"""
+Return the mean position of points in line2D.
+
+Returns :
+---------
+center : Mean position of points in line2D.
+"""
 func get_line2D_center():
 	var point_pos:Vector2
 	var center = Vector2.ZERO

@@ -315,8 +315,17 @@ func _on_Paste_pressed():
 		duplarea0.position = RCC.rect_position
 		_lines.add_child(duplarea0)
 
+"""
+Get the mean position of a list of Area2D.
 
+Parameters :
+------------
+list_of_area2D : A list containing Area2D elements.
 
+Returns :
+---------
+center : Mean position of Area2D elements.
+"""
 func line_selection_center(indexed_list_of_area2D):
 	var center:Vector2
 	var current_area2D_center:Vector2
@@ -329,7 +338,19 @@ func line_selection_center(indexed_list_of_area2D):
 		center += current_area2D_center
 	
 	return center/selected_lines.size()
-	
+
+"""
+Get the first child with type of the node.
+
+Parameters :
+------------
+node : Node to get the child.
+type : Type of the child node.
+
+Returns :
+---------
+child : Child of the node with specified type.
+"""
 func get_child_of_type(node, type):
 	var num_of_child = node.get_child_count()
 	for i in range(num_of_child):
