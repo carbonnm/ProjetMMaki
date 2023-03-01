@@ -170,7 +170,7 @@ margin_right = 892.0
 margin_bottom = 109.0
 rect_pivot_offset = Vector2( -240, -152 )
 theme = SubResource( 2 )
-custom_colors/default_color = Color( 0.298039, 0.298039, 0.345098, 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "
 Entrer votre nouveau Sous-sous-titre:

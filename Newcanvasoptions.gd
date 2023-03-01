@@ -98,14 +98,35 @@ func _on_ColorPickerButtonCanvas_color_changed(new_color):
 func _on_DropdownTitle_item_selected(index):
 	if index ==0:
 		chosen_font_title = "res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf"
+	if index ==1:
+		chosen_font_title = "res://Assets/Fonts/Minecraft.ttf"
+	if index ==2:
+		chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
+	if index ==3:
+		chosen_font_title = "res://Assets/Fonts/Gabrielle.ttf"
+
 
 #changes the chosen font for the subtitle 
 func _on_Dropdownsubtitle_item_selected(index):
-	pass # Replace with function body.
+	if index ==0:
+		chosen_font_subtitle = "res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf"
+	if index ==1:
+		chosen_font_subtitle = "res://Assets/Fonts/Minecraft.ttf"
+	if index ==2:
+		chosen_font_subtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
+	if index ==3:
+		chosen_font_subtitle = "res://Assets/Fonts/Gabrielle.ttf"
 
 #changes the chosen font for the sub-subtitle 
 func _on_DropdownSubsub_item_selected(index):
-	pass # Replace with function body.
+	if index ==0:
+		chosen_font_subsubtitle = "res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf"
+	if index ==1:
+		chosen_font_subsubtitle = "res://Assets/Fonts/Minecraft.ttf"
+	if index ==2:
+		chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
+	if index ==3:
+		chosen_font_subsubtitle = "res://Assets/Fonts/Gabrielle.ttf"
 
 #No need to press Enter anymore
 func _on_Titleinputbutton_pressed():

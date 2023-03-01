@@ -19,6 +19,15 @@ var _current_line
 var selected_lines : Array
 var Select_rect : Area2D
 
+#global variables added for default options (making testing from the Main.tscn possible without crash)
+#they should be deleted when the program is finished
+var title_font
+var subtitle_font 
+var subsubtitle_font
+var color_title 
+var color_subtitle  
+var color_subsubtitle 
+
 var Modes = {
 	"Drawing": true,
 	"Select": false,
@@ -29,20 +38,36 @@ var Modes = {
 
 func _ready() -> void:
 	_camera.connect("zoom_changed", self, "UpdateBackground")
+	#connects the signal on new title input 
+	#and calls the function taking care of effectively creating it 
+	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
+	
 	#Canvas name recuperation
 	var canvas_name = SceneSwitcher.get_param("namecanvas")
 	#Canvas font colors recuperation
-	var color_title = SceneSwitcher.get_param("titlecolor")
-	var color_subtitle = SceneSwitcher.get_param("subtitlecolor")
-	var color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
+	color_title = SceneSwitcher.get_param("titlecolor")
+	color_subtitle = SceneSwitcher.get_param("subtitlecolor")
+	color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
+	#code for testing (avoid main.tscn crash if you don't go from homepage)
+	if not(color_title) and not(color_subtitle) and not(color_subsubtitle):
+		color_title = Color( 0, 0, 0, 1 ) 
+		color_subtitle = Color( 0, 0, 0, 1 ) 
+		color_subsubtitle = Color( 0, 0, 0, 1 ) 
+	
 	
 	#Retrieves chosen font(s) for Title, Subtitle, Sub-subtitle
-	#var titlefont : SceneSwitcher.get_param("titlefont")
-	#var subtitlefont : SceneSwitcher.get_param("subtitlefont")
-	#var subsubtitlefont : SceneSwitcher.get_param("subsubtitlefont")
-	
+	title_font =  SceneSwitcher.get_param("titlefont")
+	subtitle_font = SceneSwitcher.get_param("subtitlefont")
+	subsubtitle_font = SceneSwitcher.get_param("subsubtitlefont")
+	#code for testing (avoid main.tscn crash if you don't go from homepage)
+	if not(title_font) and  not(subtitle_font) and  not(subsubtitle_font):
+		title_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		subtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		subsubtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		
 	#Canvas background color recuperation (fixing the background bug)
-	var color_background
+	var color_background 
+	#code for testing (avoid main.tscn crash if you don't go from homepage)
 	if not (SceneSwitcher.get_param("backgroundcolor")):
 		color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
 	else:
@@ -52,11 +77,35 @@ func _ready() -> void:
 	get_node("BackgroundColored").color = color_background
 
 #Function to test the title addition (don't erase please)	
+#used while the right-click menu isn't completed for title addition
 func _input(ev):
 	if ev is InputEventKey and ev.scancode == KEY_K:
 		
 		get_node("Titlemenuaddition").visible = true
 
+#Creates the new richtextlabel node with the new wanted title
+func create_new_title(chosen_title):
+	get_node("Titlemenuaddition").visible = false
+	print(chosen_title)
+	var rtl = RichTextLabel.new()
+	get_node("CanvasLayer").add_child(rtl)
+	
+	rtl.rect_size = Vector2(900,900)
+	#position will be set where the rigth click was performed
+	rtl.rect_global_position = Vector2(299, 105)
+	rtl.bbcode_enabled = true
+	rtl.bbcode_text = str(chosen_title)
+	
+	var dynamic_font = DynamicFont.new()
+	#font will be set on right-click fixed 
+	dynamic_font.font_data = load(title_font)
+	#fontsize will be set in a if when the right-click menu will be finished
+	dynamic_font.size = 64
+	
+	rtl.add_font_override("normal_font", dynamic_font)
+	#fontcolor will be set on rigth-click fixed
+	rtl.set("custom_colors/default_color",color_title)
+	
 
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

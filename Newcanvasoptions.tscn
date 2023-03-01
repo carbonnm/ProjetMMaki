@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -11,8 +11,16 @@
 [ext_resource path="res://Assets/Graphics/Font_images/perfect_dosfont.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Graphics/Font_images/minecraft_font.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Graphics/Font_images/arial7_font.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Graphics/Font_images/hug_font.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Graphics/Font_images/gaby_font_sub.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Graphics/arrow.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Graphics/Font_images/perfect_dos_sub.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Graphics/Font_images/perfect_dos_subsub.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Graphics/Font_images/minecraft_font_sub.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Graphics/Font_images/minecraft_font_subsub.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Graphics/Font_images/arial7_font_sub.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Graphics/Font_images/arial7_font_subsub.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Graphics/Font_images/gaby_font.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Graphics/Font_images/gaby_font_subsub.png" type="Texture" id=21]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -123,11 +131,14 @@ font_data = ExtResource( 1 )
 default_font = SubResource( 19 )
 
 [sub_resource type="StyleBoxFlat" id=21]
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color( 0.788235, 0.647059, 0.145098, 1 )
+content_margin_left = 4.0
+content_margin_right = 2.0
+content_margin_top = 1.0
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.745098, 0.67451, 0.419608, 1 )
 border_blend = true
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -306,10 +317,11 @@ color = Color( 0.811765, 0.898039, 0.898039, 1 )
 
 [node name="Optionmenu" type="Panel" parent="Page"]
 material = SubResource( 2 )
+anchor_right = 0.309
 margin_left = 118.0
-margin_top = 26.0
-margin_right = 890.0
-margin_bottom = 566.0
+margin_top = 23.0282
+margin_right = 626.584
+margin_bottom = 563.028
 rect_scale = Vector2( 1.04265, 1.02444 )
 rect_pivot_offset = Vector2( 868.94, 400.74 )
 size_flags_horizontal = 3
@@ -372,27 +384,31 @@ bbcode_text = "Nom : "
 text = "Nom : "
 
 [node name="Inputname" type="LineEdit" parent="Page/Optionmenu"]
-margin_left = 87.0
+margin_left = 88.0
 margin_top = 155.0
 margin_right = 554.0
 margin_bottom = 198.0
+grow_horizontal = 0
+grow_vertical = 0
 rect_scale = Vector2( 0.972689, 1.15527 )
+size_flags_horizontal = 4
 theme = SubResource( 20 )
 custom_styles/focus = SubResource( 21 )
 custom_styles/normal = SubResource( 22 )
 align = 1
 context_menu_enabled = false
 clear_button_enabled = true
-placeholder_text = "   Entrez le nom de votre nouveau canvas"
+placeholder_text = "    Entrez le nom de votre nouveau canvas"
 placeholder_alpha = 0.836
 caret_blink = true
 script = ExtResource( 3 )
 
 [node name="Titleinputbutton" type="Button" parent="Page/Optionmenu/Inputname"]
-margin_left = 417.433
-margin_top = 10.3378
-margin_right = 526.433
-margin_bottom = 120.338
+visible = false
+margin_left = 411.517
+margin_top = 5.26196
+margin_right = 520.517
+margin_bottom = 115.262
 rect_scale = Vector2( 0.2, 0.2 )
 custom_styles/normal = SubResource( 52 )
 text = " "
@@ -423,16 +439,16 @@ bbcode_text = "Titre"
 text = "Titre"
 
 [node name="DropdownTitle" type="OptionButton" parent="Page/Optionmenu"]
-margin_left = 293.541
-margin_top = 275.428
-margin_right = 527.541
-margin_bottom = 337.428
+margin_left = 291.623
+margin_top = 275.396
+margin_right = 517.623
+margin_bottom = 327.396
 custom_fonts/font = SubResource( 29 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/pressed = SubResource( 30 )
 custom_styles/normal = SubResource( 23 )
 icon = ExtResource( 9 )
-items = [ "", ExtResource( 9 ), false, 0, null, "", ExtResource( 10 ), false, 1, null, "", ExtResource( 11 ), false, 2, null, "", ExtResource( 12 ), false, 3, null ]
+items = [ "", ExtResource( 9 ), false, 0, null, "", ExtResource( 10 ), false, 1, null, "", ExtResource( 11 ), false, 2, null, "", ExtResource( 20 ), false, 3, null ]
 selected = 0
 
 [node name="Subtitle" type="RichTextLabel" parent="Page/Optionmenu"]
@@ -450,16 +466,16 @@ __meta__ = {
 }
 
 [node name="Dropdownsubtitle" type="OptionButton" parent="Page/Optionmenu"]
-margin_left = 292.582
-margin_top = 345.796
-margin_right = 536.582
-margin_bottom = 389.796
+margin_left = 289.0
+margin_top = 338.0
+margin_right = 523.0
+margin_bottom = 383.0
 custom_fonts/font = SubResource( 31 )
 custom_styles/hover = SubResource( 18 )
 custom_styles/pressed = SubResource( 32 )
 custom_styles/normal = SubResource( 24 )
-text = "  Sous-titre"
-items = [ "  Sous-titre", null, false, 0, null, "  Sous-titre1", null, false, 1, null, "  Sous-titre2", null, false, 2, null, "  Sous-titre 3", null, false, 3, null ]
+icon = ExtResource( 14 )
+items = [ "", ExtResource( 14 ), false, 0, null, "", ExtResource( 16 ), false, 1, null, "", ExtResource( 18 ), false, 2, null, "", ExtResource( 12 ), false, 3, null ]
 selected = 0
 
 [node name="Subsubtitle" type="RichTextLabel" parent="Page/Optionmenu"]
@@ -477,16 +493,16 @@ __meta__ = {
 }
 
 [node name="DropdownSubsub" type="OptionButton" parent="Page/Optionmenu"]
-margin_left = 290.663
-margin_top = 402.482
-margin_right = 534.663
-margin_bottom = 446.482
+margin_left = 287.786
+margin_top = 394.632
+margin_right = 531.786
+margin_bottom = 440.632
 custom_fonts/font = SubResource( 40 )
 custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 33 )
 custom_styles/normal = SubResource( 25 )
-text = "  Sous-sous-titre"
-items = [ "  Sous-sous-titre", null, false, 0, null, "  Sous-sous-titre1", null, false, 1, null, " Sous-sous-titre2", null, false, 2, null, "  Sous-sous-titre3", null, false, 3, null ]
+icon = ExtResource( 15 )
+items = [ "", ExtResource( 15 ), false, 0, null, "", ExtResource( 17 ), false, 1, null, "", ExtResource( 19 ), false, 2, null, "", ExtResource( 21 ), false, 3, null ]
 selected = 0
 
 [node name="Namenotentered" type="RichTextLabel" parent="Page/Optionmenu"]
