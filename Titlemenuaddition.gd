@@ -11,7 +11,7 @@ func _ready():
 
 func _on_Titleinputbutton_pressed():
 	chosen_title = get_node("Inputtitle").chosen
-	print("titlemenu"+chosen_title)
+	
 	# Emit the signals
 	emit_signal("new_title",chosen_title)
 

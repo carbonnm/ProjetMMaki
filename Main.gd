@@ -48,7 +48,7 @@ func _ready() -> void:
 	color_subtitle = SceneSwitcher.get_param("subtitlecolor")
 	color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
 	#code for testing (avoid main.tscn crash if you don't go from homepage)
-	if not(color_title)||not(color_subtitle)||not(color_subsubtitle):
+	if not(color_title) and not(color_subtitle) and not(color_subsubtitle):
 		color_title = Color( 0, 0, 0, 1 ) 
 		color_subtitle = Color( 0, 0, 0, 1 ) 
 		color_subsubtitle = Color( 0, 0, 0, 1 ) 
@@ -89,12 +89,13 @@ func create_new_title(chosen_title):
 	rtl.rect_global_position = Vector2(299, 105)
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
-	rtl.add_color_override("font_color", color_title)
+	
 	var dynamic_font = DynamicFont.new()
 	dynamic_font.font_data = load(title_font)
 	dynamic_font.size = 64
-	# assuming rtl is still a RichTextLabel we can access...
+	
 	rtl.add_font_override("normal_font", dynamic_font)
+	rtl.set("custom_colors/default_color",color_title)
 	
 
 func _on_Background_gui_input(event: InputEvent) -> void:
