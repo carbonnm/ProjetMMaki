@@ -202,7 +202,14 @@ func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
 
-	
+
+"""
+Drag and drop and element by changing its position
+Input :
+-----------
+- relative : Vector2 : The mouse position relative to the previous position (position at the last frame).
+
+"""
 func Drag_and_Drop(relative):
 	for area in selected_lines:
 		area[0].position += relative
@@ -218,6 +225,9 @@ func _on_Rescale_pressed():
 
 """
 Rescale the selected area (zoom/dezoom)
+Input :
+------------
+relative : Vector2 : The mouse position relative to the previous position (position at the last frame).
 """
 func Rescale(relative):
 	for area in selected_lines:
@@ -286,41 +296,26 @@ func Curve2D_Transformer():
 	_current_line.CreateCollisions()
 
 
+"""
+When copy button pressed, create a duplication of the selected area
+(Not even necessary ? To discuss later)
+"""
 func _on_Copy_pressed():
-	print("copy")
-	var copied = selected_lines.duplicate()
 	_action_menu.hide()
+	for area in selected_lines:
+		var duplarea = area[0].duplicate()
+	
 
 """
-Marie : Code qui marche pour juste une image
-if Input.is_action_pressed("Copy"):
-		print("paste")
-elif Input.is_action_just_pressed("Paste"):
-	var newNode = $Icon.duplicate()
-	newNode.position = get_global_mouse_position()
-	add_child(newNode)
+When paste button pressed, create a duplication of the selected area
+Then Paste it where the mouse actually is (to be changed with the right click)
 """
-
 func _on_Paste_pressed():
 	_action_menu.hide()
-	"""
-	var copied = selected_lines.duplicate()
-	for area in copied:
-		area[0].position = get_global_mouse_position()
-		add_child(area[0])
-	"""
-	"""
 	for area in selected_lines:
-		var copiedLine = area[0].duplicate()
-		copiedLine.position = get_global_mouse_position()
-		add_child(copiedLine)
-	"""
-	print(selected_lines)
-	for area in selected_lines:
-		print(area)
-		print(area[0])
 		var duplarea0 = area[0].duplicate()
-		duplarea0.position = get_global_mouse_position()
+		print(RCC.rect_size)
+		duplarea0.position = RCC.rect_position
 		_lines.add_child(duplarea0)
 
 
