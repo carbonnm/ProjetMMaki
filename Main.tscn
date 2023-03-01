@@ -123,6 +123,7 @@ margin_bottom = 338.0
 margin_top = 342.0
 margin_right = 200.0
 margin_bottom = 362.0
+text = "Enregistrer"
 
 [node name="Paste" type="Button" parent="RightClickContainer"]
 margin_top = 366.0
@@ -168,28 +169,28 @@ __meta__ = {
 }
 
 [node name="Settings" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_right = 129.0
+margin_right = 151.0
 margin_bottom = 70.0
-text = "Settings"
+text = "Paramètres"
 icon = ExtResource( 14 )
 
 [node name="Selection" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 133.0
-margin_right = 265.0
+margin_left = 155.0
+margin_right = 308.0
 margin_bottom = 70.0
-text = "Selection"
+text = "Sélectionner"
 icon = ExtResource( 13 )
 
 [node name="Drawing" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 269.0
-margin_right = 398.0
+margin_left = 312.0
+margin_right = 447.0
 margin_bottom = 70.0
-text = "Drawing"
+text = "Dessiner"
 icon = ExtResource( 12 )
 
 [node name="Beta" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 402.0
-margin_right = 512.0
+margin_left = 451.0
+margin_right = 561.0
 margin_bottom = 70.0
 text = "BETA"
 icon = ExtResource( 4 )
@@ -218,34 +219,34 @@ __meta__ = {
 [node name="Delete" type="Button" parent="ActionMenu"]
 margin_right = 167.0
 margin_bottom = 70.0
-text = "Delete"
+text = "Supprimer"
 icon = ExtResource( 11 )
 
 [node name="Drag And Drop" type="Button" parent="ActionMenu"]
 margin_top = 74.0
 margin_right = 167.0
 margin_bottom = 144.0
-text = "Drag and drop"
+text = "Déplacer"
 icon = ExtResource( 15 )
 
 [node name="Rescale" type="Button" parent="ActionMenu"]
 margin_top = 148.0
 margin_right = 167.0
 margin_bottom = 218.0
-text = "Rescale"
+text = "Changer la taille"
 icon = ExtResource( 16 )
 
 [node name="Copy" type="Button" parent="ActionMenu"]
 margin_top = 222.0
 margin_right = 167.0
 margin_bottom = 292.0
-text = "Copy"
+text = "Copier"
 icon = ExtResource( 17 )
 
 [node name="Rotation" type="Button" parent="ActionMenu"]
 margin_right = 12.0
 margin_bottom = 20.0
-text = "Rotate"
+text = "Rotation"
 icon = ExtResource( 19 )
 
 [node name="Titlemenuaddition" parent="." instance=ExtResource( 2 )]
