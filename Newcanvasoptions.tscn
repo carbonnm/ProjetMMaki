@@ -123,11 +123,14 @@ font_data = ExtResource( 1 )
 default_font = SubResource( 19 )
 
 [sub_resource type="StyleBoxFlat" id=21]
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color( 0.788235, 0.647059, 0.145098, 1 )
+content_margin_left = 4.0
+content_margin_right = 2.0
+content_margin_top = 1.0
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.745098, 0.67451, 0.419608, 1 )
 border_blend = true
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -306,9 +309,10 @@ color = Color( 0.811765, 0.898039, 0.898039, 1 )
 
 [node name="Optionmenu" type="Panel" parent="Page"]
 material = SubResource( 2 )
+anchor_right = 0.309
 margin_left = 118.0
 margin_top = 26.0
-margin_right = 890.0
+margin_right = 626.584
 margin_bottom = 566.0
 rect_scale = Vector2( 1.04265, 1.02444 )
 rect_pivot_offset = Vector2( 868.94, 400.74 )
@@ -372,27 +376,28 @@ bbcode_text = "Nom : "
 text = "Nom : "
 
 [node name="Inputname" type="LineEdit" parent="Page/Optionmenu"]
-margin_left = 87.0
+margin_left = 88.0
 margin_top = 155.0
 margin_right = 554.0
 margin_bottom = 198.0
 rect_scale = Vector2( 0.972689, 1.15527 )
+size_flags_horizontal = 4
 theme = SubResource( 20 )
 custom_styles/focus = SubResource( 21 )
 custom_styles/normal = SubResource( 22 )
-align = 1
 context_menu_enabled = false
 clear_button_enabled = true
-placeholder_text = "   Entrez le nom de votre nouveau canvas"
+placeholder_text = "    Entrez le nom de votre nouveau canvas"
 placeholder_alpha = 0.836
 caret_blink = true
 script = ExtResource( 3 )
 
 [node name="Titleinputbutton" type="Button" parent="Page/Optionmenu/Inputname"]
-margin_left = 417.433
-margin_top = 10.3378
-margin_right = 526.433
-margin_bottom = 120.338
+visible = false
+margin_left = 411.517
+margin_top = 5.26196
+margin_right = 520.517
+margin_bottom = 115.262
 rect_scale = Vector2( 0.2, 0.2 )
 custom_styles/normal = SubResource( 52 )
 text = " "

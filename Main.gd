@@ -87,7 +87,8 @@ func create_new_title(chosen_title):
 	print(chosen_title)
 	var rtl = RichTextLabel.new()
 	get_node("CanvasLayer").add_child(rtl)
-	rtl.rect_size = Vector2(400,400)
+	
+	rtl.rect_size = Vector2(900,900)
 	#position will be set where the rigth click was performed
 	rtl.rect_global_position = Vector2(299, 105)
 	rtl.bbcode_enabled = true
