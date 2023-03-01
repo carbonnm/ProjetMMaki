@@ -20,9 +20,8 @@ var Select_rect : Area2D
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
 var title_font
-var subtitlefont 
-var subsubtitlefont
-#default colors for the fonts are black 
+var subtitle_font 
+var subsubtitle_font
 var color_title 
 var color_subtitle  
 var color_subsubtitle 
@@ -56,11 +55,14 @@ func _ready() -> void:
 	
 	#Retrieves chosen font(s) for Title, Subtitle, Sub-subtitle
 	title_font =  SceneSwitcher.get_param("titlefont")
-	subtitlefont = SceneSwitcher.get_param("subtitlefont")
-	subsubtitlefont = SceneSwitcher.get_param("subsubtitlefont")
+	subtitle_font = SceneSwitcher.get_param("subtitlefont")
+	subsubtitle_font = SceneSwitcher.get_param("subsubtitlefont")
 	#code for testing (avoid main.tscn crash if you don't go from homepage)
-	if not(title_font):
+	if not(title_font) and  not(subtitle_font) and  not(subsubtitle_font):
 		title_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		subtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		subsubtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
+		
 	#Canvas background color recuperation (fixing the background bug)
 	var color_background 
 	#code for testing (avoid main.tscn crash if you don't go from homepage)
@@ -86,15 +88,19 @@ func create_new_title(chosen_title):
 	var rtl = RichTextLabel.new()
 	get_node("CanvasLayer").add_child(rtl)
 	rtl.rect_size = Vector2(400,400)
+	#position will be set where the rigth click was performed
 	rtl.rect_global_position = Vector2(299, 105)
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
 	
 	var dynamic_font = DynamicFont.new()
+	#font will be set on right-click fixed 
 	dynamic_font.font_data = load(title_font)
+	#fontsize will be set in a if when the right-click menu will be finished
 	dynamic_font.size = 64
 	
 	rtl.add_font_override("normal_font", dynamic_font)
+	#fontcolor will be set on rigth-click fixed
 	rtl.set("custom_colors/default_color",color_title)
 	
 
