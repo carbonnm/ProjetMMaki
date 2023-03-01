@@ -103,7 +103,7 @@ func _on_DropdownTitle_item_selected(index):
 	if index ==2:
 		chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
 	if index ==3:
-		chosen_font_title = "res://Assets/Fonts/Huglove.ttf"
+		chosen_font_title = "res://Assets/Fonts/Gabrielle.ttf"
 
 
 #changes the chosen font for the subtitle 
@@ -115,7 +115,7 @@ func _on_Dropdownsubtitle_item_selected(index):
 	if index ==2:
 		chosen_font_subtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
 	if index ==3:
-		chosen_font_subtitle = "res://Assets/Fonts/Huglove.ttf"
+		chosen_font_subtitle = "res://Assets/Fonts/Gabrielle.ttf"
 
 #changes the chosen font for the sub-subtitle 
 func _on_DropdownSubsub_item_selected(index):
@@ -126,7 +126,7 @@ func _on_DropdownSubsub_item_selected(index):
 	if index ==2:
 		chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
 	if index ==3:
-		chosen_font_subsubtitle = "res://Assets/Fonts/Huglove.ttf"
+		chosen_font_subsubtitle = "res://Assets/Fonts/Gabrielle.ttf"
 
 #No need to press Enter anymore
 func _on_Titleinputbutton_pressed():
