@@ -15,10 +15,10 @@ onready var _pm = $PopupMenu
 
 var linewidth: float = 4.0
 
-var _current_line
+var _current_line : Area2D
 var selected_lines : Array
 var Select_rect : Area2D
-var copy_lignes
+var copy_lignes : Array
 
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
