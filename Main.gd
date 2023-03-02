@@ -359,7 +359,9 @@ func _on_Paste_pressed():
 	for Ligne in copy_lignes:
 		var duplarea = Ligne[0].duplicate()
 		duplarea.position = RCC.rect_position
+		duplarea.skipready = true
 		_lines.add_child(duplarea)
+		duplarea._line = duplarea.get_child(0)
 
 
 

@@ -7,10 +7,12 @@ var zoom:Vector2
 var HitBoxs:Array
 
 var draw:bool = false
+var skipready:bool = false
 
 func _ready() -> void:
-	_line = Line2D.new()
-	self.add_child(_line)
+	if !skipready:
+		_line = Line2D.new()
+		self.add_child(_line)
 
 func set_params(lineWidth, color, _zoom):
 	_line.width = lineWidth
@@ -56,7 +58,6 @@ func _draw() -> void:
 				Max.x = point.x
 			if point.y > Max.y:
 				Max.y = point.y
-		
 		draw_rect(Rect2(Min, Max - Min), Color.aqua, false, 4)
 
 """
