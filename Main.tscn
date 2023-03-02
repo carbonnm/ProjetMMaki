@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Titlemenuaddition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/RightClickContainer.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://addons/color_picker_text_button/styleboxflat.tres" type="StyleBox" id=5]
 [ext_resource path="res://addons/color_picker_text_button/color_picker_text_button.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/CanvasLayer.gd" type="Script" id=7]
@@ -22,6 +21,8 @@
 [ext_resource path="res://Image/annotation.png" type="Texture" id=20]
 [ext_resource path="res://Image/save.png" type="Texture" id=21]
 [ext_resource path="res://Image/text.png" type="Texture" id=22]
+[ext_resource path="res://Image/couleur.png" type="Texture" id=23]
+[ext_resource path="res://Image/grouper.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.9, 0.9, 0.9, 1 )
@@ -58,6 +59,7 @@ script = ExtResource( 10 )
 [node name="Lines" type="Node2D" parent="."]
 
 [node name="RightClickContainer" type="VBoxContainer" parent="."]
+visible = false
 margin_left = 694.0
 margin_top = 171.0
 margin_right = 894.0
@@ -69,12 +71,13 @@ __meta__ = {
 
 [node name="Color" type="Button" parent="RightClickContainer"]
 margin_right = 218.0
-margin_bottom = 64.0
+margin_bottom = 60.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = ExtResource( 5 )
-icon = ExtResource( 4 )
+icon = ExtResource( 23 )
 script = ExtResource( 6 )
+text_value = "Changer couleur"
 style = ExtResource( 5 )
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 light_text_color = Color( 0, 0, 0, 1 )
@@ -83,44 +86,44 @@ text_color_flip_threshold = 1.0
 fresh = false
 
 [node name="Create texte" type="Button" parent="RightClickContainer"]
-margin_top = 68.0
+margin_top = 64.0
 margin_right = 218.0
-margin_bottom = 138.0
+margin_bottom = 134.0
 text = "Créer texte"
 icon = ExtResource( 22 )
 
 [node name="Create annotation" type="Button" parent="RightClickContainer"]
-margin_top = 142.0
+margin_top = 138.0
 margin_right = 218.0
-margin_bottom = 212.0
+margin_bottom = 208.0
 text = "Créer annotation"
 icon = ExtResource( 20 )
 
 [node name="Draw" type="Button" parent="RightClickContainer"]
-margin_top = 216.0
+margin_top = 212.0
 margin_right = 218.0
-margin_bottom = 284.0
+margin_bottom = 280.0
 text = "Dessiner"
 icon = ExtResource( 12 )
 
 [node name="Group items" type="Button" parent="RightClickContainer"]
-margin_top = 288.0
+margin_top = 284.0
 margin_right = 218.0
-margin_bottom = 358.0
+margin_bottom = 354.0
 text = "Grouper les éléments"
-icon = ExtResource( 4 )
+icon = ExtResource( 24 )
 
 [node name="Save canvas" type="Button" parent="RightClickContainer"]
-margin_top = 362.0
+margin_top = 358.0
 margin_right = 218.0
-margin_bottom = 432.0
+margin_bottom = 428.0
 text = "Enregistrer"
 icon = ExtResource( 21 )
 
 [node name="Paste" type="Button" parent="RightClickContainer"]
-margin_top = 436.0
+margin_top = 432.0
 margin_right = 218.0
-margin_bottom = 506.0
+margin_bottom = 502.0
 text = "Coller"
 icon = ExtResource( 18 )
 
@@ -161,31 +164,25 @@ __meta__ = {
 }
 
 [node name="Settings" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_right = 151.0
+margin_left = 12.0
+margin_right = 163.0
 margin_bottom = 70.0
 text = "Paramètres"
 icon = ExtResource( 14 )
 
 [node name="Selection" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 155.0
-margin_right = 308.0
+margin_left = 167.0
+margin_right = 320.0
 margin_bottom = 70.0
 text = "Sélectionner"
 icon = ExtResource( 13 )
 
 [node name="Drawing" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 312.0
-margin_right = 447.0
+margin_left = 324.0
+margin_right = 459.0
 margin_bottom = 70.0
 text = "Dessiner"
 icon = ExtResource( 12 )
-
-[node name="Beta" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 451.0
-margin_right = 561.0
-margin_bottom = 70.0
-text = "BETA"
-icon = ExtResource( 4 )
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchor_bottom = 1.0
@@ -263,7 +260,6 @@ margin_bottom = 20.0
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Selection" to="." method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Beta" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]
