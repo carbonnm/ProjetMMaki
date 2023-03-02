@@ -4,7 +4,7 @@ signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
-onready var _background := $Background
+onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
 onready var _action_menu := $ActionMenu
@@ -15,10 +15,10 @@ onready var _pm = $PopupMenu
 
 var linewidth: float = 4.0
 
-var _current_line
+var _current_line : Area2D
 var selected_lines : Array
 var Select_rect : Area2D
-var copy_lignes
+var copy_lignes : Array
 
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
