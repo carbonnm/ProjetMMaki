@@ -4,7 +4,7 @@ signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
-onready var _background := $Background
+onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
 onready var _action_menu := $ActionMenu
