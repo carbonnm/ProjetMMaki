@@ -1,4 +1,4 @@
-extends Area2D
+class_name Stroke extends Area2D
 
 var _line: Line2D
 var c_shape: CollisionShape2D

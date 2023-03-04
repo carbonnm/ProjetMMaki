@@ -180,11 +180,13 @@ func RetrieveArea(areas:Array):
 		_action_menu.show()
 
 func DrawLineContainer(drawing:bool):
-	for line in selected_lines:
-		# lancer la fonction _draw setup dans Line.gd
-		line[0].draw = drawing
-		# lance la fonction draw() de godot (update() lance draw())
-		line[0].update()
+	for element in selected_lines:
+		print(element[0].is_class("Stroke"))
+		if element[0].is_class("Stroke") == true:
+			# lancer la fonction _draw setup dans Line.gd
+			element[0].draw = drawing
+			# lance la fonction draw() de godot (update() lance draw())
+			element[0].update()
 
 # delete les ligne selectionnées
 func _on_Delete_pressed():
@@ -214,7 +216,7 @@ func DrawSelectionArea():
 	self.add_child(Select_rect)
 	
 	DrawLineContainer(false)
-	
+
 	var c_shape = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
 	c_shape.shape = shape
@@ -407,6 +409,7 @@ func get_child_of_type(node, type):
 		var child = node.get_child(i)
 		if child.is_class(type):
 			return child
+	return null
 
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.

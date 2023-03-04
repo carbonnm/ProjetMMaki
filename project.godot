@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
+}, {
+"base": "Area2D",
+"class": "Stroke",
+"language": "GDScript",
+"path": "res://Scripts/Line.gd"
 } ]
 _global_script_class_icons={
 "GutHookScript": "",
-"GutTest": ""
+"GutTest": "",
+"Stroke": ""
 }
 
 [application]
