@@ -456,11 +456,23 @@ func _on_Draw_pressed():
 
 func _on_PopupMenu_id_pressed(id):
 	if id==1:
+		get_node("Titlemenuaddition").type_title = 1
+		get_node("Titlemenuaddition").visible = true
+		var _mouse_pos = get_global_mouse_position()
+		get_node("Titlemenuaddition").position.x = _mouse_pos.x
+		get_node("Titlemenuaddition").position.y = _mouse_pos.y
+		
 		print("Titre")
+		
 	elif id==2:
+		get_node("Titlemenuaddition").type_title = 2
+		get_node("Titlemenuaddition").visible = true
 		print("Sous-titre")
 	elif id==3:
+		get_node("Titlemenuaddition").type_title = 3
+		get_node("Titlemenuaddition").visible = true
 		print("Sous sous-titre")
+		
 	elif id==4:
 		print("Ecriture vers Dessin")
 	elif id==5:
