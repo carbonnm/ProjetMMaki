@@ -29,6 +29,7 @@ var color_title
 var color_subtitle  
 var color_subsubtitle 
 
+
 var Modes = {
 	"Drawing": true,
 	"Select": false,
@@ -77,37 +78,48 @@ func _ready() -> void:
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
 
-#Function to test the title addition (don't erase please)	
-#used while the right-click menu isn't completed for title addition
-func _input(ev):
-	if ev is InputEventKey and ev.scancode == KEY_K:
-		
-		get_node("Titlemenuaddition").visible = true
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
+	print("entered function create")
 	get_node("Titlemenuaddition").visible = false
+	
 	print(chosen_title)
 	var rtl = RichTextLabel.new()
-	get_node("CanvasLayer").add_child(rtl)
+	get_node("BackgroundColored").add_child(rtl)
 	
 	rtl.rect_size = Vector2(900,900)
-	#position will be set where the rigth click was performed
-	rtl.rect_global_position = Vector2(299, 105)
+	#position of the title is the same as the title menu addition 
+	#which was set from the retrieved position of the right-click
+	var x_pos_title = get_node("Titlemenuaddition").position.x 
+	var y_pos_title = get_node("Titlemenuaddition").position.y 
+	rtl.rect_global_position = Vector2(x_pos_title, y_pos_title)
+	
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
 	
 	var dynamic_font = DynamicFont.new()
-	#font will be set on right-click fixed 
-	dynamic_font.font_data = load(title_font)
-	#fontsize will be set in a if when the right-click menu will be finished
-	dynamic_font.size = 64
 	
-	rtl.add_font_override("normal_font", dynamic_font)
-	#fontcolor will be set on rigth-click fixed
-	rtl.set("custom_colors/default_color",color_title)
-	
-
+	#Title creation
+	if (get_node("Titlemenuaddition").type_title ==1):
+		dynamic_font.size = 64
+		dynamic_font.font_data = load(title_font)
+		rtl.add_font_override("normal_font", dynamic_font)
+		rtl.set("custom_colors/default_color",color_title)
+	#Subtitle creation
+	if (get_node("Titlemenuaddition").type_title ==2):
+		dynamic_font.size = 45
+		dynamic_font.font_data = load(subtitle_font)
+		rtl.add_font_override("normal_font", dynamic_font)
+		rtl.set("custom_colors/default_color",color_subtitle)
+	#Sub subtitle creation
+	if (get_node("Titlemenuaddition").type_title ==3):
+		dynamic_font.size = 32
+		dynamic_font.font_data = load(subsubtitle_font)
+		rtl.add_font_override("normal_font", dynamic_font)
+		rtl.set("custom_colors/default_color",color_subsubtitle)
+		
+		
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
@@ -167,6 +179,7 @@ func _on_Selection_pressed() -> void:
 
 func _on_Drawing_pressed() -> void:
 	Change_mode("Drawing")
+	print("drawok")
 	DrawLineContainer(false)
 
 func Change_mode(_mode:String) -> void:
@@ -439,9 +452,11 @@ func _on_Create_text_pressed():
 	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
 	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	
+	get_node("Titlemenuaddition/Inputtitle").clear()
+	print("pressed")
 	var _mouse_pos = get_global_mouse_position()
 	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	
 
 
 func _on_Draw_pressed():
@@ -456,22 +471,63 @@ func _on_Draw_pressed():
 
 func _on_PopupMenu_id_pressed(id):
 	if id==1:
-		get_node("Titlemenuaddition").type_title = 1
-		get_node("Titlemenuaddition").visible = true
-		var _mouse_pos = get_global_mouse_position()
-		get_node("Titlemenuaddition").position.x = _mouse_pos.x
-		get_node("Titlemenuaddition").position.y = _mouse_pos.y
 		
+		get_node("Titlemenuaddition").type_title = 1
+		
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Titlemenu").visible  = true
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = false
+		
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Titre"
+		
+		#Puts the title menu addition where it was clicked on the screen 
+		var _mouse_pos = get_global_mouse_position()
+		get_node("Titlemenuaddition").position.x = _mouse_pos.x -70
+		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
 		print("Titre")
 		
+		
 	elif id==2:
+		
 		get_node("Titlemenuaddition").type_title = 2
-		get_node("Titlemenuaddition").visible = true
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = true
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Titlemenu").visible  = false
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous-titre"
+		
 		print("Sous-titre")
-	elif id==3:
-		get_node("Titlemenuaddition").type_title = 3
+		#Puts the title menu addition where it was clicked on the screen 
+		var _mouse_pos = get_global_mouse_position()
+		get_node("Titlemenuaddition").position.x = _mouse_pos.x -70
+		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		
 		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
+		
+	elif id==3:
+		
+		get_node("Titlemenuaddition").type_title = 3
+		
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = true
+		get_node("Titlemenuaddition/Titlemenu").visible  = false
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous sous-titre"
+		
 		print("Sous sous-titre")
+		#Puts the title menu addition where it was clicked on the screen 
+		var _mouse_pos = get_global_mouse_position()
+		get_node("Titlemenuaddition").position.x = _mouse_pos.x - 70
+		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
 		
 	elif id==4:
 		print("Ecriture vers Dessin")
