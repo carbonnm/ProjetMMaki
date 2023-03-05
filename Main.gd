@@ -81,10 +81,9 @@ func _ready() -> void:
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
-	print("entered function create")
 	get_node("Titlemenuaddition").visible = false
 	
-	print(chosen_title)
+	#print(chosen_title)
 	var rtl = RichTextLabel.new()
 	get_node("BackgroundColored").add_child(rtl)
 	
@@ -179,7 +178,7 @@ func _on_Selection_pressed() -> void:
 
 func _on_Drawing_pressed() -> void:
 	Change_mode("Drawing")
-	print("drawok")
+	
 	DrawLineContainer(false)
 
 func Change_mode(_mode:String) -> void:
@@ -453,7 +452,7 @@ func _on_Create_text_pressed():
 	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	get_node("Titlemenuaddition/Inputtitle").clear()
-	print("pressed")
+	
 	var _mouse_pos = get_global_mouse_position()
 	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
 	
@@ -488,7 +487,7 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
-		print("Titre")
+		
 		
 		
 	elif id==2:
@@ -500,7 +499,7 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("Titlemenuaddition/Titlemenu").visible  = false
 		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous-titre"
 		
-		print("Sous-titre")
+		
 		#Puts the title menu addition where it was clicked on the screen 
 		var _mouse_pos = get_global_mouse_position()
 		get_node("Titlemenuaddition").position.x = _mouse_pos.x -70
@@ -520,7 +519,7 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("Titlemenuaddition/Subtitlemenu").visible  = false
 		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous sous-titre"
 		
-		print("Sous sous-titre")
+		
 		#Puts the title menu addition where it was clicked on the screen 
 		var _mouse_pos = get_global_mouse_position()
 		get_node("Titlemenuaddition").position.x = _mouse_pos.x - 70
