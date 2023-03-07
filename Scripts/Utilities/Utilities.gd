@@ -105,6 +105,9 @@ Returns :
 center : Mean position according to array vectors. (Vector2)
 """
 func get_positions_mean(array:Array) -> Vector2:
+	if array.size() == 0:
+		return Vector2.ZERO
+		
 	var accumulator = Vector2.ZERO
 	for position in array:
 		accumulator += position
