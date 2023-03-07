@@ -4,6 +4,10 @@ signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
+var A2DManip := preload("res://Scripts/Utilities/Area2DManipulation.gd").new()
+var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
+var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
+
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
@@ -308,36 +312,30 @@ Change mode to Rotate when rotation button pressed
 func _on_Rotation_pressed():
 	Change_mode("Rotate")
 	_action_menu.hide()
-	
+
 """
 Rotate the selected object
 """
 func Rotate(relative):
-	var rotation_speed:float
-	var radius:float
-	var center = Vector2.ZERO
+	# Transform selected_lines to have an Array of Area2D and an Array of
+	# Area2D's positions
+	var area2D_L = Utils.map(selected_lines, Mimic, "get_first", [])
+	var area2D_L_positions = Utils.map(area2D_L, Mimic, "area2D_position", [])
 	
-	for indexed_area2D in selected_lines:
-		center += indexed_area2D[0].position
-	center = center/selected_lines.size()
+	# Compute the central position of the rectangle surronding Area2D's
+	#var corners = Utils.get_positions_corners(area2D_L_positions)
+	# Compute the central gravity position of Area2D's cause of rectangle change according to orientation
+	var center = Utils.get_positions_center(area2D_L_positions)
 	
+	
+	# Compute the rotation to make according to mouse's delta
 	var current_mouse_position = get_global_mouse_position()
 	var prev_mouse_position = current_mouse_position - relative
-	
-	rotation_speed = (current_mouse_position.angle_to_point(center) - prev_mouse_position.angle_to_point(center))
-	
-	var angle:float
-	var coord:Vector2
-	
-	var area2D:Area2D
-	for indexed_area in selected_lines:
-		area2D = indexed_area[0]
-		angle = fmod(area2D.position.angle_to_point(center)+rotation_speed+deg2rad(360),deg2rad(360))
-		radius = area2D.position.distance_to(center)
-		coord = Vector2(cos(angle),sin(angle))*radius + center
-		
-		area2D.position = coord
-		area2D.rotation += rotation_speed
+	var delta = (current_mouse_position.angle_to_point(center) - prev_mouse_position.angle_to_point(center))
+
+	# Makes the rotation of delta arount the center point
+	for area2D in area2D_L:
+		A2DManip.rotation_to_point(area2D,center,delta)
 
 
 # change the point in the ligne to make it more smooth by using an algorithm
