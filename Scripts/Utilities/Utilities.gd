@@ -47,8 +47,8 @@ func get_positions_corners(array:Array) -> Array:
 	return [upper_left,bottom_right]
 	
 """
-Return an array containing 2 closure positions of an array of positions. That
-is to say the positions of points on the closure of a circle surrounding arrays.
+Return an array containing closure positions of an array of positions. That
+is to say the positions of points on the closure of the shape surrounding arrays.
 
 Parameters:
 -----------
@@ -56,7 +56,7 @@ array: Array of positions to get closure. (Array)
 
 Returns:
 --------
-closure_positions: Array containing 2 closure positions of the array of points. (Array)
+closure_positions: Array containing closure positions of the array of points. (Array)
 """
 func get_positions_closure(array:Array) -> Array:
 	if array.size() <= 2:
