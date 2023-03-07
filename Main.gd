@@ -301,7 +301,7 @@ func Curve2D_Transformer():
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
 	
-	Center_area2D_to_center(new_points)
+	_current_line.center_area2D_to_center(new_points)
 	
 	curve = null
 	_current_line.CreateCollisions()
@@ -485,13 +485,3 @@ func _on_PopupMenu_id_pressed(id):
 		print("Ecriture vers Dessin")
 	elif id==5:
 		print("Dessin")
-
-func Center_area2D_to_center(new_points):
-	
-	var line_center = _current_line.get_line2D_center()
-	_current_line.position += line_center
-	
-	for index in range(new_points.size()):
-		new_points[index] -= line_center
-	
-	_current_line._line.points = new_points

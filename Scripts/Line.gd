@@ -73,3 +73,18 @@ func get_line2D_center():
 	var upper_left = corners[0]
 	var bottom_down = corners[1]
 	return (upper_left+bottom_down)/2
+
+"""
+Centers position of the Area2D at the center of the line.
+"""
+func center_area2D_to_center(line_points):
+	
+	var line_center = self.get_line2D_center()
+	self.position += line_center
+	
+	for index in range(line_points.size()):
+		line_points[index] -= line_center
+	
+	self._line.points = line_points
+	
+
