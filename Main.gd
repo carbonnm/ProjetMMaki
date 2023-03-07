@@ -330,32 +330,6 @@ func _on_Paste_pressed():
 		_lines.add_child(duplarea)
 		duplarea._line = duplarea.get_child(0)
 
-
-
-"""
-Get the mean position of a list of Area2D.
-
-Parameters :
-------------
-list_of_area2D : A list containing Area2D elements.
-
-Returns :
----------
-center : Mean position of Area2D elements.
-"""
-func line_selection_center(indexed_list_of_area2D):
-	var center:Vector2
-	var current_area2D_center:Vector2
-	var area2D:Area2D
-	var line2D:Line2D
-	
-	for indexed_area2D in selected_lines:
-		area2D = indexed_area2D[0]
-		current_area2D_center = area2D.get_line2D_center()
-		center += current_area2D_center
-	
-	return center/selected_lines.size()
-
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
 
