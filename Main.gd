@@ -4,7 +4,8 @@ signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
-var A2DManip := preload("res://Scripts/Utilities/Area2DManipulation.gd").new()
+var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 
@@ -170,7 +171,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 					Rescale(event.relative)
 			elif Modes.Rotate:
 				if selected_lines.size() > 0:
-					Rotate(event.relative)
+					var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+					var mouse_position = get_global_mouse_position()
+					var mouse_relative = event.relative
+					Rotation.rotation(area2D_L,mouse_position,mouse_relative)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -312,29 +316,6 @@ Change mode to Rotate when rotation button pressed
 func _on_Rotation_pressed():
 	Change_mode("Rotate")
 	_action_menu.hide()
-
-"""
-Rotate the selected object
-"""
-func Rotate(relative):
-	# Transform selected_lines to have an Array of Area2D and an Array of
-	# Area2D's positions
-	var area2D_L = Utils.map(selected_lines, Mimic, "get_first", [])
-	var area2D_L_positions = Utils.map(area2D_L, Mimic, "area2D_position", [])
-	
-	# Compute the central position of the circle surronding Area2D's
-	var closure = Utils.get_positions_closure(area2D_L_positions)
-	var center = Utils.get_positions_mean(closure)
-	
-	# Compute the rotation to make according to mouse's delta
-	var current_mouse_position = get_global_mouse_position()
-	var prev_mouse_position = current_mouse_position - relative
-	var delta = (current_mouse_position.angle_to_point(center) - prev_mouse_position.angle_to_point(center))
-
-	# Makes the rotation of delta arount the center point
-	for area2D in area2D_L:
-		A2DManip.rotation_to_point(area2D,center,delta)
-
 
 # change the point in the ligne to make it more smooth by using an algorithm
 func Curve2D_Transformer():
