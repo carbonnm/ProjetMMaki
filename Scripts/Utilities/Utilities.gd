@@ -62,18 +62,36 @@ func get_positions_closure(array:Array) -> Array:
 	if array.size() <= 2:
 		return array
 	
-	var center = [array[0], array[1]]
+	# Cacule les positions extrêmes de l'Array afin de déterminer un cercle
+	# contenant tous les points
+	var extreme = [array[0], array[1]]
 	var max_distance = array[0].distance_to(array[1])
 	for index in range(2, array.size()):
-		var distance_to_position0 = center[0].distance_to(array[index])
-		var distance_to_position1 = center[1].distance_to(array[index])
-		if distance_to_position0 > max_distance || distance_to_position1 > max_distance:
-			if distance_to_position0 > distance_to_position1:
-				center = [center[0],array[index]]
+		var distance_to_closure0 = extreme[0].distance_to(array[index])
+		var distance_to_closure1 = extreme[1].distance_to(array[index])
+		if distance_to_closure0 > max_distance || distance_to_closure1 > max_distance:
+			if distance_to_closure0 > distance_to_closure1:
+				extreme = [extreme[0],array[index]]
 			else:
-				center = [center[1],array[index]]
+				extreme = [extreme[1],array[index]]
+	
+	# Calcul des positions n'étant pas reprises dans le rayon du cercle centré
+	# sur les extrêmes afin de recentrer le cercle en prenant compte des autres
+	# valeurs éloignées
+	var out = []
+	for position in array:
+		var radius = extreme[0].distance_to(extreme[1])/2
+		var distance_to_extreme1 = position.distance_to(extreme[0])
+		var distance_to_extreme2 = position.distance_to(extreme[1])
+		if radius < distance_to_extreme1 && radius < distance_to_extreme2:
+			out.append(position)
+	
+	# Récursion en prenant ces nouvelles valeurs élognées pour les ajouter 
+	# à la fermeture de la forme 
+	var closure = extreme.duplicate()
+	closure.append(get_positions_mean(get_positions_closure(out)))
 		
-	return center
+	return closure
 	
 """
 Return the mean position of positions in the Array.
@@ -92,3 +110,23 @@ func get_positions_mean(array:Array) -> Vector2:
 		accumulator += position
 	
 	return accumulator/array.size()
+
+"""
+Get the first child with type of the node.
+
+Parameters :
+------------
+node : Node to get the child (Node).
+type : Type of the child node (String).
+
+Returns :
+---------
+child : Child of the node with specified type (Node).
+"""
+func get_child_of_type(node: Node, type: String) -> Node:
+	var num_of_child = node.get_child_count()
+	for i in range(num_of_child):
+		var child = node.get_child(i)
+		if child.is_class(type):
+			return child
+	return null

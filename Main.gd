@@ -356,26 +356,6 @@ func line_selection_center(indexed_list_of_area2D):
 	
 	return center/selected_lines.size()
 
-"""
-Get the first child with type of the node.
-
-Parameters :
-------------
-node : Node to get the child.
-type : Type of the child node.
-
-Returns :
----------
-child : Child of the node with specified type.
-"""
-func get_child_of_type(node, type):
-	var num_of_child = node.get_child_count()
-	for i in range(num_of_child):
-		var child = node.get_child(i)
-		if child.is_class(type):
-			return child
-	return null
-
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
 
