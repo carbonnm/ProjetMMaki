@@ -322,11 +322,9 @@ func Rotate(relative):
 	var area2D_L = Utils.map(selected_lines, Mimic, "get_first", [])
 	var area2D_L_positions = Utils.map(area2D_L, Mimic, "area2D_position", [])
 	
-	# Compute the central position of the rectangle surronding Area2D's
-	#var corners = Utils.get_positions_corners(area2D_L_positions)
-	# Compute the central gravity position of Area2D's cause of rectangle change according to orientation
-	var center = Utils.get_positions_center(area2D_L_positions)
-	
+	# Compute the central position of the circle surronding Area2D's
+	var closure = Utils.get_positions_closure(area2D_L_positions)
+	var center = Utils.get_positions_mean(closure)
 	
 	# Compute the rotation to make according to mouse's delta
 	var current_mouse_position = get_global_mouse_position()

@@ -47,6 +47,35 @@ func get_positions_corners(array:Array) -> Array:
 	return [upper_left,bottom_right]
 	
 """
+Return an array containing 2 closure positions of an array of positions. That
+is to say the positions of points on the closure of a circle surrounding arrays.
+
+Parameters:
+-----------
+array: Array of positions to get closure. (Array)
+
+Returns:
+--------
+closure_positions: Array containing 2 closure positions of the array of points. (Array)
+"""
+func get_positions_closure(array:Array) -> Array:
+	if array.size() <= 2:
+		return array
+	
+	var center = [array[0], array[1]]
+	var max_distance = array[0].distance_to(array[1])
+	for index in range(2, array.size()):
+		var distance_to_position0 = center[0].distance_to(array[index])
+		var distance_to_position1 = center[1].distance_to(array[index])
+		if distance_to_position0 > max_distance || distance_to_position1 > max_distance:
+			if distance_to_position0 > distance_to_position1:
+				center = [center[0],array[index]]
+			else:
+				center = [center[1],array[index]]
+		
+	return center
+	
+"""
 Return the mean position of positions in the Array.
 
 Parameters:
@@ -57,7 +86,7 @@ Returns :
 ---------
 center : Mean position according to array vectors. (Vector2)
 """
-func get_positions_center(array:Array) -> Vector2:
+func get_positions_mean(array:Array) -> Vector2:
 	var accumulator = Vector2.ZERO
 	for position in array:
 		accumulator += position
