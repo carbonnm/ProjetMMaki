@@ -4,8 +4,10 @@ signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
-var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
+var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+
 
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
@@ -163,8 +165,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				UpdateSelectionArea()
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
-				if selected_lines.size() > 0:
-					Drag_and_Drop(event.relative)
+				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+				var mouse_relative = event.relative
+				DragAndDrop.drag_and_drop(area2D_L,mouse_relative)
 			elif Modes.Rescale:
 				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
 				var mouse_position = get_global_mouse_position()
@@ -275,18 +278,6 @@ Change mode to Drag and drop when drag
 func _on_Drag_And_Drop_pressed():
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
-
-
-"""
-Drag and drop and element by changing its position
-Input :
------------
-- relative : Vector2 : The mouse position relative to the previous position (position at the last frame).
-"""
-func Drag_and_Drop(relative):
-	for area in selected_lines:
-		area[0].position += relative
-
 
 """
 Change mode to Rescale when rescale button pressed.
