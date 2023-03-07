@@ -86,5 +86,17 @@ func center_area2D_to_center(line_points):
 		line_points[index] -= line_center
 	
 	self._line.points = line_points
+
+# change the point in the ligne to make it more smooth by using an algorithm
+func Curve2D_Transformer(_camera):
+	var curve = Curve2D.new()
+	curve.bake_interval = 16.0 * _camera.zoom.x
+	for point in self._line.points:
+		curve.add_point(point)
+	var new_points = curve.get_baked_points()
 	
+	self.center_area2D_to_center(new_points)
+	
+	curve = null
+	self.CreateCollisions()
 

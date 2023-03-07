@@ -145,7 +145,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		else:
 			if event.button_index == BUTTON_LEFT:
 				if Modes.Drawing:
-					Curve2D_Transformer()
+					_current_line.Curve2D_Transformer(_camera)
 			if Modes.Select:
 				Select_rect.queue_free()
 	
@@ -293,19 +293,6 @@ func _on_Rotation_pressed():
 	Change_mode("Rotate")
 	_action_menu.hide()
 
-# change the point in the ligne to make it more smooth by using an algorithm
-func Curve2D_Transformer():
-	var curve = Curve2D.new()
-	curve.bake_interval = 16.0 * _camera.zoom.x
-	for point in _current_line._line.points:
-		curve.add_point(point)
-	var new_points = curve.get_baked_points()
-	
-	_current_line.center_area2D_to_center(new_points)
-	
-	curve = null
-	_current_line.CreateCollisions()
-
 """
 When copy button pressed, create a duplication of the selected area
 (Not even necessary ? To discuss later)
@@ -314,8 +301,6 @@ func _on_Copy_pressed():
 	_action_menu.hide()
 	copy_lignes = selected_lines.duplicate()
 		
-
-
 
 """
 When paste button pressed, create a duplication of the selected area
