@@ -5,6 +5,7 @@ signal Line_count(counter)
 var LINE := preload("res://Scripts/Line.gd")
 
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
@@ -165,16 +166,15 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				if selected_lines.size() > 0:
 					Drag_and_Drop(event.relative)
 			elif Modes.Rescale:
-				#Check if the selection if greater than 0. 
-				print(selected_lines.size())
-				if selected_lines.size() > 0:
-					Rescale(event.relative)
+				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+				var mouse_position = get_global_mouse_position()
+				var mouse_relative = event.relative
+				Rescale.rescale(area2D_L,mouse_position,mouse_relative)
 			elif Modes.Rotate:
-				if selected_lines.size() > 0:
-					var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-					var mouse_position = get_global_mouse_position()
-					var mouse_relative = event.relative
-					Rotation.rotation(area2D_L,mouse_position,mouse_relative)
+				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+				var mouse_position = get_global_mouse_position()
+				var mouse_relative = event.relative
+				Rotation.rotation(area2D_L,mouse_position,mouse_relative)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -294,21 +294,6 @@ Change mode to Rescale when rescale button pressed.
 func _on_Rescale_pressed():
 	Change_mode("Rescale")
 	_action_menu.hide()
-
-
-"""
-Rescale the selected area (zoom/dezoom)
-Input :
-------------
-relative : Vector2 : The mouse position relative to the previous position (position at the last frame).
-"""
-func Rescale(relative):
-	for area in selected_lines:
-		if get_global_mouse_position().x - relative.x < get_global_mouse_position().x  :
-			area[0].scale += Vector2(0.03, 0.03)
-		elif get_global_mouse_position() - relative > get_global_mouse_position():
-			area[0].scale -= Vector2(0.03, 0.03)
-		
 
 """
 Change mode to Rotate when rotation button pressed
