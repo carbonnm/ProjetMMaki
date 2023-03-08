@@ -217,6 +217,7 @@ func _on_Delete_pressed():
 		area[0].queue_free()
 	selected_lines.clear()
 	_action_menu.hide()
+	emit_signal("Line_count",0)
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
