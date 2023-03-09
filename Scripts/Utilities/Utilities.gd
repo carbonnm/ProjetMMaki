@@ -89,7 +89,8 @@ func get_positions_closure(array:Array) -> Array:
 	# Récursion en prenant ces nouvelles valeurs élognées pour les ajouter 
 	# à la fermeture de la forme 
 	var closure = extreme.duplicate()
-	closure.append(get_positions_mean(get_positions_closure(out)))
+	if out.size() == 0:
+		closure.append(get_positions_mean(get_positions_closure(out)))
 		
 	return closure
 	
@@ -105,9 +106,6 @@ Returns :
 center : Mean position according to array vectors. (Vector2)
 """
 func get_positions_mean(array:Array) -> Vector2:
-	if array.size() == 0:
-		return Vector2.ZERO
-		
 	var accumulator = Vector2.ZERO
 	for position in array:
 		accumulator += position
