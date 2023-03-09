@@ -205,11 +205,11 @@ func RetrieveArea(areas:Array):
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
 		print(element[0].is_class("Stroke"))
-		#if element[0].is_class("Stroke") == true:
+		if element[0] is Stroke == true:
 			# lancer la fonction _draw setup dans Line.gd
-		element[0].draw = drawing
+			element[0].draw = drawing
 			# lance la fonction draw() de godot (update() lance draw())
-		element[0].update()
+			element[0].update()
 
 # delete les ligne selectionnées
 func _on_Delete_pressed():

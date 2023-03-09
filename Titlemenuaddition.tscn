@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Graphics/arrow.png" type="Texture" id=2]
@@ -136,7 +136,10 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 shadow_size = 1
 
-[node name="Titlemenuaddition" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 518, 236 )
+
+[node name="Titlemenuaddition" type="Area2D"]
 script = ExtResource( 4 )
 
 [node name="ColorRect" type="Panel" parent="."]
@@ -213,6 +216,7 @@ custom_styles/normal = SubResource( 8 )
 align = 1
 placeholder_text = "Titre"
 caret_blink = true
+caret_blink_speed = 0.5
 script = ExtResource( 5 )
 
 [node name="Titleinputbutton" type="Button" parent="Inputtitle"]
@@ -239,6 +243,10 @@ custom_styles/hover = SubResource( 13 )
 custom_styles/pressed = SubResource( 14 )
 custom_styles/normal = SubResource( 15 )
 text = " X"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 508, 226 )
+shape = SubResource( 18 )
 
 [connection signal="text_changed" from="Inputtitle" to="Inputtitle" method="_on_Inputtitle_text_changed"]
 [connection signal="pressed" from="Inputtitle/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
