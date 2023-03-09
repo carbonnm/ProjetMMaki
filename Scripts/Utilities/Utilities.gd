@@ -15,9 +15,9 @@ Returns:
 mapped_array: Copy of initial array with transformed elements by the function. (Array)
 """
 func map(array: Array, script: Object, function_name: String, args: Array) -> Array:
-	var mapped_array = []
+	var mapped_array: Array = []
 	for element in array:
-		var arguments = args.duplicate()
+		var arguments: Array = args.duplicate()
 		arguments.push_front(element)
 		var result = script.callv(function_name,arguments)
 		mapped_array.append(result)
@@ -38,8 +38,8 @@ corners_positions: Array containing the upper_left and the bottom-right corner
 of the array of points. (Array)
 """
 func get_positions_corners(array:Array) -> Array:
-	var upper_left = Vector2.INF
-	var bottom_right = -1*Vector2.INF
+	var upper_left: Vector2 = Vector2.INF
+	var bottom_right: Vector2 = -1*Vector2.INF
 	for position in array:
 		upper_left = Vector2(min(upper_left.x,position.x),min(upper_left.y,position.y))
 		bottom_right = Vector2(max(bottom_right.x,position.x),max(bottom_right.y,position.y))
@@ -64,11 +64,11 @@ func get_positions_closure(array:Array) -> Array:
 	
 	# Cacule les positions extrêmes de l'Array afin de déterminer un cercle
 	# contenant tous les points
-	var extreme = [array[0], array[1]]
-	var max_distance = array[0].distance_to(array[1])
+	var extreme: Array = [array[0], array[1]]
+	var max_distance: float = array[0].distance_to(array[1])
 	for index in range(2, array.size()):
-		var distance_to_closure0 = extreme[0].distance_to(array[index])
-		var distance_to_closure1 = extreme[1].distance_to(array[index])
+		var distance_to_closure0: float = extreme[0].distance_to(array[index])
+		var distance_to_closure1: float = extreme[1].distance_to(array[index])
 		if distance_to_closure0 > max_distance || distance_to_closure1 > max_distance:
 			if distance_to_closure0 > distance_to_closure1:
 				extreme = [extreme[0],array[index]]
@@ -78,17 +78,17 @@ func get_positions_closure(array:Array) -> Array:
 	# Calcul des positions n'étant pas reprises dans le rayon du cercle centré
 	# sur les extrêmes afin de recentrer le cercle en prenant compte des autres
 	# valeurs éloignées
-	var out = []
+	var out: Array = []
 	for position in array:
-		var radius = extreme[0].distance_to(extreme[1])/2
-		var distance_to_extreme1 = position.distance_to(extreme[0])
-		var distance_to_extreme2 = position.distance_to(extreme[1])
+		var radius: float = extreme[0].distance_to(extreme[1])/2
+		var distance_to_extreme1: float = position.distance_to(extreme[0])
+		var distance_to_extreme2: float = position.distance_to(extreme[1])
 		if radius < distance_to_extreme1 && radius < distance_to_extreme2:
 			out.append(position)
 	
 	# Récursion en prenant ces nouvelles valeurs élognées pour les ajouter 
 	# à la fermeture de la forme 
-	var closure = extreme.duplicate()
+	var closure: Array = extreme.duplicate()
 	if out.size() == 0:
 		closure.append(get_positions_mean(get_positions_closure(out)))
 		
@@ -106,7 +106,7 @@ Returns :
 center : Mean position according to array vectors. (Vector2)
 """
 func get_positions_mean(array:Array) -> Vector2:
-	var accumulator = Vector2.ZERO
+	var accumulator: Vector2 = Vector2.ZERO
 	for position in array:
 		accumulator += position
 	
@@ -125,9 +125,9 @@ Returns :
 child : Child of the node with specified type (Node).
 """
 func get_child_of_type(node: Node, type: String) -> Node:
-	var num_of_child = node.get_child_count()
+	var num_of_child: int = node.get_child_count()
 	for i in range(num_of_child):
-		var child = node.get_child(i)
+		var child: Node = node.get_child(i)
 		if child.is_class(type):
 			return child
 	return null
