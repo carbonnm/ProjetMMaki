@@ -93,14 +93,29 @@ func create_new_title(chosen_title):
 	
 	#print(chosen_title)
 	var rtl = RichTextLabel.new()
-	get_node("BackgroundColored").get_node("Area2D").add_child(rtl)
+	rtl.rect_size = Vector2(100,100)
 	
-	rtl.rect_size = Vector2(900,900)
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
 	var x_pos_title = get_node("Titlemenuaddition").position.x 
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
 	rtl.rect_global_position = Vector2(x_pos_title, y_pos_title)
+	
+	#var texte = get_node("Lines").add_child(rtl)
+	var aire = Area2D.new()
+	var collision = CollisionShape2D.new()
+	var rectangle = RectangleShape2D.new()
+	var center = rtl.rect_global_position + Vector2(rtl.rect_size.x/2, rtl.rect_size.y/2)
+	
+	collision.shape = rectangle
+	rectangle.extents = rtl.rect_size
+
+	aire.add_child(collision)
+	
+	aire.position = center
+	aire.add_child(rtl)
+	
+	get_node("Lines").add_child(aire)
 	
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
