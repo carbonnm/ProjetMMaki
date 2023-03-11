@@ -389,8 +389,10 @@ func _on_PopupMenu_id_pressed(id):
 		
 		#Puts the title menu addition where it was clicked on the screen 
 		var _mouse_pos = get_global_mouse_position()
-		get_node("Titlemenuaddition").position.x = _mouse_pos.x -70
-		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
+		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
+		get_node("Titlemenuaddition").position.x = (get_viewport_rect().size.x / 2) - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").position.y = (get_viewport_rect().size.y / 2) - (size_title_menu_y/5)
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
@@ -408,9 +410,10 @@ func _on_PopupMenu_id_pressed(id):
 		
 		
 		#Puts the title menu addition where it was clicked on the screen 
-		var _mouse_pos = get_global_mouse_position()
-		get_node("Titlemenuaddition").position.x = _mouse_pos.x -70
-		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
+		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
+		get_node("Titlemenuaddition").position.x = (get_viewport_rect().size.x / 2) - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").position.y = (get_viewport_rect().size.y / 2) - (size_title_menu_y/5)
 		
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
@@ -428,9 +431,10 @@ func _on_PopupMenu_id_pressed(id):
 		
 		
 		#Puts the title menu addition where it was clicked on the screen 
-		var _mouse_pos = get_global_mouse_position()
-		get_node("Titlemenuaddition").position.x = _mouse_pos.x - 70
-		get_node("Titlemenuaddition").position.y = _mouse_pos.y -70
+		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
+		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
+		get_node("Titlemenuaddition").position.x = (get_viewport_rect().size.x / 2) - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").position.y = (get_viewport_rect().size.y / 2) - (size_title_menu_y/5)
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
