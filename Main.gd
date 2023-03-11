@@ -93,7 +93,7 @@ func create_new_title(chosen_title):
 	
 	#print(chosen_title)
 	var rtl = RichTextLabel.new()
-	rtl.rect_size = Vector2(100,100)
+	rtl.rect_size = Vector2(150, 100)
 	
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
@@ -107,15 +107,16 @@ func create_new_title(chosen_title):
 	var rectangle = RectangleShape2D.new()
 	var center = rtl.rect_global_position + Vector2(rtl.rect_size.x/2, rtl.rect_size.y/2)
 	
-	collision.shape = rectangle
 	rectangle.extents = rtl.rect_size
+	collision.shape = rectangle
+
 
 	aire.add_child(collision)
-	
-	aire.position = center
+	#rtl.rect_position = center
 	aire.add_child(rtl)
-	
 	get_node("Lines").add_child(aire)
+	aire.position = center
+	rtl.rect_global_position = center
 	
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
