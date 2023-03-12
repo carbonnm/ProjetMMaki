@@ -5,6 +5,9 @@ var color_picker = false
 
 func _ready() -> void:
 	color = $Color.color
+	
+signal undo
+signal redo
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -27,6 +30,16 @@ func _input(event: InputEvent) -> void:
 
 				if left || right || top || bottom:
 					hide()
+	#On ctrl+z pressed emit the undo signal		
+	if Input.is_action_just_pressed("undo"):
+		print("undo")
+		emit_signal("undo")
+		
+	#On ctrl+y pressed emit the redo signal		
+	if Input.is_action_just_pressed("redo"):
+		print("redo")
+		emit_signal("redo")
+		
 
 
 #func _on_Color_pressed() -> void:

@@ -28,6 +28,9 @@ var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
 
+#list used for undo (ctr+Z)
+var created_elements : Array
+
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
 var title_font
@@ -115,8 +118,16 @@ func create_new_title(chosen_title):
 	#rtl.rect_position = center
 	aire.add_child(rtl)
 	get_node("Lines").add_child(aire)
+<<<<<<< Updated upstream
 	aire.position = center
 	rtl.rect_global_position = center
+=======
+	#adds the new area 2d (containing the new richtextlabel) 
+	#to the list of created elements.
+	
+	created_elements.append(aire)
+	print("created elements",created_elements)
+>>>>>>> Stashed changes
 	
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
@@ -163,7 +174,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				if Modes.Drawing:
 					_current_line.Curve2D_Transformer(_camera)
 			if Modes.Select:
-				Select_rect.queue_free()
+				#recurring bug 
+				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
+				if Select_rect:
+					Select_rect.queue_free()
 	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
@@ -198,6 +212,8 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			DragCamera(event.relative)
+			
+		
 			
 	
 func _on_Selection_pressed() -> void:
@@ -245,7 +261,9 @@ func DrawLine():
 	_lines.add_child(_current_line)
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
+	created_elements.append(_current_line)
 	
+	print(created_elements)
 	emit_signal("Line_count",_lines.get_child_count())
 
 func DrawSelectionArea():
@@ -444,3 +462,18 @@ func _on_PopupMenu_id_pressed(id):
 		print("Ecriture vers Dessin")
 	elif id==5:
 		print("Dessin")
+
+#handles the undo 
+func _on_RightClickContainer_undo():
+	var size_list = created_elements.size()
+	if size_list > 0:
+		var to_delete = created_elements.back()
+		print(to_delete.name)
+		to_delete.queue_free()
+		created_elements.remove(size_list-1)
+		print(created_elements)
+	print("done")
+
+
+func _on_RightClickContainer_redo():
+	pass # Replace with function body.
