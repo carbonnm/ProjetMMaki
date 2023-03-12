@@ -52,6 +52,8 @@ func _draw() -> void:
 		var bottom_down = corners[1]
 		draw_rect(Rect2(upper_left, bottom_down - upper_left), Color.aqua, false, 4)
 
+
+
 func get_line2D_corner():
 	var upper_left = Vector2.INF
 	var bottom_right = -1*Vector2.INF

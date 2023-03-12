@@ -136,7 +136,7 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 shadow_size = 1
 
-[node name="Titlemenuaddition" type="Node2D"]
+[node name="Titlemenuaddition" type="Area2D"]
 script = ExtResource( 4 )
 
 [node name="ColorRect" type="Panel" parent="."]
@@ -213,6 +213,7 @@ custom_styles/normal = SubResource( 8 )
 align = 1
 placeholder_text = "Titre"
 caret_blink = true
+caret_blink_speed = 0.5
 script = ExtResource( 5 )
 
 [node name="Titleinputbutton" type="Button" parent="Inputtitle"]

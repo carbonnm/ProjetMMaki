@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Stroke",
 "language": "GDScript",
 "path": "res://Scripts/Line.gd"
+}, {
+"base": "Area2D",
+"class": "Title",
+"language": "GDScript",
+"path": "res://Scripts/Title.gd"
 } ]
 _global_script_class_icons={
 "GutHookScript": "",
 "GutTest": "",
 "Rotation": "",
-"Stroke": ""
+"Stroke": "",
+"Title": ""
 }
 
 [application]

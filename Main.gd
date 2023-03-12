@@ -3,6 +3,7 @@ extends Node2D
 signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
+var RTL := preload("res://Scripts/Title.gd")
 
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
@@ -91,35 +92,20 @@ func _ready() -> void:
 func create_new_title(chosen_title):
 	get_node("Titlemenuaddition").visible = false
 	
-	#print(chosen_title)
-	var rtl = RichTextLabel.new()
-	rtl.rect_size = Vector2(150, 100)
-	
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
+	
+	var rtl = RTL.new()
 	var x_pos_title = get_node("Titlemenuaddition").position.x 
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
-	rtl.rect_global_position = Vector2(x_pos_title, y_pos_title)
+	var rtl_position = Vector2(x_pos_title, y_pos_title)
+	rtl.set_params(true, str(chosen_title), Vector2(150, 100), rtl_position)
+	#rtl.rect_size = Vector2(150, 100)
+	get_node("Lines").add_child(rtl)
 	
-	#var texte = get_node("Lines").add_child(rtl)
-	var aire = Area2D.new()
-	var collision = CollisionShape2D.new()
-	var rectangle = RectangleShape2D.new()
-	var center = rtl.rect_global_position + Vector2(rtl.rect_size.x/2, rtl.rect_size.y/2)
-	
-	rectangle.extents = rtl.rect_size
-	collision.shape = rectangle
-
-
-	aire.add_child(collision)
-	#rtl.rect_position = center
-	aire.add_child(rtl)
-	get_node("Lines").add_child(aire)
-	aire.position = center
-	rtl.rect_global_position = center
-	
-	rtl.bbcode_enabled = true
-	rtl.bbcode_text = str(chosen_title)
+#	rtl.bbcode_enabled = true
+#	rtl.bbcode_text = str(chosen_title)
+#	rtl.fit_content_height
 	
 	var dynamic_font = DynamicFont.new()
 	
@@ -325,7 +311,10 @@ Then Paste it where the mouse actually is (to be changed with the right click)
 func _on_Paste_pressed():
 	_action_menu.hide()
 	for Ligne in copy_lignes:
+		print("copy lignes", copy_lignes)
+		print("ligne", Ligne)
 		var duplarea = Ligne[0].duplicate()
+		print("dupl", duplarea)
 		duplarea.position = RCC.rect_position
 		duplarea.skipready = true
 		_lines.add_child(duplarea)
