@@ -1,6 +1,6 @@
 extends Node2D
 
-signal Line_count(counter)
+#signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 
@@ -15,6 +15,7 @@ var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
+onready var _linecounter := get_node("CanvasLayer/LinesCounter")
 onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
@@ -28,8 +29,10 @@ var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
 
-#list used for undo (ctr+Z)
-var created_elements : Array
+#list used for undo (ctr+Z), redo (ctrl+Y)
+var created_elements : Array 
+var index_created 
+var notyetundo = true
 
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
@@ -50,7 +53,9 @@ var Modes = {
 }
 
 func _ready() -> void:
+	index_created = created_elements.size()
 	_camera.connect("zoom_changed", self, "UpdateBackground")
+	
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
 	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
@@ -118,16 +123,18 @@ func create_new_title(chosen_title):
 	#rtl.rect_position = center
 	aire.add_child(rtl)
 	get_node("Lines").add_child(aire)
-<<<<<<< Updated upstream
+
 	aire.position = center
 	rtl.rect_global_position = center
-=======
+
 	#adds the new area 2d (containing the new richtextlabel) 
 	#to the list of created elements.
 	
 	created_elements.append(aire)
 	print("created elements",created_elements)
->>>>>>> Stashed changes
+	#updates lines counter
+	_linecounter.Count = str(_lines.get_child_count())
+
 	
 	rtl.bbcode_enabled = true
 	rtl.bbcode_text = str(chosen_title)
@@ -242,13 +249,17 @@ func DrawLineContainer(drawing:bool):
 			# lance la fonction draw() de godot (update() lance draw())
 			element[0].update()
 
-# delete les ligne selectionnées
+# delete les lignes selectionnées
 func _on_Delete_pressed():
 	for area in selected_lines:
 		area[0].queue_free()
+		
 	selected_lines.clear()
 	_action_menu.hide()
-	emit_signal("Line_count",0)
+	#emit_signal("Line_count",0)
+	#Updates elements counter 
+	_linecounter.Count = str(_lines.get_child_count())
+	print(_linecounter.Count)
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
@@ -261,10 +272,14 @@ func DrawLine():
 	_lines.add_child(_current_line)
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
-	created_elements.append(_current_line)
+	if _current_line:
+		#need to replicate the "if" after drawing finished otherwise,
+		# empty lines are added to created_elements
+		created_elements.append(_current_line)
 	
-	print(created_elements)
-	emit_signal("Line_count",_lines.get_child_count())
+	print(created_elements,_lines.get_child_count())
+	_linecounter.Count = str(_lines.get_child_count())
+	#emit_signal("Line_count",_lines.get_child_count())
 
 func DrawSelectionArea():
 	Select_rect = Area2D.new()
@@ -465,15 +480,29 @@ func _on_PopupMenu_id_pressed(id):
 
 #handles the undo 
 func _on_RightClickContainer_undo():
-	var size_list = created_elements.size()
-	if size_list > 0:
-		var to_delete = created_elements.back()
-		print(to_delete.name)
-		to_delete.queue_free()
-		created_elements.remove(size_list-1)
-		print(created_elements)
-	print("done")
-
+	print("startundo",index_created)
+	#handles the first undo (to initialize index_created following the nulber of created elements
+	if notyetundo and created_elements.size()>0:
+		notyetundo = false
+		index_created = created_elements.size()-1
+	
+	if(index_created>=0):		
+		var to_delete = created_elements[index_created]
+		
+		#opened to better solution 
+		to_delete.visible = false
+		index_created -=1	
+		#created_elements.remove(size_list-1)
+		
+	print("done",index_created)
+	
 
 func _on_RightClickContainer_redo():
-	pass # Replace with function body.
+	
+	if not notyetundo and index_created<created_elements.size()-1:
+		print("startredo",index_created)
+		var to_recreate = created_elements[index_created]
+		print(to_recreate.name)
+		to_recreate.visible = true
+		index_created += 1
+	print("done",index_created)

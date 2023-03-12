@@ -249,7 +249,6 @@ scale = Vector2( 0.4, 0.4 )
 margin_right = 20.0
 margin_bottom = 20.0
 
-[connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
 [connection signal="redo" from="RightClickContainer" to="." method="_on_RightClickContainer_redo"]
 [connection signal="undo" from="RightClickContainer" to="." method="_on_RightClickContainer_undo"]
