@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Canvas",
+"language": "GDScript",
+"path": "res://Scripts/States/Canvas.gd"
+}, {
 "base": "Reference",
 "class": "GutHookScript",
 "language": "GDScript",
@@ -18,6 +23,11 @@ _global_script_classes=[ {
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
+}, {
+"base": "Reference",
+"class": "IState",
+"language": "GDScript",
+"path": "res://Scripts/States/IState.gd"
 }, {
 "base": "Node",
 "class": "Rotation",
@@ -30,8 +40,10 @@ _global_script_classes=[ {
 "path": "res://Scripts/Line.gd"
 } ]
 _global_script_class_icons={
+"Canvas": "",
 "GutHookScript": "",
 "GutTest": "",
+"IState": "",
 "Rotation": "",
 "Stroke": ""
 }
@@ -39,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="MMaki"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
