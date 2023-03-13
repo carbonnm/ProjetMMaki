@@ -312,11 +312,16 @@ Then Paste it where the mouse actually is (to be changed with the right click)
 """
 func _on_Paste_pressed():
 	_action_menu.hide()
-	for Ligne in copy_lignes:
+	var clines = Utils.map(copy_lignes,Mimic,"get_first",[])
+	var clines_positions = Utils.map(clines, Mimic, "area2D_position", [])
+	var closure = Utils.get_positions_closure(clines_positions)
+	var center = Utils.get_positions_mean(closure)
+	var translation = -center + RCC.rect_position
+	
+	for Ligne in clines:
+		var duplarea = Ligne.duplicate()
 		
-		var duplarea = Ligne[0].duplicate()
-		
-		duplarea.position = RCC.rect_position
+		duplarea.position += translation
 		_lines.add_child(duplarea)
 		
 		if duplarea is Stroke:
