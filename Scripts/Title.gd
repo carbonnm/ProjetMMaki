@@ -66,6 +66,8 @@ Returns :
 center : Mean position of points in line2D.
 """
 func get_rtl_center():
+	print(_rtl.rect_global_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2))
+	print(_rtl.rect_global_position)
 	return (_rtl.rect_global_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2))
 
 """
@@ -75,12 +77,21 @@ func center_area2D_to_center():
 	
 	var rtl_center = self.get_rtl_center()
 	self.position += rtl_center
-	_rtl.position -= rtl_center
+	_rtl.rect_global_position -= rtl_center
 	self._rtl = _rtl
+#	var line_center = self.get_line2D_center()
+#	self.position += line_center
+#
+#	for index in range(line_points.size()):
+#		line_points[index] -= line_center
+#
+#	self._line.points = line_points
+
 
 
 func createRTL():
 	self.center_area2D_to_center()
+	print("here")
 	self.Create_Shape()
 
 func ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle):
@@ -107,4 +118,4 @@ func ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtit
 	var size = _rtl.get_font("normal_font").get_string_size(_rtl.text)
 	
 	_rtl.rect_size = Vector2(size.x + 16, size.y + 4)
-	Create_Shape()
+	createRTL()
