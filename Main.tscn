@@ -24,7 +24,7 @@
 [ext_resource path="res://Assets/Graphics/Image/text.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Graphics/Image/couleur.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Graphics/Image/grouper.png" type="Texture" id=24]
-[ext_resource path="res://Position_Mouse.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=25]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
