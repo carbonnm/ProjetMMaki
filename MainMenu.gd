@@ -4,7 +4,7 @@ export var mainScene : PackedScene
 
 #Going to the next scene (the new canvas options menu)
 func _on_BoutonCreer_button_up():
-	get_tree().change_scene("res://Newcanvasoptions.tscn")
+	get_tree().change_scene("res://Scene/Newcanvasoptions.tscn")
 	
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/settings.png-0fd6e09932a9f4676d51a6823afafe81.stex"
+path="res://.import/annotation.png-4a1e5390b3344b7db007344669940519.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/settings.png"
-dest_files=[ "res://.import/settings.png-0fd6e09932a9f4676d51a6823afafe81.stex" ]
+source_file="res://Assets/Graphics/Image/annotation.png"
+dest_files=[ "res://.import/annotation.png-4a1e5390b3344b7db007344669940519.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/text.png-9b364ea89499c94e2cdd7fab41604ba0.stex"
+path="res://.import/crayon.png-e854b36cd919d55b097be43fe2947c9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/text.png"
-dest_files=[ "res://.import/text.png-9b364ea89499c94e2cdd7fab41604ba0.stex" ]
+source_file="res://Assets/Graphics/Image/crayon.png"
+dest_files=[ "res://.import/crayon.png-e854b36cd919d55b097be43fe2947c9c.stex" ]
 
 [params]
 

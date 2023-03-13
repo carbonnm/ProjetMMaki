@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mouse.png-696f4cca1b0bcc26fbe121cf2289b53b.stex"
+path="res://.import/text.png-26f6bde31efe56a7314e91730d85735d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mouse.png"
-dest_files=[ "res://.import/mouse.png-696f4cca1b0bcc26fbe121cf2289b53b.stex" ]
+source_file="res://Assets/Graphics/Image/text.png"
+dest_files=[ "res://.import/text.png-26f6bde31efe56a7314e91730d85735d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=0
-detect_3d=true
+size_limit=64
+detect_3d=false
 svg/scale=1.0

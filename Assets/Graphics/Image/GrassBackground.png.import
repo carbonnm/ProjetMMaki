@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coller.png-2656283af31b7787837dffe4df8198ae.stex"
+path="res://.import/GrassBackground.png-0915f11b93a89deaa7813dfd53b269ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/coller.png"
-dest_files=[ "res://.import/coller.png-2656283af31b7787837dffe4df8198ae.stex" ]
+source_file="res://Assets/Graphics/Image/GrassBackground.png"
+dest_files=[ "res://.import/GrassBackground.png-0915f11b93a89deaa7813dfd53b269ac.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=64
+size_limit=0
 detect_3d=false
 svg/scale=1.0

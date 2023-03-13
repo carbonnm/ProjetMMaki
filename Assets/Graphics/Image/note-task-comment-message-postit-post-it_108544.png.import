@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/annotation.png-1f2f2f009d8ed6544629d81d49ae256a.stex"
+path="res://.import/note-task-comment-message-postit-post-it_108544.png-dcd0b2e9ec62af6643bc8897a80c869d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/annotation.png"
-dest_files=[ "res://.import/annotation.png-1f2f2f009d8ed6544629d81d49ae256a.stex" ]
+source_file="res://Assets/Graphics/Image/note-task-comment-message-postit-post-it_108544.png"
+dest_files=[ "res://.import/note-task-comment-message-postit-post-it_108544.png-dcd0b2e9ec62af6643bc8897a80c869d.stex" ]
 
 [params]
 
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=64
+size_limit=0
 detect_3d=false
 svg/scale=1.0

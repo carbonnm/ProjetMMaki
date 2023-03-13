@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/poubelle.png-f1e57cb27cbfcb767762198e1d134035.stex"
+path="res://.import/dragdrop.png-912f6a0db8ecb1ca37279ee062ad1af0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/poubelle.png"
-dest_files=[ "res://.import/poubelle.png-f1e57cb27cbfcb767762198e1d134035.stex" ]
+source_file="res://Assets/Graphics/Image/dragdrop.png"
+dest_files=[ "res://.import/dragdrop.png-912f6a0db8ecb1ca37279ee062ad1af0.stex" ]
 
 [params]
 

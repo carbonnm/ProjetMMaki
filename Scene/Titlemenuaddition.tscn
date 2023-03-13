@@ -1,10 +1,11 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Graphics/arrow.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/homepage/arrow.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Titlemenuaddition.gd" type="Script" id=4]
-[ext_resource path="res://Inputtitle.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Titlemenuaddition.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Inputtitle.gd" type="Script" id=5]
+
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
