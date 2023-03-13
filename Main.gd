@@ -1,6 +1,6 @@
 extends Node2D
 
-signal Line_count(counter)
+#signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
 var RTL := preload("res://Scripts/Title.gd")
@@ -16,6 +16,7 @@ var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
+onready var _linecounter := get_node("CanvasLayer/LinesCounter")
 onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
@@ -28,6 +29,11 @@ var _current_line : Area2D
 var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
+
+#list used for undo (ctr+Z), redo (ctrl+Y)
+var created_elements : Array 
+var index_created 
+var notyetundo = true
 
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
@@ -48,7 +54,9 @@ var Modes = {
 }
 
 func _ready() -> void:
+	index_created = created_elements.size()
 	_camera.connect("zoom_changed", self, "UpdateBackground")
+	
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
 	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
@@ -127,7 +135,10 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				if Modes.Drawing:
 					_current_line.Curve2D_Transformer(_camera)
 			if Modes.Select:
-				Select_rect.queue_free()
+				#recurring bug 
+				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
+				if Select_rect:
+					Select_rect.queue_free()
 	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
@@ -163,6 +174,8 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			DragCamera(event.relative)
 			
+		
+			
 	
 func _on_Selection_pressed() -> void:
 	Change_mode("Select")
@@ -190,13 +203,17 @@ func DrawLineContainer(drawing:bool):
 			# lance la fonction draw() de godot (update() lance draw())
 			element[0].update()
 
-# delete les ligne selectionnées
+# delete les lignes selectionnées
 func _on_Delete_pressed():
 	for area in selected_lines:
 		area[0].queue_free()
+		
 	selected_lines.clear()
 	_action_menu.hide()
-	emit_signal("Line_count",0)
+	#emit_signal("Line_count",0)
+	#Updates elements counter 
+	_linecounter.Count = str(_lines.get_child_count())
+	print(_linecounter.Count)
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
@@ -210,8 +227,14 @@ func DrawLine():
 	_current_line.Setup()
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
+	if _current_line:
+		#need to replicate the "if" after drawing finished otherwise,
+		# empty lines are added to created_elements
+		created_elements.append(_current_line)
 	
-	emit_signal("Line_count",_lines.get_child_count())
+	print(created_elements,_lines.get_child_count())
+	_linecounter.Count = str(_lines.get_child_count())
+	#emit_signal("Line_count",_lines.get_child_count())
 
 func DrawSelectionArea():
 	Select_rect = Area2D.new()
@@ -412,5 +435,36 @@ func _on_PopupMenu_id_pressed(id):
 		print("Ecriture vers Dessin")
 	elif id==5:
 		print("Dessin")
+
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
+
+#handles the undo 
+func _on_RightClickContainer_undo():
+	print("startundo",index_created)
+	#handles the first undo (to initialize index_created following the nulber of created elements
+	if notyetundo and created_elements.size()>0:
+		notyetundo = false
+		index_created = created_elements.size()-1
+	
+	if(index_created>=0):		
+		var to_delete = created_elements[index_created]
+		
+		#opened to better solution 
+		to_delete.visible = false
+		index_created -=1	
+		#created_elements.remove(size_list-1)
+		
+	print("done",index_created)
+	
+
+func _on_RightClickContainer_redo():
+	
+	if not notyetundo and index_created<created_elements.size()-1:
+		print("startredo",index_created)
+		var to_recreate = created_elements[index_created]
+		print(to_recreate.name)
+		to_recreate.visible = true
+		index_created += 1
+	print("done",index_created)
