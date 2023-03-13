@@ -25,14 +25,14 @@
 [ext_resource path="res://Image/couleur.png" type="Texture" id=23]
 [ext_resource path="res://Image/grouper.png" type="Texture" id=24]
 
-[sub_resource type="RectangleShape2D" id=3]
-
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,11 +42,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1024.0
 margin_bottom = 600.0
-
-[node name="Area2D" type="Area2D" parent="BackgroundColored"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundColored/Area2D"]
-shape = SubResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
@@ -249,6 +244,7 @@ scale = Vector2( 0.4, 0.4 )
 margin_right = 20.0
 margin_bottom = 20.0
 
+[connection signal="Line_count" from="." to="CanvasLayer/LinesCounter" method="_on_Node2D_Line_count"]
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
 [connection signal="redo" from="RightClickContainer" to="." method="_on_RightClickContainer_redo"]
 [connection signal="undo" from="RightClickContainer" to="." method="_on_RightClickContainer_undo"]

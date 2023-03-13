@@ -9,10 +9,9 @@ var HitBoxs:Array
 var draw:bool = false
 var skipready:bool = false
 
-func _ready() -> void:
-	if !skipready:
-		_line = Line2D.new()
-		self.add_child(_line)
+func Setup() -> void:
+	_line = Line2D.new()
+	self.add_child(_line)
 
 func set_params(lineWidth, color, _zoom):
 	_line.width = lineWidth
@@ -51,6 +50,8 @@ func _draw() -> void:
 		var upper_left = corners[0]
 		var bottom_down = corners[1]
 		draw_rect(Rect2(upper_left, bottom_down - upper_left), Color.aqua, false, 4)
+
+
 
 func get_line2D_corner():
 	var upper_left = Vector2.INF

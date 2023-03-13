@@ -3,6 +3,7 @@ extends Node2D
 #signal Line_count(counter)
 
 var LINE := preload("res://Scripts/Line.gd")
+var RTL := preload("res://Scripts/Title.gd")
 
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
@@ -99,66 +100,19 @@ func _ready() -> void:
 func create_new_title(chosen_title):
 	get_node("Titlemenuaddition").visible = false
 	
-	#print(chosen_title)
-	var rtl = RichTextLabel.new()
-	rtl.rect_size = Vector2(150, 100)
-	
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
+	
+	var rtl = RTL.new()
 	var x_pos_title = get_node("Titlemenuaddition").position.x 
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
-	rtl.rect_global_position = Vector2(x_pos_title, y_pos_title)
-	
-	#var texte = get_node("Lines").add_child(rtl)
-	var aire = Area2D.new()
-	var collision = CollisionShape2D.new()
-	var rectangle = RectangleShape2D.new()
-	var center = rtl.rect_global_position + Vector2(rtl.rect_size.x/2, rtl.rect_size.y/2)
-	
-	rectangle.extents = rtl.rect_size
-	collision.shape = rectangle
-
-
-	aire.add_child(collision)
-	#rtl.rect_position = center
-	aire.add_child(rtl)
-	get_node("Lines").add_child(aire)
-
-	aire.position = center
-	rtl.rect_global_position = center
-
-	#adds the new area 2d (containing the new richtextlabel) 
-	#to the list of created elements.
-	
-	created_elements.append(aire)
-	print("created elements",created_elements)
-	#updates lines counter
-	_linecounter.Count = str(_lines.get_child_count())
+	var rtl_position = Vector2(x_pos_title, y_pos_title)
+	get_node("Lines").add_child(rtl)
+	rtl.set_params(true, str(chosen_title), Vector2(500, 100), rtl_position)
 
 	
-	rtl.bbcode_enabled = true
-	rtl.bbcode_text = str(chosen_title)
-	
-	var dynamic_font = DynamicFont.new()
-	
-	#Title creation
-	if (get_node("Titlemenuaddition").type_title ==1):
-		dynamic_font.size = 64
-		dynamic_font.font_data = load(title_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_title)
-	#Subtitle creation
-	if (get_node("Titlemenuaddition").type_title ==2):
-		dynamic_font.size = 45
-		dynamic_font.font_data = load(subtitle_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_subtitle)
-	#Sub subtitle creation
-	if (get_node("Titlemenuaddition").type_title ==3):
-		dynamic_font.size = 32
-		dynamic_font.font_data = load(subsubtitle_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_subsubtitle)
+	var type_title = get_node("Titlemenuaddition").type_title
+	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 		
 		
 func _on_Background_gui_input(event: InputEvent) -> void:
@@ -270,6 +224,7 @@ func DrawLine():
 		
 	_current_line = LINE.new()
 	_lines.add_child(_current_line)
+	_current_line.Setup()
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
 	if _current_line:
@@ -358,11 +313,14 @@ Then Paste it where the mouse actually is (to be changed with the right click)
 func _on_Paste_pressed():
 	_action_menu.hide()
 	for Ligne in copy_lignes:
+		
 		var duplarea = Ligne[0].duplicate()
+		
 		duplarea.position = RCC.rect_position
-		duplarea.skipready = true
 		_lines.add_child(duplarea)
-		duplarea._line = duplarea.get_child(0)
+		
+		if duplarea is Stroke:
+			duplarea._line = duplarea.get_child(0)
 
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
@@ -477,6 +435,10 @@ func _on_PopupMenu_id_pressed(id):
 		print("Ecriture vers Dessin")
 	elif id==5:
 		print("Dessin")
+
+	
+	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
 
 #handles the undo 
 func _on_RightClickContainer_undo():

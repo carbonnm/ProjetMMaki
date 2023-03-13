@@ -8,3 +8,4 @@ func _ready():
 #updates current text 
 func _on_Inputtitle_text_changed(new_text):
 	chosen = new_text
+
