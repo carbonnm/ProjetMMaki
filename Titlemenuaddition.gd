@@ -21,3 +21,7 @@ func _on_Titleinputbutton_pressed():
 
 func _on_Exit_button_pressed():
 	visible = false
+
+
+func _on_Inputtitle_text_entered(new_text: String) -> void:
+	_on_Titleinputbutton_pressed()

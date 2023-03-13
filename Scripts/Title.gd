@@ -9,15 +9,15 @@ var draw:bool = false
 
 func _ready() -> void:
 	_rtl = RichTextLabel.new()
-	
+	_rtl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	self.add_child(_rtl)
 
 func set_params(bbcode_enabled, chosen_title, size_rtl, position_rtl):
 	_rtl.bbcode_enabled = bbcode_enabled
 	_rtl.bbcode_text = chosen_title
-	_rtl.rect_size = size_rtl
+#	_rtl.rect_size = size_rtl
 	_rtl.rect_global_position = position_rtl
-	_rtl.fit_content_height
+#	_rtl.fit_content_height
 
 ## create a collision shape for each point in the line
 #func CreateCollisions():	
@@ -29,10 +29,12 @@ func Create_Shape():
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
 	
-	var center = _rtl.rect_global_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2)
+	var center = _rtl.rect_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2)
+	center.x -= 8
 	c_shape.position = center
 	
-	shape.extents = _rtl.rect_size
+	shape.extents = _rtl.rect_size / 2
+	shape.extents.x -= 8
 	c_shape.shape = shape
 	
 	self.add_child(c_shape)
@@ -80,3 +82,29 @@ func center_area2D_to_center():
 func createRTL():
 	self.center_area2D_to_center()
 	self.Create_Shape()
+
+func ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle):
+	var dynamic_font = DynamicFont.new()
+	#Title creation
+	if (type_title ==1):
+		dynamic_font.size = 64
+		dynamic_font.font_data = load(title_font)
+		_rtl.add_font_override("normal_font", dynamic_font)
+		_rtl.set("custom_colors/default_color",color_title)
+	#Subtitle creation
+	if (type_title ==2):
+		dynamic_font.size = 45
+		dynamic_font.font_data = load(subtitle_font)
+		_rtl.add_font_override("normal_font", dynamic_font)
+		_rtl.set("custom_colors/default_color",color_subtitle)
+	#Sub subtitle creation
+	if (type_title ==3):
+		dynamic_font.size = 32
+		dynamic_font.font_data = load(subsubtitle_font)
+		_rtl.add_font_override("normal_font", dynamic_font)
+		_rtl.set("custom_colors/default_color",color_subsubtitle)
+	
+	var size = _rtl.get_font("normal_font").get_string_size(_rtl.text)
+	
+	_rtl.rect_size = Vector2(size.x + 16, size.y + 4)
+	Create_Shape()

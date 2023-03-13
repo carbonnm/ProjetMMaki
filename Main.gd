@@ -100,34 +100,11 @@ func create_new_title(chosen_title):
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
 	var rtl_position = Vector2(x_pos_title, y_pos_title)
 	get_node("Lines").add_child(rtl)
-	rtl.set_params(true, str(chosen_title), Vector2(150, 100), rtl_position)
-	#rtl.rect_size = Vector2(150, 100)
+	rtl.set_params(true, str(chosen_title), Vector2(500, 100), rtl_position)
+
 	
-	
-#	rtl.bbcode_enabled = true
-#	rtl.bbcode_text = str(chosen_title)
-#	rtl.fit_content_height
-	
-	var dynamic_font = DynamicFont.new()
-	
-	#Title creation
-	if (get_node("Titlemenuaddition").type_title ==1):
-		dynamic_font.size = 64
-		dynamic_font.font_data = load(title_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_title)
-	#Subtitle creation
-	if (get_node("Titlemenuaddition").type_title ==2):
-		dynamic_font.size = 45
-		dynamic_font.font_data = load(subtitle_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_subtitle)
-	#Sub subtitle creation
-	if (get_node("Titlemenuaddition").type_title ==3):
-		dynamic_font.size = 32
-		dynamic_font.font_data = load(subsubtitle_font)
-		rtl.add_font_override("normal_font", dynamic_font)
-		rtl.set("custom_colors/default_color",color_subsubtitle)
+	var type_title = get_node("Titlemenuaddition").type_title
+	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 		
 		
 func _on_Background_gui_input(event: InputEvent) -> void:
@@ -230,6 +207,7 @@ func DrawLine():
 		
 	_current_line = LINE.new()
 	_lines.add_child(_current_line)
+	_current_line.Setup()
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
 	
@@ -312,14 +290,14 @@ Then Paste it where the mouse actually is (to be changed with the right click)
 func _on_Paste_pressed():
 	_action_menu.hide()
 	for Ligne in copy_lignes:
-		print("copy lignes", copy_lignes)
-		print("ligne", Ligne)
+		
 		var duplarea = Ligne[0].duplicate()
-		print("dupl", duplarea)
+		
 		duplarea.position = RCC.rect_position
-		duplarea.skipready = true
 		_lines.add_child(duplarea)
-		duplarea._line = duplarea.get_child(0)
+		
+		if duplarea is Stroke:
+			duplarea._line = duplarea.get_child(0)
 
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
@@ -434,3 +412,5 @@ func _on_PopupMenu_id_pressed(id):
 		print("Ecriture vers Dessin")
 	elif id==5:
 		print("Dessin")
+	
+	get_node("Titlemenuaddition/Inputtitle").grab_focus()

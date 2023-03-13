@@ -31,3 +31,4 @@ func _on_BoutonOptions_mouse_exited():
 
 func _on_BoutonOptions_pressed():
 	get_node("Namenotentered").visible = true
+

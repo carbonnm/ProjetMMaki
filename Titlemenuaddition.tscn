@@ -242,5 +242,6 @@ custom_styles/normal = SubResource( 15 )
 text = " X"
 
 [connection signal="text_changed" from="Inputtitle" to="Inputtitle" method="_on_Inputtitle_text_changed"]
+[connection signal="text_entered" from="Inputtitle" to="." method="_on_Inputtitle_text_entered"]
 [connection signal="pressed" from="Inputtitle/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
 [connection signal="pressed" from="Exit_button" to="." method="_on_Exit_button_pressed"]
