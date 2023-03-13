@@ -99,9 +99,10 @@ func create_new_title(chosen_title):
 	var x_pos_title = get_node("Titlemenuaddition").position.x 
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
 	var rtl_position = Vector2(x_pos_title, y_pos_title)
+	get_node("Lines").add_child(rtl)
 	rtl.set_params(true, str(chosen_title), Vector2(150, 100), rtl_position)
 	#rtl.rect_size = Vector2(150, 100)
-	get_node("Lines").add_child(rtl)
+	
 	
 #	rtl.bbcode_enabled = true
 #	rtl.bbcode_text = str(chosen_title)
