@@ -34,6 +34,9 @@ corner_radius_bottom_left = 5
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -89.0 ]
+}
 
 [node name="BackgroundColored" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -124,70 +127,68 @@ icon = ExtResource( 18 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )
 
-[node name="LinesCounter" type="Label" parent="CanvasLayer"]
-margin_left = 130.0
-margin_top = 16.0
-margin_right = 249.0
-margin_bottom = 30.0
-script = ExtResource( 9 )
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+margin_left = 40.0
+margin_right = 468.0
+margin_bottom = 35.0
+custom_constants/separation = 32
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="FPS CHECK" type="Label" parent="CanvasLayer"]
-anchor_right = 0.066
-margin_left = 19.0
-margin_top = 15.0
-margin_right = 86.0
-margin_bottom = 29.0
+[node name="FPS CHECK" type="Label" parent="CanvasLayer/HBoxContainer"]
+margin_top = 10.0
+margin_bottom = 24.0
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -235.0
-margin_top = -78.0
-margin_right = 236.0
-margin_bottom = -8.0
-grow_horizontal = 2
-alignment = 1
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Settings" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 12.0
-margin_right = 163.0
-margin_bottom = 70.0
-text = "Paramètres"
-icon = ExtResource( 14 )
-
-[node name="Selection" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 167.0
-margin_right = 320.0
-margin_bottom = 70.0
-text = "Sélectionner"
-icon = ExtResource( 13 )
-
-[node name="Drawing" type="Button" parent="CanvasLayer/HBoxContainer"]
-margin_left = 324.0
-margin_right = 459.0
-margin_bottom = 70.0
-text = "Dessiner"
-icon = ExtResource( 12 )
+[node name="LinesCounter" type="Label" parent="CanvasLayer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 10.0
+margin_right = 32.0
+margin_bottom = 24.0
+script = ExtResource( 9 )
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchor_bottom = 1.0
 margin_left = -224.0
 
-[node name="Button" type="Button" parent="CanvasLayer/Panel"]
-margin_left = 56.0
-margin_top = 32.0
-margin_right = 145.0
-margin_bottom = 52.0
-text = "BETAAAAAA"
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.5
+margin_top = -71.0
+margin_right = 76.5
+margin_bottom = 71.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Selection" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_right = 153.0
+margin_bottom = 70.0
+text = "Sélectionner"
+icon = ExtResource( 13 )
+
+[node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 74.0
+margin_right = 153.0
+margin_bottom = 142.0
+text = "Dessiner"
+icon = ExtResource( 12 )
+
+[node name="Settings" type="Button" parent="CanvasLayer"]
+margin_right = 38.0
+margin_bottom = 35.0
+icon = ExtResource( 14 )
+expand_icon = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ActionMenu" type="VBoxContainer" parent="."]
 visible = false
@@ -252,9 +253,9 @@ margin_bottom = 20.0
 [connection signal="pressed" from="RightClickContainer/Group items" to="." method="_on_Group_items_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="." method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Selection" to="." method="_on_Selection_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="." method="_on_Selection_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
+[connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]

@@ -16,7 +16,7 @@ var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
-onready var _linecounter := get_node("CanvasLayer/LinesCounter")
+onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
 onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
