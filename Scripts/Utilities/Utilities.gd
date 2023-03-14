@@ -89,7 +89,7 @@ func get_positions_closure(array:Array) -> Array:
 	# Récursion en prenant ces nouvelles valeurs élognées pour les ajouter 
 	# à la fermeture de la forme 
 	var closure: Array = extreme.duplicate()
-	if out.size() == 0:
+	if out.size() != 0:
 		closure.append(get_positions_mean(get_positions_closure(out)))
 		
 	return closure
