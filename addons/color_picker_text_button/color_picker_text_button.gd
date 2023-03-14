@@ -122,9 +122,22 @@ func set_label_text(txt):
 
 
 func show_panel():
-	if popup_centered:
+	var movement_verfification = get_parent().get_parent().notyetmoved
+	if movement_verfification:
+		print("1")
+		
 		panel.popup_centered()
 	else:
+		print("2")
+		var mouse = get_global_mouse_position()
+		panel.rect_position.x = mouse.x
+		
+		
+		
+		
+		#color_picker.rect_position.y = cam_y
+		#panel.rect_position.y = cam_y
+		print(mouse.x,mouse.y)
 		panel.popup()
 
 

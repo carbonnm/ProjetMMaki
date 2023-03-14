@@ -35,6 +35,9 @@ var created_elements : Array
 var index_created 
 var notyetundo = true
 
+#verifies if a movement (with alt/ the middle mouse button has been done for placing the color picker)
+var notyetmoved = true
+
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
 var title_font
@@ -147,6 +150,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# is pressed (to work with laptop pads)
 			if event.alt:
 				DragCamera(event.relative)
+				notyetmoved = false
+				
+				
 				return
 			
 			# Draw the line at the position
@@ -172,6 +178,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
+			notyetmoved = false
 			DragCamera(event.relative)
 			
 		
@@ -246,7 +253,7 @@ func DrawLine():
 		# empty lines are added to created_elements
 		created_elements.append(_current_line)
 	
-	print(created_elements,_lines.get_child_count())
+	#print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
 	#emit_signal("Line_count",_lines.get_child_count())
 	
