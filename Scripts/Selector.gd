@@ -5,6 +5,8 @@ var _size:Vector2
 
 signal SendArea
 
+
+
 func _ready():
 	connect("area_shape_entered", self, "_on_Area2D_area_shape_entered")
 	connect("area_shape_exited", self, "_on_Area2D_area_shape_exited")

@@ -91,7 +91,6 @@ func center_area2D_to_center():
 
 func createRTL():
 	self.center_area2D_to_center()
-	print("here")
 	self.Create_Shape()
 
 func ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle):

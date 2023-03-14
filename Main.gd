@@ -4,6 +4,7 @@ extends Node2D
 
 var LINE := preload("res://Scripts/Line.gd")
 var RTL := preload("res://Scripts/Title.gd")
+var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
@@ -193,24 +194,23 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			
 		
 			
-	
+"""
+Change mode to Select when Select button pressed
+"""
 func _on_Selection_pressed() -> void:
 	Change_mode("Select")
 
+"""
+Change mode to Drawing when Drawing button pressed
+"""
 func _on_Drawing_pressed() -> void:
 	Change_mode("Drawing")
-	
-	DrawLineContainer(false)
+	DrawLineContainer(true)
 
 func Change_mode(_mode:String) -> void:
 	for mode in Modes:
 		Modes[mode] = mode == _mode
 
-func RetrieveArea(areas:Array):
-	selected_lines = areas.duplicate()
-	DrawLineContainer(true)
-	if selected_lines.size() != 0:
-		_action_menu.show()
 
 """
 Draw a line to make a container around the selected lines
@@ -229,6 +229,140 @@ func DrawLineContainer(drawing:bool):
 			#Draw function for the titles
 			element[0].draw = drawing
 			element[0].update()
+
+
+"""
+Calls DrawLineContainer whith the drawing bool to true
+"""
+func RetrieveArea(areas:Array):
+	
+#	var select_area = AREASELECTION.new()
+#
+#	var positionsSelectionArea = GetMinAndMaxPosition()
+#	var max_x = positionsSelectionArea[2]
+#	var max_y = positionsSelectionArea[3]
+#	var min_x = positionsSelectionArea[0]
+#	var min_y = positionsSelectionArea[1]
+#
+#	select_area.set_params(max_x, max_y, min_x, min_y)
+#	select_area.update()
+
+	selected_lines = areas.duplicate()
+	DrawLineContainer(true)
+	if selected_lines.size() != 0:
+		_action_menu.show()
+	if selected_lines.size() != 0:
+		_action_menu.show()
+
+"""
+Draw a line to make a container around the selected lines
+Returns :
+-----------------
+Array that contains :
+	- min_x : float : minimum x position of all the selected lines 
+	- min_y : float : minimum y position of all the selected lines 
+	- max_x : float : maximum x position of all the selected lines 
+	- max_y : float : maximum y position of all the selected lines
+"""
+func GetMinAndMaxPosition() -> Array:
+	#if drawing :
+	var min_x = 1024
+	var min_y = 600
+	var max_x = 0
+	var max_y = 0
+	for element in selected_lines:
+		if element[0] is Stroke :
+			print("ma position est", element[0].position)
+			if element[0].position.x > max_x :
+				max_x = element[0].position.x
+			if element[0].position.y > max_y :
+				max_y = element[0].position.y
+			if element[0].position.x < min_x :
+				min_x = element[0].position.x
+			if element[0].position.y < min_y :
+				min_y = element[0].position.y
+			
+		if element[0] is Title :
+			if element[0].rect_position.x > max_x :
+				max_x = element[0].rect_position.x
+			if element[0].rect_position.y > max_y :
+				max_y = element[0].rect_position.y
+			if element[0].rect_position.x < min_x :
+				min_x = element[0].rect_position.x
+			if element[0].rect_position.y < min_y :
+				min_y = element[0].rect_position.y
+		
+	print("max_x", max_x)
+	print("max_y", max_y)
+	print("min_x", min_x)
+	print("min_y", min_y)
+	return [min_x, min_y, max_x, max_y]
+	
+	
+		
+	
+#		if element[0] is Stroke :
+#			# lancer la fonction _draw setup dans Line.gd
+#			element[0].draw = drawing
+#			# lance la fonction draw() de godot (update() lance draw())
+#			element[0].update()
+#		elif element[0] is Title :
+#			#Draw function for the titles
+#			element[0].draw = drawing
+#			element[0].update()
+
+"""
+Draw the geometrical selection area around the selected lines 
+Calls DrawLineContainer()
+Is called when select button is pressed
+"""
+func DrawSelectionArea():
+#	Select_rect = Area2D.new()
+#	Select_rect.set_script(load("res://Scripts/Selector.gd"))
+#	Select_rect.connect("SendArea", self, "RetrieveArea")
+#	self.add_child(Select_rect)
+#
+#
+#	var c_shape = CollisionShape2D.new()
+#	var shape = RectangleShape2D.new()
+#	c_shape.shape = shape
+#	shape.extents = Vector2.ZERO
+#	Select_rect.add_child(c_shape)
+#
+#	Select_rect.position = get_global_mouse_position()
+
+	Select_rect = Area2D.new()
+	Select_rect.set_script(load("res://Scripts/Selector.gd"))
+	Select_rect.connect("SendArea", self, "RetrieveArea")
+	self.add_child(Select_rect)
+	
+	DrawLineContainer(false)
+
+	var c_shape = CollisionShape2D.new()
+	var shape = RectangleShape2D.new()
+	c_shape.shape = shape
+	shape.extents = Vector2.ZERO
+	Select_rect.add_child(c_shape)
+	
+	Select_rect.position = get_global_mouse_position()
+	
+
+"""
+Update of the selection area
+Is called when we move the camera 
+"""
+func UpdateSelectionArea():
+	if Select_rect != null:
+		var pos1 = Select_rect.global_position
+		var pos2 = get_global_mouse_position()
+		var center = ((pos2 - pos1) / 2)
+		
+		Select_rect.get_child(0).position = center
+		Select_rect.get_child(0).shape.extents = ((pos2 - pos1) / 2)
+		
+		Select_rect._size = pos2 - pos1
+		Select_rect.update()
+
 
 
 """
@@ -273,42 +407,6 @@ func DrawLine():
 	#emit_signal("Line_count",_lines.get_child_count())
 	
 
-"""
-Draw the geometrical selection area around the selected lines 
-Calls DrawLineContainer()
-Is called when select button is pressed
-"""
-func DrawSelectionArea():
-	Select_rect = Area2D.new()
-	Select_rect.set_script(load("res://Scripts/Selector.gd"))
-	Select_rect.connect("SendArea", self, "RetrieveArea")
-	self.add_child(Select_rect)
-	
-	DrawLineContainer(false)
-
-	var c_shape = CollisionShape2D.new()
-	var shape = RectangleShape2D.new()
-	c_shape.shape = shape
-	shape.extents = Vector2.ZERO
-	Select_rect.add_child(c_shape)
-	
-	Select_rect.position = get_global_mouse_position()
-
-"""
-Update of the selection area
-Is called when we move the camera 
-"""
-func UpdateSelectionArea():
-	if Select_rect != null:
-		var pos1 = Select_rect.global_position
-		var pos2 = get_global_mouse_position()
-		var center = ((pos2 - pos1) / 2)
-		
-		Select_rect.get_child(0).position = center
-		Select_rect.get_child(0).shape.extents = ((pos2 - pos1) / 2)
-		
-		Select_rect._size = pos2 - pos1
-		Select_rect.update()
 
 func UpdateBackground():
 	# on prend la pos de la camera ( au centre de la fenetre) et on l'offset en haut à gauche 
