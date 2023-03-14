@@ -252,6 +252,8 @@ margin_right = 20.0
 margin_bottom = 20.0
 
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
+[connection signal="redo" from="RightClickContainer" to="." method="_on_RightClickContainer_redo"]
+[connection signal="undo" from="RightClickContainer" to="." method="_on_RightClickContainer_undo"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_text_pressed"]
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]

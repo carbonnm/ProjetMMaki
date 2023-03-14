@@ -17,6 +17,7 @@ onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _lines := $Lines
 onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
+onready var _rightclick := $RightClickContainer
 onready var _action_menu := $ActionMenu
 
 onready var RCC := $RightClickContainer
@@ -30,9 +31,13 @@ var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
 
-#list used for undo (ctr+Z), redo (ctrl+Y)
+#lists and variables used for undo (ctr+Z), redo (ctrl+Y)
 var created_elements : Array 
+var deleted : Array
+var commands : Array
+var index_deleted
 var index_created 
+var index_command
 var notyetundo = true
 
 #verifies if a movement (with alt/ the middle mouse button has been done for placing the color picker)
@@ -58,8 +63,11 @@ var Modes = {
 
 func _ready() -> void:
 	index_created = created_elements.size()
-	_camera.connect("zoom_changed", self, "UpdateBackground")
+	index_command = commands.size()
+	index_deleted = deleted.size()
 	
+	_camera.connect("zoom_changed", self, "UpdateBackground")
+	_rightclick.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
 	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
@@ -116,7 +124,9 @@ func create_new_title(chosen_title):
 	
 	var type_title = get_node("Titlemenuaddition").type_title
 	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
-		
+	
+	created_elements.append(rtl)
+	print(created_elements,_lines.get_child_count())
 		
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -226,7 +236,11 @@ Deletion of the selected lines when delete button is pressed
 """
 func _on_Delete_pressed():
 	for area in selected_lines:
-		area[0].queue_free()
+		area[0].visible = false
+		commands.append("delete")
+		deleted.append([])
+		deleted[index_deleted].append(area[0])
+		
 		
 	selected_lines.clear()
 	_action_menu.hide()
@@ -252,8 +266,9 @@ func DrawLine():
 		#need to replicate the "if" after drawing finished otherwise,
 		# empty lines are added to created_elements
 		created_elements.append(_current_line)
+		commands.append("creation")
 	
-	#print(created_elements,_lines.get_child_count())
+	print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
 	#emit_signal("Line_count",_lines.get_child_count())
 	
@@ -477,20 +492,26 @@ func _on_PopupMenu_id_pressed(id):
 
 #handles the undo 
 func _on_RightClickContainer_undo():
-	print("startundo",index_created)
+	print("startundo",index_created,index_command)
 	#handles the first undo (to initialize index_created following the nulber of created elements
-	if notyetundo and created_elements.size()>0:
+	
+	if notyetundo and commands.size()>0:
 		notyetundo = false
 		index_created = created_elements.size()-1
-	
-	if(index_created>=0):		
+		index_command = commands.size()-1
+	print(commands[index_command])
+	#handles the undo if last operation was a line or text creation
+	if commands[index_command] == "creation" and index_created>=-1 and created_elements.size()>0:		
 		var to_delete = created_elements[index_created]
-		
 		#opened to better solution 
 		to_delete.visible = false
 		index_created -=1	
-		#created_elements.remove(size_list-1)
 		
+	#handles the undo if last operation was a delete on a selection
+	#(makes them visible again)
+	if commands[index_command] == "delete":
+		for element in deleted[index_deleted]:
+			element.visible = true
 	print("done",index_created)
 	
 
