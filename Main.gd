@@ -195,6 +195,12 @@ func RetrieveArea(areas:Array):
 	if selected_lines.size() != 0:
 		_action_menu.show()
 
+"""
+Draw a line to make a container around the selected lines
+Parameters :
+---------------
+drawing : bool -> launch draw function if true
+"""
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
 		if element[0] is Stroke :
@@ -202,8 +208,15 @@ func DrawLineContainer(drawing:bool):
 			element[0].draw = drawing
 			# lance la fonction draw() de godot (update() lance draw())
 			element[0].update()
+		elif element[0] is Title :
+			#Draw function for the titles
+			element[0].draw = drawing
+			element[0].update()
 
-# delete les lignes selectionnées
+
+"""
+Deletion of the selected lines when delete button is pressed
+"""
 func _on_Delete_pressed():
 	for area in selected_lines:
 		area[0].queue_free()
@@ -214,6 +227,7 @@ func _on_Delete_pressed():
 	#Updates elements counter 
 	_linecounter.Count = str(_lines.get_child_count())
 	print(_linecounter.Count)
+
 
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
@@ -235,7 +249,13 @@ func DrawLine():
 	print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
 	#emit_signal("Line_count",_lines.get_child_count())
+	
 
+"""
+Draw the geometrical selection area around the selected lines 
+Calls DrawLineContainer()
+Is called when select button is pressed
+"""
 func DrawSelectionArea():
 	Select_rect = Area2D.new()
 	Select_rect.set_script(load("res://Scripts/Selector.gd"))
@@ -252,6 +272,10 @@ func DrawSelectionArea():
 	
 	Select_rect.position = get_global_mouse_position()
 
+"""
+Update of the selection area
+Is called when we move the camera 
+"""
 func UpdateSelectionArea():
 	if Select_rect != null:
 		var pos1 = Select_rect.global_position
