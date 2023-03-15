@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/StateMachine/States/Selection.gd" type="Script" id=3]
+
+[node name="StateManager" type="Node"]
+script = ExtResource( 1 )
+starting_state = NodePath("Drawing")
+
+[node name="Drawing" type="Node" parent="."]
+script = ExtResource( 2 )
+selection_node = NodePath("../Selection")
+
+[node name="Selection" type="Node" parent="."]
+script = ExtResource( 3 )
+drawing_node = NodePath("../Drawing")

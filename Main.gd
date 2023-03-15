@@ -1,3 +1,4 @@
+class_name Canvas
 extends Node2D
 
 #signal Line_count(counter)
@@ -62,7 +63,11 @@ var Modes = {
 	"Rotate": false
 }
 
+onready var states = $StateManager
+
 func _ready() -> void:
+	states.init(self)
+	
 	index_created = created_elements.size()
 	index_command = commands.size()
 	index_deleted = deleted.size()
@@ -130,6 +135,7 @@ func create_new_title(chosen_title):
 	print(created_elements,_lines.get_child_count())
 		
 func _on_Background_gui_input(event: InputEvent) -> void:
+	_unhandled_input(event)
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
 			
@@ -138,21 +144,8 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			
 			# Create a new Line2D on left click
 			if event.button_index == BUTTON_LEFT:
-				if Modes.Drawing:
-					DrawLine()
-				elif Modes.Select:
-					DrawSelectionArea()
-				elif Modes.DragAndDrop:
+				if Modes.DragAndDrop:
 					var selected = true
-		else:
-			if event.button_index == BUTTON_LEFT:
-				if Modes.Drawing:
-					_current_line.Curve2D_Transformer(_camera)
-			if Modes.Select:
-				#recurring bug 
-				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
-				if Select_rect:
-					Select_rect.queue_free()
 	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
@@ -162,17 +155,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			if event.alt:
 				DragCamera(event.relative)
 				notyetmoved = false
-				
-				
 				return
-			
-			# Draw the line at the position
-			if Modes.Drawing:
-				_current_line._line.add_point(get_global_mouse_position())
-			elif Modes.Select:
-				UpdateSelectionArea()
 			# Check if any selected lines exist
-			elif Modes.DragAndDrop:
+			if Modes.DragAndDrop:
 				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
 				var mouse_relative = event.relative
 				DragAndDrop.drag_and_drop(area2D_L,mouse_relative)
@@ -191,14 +176,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			notyetmoved = false
 			DragCamera(event.relative)
-			
-		
-			
-"""
-Change mode to Select when Select button pressed
-"""
-func _on_Selection_pressed() -> void:
-	Change_mode("Select")
+
+func _unhandled_input(event: InputEvent) -> void:
+	states.input(event)
 
 """
 Change mode to Drawing when Drawing button pressed

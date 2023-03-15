@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Titlemenuaddition.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/Graphics/Image/couleur.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Graphics/Image/grouper.png" type="Texture" id=24]
 [ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=25]
+[ext_resource path="res://Scene/StateManager.tscn" type="PackedScene" id=26]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -251,6 +252,8 @@ scale = Vector2( 0.4, 0.4 )
 margin_right = 20.0
 margin_bottom = 20.0
 
+[node name="StateManager" parent="." instance=ExtResource( 26 )]
+
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
 [connection signal="redo" from="RightClickContainer" to="." method="_on_RightClickContainer_redo"]
 [connection signal="undo" from="RightClickContainer" to="." method="_on_RightClickContainer_undo"]
@@ -261,11 +264,13 @@ margin_bottom = 20.0
 [connection signal="pressed" from="RightClickContainer/Group items" to="." method="_on_Group_items_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="." method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="." method="_on_Selection_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager/Drawing" method="_on_Selection_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager/Selection" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="." method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="." method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="." method="_on_Rescale_pressed"]
 [connection signal="pressed" from="ActionMenu/Copy" to="." method="_on_Copy_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="." method="_on_Rotation_pressed"]
+
+[editable path="StateManager"]
