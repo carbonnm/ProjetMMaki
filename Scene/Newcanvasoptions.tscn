@@ -626,6 +626,7 @@ color = Color( 0.6, 0.6, 0.6, 1 )
 [connection signal="mouse_entered" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
 [connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
+[connection signal="text_entered" from="Page/Optionmenu/Inputname" to="." method="_on_Inputname_text_entered"]
 [connection signal="pressed" from="Page/Optionmenu/Inputname/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
 [connection signal="item_selected" from="Page/Optionmenu/DropdownTitle" to="." method="_on_DropdownTitle_item_selected"]
 [connection signal="item_selected" from="Page/Optionmenu/Dropdownsubtitle" to="." method="_on_Dropdownsubtitle_item_selected"]
