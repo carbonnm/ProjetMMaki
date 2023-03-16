@@ -35,10 +35,16 @@ var copy_lignes : Array
 #lists and variables used for undo (ctr+Z), redo (ctrl+Y)
 var created_elements : Array 
 var deleted : Array
+var moved : Array
+var rescaled : Array
+var rotated : Array
 var commands : Array
-var index_deleted
-var index_created 
-var index_command
+var index_deleted = 0
+var index_moved = 0
+var index_rotated = 0
+var index_created = 0
+var index_rescaled = 0
+var index_command = 0
 var notyetundo = true
 
 #verifies if a movement (with alt/ the middle mouse button has been done for placing the color picker)
@@ -59,13 +65,12 @@ var Modes = {
 	"Select": false,
 	"DragAndDrop": false,
 	"Rescale": false,
-	"Rotate": false
+	"Rotate": false,
+	"MoveCanvas": false
 }
 
 func _ready() -> void:
-	index_created = created_elements.size()
-	index_command = commands.size()
-	index_deleted = deleted.size()
+	
 	
 	_camera.connect("zoom_changed", self, "UpdateBackground")
 	_rightclick.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
@@ -127,12 +132,16 @@ func create_new_title(chosen_title):
 	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 	
 	created_elements.append(rtl)
+	commands.append("creation")
+	index_created +=1
+	index_command +=1
 	print(created_elements,_lines.get_child_count())
 		
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
-			
+		if Modes.MoveCanvas:
+			_on_Move_Canvas_button(event)	
 		if event.is_pressed():
 			_camera.ManageInput(event)
 			
@@ -153,6 +162,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
 				if Select_rect:
 					Select_rect.queue_free()
+			
 	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
@@ -174,6 +184,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 			# Check if any selected lines exist
 			elif Modes.DragAndDrop:
 				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+				
 				var mouse_relative = event.relative
 				DragAndDrop.drag_and_drop(area2D_L,mouse_relative)
 			elif Modes.Rescale:
@@ -186,6 +197,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				var mouse_position = get_global_mouse_position()
 				var mouse_relative = event.relative
 				Rotation.rotation(area2D_L,mouse_position,mouse_relative)
+			elif Modes.MoveCanvas:
+				if mouse_pressed:
+					_on_Move_Canvas_motion(event)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -210,7 +224,11 @@ func _on_Drawing_pressed() -> void:
 func Change_mode(_mode:String) -> void:
 	for mode in Modes:
 		Modes[mode] = mode == _mode
-
+		
+func _on_Move_pressed() -> void:
+	Change_mode("MoveCanvas")
+	var arrow = load("res://Assets/Graphics/Image/hand.png")
+	Input.set_custom_mouse_cursor(arrow)
 
 """
 Draw a line to make a container around the selected lines
@@ -249,8 +267,6 @@ func RetrieveArea(areas:Array):
 
 	selected_lines = areas.duplicate()
 	DrawLineContainer(true)
-	if selected_lines.size() != 0:
-		_action_menu.show()
 	if selected_lines.size() != 0:
 		_action_menu.show()
 
@@ -381,6 +397,8 @@ func _on_Delete_pressed():
 	#emit_signal("Line_count",0)
 	#Updates elements counter 
 	_linecounter.Count = str(_lines.get_child_count())
+	index_deleted+=1
+	index_command+=1
 	print(_linecounter.Count)
 
 
@@ -401,6 +419,8 @@ func DrawLine():
 		# empty lines are added to created_elements
 		created_elements.append(_current_line)
 		commands.append("creation")
+		index_created+=1
+		index_command+=1
 	
 	print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
@@ -419,11 +439,37 @@ func DragCamera(Relative:Vector2):
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
 
+var mouse_pressed = false
+var last_mouse_pos = Vector2.ZERO
+
+func _on_Move_Canvas_button(event):
+	if event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			mouse_pressed = true
+			last_mouse_pos = event.position
+		else:
+			mouse_pressed = false
+func _on_Move_Canvas_motion(event):
+	var diff = event.position - last_mouse_pos
+	DragCamera(diff)
+	last_mouse_pos = event.position
 
 """
 Change mode to Drag and drop when drag
 """
 func _on_Drag_And_Drop_pressed():
+	#registers the place of all the selected areas (titles and lines) for undo
+	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+	var index_loop
+	#registers the position of the lines/titles for undo 
+	commands.append("move")
+	index_command+=1
+	for area in area2D_L:
+		moved.append([])
+		moved[index_moved].append([area,area.position])
+		
+	print(moved)
+	#then changes mode to DragAndDrop
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
 
@@ -431,6 +477,17 @@ func _on_Drag_And_Drop_pressed():
 Change mode to Rescale when rescale button pressed.
 """
 func _on_Rescale_pressed():
+	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+	var index_loop
+	#registers the size of the lines/titles for undo 
+	commands.append("rescale")
+	index_command+=1
+	for area in area2D_L:
+		rescaled.append([])
+		rescaled[index_rescaled].append([area,area.scale])
+		
+	print(rescaled)
+	
 	Change_mode("Rescale")
 	_action_menu.hide()
 
@@ -438,6 +495,16 @@ func _on_Rescale_pressed():
 Change mode to Rotate when rotation button pressed
 """
 func _on_Rotation_pressed():
+	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
+	var index_loop
+	#registers the rotation degree of the lines/titles for undo 
+	commands.append("rotate")
+	index_command+=1
+	for area in area2D_L:
+		rotated.append([])
+		rotated[index_rotated].append([area,area.rotation_degrees])
+		
+	print(rotated)
 	Change_mode("Rotate")
 	_action_menu.hide()
 
@@ -596,30 +663,90 @@ func _on_RightClickContainer_undo():
 	
 	if notyetundo and commands.size()>0:
 		notyetundo = false
-		index_created = created_elements.size()-1
-		index_command = commands.size()-1
-	print(commands[index_command])
-	#handles the undo if last operation was a line or text creation
-	if commands[index_command] == "creation" and index_created>=-1 and created_elements.size()>0:		
-		var to_delete = created_elements[index_created]
-		#opened to better solution 
-		to_delete.visible = false
-		index_created -=1	
+		
+	#print(commands[index_command])
+	#handles the undo if last operation was a line or text creation 
+	#via drawing, using the pop-up menu or copying and pasting
+	if commands[index_command-1] == "creation" and created_elements.size()>0:		
+		var to_delete	
+		var index_del
+		if index_created >0:
+			index_del = index_created-1
+		else:
+			index_del=index_created
+		to_delete = created_elements[index_del]	
+		
+		if index_created>-1:
+			index_created -=1
+			
+		to_delete.visible = false	
+		if index_command-1 >0:
+			index_command-=1
 		
 	#handles the undo if last operation was a delete on a selection
 	#(makes them visible again)
-	if commands[index_command] == "delete":
-		for element in deleted[index_deleted]:
+	if commands[index_command-1] == "delete":
+		for element in deleted[index_deleted-1]:
 			element.visible = true
-	print("done",index_created)
+		if index_command-1 >0:
+			index_command-=1
+			
+	#handles the undo if the last operation was a drag and drop 
+	#(to replace it/them where it/they was/were)
+	if commands[index_command-1] =="move":
+		#moved[index_moved holds the lines/titles
+		# that have been last selected together and then drag and dropped)
+		#elements[0] being the area (title or line) 
+		#elements[1] being the previous position
+		for elements in moved[index_moved]:
+			elements[0].set_position(elements[1])
+		if index_command-1 >0:
+			index_command-=1
+	
+	#handles the undo if the last operation was a rescale
+	#(to rescale it/them to its/their original scale)
+	if commands[index_command-1] =="rescale":
+		#rescaled[index_rescaled] holds the lines/titles
+		# that have been last selected together and rescaled)
+		#elements[0] being the area (title or line) 
+		#elements[1] being the previous scale of each one of them
+		for elements in rescaled[index_rescaled]:
+			elements[0].scale = elements[1]
+		if index_command-1 >0:
+			index_command-=1
+			
+	#handles the undo if the last operation was a rotate
+	#(#(to rotate it/them to its/their original inclination))
+	if commands[index_command-1] == "rotate":
+		#rotated[index_rotated] holds the lines/titles
+		# that have been last selected together and rotated)
+		#elements[0] being the area (title or line) 
+		#elements[1] being the previous rotation degree
+		for elements in rotated[index_rotated]:
+			elements[0].rotation_degrees = elements[1]
+		
+		if index_command-1 >0:
+			index_command-=1	
+	print("done",index_created,index_command)
 	
 
 func _on_RightClickContainer_redo():
 	
-	if not notyetundo and index_created<created_elements.size()-1:
-		print("startredo",index_created)
-		var to_recreate = created_elements[index_created]
-		print(to_recreate.name)
-		to_recreate.visible = true
-		index_created += 1
-	print("done",index_created)
+	if not notyetundo and  commands.size()>0:
+		print("startredo")
+		#creation
+		if commands[index_command-1] == "creation" and index_created<=created_elements.size()-1:
+			var index_recreate
+			if (index_created-1 == 0 and created_elements.size()==1):
+				index_recreate = index_created+1
+			else:
+				index_recreate = index_created
+			#print(commands[index_command])
+			var to_recreate = created_elements[index_recreate]
+			print(to_recreate.name)
+			to_recreate.visible = true
+			
+			if index_created-1<=created_elements.size() and index_command+1<commands.size():
+				index_command +=1
+				
+	print("done",index_created,index_command)
