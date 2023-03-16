@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Scene/Titlemenuaddition.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/Graphics/Image/couleur.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Graphics/Image/grouper.png" type="Texture" id=24]
 [ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=25]
+[ext_resource path="res://Assets/Graphics/Image/hand-regular (2).svg" type="Texture" id=26]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -174,23 +175,24 @@ __meta__ = {
 }
 
 [node name="Selection" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_right = 153.0
+margin_right = 583.0
 margin_bottom = 70.0
 text = "Sélectionner"
 icon = ExtResource( 13 )
 
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
-margin_right = 153.0
+margin_right = 583.0
 margin_bottom = 142.0
 text = "Dessiner"
 icon = ExtResource( 12 )
 
 [node name="Move Canvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 146.0
-margin_right = 153.0
-margin_bottom = 166.0
+margin_right = 583.0
+margin_bottom = 664.0
 text = "Déplacer"
+icon = ExtResource( 26 )
 
 [node name="Settings" type="Button" parent="CanvasLayer"]
 margin_right = 38.0

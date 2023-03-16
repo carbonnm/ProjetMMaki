@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hand-regular.svg-4ae12c314e884d51d6d3a9cb0470e2ef.stex"
+path="res://.import/hand-regular (2).svg-a6d61ed12f913c01af1b30f777469993.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/Image/hand-regular.svg"
-dest_files=[ "res://.import/hand-regular.svg-4ae12c314e884d51d6d3a9cb0470e2ef.stex" ]
+source_file="res://Assets/Graphics/Image/hand-regular (2).svg"
+dest_files=[ "res://.import/hand-regular (2).svg-a6d61ed12f913c01af1b30f777469993.stex" ]
 
 [params]
 
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=0
+size_limit=68
 detect_3d=false
 svg/scale=1.0
