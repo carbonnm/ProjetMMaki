@@ -21,7 +21,7 @@ onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
 onready var _rightclick := $RightClickContainer
 onready var _action_menu := $ActionMenu
 
-onready var RCC := $RightClickContainer
+onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 
 onready var _pm = $PopupMenu
 
@@ -501,8 +501,9 @@ func _on_Create_text_pressed():
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	
-	var _mouse_pos = get_global_mouse_position()
-	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
+	
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - _pm.get_global_rect().size.x, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 	
 
 
@@ -512,8 +513,8 @@ func _on_Draw_pressed():
 	_pm.add_item("Dessin", PopupIds.WRITING)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	
-	var _mouse_pos = get_global_mouse_position()
-	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _draw_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Draw")
+	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - _pm.get_global_rect().size.x, _draw_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
