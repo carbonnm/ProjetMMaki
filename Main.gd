@@ -251,8 +251,6 @@ func RetrieveArea(areas:Array):
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		_action_menu.show()
-	if selected_lines.size() != 0:
-		_action_menu.show()
 
 """
 Draw a line to make a container around the selected lines
