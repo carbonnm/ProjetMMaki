@@ -141,7 +141,8 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
 		if Modes.MoveCanvas:
-			_on_Move_Canvas_button(event)	
+			_on_Move_Canvas_button(event)
+			Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/hand-regular.svg"))	
 		if event.is_pressed():
 			_camera.ManageInput(event)
 			
@@ -212,12 +213,14 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 Change mode to Select when Select button pressed
 """
 func _on_Selection_pressed() -> void:
+	Input.set_custom_mouse_cursor(null)
 	Change_mode("Select")
 
 """
 Change mode to Drawing when Drawing button pressed
 """
 func _on_Drawing_pressed() -> void:
+	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/pencil-solid.svg"))
 	Change_mode("Drawing")
 	DrawLineContainer(true)
 
@@ -227,8 +230,7 @@ func Change_mode(_mode:String) -> void:
 		
 func _on_Move_pressed() -> void:
 	Change_mode("MoveCanvas")
-	var arrow = load("res://Assets/Graphics/Image/hand.png")
-	Input.set_custom_mouse_cursor(arrow)
+	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/hand-regular.svg"))
 
 """
 Draw a line to make a container around the selected lines
@@ -453,6 +455,7 @@ func _on_Move_Canvas_motion(event):
 	var diff = event.position - last_mouse_pos
 	DragCamera(diff)
 	last_mouse_pos = event.position
+	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/hand_grab.png"))
 
 """
 Change mode to Drag and drop when drag
