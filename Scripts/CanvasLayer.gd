@@ -24,6 +24,9 @@ func hide_settings_panel():
 	yield(tween, "finished")
 	_tween_active = false
 
+
+
+
 #func _input(event: InputEvent) -> void:
 #	if event is InputEventMouseButton:
 #		if event.is_pressed():

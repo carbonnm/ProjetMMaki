@@ -59,7 +59,8 @@ var Modes = {
 	"Select": false,
 	"DragAndDrop": false,
 	"Rescale": false,
-	"Rotate": false
+	"Rotate": false,
+	"MoveCanvas": false
 }
 
 func _ready() -> void:
@@ -132,7 +133,8 @@ func create_new_title(chosen_title):
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
-			
+		if Modes.MoveCanvas:
+			_on_Move_Canvas_button(event)	
 		if event.is_pressed():
 			_camera.ManageInput(event)
 			
@@ -153,6 +155,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
 				if Select_rect:
 					Select_rect.queue_free()
+			
 	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
@@ -186,6 +189,9 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				var mouse_position = get_global_mouse_position()
 				var mouse_relative = event.relative
 				Rotation.rotation(area2D_L,mouse_position,mouse_relative)
+			elif Modes.MoveCanvas:
+				if mouse_pressed:
+					_on_Move_Canvas_motion(event)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -210,7 +216,11 @@ func _on_Drawing_pressed() -> void:
 func Change_mode(_mode:String) -> void:
 	for mode in Modes:
 		Modes[mode] = mode == _mode
-
+		
+func _on_Move_pressed() -> void:
+	Change_mode("MoveCanvas")
+	var arrow = load("res://Assets/Graphics/Image/hand.png")
+	Input.set_custom_mouse_cursor(arrow)
 
 """
 Draw a line to make a container around the selected lines
@@ -417,6 +427,20 @@ func DragCamera(Relative:Vector2):
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
 
+var mouse_pressed = false
+var last_mouse_pos = Vector2.ZERO
+
+func _on_Move_Canvas_button(event):
+	if event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			mouse_pressed = true
+			last_mouse_pos = event.position
+		else:
+			mouse_pressed = false
+func _on_Move_Canvas_motion(event):
+	var diff = event.position - last_mouse_pos
+	DragCamera(diff)
+	last_mouse_pos = event.position
 
 """
 Change mode to Drag and drop when drag
