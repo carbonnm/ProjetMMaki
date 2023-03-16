@@ -158,9 +158,7 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				if Modes.Drawing:
 					_current_line.Curve2D_Transformer(_camera)
 			if Modes.Select:
-				#recurring bug 
-				#(Attempt to call function 'queue_free' in base 'previously freed instance' on a null instance.)
-				if Select_rect:
+				if Select_rect != null and is_instance_valid(Select_rect):
 					Select_rect.queue_free()
 			
 	
