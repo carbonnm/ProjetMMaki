@@ -571,8 +571,7 @@ func _on_Create_text_pressed():
 	
 	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
 	
-	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - _pm.get_global_rect().size.x, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
-	
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_Draw_pressed():
