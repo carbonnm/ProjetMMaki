@@ -54,14 +54,7 @@ var color_title
 var color_subtitle  
 var color_subsubtitle 
 
-
-var Modes = {
-	"Drawing": true,
-	"Select": false,
-	"DragAndDrop": false,
-	"Rescale": false,
-	"Rotate": false
-}
+var copied_lines: Array
 
 onready var states = $StateManager
 
@@ -142,11 +135,6 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 		if event.is_pressed():
 			_camera.ManageInput(event)
 			
-			# Create a new Line2D on left click
-			if event.button_index == BUTTON_LEFT:
-				if Modes.DragAndDrop:
-					var selected = true
-	
 	# Draw the lines or move the camera
 	if event is InputEventMouseMotion: 
 		if event.button_mask == BUTTON_MASK_LEFT:
@@ -156,21 +144,6 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 				DragCamera(event.relative)
 				notyetmoved = false
 				return
-			# Check if any selected lines exist
-			if Modes.DragAndDrop:
-				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-				var mouse_relative = event.relative
-				DragAndDrop.drag_and_drop(area2D_L,mouse_relative)
-			elif Modes.Rescale:
-				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-				var mouse_position = get_global_mouse_position()
-				var mouse_relative = event.relative
-				Rescale.rescale(area2D_L,mouse_position,mouse_relative)
-			elif Modes.Rotate:
-				var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-				var mouse_position = get_global_mouse_position()
-				var mouse_relative = event.relative
-				Rotation.rotation(area2D_L,mouse_position,mouse_relative)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
@@ -179,17 +152,6 @@ func _on_Background_gui_input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	states.input(event)
-
-"""
-Change mode to Drawing when Drawing button pressed
-"""
-func _on_Drawing_pressed() -> void:
-	Change_mode("Drawing")
-	DrawLineContainer(true)
-
-func Change_mode(_mode:String) -> void:
-	for mode in Modes:
-		Modes[mode] = mode == _mode
 
 
 """
@@ -344,26 +306,6 @@ func UpdateSelectionArea():
 		Select_rect.update()
 
 
-
-"""
-Deletion of the selected lines when delete button is pressed
-"""
-func _on_Delete_pressed():
-	for area in selected_lines:
-		area[0].visible = false
-		commands.append("delete")
-		deleted.append([])
-		deleted[index_deleted].append(area[0])
-		
-		
-	selected_lines.clear()
-	_action_menu.hide()
-	#emit_signal("Line_count",0)
-	#Updates elements counter 
-	_linecounter.Count = str(_lines.get_child_count())
-	print(_linecounter.Count)
-
-
 func DrawLine():
 	# Delete the previous line if it didn't have any points or less than 2.
 	# less than 2 because a bug could occure if you spam left click on a laptop
@@ -398,58 +340,6 @@ func DragCamera(Relative:Vector2):
 	_camera.position -= Relative
 	# Sync background with camera
 	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
-
-
-"""
-Change mode to Drag and drop when drag
-"""
-func _on_Drag_And_Drop_pressed():
-	Change_mode("DragAndDrop")
-	_action_menu.hide()
-
-"""
-Change mode to Rescale when rescale button pressed.
-"""
-func _on_Rescale_pressed():
-	Change_mode("Rescale")
-	_action_menu.hide()
-
-"""
-Change mode to Rotate when rotation button pressed
-"""
-func _on_Rotation_pressed():
-	Change_mode("Rotate")
-	_action_menu.hide()
-
-"""
-When copy button pressed, create a duplication of the selected area
-(Not even necessary ? To discuss later)
-"""
-func _on_Copy_pressed():
-	_action_menu.hide()
-	copy_lignes = selected_lines.duplicate()
-		
-
-"""
-When paste button pressed, create a duplication of the selected area
-Then Paste it where the mouse actually is (to be changed with the right click)
-"""
-func _on_Paste_pressed():
-	_action_menu.hide()
-	var clines = Utils.map(copy_lignes,Mimic,"get_first",[])
-	var clines_positions = Utils.map(clines, Mimic, "area2D_position", [])
-	var closure = Utils.get_positions_closure(clines_positions)
-	var center = Utils.get_positions_mean(closure)
-	var translation = -center + RCC.rect_position
-	
-	for Ligne in clines:
-		var duplarea = Ligne.duplicate()
-		
-		duplarea.position += translation
-		_lines.add_child(duplarea)
-		
-		if duplarea is Stroke:
-			duplarea._line = duplarea.get_child(0)
 
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
@@ -566,39 +456,3 @@ func _on_PopupMenu_id_pressed(id):
 
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
-
-
-#handles the undo 
-func _on_RightClickContainer_undo():
-	print("startundo",index_created,index_command)
-	#handles the first undo (to initialize index_created following the nulber of created elements
-	
-	if notyetundo and commands.size()>0:
-		notyetundo = false
-		index_created = created_elements.size()-1
-		index_command = commands.size()-1
-	print(commands[index_command])
-	#handles the undo if last operation was a line or text creation
-	if commands[index_command] == "creation" and index_created>=-1 and created_elements.size()>0:		
-		var to_delete = created_elements[index_created]
-		#opened to better solution 
-		to_delete.visible = false
-		index_created -=1	
-		
-	#handles the undo if last operation was a delete on a selection
-	#(makes them visible again)
-	if commands[index_command] == "delete":
-		for element in deleted[index_deleted]:
-			element.visible = true
-	print("done",index_created)
-	
-
-func _on_RightClickContainer_redo():
-	
-	if not notyetundo and index_created<created_elements.size()-1:
-		print("startredo",index_created)
-		var to_recreate = created_elements[index_created]
-		print(to_recreate.name)
-		to_recreate.visible = true
-		index_created += 1
-	print("done",index_created)

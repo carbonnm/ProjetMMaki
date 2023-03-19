@@ -3,7 +3,6 @@ extends Node
 
 var canvas: Canvas
 
-
 """
 Function called to handle initialisation logic for an IState node.
 """
@@ -38,6 +37,7 @@ delta: The time elapsed since the last physics frame, in seconds. (float)
 func physics_process(delta: float) -> IState:
 	return null
 
-
+func signal_switch(state: String) -> IState:
+	return null
 
 

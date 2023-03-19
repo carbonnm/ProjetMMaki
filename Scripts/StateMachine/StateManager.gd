@@ -13,8 +13,12 @@ Parameters:
 canvas: The parent of the node. (Canvas)
 """
 func init(canvas: Canvas) -> void:
-	for child in get_children():
-		child.canvas = canvas
+	var children: Array = get_children()
+	while (children.size() != 0):
+		children[-1].canvas = canvas
+		children = children[-1].get_children() + children
+		children.pop_back()
+			
 	
 	change_state(get_node(starting_state))
 
@@ -58,3 +62,33 @@ func change_state(new_state: IState) -> void:
 	
 	current_state = new_state
 	current_state.enter()
+
+func switch_signal(state: String) -> void:
+	var new_state = current_state.switch_signal(state)
+	if new_state:
+		change_state(new_state)
+
+
+func _on_Selection_pressed():
+	switch_signal("Selection")
+
+func _on_Drawing_pressed():
+	switch_signal("Drawing")
+
+func _on_Copy_pressed():
+	switch_signal("Copy")
+
+func _on_Paste_pressed():
+	switch_signal("Paste")
+
+func _on_Drag_And_Drop_pressed():
+	switch_signal("DragAndDrop")
+
+func _on_Rescale_pressed():
+	switch_signal("Rescale")
+
+func _on_Rotation_pressed():
+	switch_signal("Rotation")
+
+func _on_Delete_pressed():
+	switch_signal("Delete")

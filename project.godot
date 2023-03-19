@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "IState",
+"class": "AState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/AState.gd"
+}, {
 "base": "Node2D",
 "class": "Canvas",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Title.gd"
 } ]
 _global_script_class_icons={
+"AState": "",
 "Canvas": "",
 "GutHookScript": "",
 "GutTest": "",
