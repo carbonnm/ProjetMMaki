@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Canvas",
 "language": "GDScript",
-"path": "res://Main.gd"
+"path": "res://Scripts/Canvas/Canvas.gd"
 }, {
 "base": "Reference",
 "class": "GutHookScript",

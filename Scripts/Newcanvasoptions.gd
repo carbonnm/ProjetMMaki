@@ -31,7 +31,7 @@ func _on_BoutonCreer_button_up():
 	#Need for a name to have been entered for the new canvas!
 	if not(chosen_name ==""):
 		#passing all the arguments to the next scene
-		SceneSwitcher.change_scene("Main.tscn", {"namecanvas":chosen_name,
+		SceneSwitcher.change_scene("Scene/Canvas.tscn", {"namecanvas":chosen_name,
 		"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle,
 		"backgroundcolor":chosen_color_background,
 		"titlefont":chosen_font_title,
