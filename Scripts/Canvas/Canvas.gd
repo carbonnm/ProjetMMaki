@@ -18,23 +18,22 @@ var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 # Get references to childs 
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
+onready var _lines := $Lines
 onready var RCC := $RightClickContainer
 onready var _action_menu := $ActionMenu
 onready var _pm = $PopupMenu
+onready var states = $StateManager
 
-var LINE := preload("res://Scripts/Line.gd")
+# Script exported variables
+export (float) var linewidth = 4.0
 
-onready var _lines := $Lines
-onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
-onready var _rightclick := $RightClickContainer
+# Veriables shared between states
+var selected_lines: Array
+var Select_rect: Area2D
+var copied_lines: Array
 
-var linewidth: float = 4.0
 
-var _current_line : Area2D
-var selected_lines : Array
-var Select_rect : Area2D
-var copy_lignes : Array
-
+###################################################################################################
 #lists and variables used for undo (ctr+Z), redo (ctrl+Y)
 var created_elements : Array 
 var deleted : Array
@@ -56,9 +55,9 @@ var color_title
 var color_subtitle  
 var color_subsubtitle 
 
-var copied_lines: Array
+onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
+####################################################################################################
 
-onready var states = $StateManager
 
 func _ready() -> void:
 	states.init(self)
@@ -68,7 +67,7 @@ func _ready() -> void:
 	index_deleted = deleted.size()
 	
 	_camera.connect("zoom_changed", self, "UpdateBackground")
-	_rightclick.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
+	RCC.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
 	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
@@ -307,31 +306,6 @@ func UpdateSelectionArea():
 		Select_rect._size = pos2 - pos1
 		Select_rect.update()
 
-
-func DrawLine():
-	# Delete the previous line if it didn't have any points or less than 2.
-	# less than 2 because a bug could occure if you spam left click on a laptop
-	if _current_line != null and is_instance_valid(_current_line):
-		if _current_line._line.points.size() <= 2:
-			_current_line.queue_free()
-		
-	_current_line = LINE.new()
-	_lines.add_child(_current_line)
-	_current_line.Setup()
-	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
-	_current_line._line.add_point(get_global_mouse_position())
-	if _current_line:
-		#need to replicate the "if" after drawing finished otherwise,
-		# empty lines are added to created_elements
-		created_elements.append(_current_line)
-		commands.append("creation")
-	
-	print(created_elements,_lines.get_child_count())
-	_linecounter.Count = str(_lines.get_child_count())
-	#emit_signal("Line_count",_lines.get_child_count())
-	
-
-
 func UpdateBackground():
 	# on prend la pos de la camera ( au centre de la fenetre) et on l'offset en haut à gauche 
 #	# Vector2(512,300) car c'est la moitié de la taille interne de l'application
@@ -458,3 +432,28 @@ func _on_PopupMenu_id_pressed(id):
 
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+	
+
+const LINE := preload("res://Scripts/Line.gd")
+
+func DrawLine(_current_line: Area2D) -> Area2D:
+	# Delete the previous line if it didn't have any points or less than 2.
+	# less than 2 because a bug could occure if you spam left click on a laptop
+	if _current_line != null and is_instance_valid(_current_line):
+		if _current_line._line.points.size() <= 2:
+			_current_line.queue_free()
+		
+	_current_line = LINE.new()
+	_lines.add_child(_current_line)
+	_current_line.Setup()
+	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
+	_current_line._line.add_point(get_global_mouse_position())
+	if _current_line:
+		#need to replicate the "if" after drawing finished otherwise,
+		# empty lines are added to created_elements
+		created_elements.append(_current_line)
+		commands.append("creation")
+	
+	_linecounter.Count = str(_lines.get_child_count())
+	#emit_signal("Line_count",_lines.get_child_count())
+	return _current_line

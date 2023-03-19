@@ -1,6 +1,5 @@
 extends AState
 
-
 func enter():
 	canvas._action_menu.hide()
 	var clines = canvas.Utils.map(canvas.copied_lines,canvas.Mimic,"get_first",[])
