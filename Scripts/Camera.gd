@@ -6,7 +6,7 @@ const ZOOMMAX = Vector2(1000,1000)
 
 export var zoom_speed = 1.1
 
-signal zoom_changed
+signal zoom_changed(spos,szoom)
 
 func ManageInput(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -35,4 +35,4 @@ func zoom_at_point(zoom_change, point):
 	zoom = zoom1
 	global_position = pos1
 	
-	emit_signal("zoom_changed")
+	emit_signal("zoom_changed", global_position, zoom)

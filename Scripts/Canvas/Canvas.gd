@@ -60,13 +60,18 @@ onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
 
 
 func _ready() -> void:
+	# Initialisation
+	# Gives states control to the state manager
 	states.init(self)
+	# Connect signals
 	
+	################################################################################################
 	index_created = created_elements.size()
 	index_command = commands.size()
 	index_deleted = deleted.size()
+	################################################################################################
 	
-	_camera.connect("zoom_changed", self, "UpdateBackground")
+	
 	RCC.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
@@ -305,12 +310,6 @@ func UpdateSelectionArea():
 		
 		Select_rect._size = pos2 - pos1
 		Select_rect.update()
-
-func UpdateBackground():
-	# on prend la pos de la camera ( au centre de la fenetre) et on l'offset en haut à gauche 
-#	# Vector2(512,300) car c'est la moitié de la taille interne de l'application
-	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom) 
-	_background.rect_size = Vector2(1024,600) * _camera.zoom
 
 func DragCamera(Relative:Vector2):
 	_camera.position -= Relative
