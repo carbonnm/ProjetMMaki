@@ -251,14 +251,17 @@ func DrawLineContainer(drawing:bool):
 		var min_x = area_size[0]
 		var min_y = area_size[1]
 		
-		var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
+		var area_size_vec = Vector2(bottom_right[0], bottom_right[1])
+		var size_x = bottom_right[0] * 2
+		var size_y = bottom_right[1] * 2
 		var area_position = Vector2(min_x, min_y)
+		#print("position", area_position)
 		
 		Selection_area.position = Vector2(min_x, min_y)
 	
-		Selection_area.set_params(area_position, area_size_vec)
-		Selection_area.draw = drawing
-		Selection_area.update()
+		Selection_area.set_params(min_x, min_y, size_x, size_y)
+		#Selection_area.draw = drawing
+		#Selection_area.update()
 		
 	
 
