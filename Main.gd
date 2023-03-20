@@ -31,6 +31,7 @@ var _current_line : Area2D
 var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
+var Selection_area : Area2D
 
 #lists and variables used for undo (ctr+Z), redo (ctrl+Y)
 var created_elements : Array 
@@ -237,58 +238,75 @@ Parameters :
 drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
-	for element in selected_lines:
-		if element[0] is Stroke :
-			# lancer la fonction _draw setup dans Line.gd
-			element[0].draw = drawing
-			# lance la fonction draw() de godot (update() lance draw())
-			element[0].update()
-		elif element[0] is Title :
-			#Draw function for the titles
-			element[0].draw = drawing
-			element[0].update()
+	if drawing :
+		Selection_area = AREASELECTION.new()
+		get_node("Lines").add_child(Selection_area)
+#
+		var corners = get_selection_area_corner()
+		var upper_left = corners[0]
+		var bottom_right = corners[1]
+		var area_size = GetSelectionAreaSize()
+		var size_x = area_size[0] - area_size[1]
+		var size_y = area_size[2] - area_size[3]
+		var max_x = area_size[0]
+		var max_y = area_size[2]
+		var min_x = area_size[1]
+		var min_y = area_size[3]
+		var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
+		
+		Selection_area.position = upper_left
+		var area_position = upper_left
+		Selection_area.set_params(area_position, area_size_vec)
+		Selection_area.draw = drawing
+		Selection_area.update()
+		
+	
 
 
 """
 Calls DrawLineContainer whith the drawing bool to true
 """
 func RetrieveArea(areas:Array):
-	
-#	var select_area = AREASELECTION.new()
-#
-#	var positionsSelectionArea = GetMinAndMaxPosition()
-#	var max_x = positionsSelectionArea[2]
-#	var max_y = positionsSelectionArea[3]
-#	var min_x = positionsSelectionArea[0]
-#	var min_y = positionsSelectionArea[1]
-#
-#	select_area.set_params(max_x, max_y, min_x, min_y)
-#	select_area.update()
 
 	selected_lines = areas.duplicate()
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		_action_menu.show()
 
+
 """
-Draw a line to make a container around the selected lines
-Returns :
------------------
-Array that contains :
-	- min_x : float : minimum x position of all the selected lines 
-	- min_y : float : minimum y position of all the selected lines 
-	- max_x : float : maximum x position of all the selected lines 
-	- max_y : float : maximum y position of all the selected lines
+Gets the corner of the selection_area
+Returns : Array  
 """
-func GetMinAndMaxPosition() -> Array:
-	#if drawing :
-	var min_x = 1024
-	var min_y = 600
-	var max_x = 0
-	var max_y = 0
-	for element in selected_lines:
+func get_selection_area_corner() :
+	var upper_left = Vector2.INF
+	var bottom_right = -1 * Vector2.INF
+	for element in selected_lines : 
 		if element[0] is Stroke :
-			print("ma position est", element[0].position)
+			for point in element[0]._line.points:
+				if Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y)) < upper_left :
+					upper_left = Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y))
+				if Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y)) > bottom_right :
+					bottom_right = Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y))
+	return [upper_left,bottom_right]
+		
+"""
+Gets the size of the selection_area 
+Returns : Vector2 
+"""
+func GetSelectionAreaSize() -> Array :
+	var min_x
+	var max_x
+	var min_y
+	var max_y
+	for element in selected_lines :
+		min_x = element[0].position.x
+		max_x = element[0].position.x
+		min_y = element[0].position.y
+		max_y = element[0].position.y
+	for element in selected_lines :
+		if element[0] is Stroke :
+			
 			if element[0].position.x > max_x :
 				max_x = element[0].position.x
 			if element[0].position.y > max_y :
@@ -296,36 +314,9 @@ func GetMinAndMaxPosition() -> Array:
 			if element[0].position.x < min_x :
 				min_x = element[0].position.x
 			if element[0].position.y < min_y :
-				min_y = element[0].position.y
+				min_y = element[0].position.x
+	return [max_x, min_x, max_y, min_y]
 			
-		if element[0] is Title :
-			if element[0].rect_position.x > max_x :
-				max_x = element[0].rect_position.x
-			if element[0].rect_position.y > max_y :
-				max_y = element[0].rect_position.y
-			if element[0].rect_position.x < min_x :
-				min_x = element[0].rect_position.x
-			if element[0].rect_position.y < min_y :
-				min_y = element[0].rect_position.y
-		
-	print("max_x", max_x)
-	print("max_y", max_y)
-	print("min_x", min_x)
-	print("min_y", min_y)
-	return [min_x, min_y, max_x, max_y]
-	
-	
-		
-	
-#		if element[0] is Stroke :
-#			# lancer la fonction _draw setup dans Line.gd
-#			element[0].draw = drawing
-#			# lance la fonction draw() de godot (update() lance draw())
-#			element[0].update()
-#		elif element[0] is Title :
-#			#Draw function for the titles
-#			element[0].draw = drawing
-#			element[0].update()
 
 """
 Draw the geometrical selection area around the selected lines 
@@ -333,20 +324,6 @@ Calls DrawLineContainer()
 Is called when select button is pressed
 """
 func DrawSelectionArea():
-#	Select_rect = Area2D.new()
-#	Select_rect.set_script(load("res://Scripts/Selector.gd"))
-#	Select_rect.connect("SendArea", self, "RetrieveArea")
-#	self.add_child(Select_rect)
-#
-#
-#	var c_shape = CollisionShape2D.new()
-#	var shape = RectangleShape2D.new()
-#	c_shape.shape = shape
-#	shape.extents = Vector2.ZERO
-#	Select_rect.add_child(c_shape)
-#
-#	Select_rect.position = get_global_mouse_position()
-
 	Select_rect = Area2D.new()
 	Select_rect.set_script(load("res://Scripts/Selector.gd"))
 	Select_rect.connect("SendArea", self, "RetrieveArea")
