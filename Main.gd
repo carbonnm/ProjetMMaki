@@ -138,6 +138,8 @@ func create_new_title(chosen_title):
 	index_command +=1
 	print(created_elements,_lines.get_child_count())
 		
+
+
 func _on_Background_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
@@ -245,17 +247,15 @@ func DrawLineContainer(drawing:bool):
 		var corners = get_selection_area_corner()
 		var upper_left = corners[0]
 		var bottom_right = corners[1]
-		var area_size = GetSelectionAreaSize()
-		var size_x = area_size[0] - area_size[1]
-		var size_y = area_size[2] - area_size[3]
-		var max_x = area_size[0]
-		var max_y = area_size[2]
-		var min_x = area_size[1]
-		var min_y = area_size[3]
-		var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
+		var area_size = get_position_area_size()
+		var min_x = area_size[0]
+		var min_y = area_size[1]
 		
-		Selection_area.position = upper_left
-		var area_position = upper_left
+		var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
+		var area_position = Vector2(min_x, min_y)
+		
+		Selection_area.position = Vector2(min_x, min_y)
+	
 		Selection_area.set_params(area_position, area_size_vec)
 		Selection_area.draw = drawing
 		Selection_area.update()
@@ -293,29 +293,27 @@ func get_selection_area_corner() :
 """
 Gets the size of the selection_area 
 Returns : Vector2 
+	- min_x : x coordinates of the selection area
+	- min_y : y coordinates of the selection area 
 """
-func GetSelectionAreaSize() -> Array :
+func get_position_area_size() -> Array :
 	var min_x
-	var max_x
 	var min_y
-	var max_y
+	var coord_x
+	var coord_y
 	for element in selected_lines :
 		min_x = element[0].position.x
-		max_x = element[0].position.x
 		min_y = element[0].position.y
-		max_y = element[0].position.y
 	for element in selected_lines :
 		if element[0] is Stroke :
-			
-			if element[0].position.x > max_x :
-				max_x = element[0].position.x
-			if element[0].position.y > max_y :
-				max_y = element[0].position.y
-			if element[0].position.x < min_x :
-				min_x = element[0].position.x
-			if element[0].position.y < min_y :
-				min_y = element[0].position.x
-	return [max_x, min_x, max_y, min_y]
+			for point in element[0]._line.get_point_count():
+				coord_x = element[0].position.x + element[0]._line.get_point_position(point).x
+				coord_y = element[0].position.y + element[0]._line.get_point_position(point).y
+				if coord_x < min_x :
+					min_x = coord_x
+				if coord_y < min_y :
+					min_y = coord_y
+	return [min_x, min_y]
 			
 
 """
