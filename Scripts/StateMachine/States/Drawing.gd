@@ -4,6 +4,8 @@ var _current_line: Area2D
 
 const LINE := preload("res://Scripts/Line.gd")
 
+func enter():
+	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/pencil-solid.svg"))
 
 func input(event: InputEvent) -> IState:
 	

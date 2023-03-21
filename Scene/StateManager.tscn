@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Zoom.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/StateMachine/States/Rotation.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/StateMachine/States/DragAndDrop.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/StateMachine/States/MoveCanvas.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/StateMachine/States/Rescale.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/StateMachine/States/Delete.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/StateMachine/States/Copy.gd" type="Script" id=11]
@@ -21,6 +22,7 @@ starting_state = NodePath("SignalSwitcher/Drawing")
 [node name="SignalSwitcher" type="Node" parent="."]
 script = ExtResource( 4 )
 zoom_node = NodePath("Zoom")
+move_canvas_node = NodePath("MoveCanvas")
 drawing_node = NodePath("Drawing")
 selection_node = NodePath("Selection")
 copy_node = NodePath("Copy")
@@ -34,6 +36,10 @@ redo_node = NodePath("Redo")
 
 [node name="Zoom" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
+signal_switcher_node = NodePath("..")
+
+[node name="MoveCanvas" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 8 )
 signal_switcher_node = NodePath("..")
 
 [node name="Drawing" type="Node" parent="SignalSwitcher"]

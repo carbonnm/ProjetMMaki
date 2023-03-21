@@ -2,6 +2,7 @@ extends IState
 
 # Selection nodes to set with the Godot engine.
 export (NodePath) var zoom_node
+export (NodePath) var move_canvas_node
 export (NodePath) var drawing_node
 export (NodePath) var selection_node
 export (NodePath) var copy_node
@@ -14,6 +15,7 @@ export (NodePath) var undo_node
 export (NodePath) var redo_node
 
 onready var zoom: IState = get_node(zoom_node)
+onready var move_canvas: IState = get_node(move_canvas_node)
 onready var drawing: IState = get_node(drawing_node)
 onready var selection: IState = get_node(selection_node)
 onready var copy: IState = get_node(copy_node)
@@ -38,6 +40,8 @@ func input(event: InputEvent) -> IState:
 
 func switch_signal(state: String) -> IState:
 	match state:
+		"MoveCanvas":
+			return move_canvas
 		"Drawing":
 			return drawing
 		"Selection":

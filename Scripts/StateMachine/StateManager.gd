@@ -98,3 +98,6 @@ func _on_Rotation_pressed():
 
 func _on_Delete_pressed():
 	switch_signal("Delete")
+
+func _on_MoveCanvas_pressed():
+	switch_signal("MoveCanvas")

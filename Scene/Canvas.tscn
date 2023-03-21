@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -27,6 +27,9 @@
 [ext_resource path="res://addons/color_picker_text_button/color_picker_text_button.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/BackgroundColor.gd" type="Script" id=27]
+[ext_resource path="res://Scene/Options.gd" type="Script" id=28]
+[ext_resource path="res://Assets/Graphics/Image/RightClick.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Graphics/Image/hand_icon.svg" type="Texture" id=30]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -192,10 +195,128 @@ margin_bottom = 142.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
+[node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 146.0
+margin_right = 153.0
+margin_bottom = 220.0
+text = "Déplacer"
+icon = ExtResource( 30 )
+
 [node name="Settings" type="Button" parent="CanvasLayer"]
 margin_right = 38.0
 margin_bottom = 35.0
 icon = ExtResource( 9 )
+expand_icon = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+anchor_bottom = 1.0
+margin_left = 1024.0
+margin_right = 1248.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -255.0
+margin_right = 108.0
+margin_bottom = 247.0
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Color" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_right = 218.0
+margin_bottom = 60.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = ExtResource( 23 )
+icon = ExtResource( 5 )
+script = ExtResource( 25 )
+text_value = "Changer couleur"
+style = ExtResource( 23 )
+color = Color( 0.909804, 0.698039, 0.133333, 1 )
+light_text_color = Color( 0, 0, 0, 1 )
+dark_text_color = Color( 1, 1, 1, 1 )
+text_color_flip_threshold = 1.0
+fresh = false
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer/Panel2/VBoxContainer/Color"]
+margin_right = 298.0
+margin_bottom = 288.0
+
+[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 314.0
+margin_bottom = 466.0
+color = Color( 0.909804, 0.698039, 0.133333, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel2/VBoxContainer/Color"]
+margin_right = 218.0
+margin_bottom = 60.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel2/VBoxContainer/Color/CenterContainer"]
+margin_left = 57.0
+margin_top = 23.0
+margin_right = 160.0
+margin_bottom = 37.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Changer couleur"
+
+[node name="Create texte" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 64.0
+margin_right = 218.0
+margin_bottom = 134.0
+text = "Créer texte"
+icon = ExtResource( 3 )
+
+[node name="Create annotation" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 138.0
+margin_right = 218.0
+margin_bottom = 208.0
+text = "Créer annotation"
+icon = ExtResource( 24 )
+
+[node name="Draw" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 212.0
+margin_right = 218.0
+margin_bottom = 280.0
+text = "Dessiner"
+icon = ExtResource( 10 )
+
+[node name="Group items" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 284.0
+margin_right = 218.0
+margin_bottom = 354.0
+text = "Grouper les éléments"
+icon = ExtResource( 6 )
+
+[node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 358.0
+margin_right = 218.0
+margin_bottom = 428.0
+text = "Enregistrer"
+icon = ExtResource( 18 )
+
+[node name="Paste" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 432.0
+margin_right = 218.0
+margin_bottom = 502.0
+text = "Coller"
+icon = ExtResource( 17 )
+
+[node name="RightClickButton" type="Button" parent="CanvasLayer"]
+margin_left = 986.0
+margin_right = 1024.0
+margin_bottom = 35.0
+icon = ExtResource( 29 )
 expand_icon = true
 __meta__ = {
 "_edit_lock_": true
@@ -268,7 +389,16 @@ margin_bottom = 20.0
 [connection signal="pressed" from="RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
+[connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create texte" to="." method="_on_Create_text_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Draw" to="." method="_on_Draw_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Group items" to="." method="_on_Group_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightClickButton" to="CanvasLayer" method="_on_RightClickButton_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]

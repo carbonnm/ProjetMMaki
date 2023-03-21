@@ -1,6 +1,9 @@
 extends AState
 
 
+func enter():
+	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/arrow-pointer-solid.svg"))
+
 func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton:
 		if event.is_pressed():
