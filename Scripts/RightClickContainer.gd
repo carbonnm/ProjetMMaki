@@ -32,12 +32,12 @@ func _input(event: InputEvent) -> void:
 					hide()
 	#On ctrl+z pressed emit the undo signal		
 	if Input.is_action_just_pressed("undo"):
-		print("undo")
+		
 		emit_signal("undo")
 		
 	#On ctrl+y pressed emit the redo signal		
 	if Input.is_action_just_pressed("redo"):
-		print("redo")
+		
 		emit_signal("redo")
 		
 

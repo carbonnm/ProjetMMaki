@@ -493,16 +493,18 @@ func _on_Paste_pressed():
 	var closure = Utils.get_positions_closure(clines_positions)
 	var center = Utils.get_positions_mean(closure)
 	var translation = -center + RCC.rect_position
-	
+	var listpasted = []
 	for Ligne in clines:
 		var duplarea = Ligne.duplicate()
 		
 		duplarea.position += translation
+		listpasted.append(duplarea)
 		_lines.add_child(duplarea)
 		
 		if duplarea is Stroke:
 			duplarea._line = duplarea.get_child(0)
-
+	_handle_elements(listpasted)
+	
 func _on_Create_annotation_pressed():
 	pass # Replace with function body.
 
@@ -664,32 +666,38 @@ func _on_RightClickContainer_undo():
 			commands[index_command]=dup
 			last_command.queue_free()
 			
-			if index_command>0:
-				index_command-=1
+			
 			#print("done",index_created,index_command)
 		#handles the undo if the last operation is either a delete,...
 		else:
 			for element in last_command:
-				print(element)
-				#for delete (elements no longer exist)
-				var current_child = _lines.get_children()
-				var index =0
-				for child in current_child:
-					current_child[index] = child.name
-					index+=1
+				if typeof(element) == TYPE_ARRAY:
+					
+					print(element)
+					#for delete (elements no longer exist)
+					var current_child = _lines.get_children()
+					var index =0
+					for child in current_child:
+						current_child[index] = child.name
+						index+=1
 				
-				if not (element[0] in current_child):
-					#print(_lines.get_children())
-					print(1)
-					_lines.add_child(element[1])
-				#for other actions rotate,rescale,... 
+					if not (element[0] in current_child):
+						#print(_lines.get_children())
+						print(1)
+						_lines.add_child(element[1])
+					#for other actions rotate,rescale,... 
+					else:
+						print(2)
+						for child in _lines.get_children():
+							if element[0] == child.name:
+								_lines.remove_child(child)
+								_lines.add_child(element[1])
 				else:
-					print(2)
-					for child in _lines.get_children():
-						if element[0] == child.name:
-							_lines.remove_child(child)
-							_lines.add_child(element[1])
-
+					var dupaste = element.duplicate()
+					commands[index_command]=dupaste
+					element.queue_free()
+		if index_command>0:
+				index_command-=1
 func _on_RightClickContainer_redo():
 	pass
 	#if not notyetundo and  commands.size()>0:
