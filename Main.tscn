@@ -137,6 +137,9 @@ margin_left = 40.0
 margin_right = 468.0
 margin_bottom = 35.0
 custom_constants/separation = 32
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="FPS CHECK" type="Label" parent="CanvasLayer/HBoxContainer"]
 margin_top = 10.0
@@ -244,7 +247,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 312.0
+margin_right = 305.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -378,7 +381,6 @@ margin_bottom = 20.0
 [connection signal="pressed" from="RightClickContainer/Paste" to="." method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="." method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="." method="_on_Drawing_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Move Canvas" to="." method="_on_Move_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="CanvasLayer/Panel2/VBoxContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create texte" to="." method="_on_Create_text_pressed"]

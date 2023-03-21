@@ -33,18 +33,9 @@ var Select_rect : Area2D
 var copy_lignes : Array
 var Selection_area : Area2D
 
-#lists and variables used for undo (ctr+Z), redo (ctrl+Y)
-var created_elements : Array 
-var deleted : Array
-var moved : Array
-var rescaled : Array
-var rotated : Array
+#list and variables used for undo (ctr+Z), redo (ctrl+Y)
+
 var commands : Array
-var index_deleted = 0
-var index_moved = 0
-var index_rotated = 0
-var index_created = 0
-var index_rescaled = 0
 var index_command = 0
 var notyetundo = true
 
@@ -71,8 +62,6 @@ var Modes = {
 }
 
 func _ready() -> void:
-	
-	
 	_camera.connect("zoom_changed", self, "UpdateBackground")
 	_rightclick.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
 	#connects the signal on new title input 
@@ -132,11 +121,10 @@ func create_new_title(chosen_title):
 	var type_title = get_node("Titlemenuaddition").type_title
 	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 	
-	created_elements.append(rtl)
-	commands.append("creation")
-	index_created +=1
-	index_command +=1
-	print(created_elements,_lines.get_child_count())
+	_handle_elements(rtl)
+	print("title created")
+	
+	#print(created_elements,_lines.get_child_count())
 		
 
 
@@ -363,21 +351,22 @@ func UpdateSelectionArea():
 Deletion of the selected lines when delete button is pressed
 """
 func _on_Delete_pressed():
+	print(selected_lines)
+	var list_del = []
 	for area in selected_lines:
-		area[0].visible = false
-		commands.append("delete")
-		deleted.append([])
-		deleted[index_deleted].append(area[0])
+		var dup = area[0].duplicate()
+		list_del.append([area[0].name,dup])
+		area[0].queue_free()
 		
+	_handle_elements((list_del))
 		
 	selected_lines.clear()
+	print(selected_lines)
 	_action_menu.hide()
 	#emit_signal("Line_count",0)
 	#Updates elements counter 
 	_linecounter.Count = str(_lines.get_child_count())
-	index_deleted+=1
-	index_command+=1
-	print(_linecounter.Count)
+	#print(_linecounter.Count)
 
 
 func DrawLine():
@@ -395,12 +384,11 @@ func DrawLine():
 	if _current_line:
 		#need to replicate the "if" after drawing finished otherwise,
 		# empty lines are added to created_elements
-		created_elements.append(_current_line)
-		commands.append("creation")
-		index_created+=1
-		index_command+=1
+		_handle_elements(_current_line)
+		
+		
 	
-	print(created_elements,_lines.get_child_count())
+	#print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
 	#emit_signal("Line_count",_lines.get_child_count())
 	
@@ -439,15 +427,15 @@ Change mode to Drag and drop when drag
 func _on_Drag_And_Drop_pressed():
 	#registers the place of all the selected areas (titles and lines) for undo
 	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-	var index_loop
+	
 	#registers the position of the lines/titles for undo 
-	commands.append("move")
-	index_command+=1
+	
+	var list_moved = []
 	for area in area2D_L:
-		moved.append([])
-		moved[index_moved].append([area,area.position])
-		
-	print(moved)
+		var dup = area.duplicate()
+		list_moved.append([area.name,dup])
+	_handle_elements(list_moved)	
+	#print(moved)
 	#then changes mode to DragAndDrop
 	Change_mode("DragAndDrop")
 	_action_menu.hide()
@@ -457,15 +445,14 @@ Change mode to Rescale when rescale button pressed.
 """
 func _on_Rescale_pressed():
 	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-	var index_loop
+	
 	#registers the size of the lines/titles for undo 
-	commands.append("rescale")
-	index_command+=1
+	var list_scale = []
 	for area in area2D_L:
-		rescaled.append([])
-		rescaled[index_rescaled].append([area,area.scale])
-		
-	print(rescaled)
+		var dup = area.duplicate()
+		list_scale.append([area.name,dup])
+	_handle_elements(list_scale)	
+	#print(rescaled)
 	
 	Change_mode("Rescale")
 	_action_menu.hide()
@@ -475,15 +462,14 @@ Change mode to Rotate when rotation button pressed
 """
 func _on_Rotation_pressed():
 	var area2D_L = Utils.map(selected_lines,Mimic,"get_first",[])
-	var index_loop
 	#registers the rotation degree of the lines/titles for undo 
-	commands.append("rotate")
-	index_command+=1
+	var list_rotate = []
 	for area in area2D_L:
-		rotated.append([])
-		rotated[index_rotated].append([area,area.rotation_degrees])
-		
-	print(rotated)
+		var dup = area.duplicate()
+		list_rotate.append([area.name,dup])
+	
+	_handle_elements(list_rotate)
+	#print(rotated)
 	Change_mode("Rotate")
 	_action_menu.hide()
 
@@ -494,7 +480,7 @@ When copy button pressed, create a duplication of the selected area
 func _on_Copy_pressed():
 	_action_menu.hide()
 	copy_lignes = selected_lines.duplicate()
-		
+	
 
 """
 When paste button pressed, create a duplication of the selected area
@@ -633,98 +619,94 @@ func _on_PopupMenu_id_pressed(id):
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
 
-
+func _handle_elements(elem):
+	#adds the previous version of the modified element to the list of commands
+	#limits the memory to the 10 last operation 
+	if commands.size()<11:
+		commands.append(elem)
+	else:
+		#frees the first element
+		var to_remove = commands[0]
+		commands.erase(to_remove)
+		to_remove.queue_free()
+		#adds the element(s) to the end of the command list
+		commands.append(elem)
+	
+	if index_command < commands.size()-1:
+		index_command+=1
+	
+	
+func _get_last_command():
+	#returns the last modified element before it was 
+		
+	if((index_command)<commands.size()-1 or index_command>=0) :
+		return commands[index_command]
+	else:
+		return null
+	
 #handles the undo 
 func _on_RightClickContainer_undo():
-	print("startundo",index_created,index_command)
-	#handles the first undo (to initialize index_created following the nulber of created elements
-	
+	#print("startundo",index_created,index_command)
+	#handles the first undo for the first redo
+	#no redo while an undo hasn't been made
 	if notyetundo and commands.size()>0:
+		index_command=commands.size()-1
 		notyetundo = false
-		
-	#print(commands[index_command])
-	#handles the undo if last operation was a line or text creation 
-	#via drawing, using the pop-up menu or copying and pasting
-	if commands[index_command-1] == "creation" and created_elements.size()>0:		
-		var to_delete	
-		var index_del
-		if index_created >0:
-			index_del = index_created-1
+	#retrieving the last created 
+	var last_command = _get_last_command()
+	#if we're not at the bottom of the commands list 
+	if last_command :
+		print(last_command)
+		#handles the undo if last operation was a line or text creation
+		#via drawing / create title
+		if not (typeof(last_command) == TYPE_ARRAY):
+			var dup = last_command.duplicate()
+			commands[index_command]=dup
+			last_command.queue_free()
+			
+			if index_command>0:
+				index_command-=1
+			#print("done",index_created,index_command)
+		#handles the undo if the last operation is either a delete,...
 		else:
-			index_del=index_created
-		to_delete = created_elements[index_del]	
-		
-		if index_created>-1:
-			index_created -=1
-			
-		to_delete.visible = false	
-		if index_command-1 >0:
-			index_command-=1
-		
-	#handles the undo if last operation was a delete on a selection
-	#(makes them visible again)
-	if commands[index_command-1] == "delete":
-		for element in deleted[index_deleted-1]:
-			element.visible = true
-		if index_command-1 >0:
-			index_command-=1
-			
-	#handles the undo if the last operation was a drag and drop 
-	#(to replace it/them where it/they was/were)
-	if commands[index_command-1] =="move":
-		#moved[index_moved holds the lines/titles
-		# that have been last selected together and then drag and dropped)
-		#elements[0] being the area (title or line) 
-		#elements[1] being the previous position
-		for elements in moved[index_moved]:
-			elements[0].set_position(elements[1])
-		if index_command-1 >0:
-			index_command-=1
-	
-	#handles the undo if the last operation was a rescale
-	#(to rescale it/them to its/their original scale)
-	if commands[index_command-1] =="rescale":
-		#rescaled[index_rescaled] holds the lines/titles
-		# that have been last selected together and rescaled)
-		#elements[0] being the area (title or line) 
-		#elements[1] being the previous scale of each one of them
-		for elements in rescaled[index_rescaled]:
-			elements[0].scale = elements[1]
-		if index_command-1 >0:
-			index_command-=1
-			
-	#handles the undo if the last operation was a rotate
-	#(#(to rotate it/them to its/their original inclination))
-	if commands[index_command-1] == "rotate":
-		#rotated[index_rotated] holds the lines/titles
-		# that have been last selected together and rotated)
-		#elements[0] being the area (title or line) 
-		#elements[1] being the previous rotation degree
-		for elements in rotated[index_rotated]:
-			elements[0].rotation_degrees = elements[1]
-		
-		if index_command-1 >0:
-			index_command-=1	
-	print("done",index_created,index_command)
-	
+			for element in last_command:
+				print(element)
+				#for delete (elements no longer exist)
+				var current_child = _lines.get_children()
+				var index =0
+				for child in current_child:
+					current_child[index] = child.name
+					index+=1
+				
+				if not (element[0] in current_child):
+					#print(_lines.get_children())
+					print(1)
+					_lines.add_child(element[1])
+				#for other actions rotate,rescale,... 
+				else:
+					print(2)
+					for child in _lines.get_children():
+						if element[0] == child.name:
+							_lines.remove_child(child)
+							_lines.add_child(element[1])
 
 func _on_RightClickContainer_redo():
-	
-	if not notyetundo and  commands.size()>0:
-		print("startredo")
+	pass
+	#if not notyetundo and  commands.size()>0:
+		#print("startredo")
 		#creation
-		if commands[index_command-1] == "creation" and index_created<=created_elements.size()-1:
-			var index_recreate
-			if (index_created-1 == 0 and created_elements.size()==1):
-				index_recreate = index_created+1
-			else:
-				index_recreate = index_created
+		#if commands[index_command-1] == "creation" and index_created<=created_elements.size()-1:
+		#	var index_recreate
+		#	if (index_created-1 == 0 and created_elements.size()==1):
+		#		index_recreate = index_created+1
+		#	else:
+		#		index_recreate = index_created
 			#print(commands[index_command])
-			var to_recreate = created_elements[index_recreate]
-			print(to_recreate.name)
-			to_recreate.visible = true
+		#	var to_recreate = created_elements[index_recreate]
+			#print(to_recreate.name)
+		#	to_recreate.visible = true
 			
-			if index_created-1<=created_elements.size() and index_command+1<commands.size():
-				index_command +=1
+		#	if index_created-1<=created_elements.size() and index_command+1<commands.size():
+		#		index_command +=1
 				
-	print("done",index_created,index_command)
+	#print("done",index_created,index_command)
