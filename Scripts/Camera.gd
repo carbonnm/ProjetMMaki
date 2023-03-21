@@ -8,14 +8,6 @@ export var zoom_speed = 1.1
 
 signal zoom_changed(spos,szoom)
 
-func ManageInput(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == BUTTON_WHEEL_UP:
-				update_zoom(event, ZOOMMIN)
-			if event.button_index == BUTTON_WHEEL_DOWN:
-				update_zoom(event, ZOOMMAX)
-
 func update_zoom(event, threshold):
 	var mouse_position = event.get_position()
 	

@@ -3,7 +3,6 @@ extends Node2D
 
 # Import static methodes packages
 # (General scripts)
-var Business := preload("res://Scripts/Canvas/Business.gd").new()
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 # (State relative scripts)
@@ -34,18 +33,6 @@ var copied_lines: Array
 
 
 ###################################################################################################
-#lists and variables used for undo (ctr+Z), redo (ctrl+Y)
-var created_elements : Array 
-var deleted : Array
-var commands : Array
-var index_deleted
-var index_created 
-var index_command
-var notyetundo = true
-
-#verifies if a movement (with alt/ the middle mouse button has been done for placing the color picker)
-var notyetmoved = true
-
 #global variables added for default options (making testing from the Main.tscn possible without crash)
 #they should be deleted when the program is finished
 var title_font
@@ -65,14 +52,6 @@ func _ready() -> void:
 	states.init(self)
 	# Connect signals
 	
-	################################################################################################
-	index_created = created_elements.size()
-	index_command = commands.size()
-	index_deleted = deleted.size()
-	################################################################################################
-	
-	
-	RCC.connect("_on_RightClickContainer_undo", self,"_on_RightClickContainer_undo")
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
 	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
@@ -112,6 +91,10 @@ func _ready() -> void:
 	get_node("BackgroundColored").color = color_background
 
 
+
+func _on_BackgroundColored_gui_input(event):
+	states.input(event)
+
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
 	get_node("Titlemenuaddition").visible = false
@@ -129,35 +112,6 @@ func create_new_title(chosen_title):
 	
 	var type_title = get_node("Titlemenuaddition").type_title
 	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
-	
-	created_elements.append(rtl)
-	print(created_elements,_lines.get_child_count())
-		
-func _on_Background_gui_input(event: InputEvent) -> void:
-	_unhandled_input(event)
-	if event is InputEventMouseButton:
-		RCC.visible = RCC.visible == true
-			
-		if event.is_pressed():
-			_camera.ManageInput(event)
-			
-	# Draw the lines or move the camera
-	if event is InputEventMouseMotion: 
-		if event.button_mask == BUTTON_MASK_LEFT:
-			# move the camera position relative to where the event input happen if Key_alt
-			# is pressed (to work with laptop pads)
-			if event.alt:
-				DragCamera(event.relative)
-				notyetmoved = false
-				return
-				
-		# Move the camera position relative to where the event input happen
-		if event.button_mask == BUTTON_MASK_MIDDLE:
-			notyetmoved = false
-			DragCamera(event.relative)
-
-func _unhandled_input(event: InputEvent) -> void:
-	states.input(event)
 
 
 """
@@ -447,12 +401,5 @@ func DrawLine(_current_line: Area2D) -> Area2D:
 	_current_line.Setup()
 	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
 	_current_line._line.add_point(get_global_mouse_position())
-	if _current_line:
-		#need to replicate the "if" after drawing finished otherwise,
-		# empty lines are added to created_elements
-		created_elements.append(_current_line)
-		commands.append("creation")
 	
-	_linecounter.Count = str(_lines.get_child_count())
-	#emit_signal("Line_count",_lines.get_child_count())
 	return _current_line

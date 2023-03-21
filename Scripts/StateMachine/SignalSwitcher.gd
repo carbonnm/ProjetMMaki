@@ -1,6 +1,7 @@
 extends IState
 
 # Selection nodes to set with the Godot engine.
+export (NodePath) var zoom_node
 export (NodePath) var drawing_node
 export (NodePath) var selection_node
 export (NodePath) var copy_node
@@ -12,6 +13,7 @@ export (NodePath) var rotation_node
 export (NodePath) var undo_node
 export (NodePath) var redo_node
 
+onready var zoom: IState = get_node(zoom_node)
 onready var drawing: IState = get_node(drawing_node)
 onready var selection: IState = get_node(selection_node)
 onready var copy: IState = get_node(copy_node)
@@ -23,6 +25,17 @@ onready var rotation: IState = get_node(rotation_node)
 onready var undo: IState = get_node(undo_node)
 onready var redo: IState = get_node(redo_node)
 
+
+func input(event: InputEvent) -> IState:
+	var zoomC1 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_UP
+	var zoomC2 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_DOWN
+	var zoomC3 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_LEFT && event.alt
+	var zoomC4 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_MIDDLE
+	print(zoomC1 || zoomC2 || zoomC3 || zoomC4)
+	if zoomC1 || zoomC2 || zoomC3 || zoomC4:
+		return zoom
+	
+	return null
 
 func switch_signal(state: String) -> IState:
 	match state:

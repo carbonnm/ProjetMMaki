@@ -4,6 +4,7 @@ var _current_line: Area2D
 
 
 func input(event: InputEvent) -> IState:
+	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():

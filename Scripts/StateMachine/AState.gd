@@ -6,6 +6,8 @@ export (NodePath) var signal_switcher_node
 
 onready var signal_switcher: IState = get_node(signal_switcher_node)
 
+func input(event: InputEvent) -> IState:
+	return signal_switcher.input(event)
 
 func switch_signal(state: String) -> IState:
 	return signal_switcher.switch_signal(state)

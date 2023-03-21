@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Canvas/Canvas.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Graphics/Image/text.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Themes/Theme_rightclick.tres" type="StyleBox" id=4]
 [ext_resource path="res://Assets/Graphics/Image/couleur.png" type="Texture" id=5]
@@ -256,7 +256,7 @@ margin_bottom = 20.0
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
 
-[connection signal="gui_input" from="BackgroundColored" to="." method="_on_Background_gui_input"]
+[connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="redo" from="RightClickContainer" to="." method="_on_RightClickContainer_redo"]
 [connection signal="undo" from="RightClickContainer" to="." method="_on_RightClickContainer_undo"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]

@@ -4,11 +4,7 @@ extends AState
 func enter():
 	canvas._action_menu.hide()
 	for area in canvas.selected_lines:
-		area[0].visible = false
-		canvas.commands.append("delete")
-		canvas.deleted.append([])
-		canvas.deleted[canvas.index_deleted].append(area[0])
-		
+		area[0].queue_free()
 		
 	canvas.selected_lines.clear()
 	canvas._action_menu.hide()

@@ -19,7 +19,6 @@ func init(canvas: Canvas) -> void:
 		children = children[-1].get_children() + children
 		children.pop_back()
 			
-	
 	change_state(get_node(starting_state))
 
 """
@@ -45,7 +44,19 @@ Parameters:
 event: The input event to consume. (InputEvent)
 """
 func input(event: InputEvent) -> void:
+	var interrupt_state = get_node("SignalSwitcher").input(event)
+	var sleeping_state = current_state
+	if interrupt_state:
+		change_state(interrupt_state)
+	
 	var new_state = current_state.input(event)
+	if new_state:
+		change_state(new_state)
+	elif sleeping_state:
+		change_state(sleeping_state)
+
+func switch_signal(state: String) -> void:
+	var new_state = current_state.switch_signal(state)
 	if new_state:
 		change_state(new_state)
 
@@ -62,11 +73,6 @@ func change_state(new_state: IState) -> void:
 	
 	current_state = new_state
 	current_state.enter()
-
-func switch_signal(state: String) -> void:
-	var new_state = current_state.switch_signal(state)
-	if new_state:
-		change_state(new_state)
 
 
 func _on_Selection_pressed():
