@@ -22,7 +22,7 @@ onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
 onready var _rightclick := $RightClickContainer
 onready var _action_menu := $ActionMenu
 
-onready var RCC := $RightClickContainer
+onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 
 onready var _pm = $PopupMenu
 
@@ -32,14 +32,21 @@ var _current_line : Area2D
 var selected_lines : Array
 var Select_rect : Area2D
 var copy_lignes : Array
+var Selection_area : Area2D
 
 #lists and variables used for undo (ctr+Z), redo (ctrl+Y)
 var created_elements : Array 
 var deleted : Array
+var moved : Array
+var rescaled : Array
+var rotated : Array
 var commands : Array
-var index_deleted
-var index_created 
-var index_command
+var index_deleted = 0
+var index_moved = 0
+var index_rotated = 0
+var index_created = 0
+var index_rescaled = 0
+var index_command = 0
 var notyetundo = true
 
 #verifies if a movement (with alt/ the middle mouse button has been done for placing the color picker)
@@ -125,13 +132,20 @@ func create_new_title(chosen_title):
 	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 	
 	created_elements.append(rtl)
+	commands.append("creation")
+	index_created +=1
+	index_command +=1
 	print(created_elements,_lines.get_child_count())
 		
+
+
 func _on_Background_gui_input(event: InputEvent) -> void:
 	_unhandled_input(event)
 	if event is InputEventMouseButton:
 		RCC.visible = RCC.visible == true
-			
+		if Modes.MoveCanvas:
+			_on_Move_Canvas_button(event)
+			Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/hand-regular.svg"))	
 		if event.is_pressed():
 			_camera.ManageInput(event)
 			
@@ -161,97 +175,84 @@ Parameters :
 drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
-	for element in selected_lines:
-		if element[0] is Stroke :
-			# lancer la fonction _draw setup dans Line.gd
-			element[0].draw = drawing
-			# lance la fonction draw() de godot (update() lance draw())
-			element[0].update()
-		elif element[0] is Title :
-			#Draw function for the titles
-			element[0].draw = drawing
-			element[0].update()
+	if drawing :
+		Selection_area = AREASELECTION.new()
+		get_node("Lines").add_child(Selection_area)
+#
+		var corners = get_selection_area_corner()
+		var upper_left = corners[0]
+		var bottom_right = corners[1]
+		var area_size = get_position_area_size()
+		var min_x = area_size[0]
+		var min_y = area_size[1]
+		
+		var area_size_vec = Vector2(bottom_right[0], bottom_right[1])
+		var size_x = bottom_right[0] * 2
+		var size_y = bottom_right[1] * 2
+		var area_position = Vector2(min_x, min_y)
+		#print("position", area_position)
+		
+		Selection_area.position = Vector2(min_x, min_y)
+	
+		Selection_area.set_params(min_x, min_y, size_x, size_y)
+		#Selection_area.draw = drawing
+		#Selection_area.update()
+		
+	
 
 
 """
 Calls DrawLineContainer whith the drawing bool to true
 """
 func RetrieveArea(areas:Array):
-	
-#	var select_area = AREASELECTION.new()
-#
-#	var positionsSelectionArea = GetMinAndMaxPosition()
-#	var max_x = positionsSelectionArea[2]
-#	var max_y = positionsSelectionArea[3]
-#	var min_x = positionsSelectionArea[0]
-#	var min_y = positionsSelectionArea[1]
-#
-#	select_area.set_params(max_x, max_y, min_x, min_y)
-#	select_area.update()
 
 	selected_lines = areas.duplicate()
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		_action_menu.show()
-	if selected_lines.size() != 0:
-		_action_menu.show()
+
 
 """
-Draw a line to make a container around the selected lines
-Returns :
------------------
-Array that contains :
-	- min_x : float : minimum x position of all the selected lines 
-	- min_y : float : minimum y position of all the selected lines 
-	- max_x : float : maximum x position of all the selected lines 
-	- max_y : float : maximum y position of all the selected lines
+Gets the corner of the selection_area
+Returns : Array  
 """
-func GetMinAndMaxPosition() -> Array:
-	#if drawing :
-	var min_x = 1024
-	var min_y = 600
-	var max_x = 0
-	var max_y = 0
-	for element in selected_lines:
+func get_selection_area_corner() :
+	var upper_left = Vector2.INF
+	var bottom_right = -1 * Vector2.INF
+	for element in selected_lines : 
 		if element[0] is Stroke :
-			print("ma position est", element[0].position)
-			if element[0].position.x > max_x :
-				max_x = element[0].position.x
-			if element[0].position.y > max_y :
-				max_y = element[0].position.y
-			if element[0].position.x < min_x :
-				min_x = element[0].position.x
-			if element[0].position.y < min_y :
-				min_y = element[0].position.y
+			for point in element[0]._line.points:
+				if Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y)) < upper_left :
+					upper_left = Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y))
+				if Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y)) > bottom_right :
+					bottom_right = Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y))
+	return [upper_left,bottom_right]
+		
+"""
+Gets the size of the selection_area 
+Returns : Vector2 
+	- min_x : x coordinates of the selection area
+	- min_y : y coordinates of the selection area 
+"""
+func get_position_area_size() -> Array :
+	var min_x
+	var min_y
+	var coord_x
+	var coord_y
+	for element in selected_lines :
+		min_x = element[0].position.x
+		min_y = element[0].position.y
+	for element in selected_lines :
+		if element[0] is Stroke :
+			for point in element[0]._line.get_point_count():
+				coord_x = element[0].position.x + element[0]._line.get_point_position(point).x
+				coord_y = element[0].position.y + element[0]._line.get_point_position(point).y
+				if coord_x < min_x :
+					min_x = coord_x
+				if coord_y < min_y :
+					min_y = coord_y
+	return [min_x, min_y]
 			
-		if element[0] is Title :
-			if element[0].rect_position.x > max_x :
-				max_x = element[0].rect_position.x
-			if element[0].rect_position.y > max_y :
-				max_y = element[0].rect_position.y
-			if element[0].rect_position.x < min_x :
-				min_x = element[0].rect_position.x
-			if element[0].rect_position.y < min_y :
-				min_y = element[0].rect_position.y
-		
-	print("max_x", max_x)
-	print("max_y", max_y)
-	print("min_x", min_x)
-	print("min_y", min_y)
-	return [min_x, min_y, max_x, max_y]
-	
-	
-		
-	
-#		if element[0] is Stroke :
-#			# lancer la fonction _draw setup dans Line.gd
-#			element[0].draw = drawing
-#			# lance la fonction draw() de godot (update() lance draw())
-#			element[0].update()
-#		elif element[0] is Title :
-#			#Draw function for the titles
-#			element[0].draw = drawing
-#			element[0].update()
 
 """
 Draw the geometrical selection area around the selected lines 
@@ -259,20 +260,6 @@ Calls DrawLineContainer()
 Is called when select button is pressed
 """
 func DrawSelectionArea():
-#	Select_rect = Area2D.new()
-#	Select_rect.set_script(load("res://Scripts/Selector.gd"))
-#	Select_rect.connect("SendArea", self, "RetrieveArea")
-#	self.add_child(Select_rect)
-#
-#
-#	var c_shape = CollisionShape2D.new()
-#	var shape = RectangleShape2D.new()
-#	c_shape.shape = shape
-#	shape.extents = Vector2.ZERO
-#	Select_rect.add_child(c_shape)
-#
-#	Select_rect.position = get_global_mouse_position()
-
 	Select_rect = Area2D.new()
 	Select_rect.set_script(load("res://Scripts/Selector.gd"))
 	Select_rect.connect("SendArea", self, "RetrieveArea")
@@ -323,6 +310,8 @@ func DrawLine():
 		# empty lines are added to created_elements
 		created_elements.append(_current_line)
 		commands.append("creation")
+		index_created+=1
+		index_command+=1
 	
 	print(created_elements,_lines.get_child_count())
 	_linecounter.Count = str(_lines.get_child_count())
@@ -371,9 +360,9 @@ func _on_Create_text_pressed():
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	
-	var _mouse_pos = get_global_mouse_position()
-	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
 	
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_Draw_pressed():
@@ -382,8 +371,8 @@ func _on_Draw_pressed():
 	_pm.add_item("Dessin", PopupIds.WRITING)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	
-	var _mouse_pos = get_global_mouse_position()
-	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _draw_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Draw")
+	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - _pm.get_global_rect().size.x, _draw_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):

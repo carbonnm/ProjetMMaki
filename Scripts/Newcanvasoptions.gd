@@ -132,3 +132,10 @@ func _on_DropdownSubsub_item_selected(index):
 func _on_Titleinputbutton_pressed():
 	chosen_name = get_node("Page/Optionmenu/Inputname").new_name
 	
+
+
+
+
+
+func _on_Inputname_text_entered(new_text: String) -> void:
+	_on_BoutonCreer_button_up()
