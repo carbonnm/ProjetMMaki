@@ -15,6 +15,11 @@ func update_zoom(event, threshold):
 			zoom_at_point(1/zoom_speed,mouse_position)
 	elif zoom < ZOOMMAX && (threshold-ZOOMMAX == Vector2.ZERO):
 			zoom_at_point(zoom_speed,mouse_position)
+			
+func DragCamera(Relative:Vector2):
+	position -= Relative
+	
+	emit_signal("zoom_changed", global_position, zoom)
 
 func zoom_at_point(zoom_change, point):
 	var pos0:Vector2 = global_position # camera position

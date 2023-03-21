@@ -31,7 +31,6 @@ func input(event: InputEvent) -> IState:
 	var zoomC2 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_DOWN
 	var zoomC3 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_LEFT && event.alt
 	var zoomC4 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_MIDDLE
-	print(zoomC1 || zoomC2 || zoomC3 || zoomC4)
 	if zoomC1 || zoomC2 || zoomC3 || zoomC4:
 		return zoom
 	

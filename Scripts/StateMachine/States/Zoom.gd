@@ -14,10 +14,10 @@ func input(event: InputEvent) -> IState:
 			# move the camera position relative to where the event input happen if Key_alt
 			# is pressed (to work with laptop pads)
 			if event.alt:
-				canvas.DragCamera(event.relative)
+				canvas._camera.DragCamera(event.relative)
 				
 		# Move the camera position relative to where the event input happen
 		if event.button_mask == BUTTON_MASK_MIDDLE:
-			canvas.DragCamera(event.relative)
+			canvas._camera.DragCamera(event.relative)
 
 	return null

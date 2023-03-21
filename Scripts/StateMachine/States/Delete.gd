@@ -11,9 +11,3 @@ func enter():
 	#emit_signal("Line_count",0)
 	#Updates elements counter 
 	canvas._linecounter.Count = str(canvas._lines.get_child_count())
-
-func input(event: InputEvent) -> IState:
-	return null
-
-func physics_process(_delta: float) -> IState:
-	return null

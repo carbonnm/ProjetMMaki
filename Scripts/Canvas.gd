@@ -27,8 +27,9 @@ onready var states = $StateManager
 export (float) var linewidth = 4.0
 
 # Veriables shared between states
-var selected_lines: Array
 var Select_rect: Area2D
+var selected_lines: Array
+
 var copied_lines: Array
 
 
@@ -94,6 +95,7 @@ func _ready() -> void:
 
 func _on_BackgroundColored_gui_input(event):
 	states.input(event)
+
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
@@ -265,23 +267,6 @@ func UpdateSelectionArea():
 		Select_rect._size = pos2 - pos1
 		Select_rect.update()
 
-func DragCamera(Relative:Vector2):
-	_camera.position -= Relative
-	# Sync background with camera
-	_background.rect_global_position = _camera.global_position - (Vector2(512,300) * _camera.zoom)
-
-func _on_Create_annotation_pressed():
-	pass # Replace with function body.
-
-
-func _on_Group_items_pressed():
-	pass # Replace with function body.
-
-
-func _on_Save_canvas_pressed():
-	pass # Replace with function body.
-
-
 enum PopupIds {
 	CREATE_TITLE = 1
 	CREATE_SUBTITLE = 2
@@ -385,21 +370,3 @@ func _on_PopupMenu_id_pressed(id):
 
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
-	
-
-const LINE := preload("res://Scripts/Line.gd")
-
-func DrawLine(_current_line: Area2D) -> Area2D:
-	# Delete the previous line if it didn't have any points or less than 2.
-	# less than 2 because a bug could occure if you spam left click on a laptop
-	if _current_line != null and is_instance_valid(_current_line):
-		if _current_line._line.points.size() <= 2:
-			_current_line.queue_free()
-		
-	_current_line = LINE.new()
-	_lines.add_child(_current_line)
-	_current_line.Setup()
-	_current_line.set_params(linewidth * _camera.zoom.x, RCC.color, _camera.zoom)
-	_current_line._line.add_point(get_global_mouse_position())
-	
-	return _current_line
