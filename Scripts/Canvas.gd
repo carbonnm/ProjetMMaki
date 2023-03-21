@@ -248,9 +248,8 @@ func _on_Draw_pressed():
 	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
 	_pm.add_item("Dessin", PopupIds.WRITING)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	
-	var _mouse_pos = get_global_mouse_position()
-	_pm.popup(Rect2(_mouse_pos.x, _mouse_pos.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _draw_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Draw")
+	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - _pm.get_global_rect().size.x, _draw_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
