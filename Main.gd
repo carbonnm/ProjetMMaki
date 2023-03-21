@@ -658,7 +658,7 @@ func _on_RightClickContainer_undo():
 	var last_command = _get_last_command()
 	#if we're not at the bottom of the commands list 
 	if last_command :
-		print(last_command)
+		
 		#handles the undo if last operation was a line or text creation
 		#via drawing / create title
 		if not (typeof(last_command) == TYPE_ARRAY):
@@ -673,7 +673,7 @@ func _on_RightClickContainer_undo():
 			for element in last_command:
 				if typeof(element) == TYPE_ARRAY:
 					
-					print(element)
+					
 					#for delete (elements no longer exist)
 					var current_child = _lines.get_children()
 					var index =0
@@ -683,11 +683,11 @@ func _on_RightClickContainer_undo():
 				
 					if not (element[0] in current_child):
 						#print(_lines.get_children())
-						print(1)
+						
 						_lines.add_child(element[1])
 					#for other actions rotate,rescale,... 
 					else:
-						print(2)
+						
 						for child in _lines.get_children():
 							if element[0] == child.name:
 								_lines.remove_child(child)
