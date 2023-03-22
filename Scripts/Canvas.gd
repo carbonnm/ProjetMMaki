@@ -96,6 +96,9 @@ func _ready() -> void:
 func _on_BackgroundColored_gui_input(event):
 	states.input(event)
 
+func _physics_process(delta):
+	states.physics_process(delta)
+
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
