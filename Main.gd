@@ -228,29 +228,18 @@ Parameters :
 drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
-	if drawing :
-		Selection_area = AREASELECTION.new()
-		get_node("Lines").add_child(Selection_area)
-#
-		var corners = get_selection_area_corner()
-		var upper_left = corners[0]
-		var bottom_right = corners[1]
-		var area_size = get_position_area_size()
-		var min_x = area_size[0]
-		var min_y = area_size[1]
-		
-		var area_size_vec = Vector2(bottom_right[0], bottom_right[1])
-		var size_x = bottom_right[0] * 2
-		var size_y = bottom_right[1] * 2
-		var area_position = Vector2(min_x, min_y)
-		#print("position", area_position)
-		
-		Selection_area.position = Vector2(min_x, min_y)
-	
-		Selection_area.set_params(min_x, min_y, size_x, size_y)
-		#Selection_area.draw = drawing
-		#Selection_area.update()
-		
+	for line in selected_lines:
+		# lancer la fonction _draw setup dans Line.gd
+		line[0].draw = drawing
+		# lance la fonction draw() de godot (update() lance draw())
+		line[0].update()
+	for element in selected_lines:
+		print(element[0].is_class("Stroke"))
+		if element[0].is_class("Stroke") == true:
+			# lancer la fonction _draw setup dans Line.gd
+			element[0].draw = drawing
+			# lance la fonction draw() de godot (update() lance draw())
+			element[0].update()
 	
 
 
