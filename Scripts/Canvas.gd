@@ -54,7 +54,7 @@ func _ready() -> void:
 	# Gives states control to the state manager
 	states.init(self)
 	# Create the first snapshot to recover previous step
-	#snapshots = create_snapshot(snapshots)
+	snapshots = create_snapshot(snapshots)
 	
 	# Connect signals
 	
@@ -97,6 +97,8 @@ func _ready() -> void:
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
 
+func _input(event: InputEvent):
+	states.keyboard_input(event)
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)

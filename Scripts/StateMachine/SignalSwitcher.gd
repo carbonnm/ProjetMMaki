@@ -28,7 +28,7 @@ onready var undo: IState = get_node(undo_node)
 onready var redo: IState = get_node(redo_node)
 
 
-func input(event: InputEvent) -> IState:
+func keyboard_input(event: InputEvent) -> IState:
 	# Pass the control to the camera
 	var zoomC1 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_UP
 	var zoomC2 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_DOWN
@@ -36,7 +36,7 @@ func input(event: InputEvent) -> IState:
 	var zoomC4 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_MIDDLE
 	if zoomC1 || zoomC2 || zoomC3 || zoomC4:
 		return zoom
-		
+	
 	# Pass the control to the Undo
 	if Input.is_action_just_pressed("Undo"):
 		return undo

@@ -40,4 +40,5 @@ func physics_process(delta: float) -> IState:
 func switch_signal(state: String) -> IState:
 	return null
 
-
+func keyboard_input(event: InputEvent) -> IState:
+	return null

@@ -44,16 +44,21 @@ Parameters:
 event: The input event to consume. (InputEvent)
 """
 func input(event: InputEvent) -> void:
-	var interrupt_state = get_node("SignalSwitcher").input(event)
+	var new_state = current_state.input(event)
+	if new_state:
+		change_state(new_state)
+
+func keyboard_input(event: InputEvent) -> void:
+	var interrupt_state = current_state.keyboard_input(event)
 	var sleeping_state = current_state
 	if interrupt_state:
 		current_state = interrupt_state
 	
-	var new_state = current_state.input(event)
-	if new_state:
-		change_state(new_state)
-	elif sleeping_state:
-		current_state = sleeping_state
+		var new_state = current_state.input(event)
+		if new_state:
+			change_state(new_state)
+	
+	current_state = sleeping_state
 
 func switch_signal(state: String) -> void:
 	var new_state = current_state.switch_signal(state)

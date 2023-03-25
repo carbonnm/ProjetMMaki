@@ -21,7 +21,7 @@ func input(event: InputEvent) -> IState:
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
 				
-				#canvas.snapshots = canvas.create_snapshot(canvas.snapshots)
+				canvas.snapshots = canvas.create_snapshot(canvas.snapshots)
 				
 	elif event is InputEventMouseMotion:
 		if event.button_mask == BUTTON_MASK_LEFT:
