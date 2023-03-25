@@ -1,7 +1,7 @@
 extends AState
 
 func enter():
-	canvas._action_menu.hide()
+	canvas.detached_RCC.hide()
 	
 	var clines = canvas.Utils.map(get_node("../Copy").copied_lines,canvas.Mimic,"get_first",[])
 	var clines_positions = canvas.Utils.map(clines, canvas.Mimic, "area2D_position", [])
