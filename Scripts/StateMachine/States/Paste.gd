@@ -17,4 +17,4 @@ func enter():
 		if duplarea is Stroke:
 			duplarea._line = duplarea.get_child(0)
 
-
+	canvas.create_snapshot(canvas.snapshots)

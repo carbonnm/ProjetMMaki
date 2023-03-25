@@ -359,6 +359,7 @@ func reload_snapshot(index: int, snapshots: Dictionary) -> Dictionary:
 		var new_elements: Node2D = snapshots["snapshots"][index].duplicate(true)
 		self.add_child(new_elements)
 		_elements = new_elements
+		#self.selected_lines = selected_lines
 		
 		snapshots["current_index"] = index
 	
