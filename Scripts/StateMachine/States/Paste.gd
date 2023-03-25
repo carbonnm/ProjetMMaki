@@ -1,6 +1,6 @@
 extends AState
 
-func enter():
+func enter() -> void:
 	canvas.detached_RCC.hide()
 	
 	var clines = canvas.Utils.map(get_node("../Copy").copied_lines,canvas.Mimic,"get_first",[])
