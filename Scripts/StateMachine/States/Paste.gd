@@ -5,7 +5,7 @@ func enter():
 
 func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
-		var clines = canvas.Utils.map(canvas.copied_lines,canvas.Mimic,"get_first",[])
+		var clines = canvas.Utils.map(get_node("../Copy").copied_lines,canvas.Mimic,"get_first",[])
 		var clines_positions = canvas.Utils.map(clines, canvas.Mimic, "area2D_position", [])
 		var closure = canvas.Utils.get_positions_closure(clines_positions)
 		var center = canvas.Utils.get_positions_mean(closure)
@@ -15,7 +15,7 @@ func input(event: InputEvent) -> IState:
 			var duplarea = Ligne.duplicate()
 		
 			duplarea.position += translation
-			canvas._lines.add_child(duplarea)
+			canvas._elements.add_child(duplarea)
 		
 			if duplarea is Stroke:
 				duplarea._line = duplarea.get_child(0)

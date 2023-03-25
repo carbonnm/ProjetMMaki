@@ -10,7 +10,8 @@ func input(event: InputEvent) -> IState:
 			if event.button_index == BUTTON_LEFT:
 				canvas.DrawSelectionArea()
 		else:
-			if canvas.Select_rect:
+			
+			if canvas.Select_rect != null and is_instance_valid(canvas.Select_rect):
 				canvas.Select_rect.queue_free()
 			
 	elif  event is InputEventMouseMotion:

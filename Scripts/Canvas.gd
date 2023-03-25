@@ -17,7 +17,7 @@ var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 # Get references to childs 
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
-onready var _lines := $Lines
+onready var _elements := $Elements
 onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 onready var _action_menu := $ActionMenu
 onready var _pm = $PopupMenu
@@ -29,9 +29,10 @@ export (float) var linewidth = 4.0
 # Veriables shared between states
 var Select_rect: Area2D
 var selected_lines: Array
-
-var copied_lines: Array
-
+var snapshots: Dictionary = {
+	"snapshots" : [],
+	"current_index" : 0
+}
 
 ###################################################################################################
 #global variables added for default options (making testing from the Main.tscn possible without crash)
@@ -91,14 +92,12 @@ func _ready() -> void:
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
 
-
-
-func _on_BackgroundColored_gui_input(event):
+func _input(event: InputEvent):
 	states.input(event)
 
 func _physics_process(delta):
 	states.physics_process(delta)
-
+	
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
@@ -111,7 +110,7 @@ func create_new_title(chosen_title):
 	var x_pos_title = get_node("Titlemenuaddition").position.x 
 	var y_pos_title = get_node("Titlemenuaddition").position.y 
 	var rtl_position = Vector2(x_pos_title, y_pos_title)
-	get_node("Lines").add_child(rtl)
+	get_node("Elements").add_child(rtl)
 	rtl.set_params(true, str(chosen_title), Vector2(500, 100), rtl_position)
 
 	
@@ -324,3 +323,40 @@ func _on_PopupMenu_id_pressed(id):
 		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
+
+func create_snapshot(snapshots: Dictionary) -> Dictionary:
+	var elements: Node2D = get_match_string_node("Elements", self).duplicate(true)
+	
+	if snapshots["snapshots"].size() <= 10:
+		snapshots["snapshots"].append(elements)
+		
+	else:
+		var out_of_scope: Node2D = snapshots["snapshots"][0]
+		snapshots["snapshots"].remove(0)
+		out_of_scope["snapshots"].queue_free()
+		snapshots["snapshots"].append(elements)
+
+	snapshots["current_index"] = snapshots["snapshots"].size()-1
+	
+	return snapshots
+
+func reload_snapshot(index: int, snapshots: Dictionary) -> Dictionary:
+	
+	if index >= 0 && index < snapshots["snapshots"].size():
+		var elements: Node2D = get_match_string_node("Elements", self)
+		elements.queue_free()
+		
+		var new_elements: Node2D = snapshots["snapshots"][index].duplicate(true)
+		self.add_child(new_elements)
+		_elements = new_elements
+	
+	return snapshots
+	
+func get_match_string_node(expr: String, father: Object) -> Object:
+	var children: Array = father.get_children()
+	for child in children:
+		if child.name.match("*"+expr+"*"):
+			return child
+			
+	return null
