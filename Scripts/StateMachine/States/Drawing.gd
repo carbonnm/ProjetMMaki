@@ -21,6 +21,8 @@ func input(event: InputEvent) -> IState:
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
 				
+				#canvas.snapshots = canvas.create_snapshot(canvas.snapshots)
+				
 	elif event is InputEventMouseMotion:
 		if event.button_mask == BUTTON_MASK_LEFT:
 			_current_line._line.add_point(canvas.get_global_mouse_position())
@@ -31,7 +33,7 @@ func input(event: InputEvent) -> IState:
 ####################################################################################################
 
 func DrawLine(_current_line: Area2D) -> Area2D:
-		
+	
 	_current_line = LINE.new()
 	canvas._elements.add_child(_current_line)
 	_current_line.Setup()

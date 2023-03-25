@@ -18,6 +18,7 @@ var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _elements := $Elements
+onready var detached_RCC := $RightClickContainer
 onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 onready var _action_menu := $ActionMenu
 onready var _pm = $PopupMenu
@@ -52,7 +53,11 @@ func _ready() -> void:
 	# Initialisation
 	# Gives states control to the state manager
 	states.init(self)
+	# Create the first snapshot to recover previous step
+	#snapshots = create_snapshot(snapshots)
+	
 	# Connect signals
+	
 	
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
@@ -92,7 +97,8 @@ func _ready() -> void:
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
 
-func _input(event: InputEvent):
+ 
+func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
 
 func _physics_process(delta):
@@ -342,14 +348,17 @@ func create_snapshot(snapshots: Dictionary) -> Dictionary:
 	return snapshots
 
 func reload_snapshot(index: int, snapshots: Dictionary) -> Dictionary:
-	
+	print(index, snapshots)
 	if index >= 0 && index < snapshots["snapshots"].size():
 		var elements: Node2D = get_match_string_node("Elements", self)
+		print(elements)
 		elements.queue_free()
 		
 		var new_elements: Node2D = snapshots["snapshots"][index].duplicate(true)
 		self.add_child(new_elements)
 		_elements = new_elements
+		
+		snapshots["current_index"] = index
 	
 	return snapshots
 	

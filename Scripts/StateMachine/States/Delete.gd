@@ -2,7 +2,6 @@ extends AState
 
 
 func enter():
-	canvas.create_snapshot(canvas.snapshots)
 	canvas._action_menu.hide()
 	for area in canvas.selected_lines:
 		area[0].queue_free()
