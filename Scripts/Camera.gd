@@ -6,15 +6,7 @@ const ZOOMMAX = Vector2(1000,1000)
 
 export var zoom_speed = 1.1
 
-signal zoom_changed
-
-func ManageInput(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == BUTTON_WHEEL_UP:
-				update_zoom(event, ZOOMMIN)
-			if event.button_index == BUTTON_WHEEL_DOWN:
-				update_zoom(event, ZOOMMAX)
+signal zoom_changed(spos,szoom)
 
 func update_zoom(event, threshold):
 	var mouse_position = event.get_position()
@@ -23,6 +15,11 @@ func update_zoom(event, threshold):
 			zoom_at_point(1/zoom_speed,mouse_position)
 	elif zoom < ZOOMMAX && (threshold-ZOOMMAX == Vector2.ZERO):
 			zoom_at_point(zoom_speed,mouse_position)
+			
+func DragCamera(Relative:Vector2):
+	position -= Relative
+	
+	emit_signal("zoom_changed", global_position, zoom)
 
 func zoom_at_point(zoom_change, point):
 	var pos0:Vector2 = global_position # camera position
@@ -35,4 +32,4 @@ func zoom_at_point(zoom_change, point):
 	zoom = zoom1
 	global_position = pos1
 	
-	emit_signal("zoom_changed")
+	emit_signal("zoom_changed", global_position, zoom)

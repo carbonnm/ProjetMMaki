@@ -25,8 +25,12 @@ func map(array: Array, script: Object, function_name: String, args: Array) -> Ar
 	return mapped_array
 
 """
-Return an array containing the upper-left and the bottom-right corner from
+Return an array containing the upper-left and the bottom-right in this order corner from
 an array of positions.
+
+!!! The upper-left and bottom-right are according to Godot scene representation
+wich has his y axis downside. It means that the upper-left position is lower than 
+bottom-right one, which could be confusing. !!!
 
 Parameters:
 -----------
@@ -64,16 +68,14 @@ func get_positions_closure(array:Array) -> Array:
 	
 	# Cacule les positions extrêmes de l'Array afin de déterminer un cercle
 	# contenant tous les points
-	var extreme: Array = [array[0], array[1]]
-	var max_distance: float = array[0].distance_to(array[1])
-	for index in range(2, array.size()):
-		var distance_to_closure0: float = extreme[0].distance_to(array[index])
-		var distance_to_closure1: float = extreme[1].distance_to(array[index])
-		if distance_to_closure0 > max_distance || distance_to_closure1 > max_distance:
-			if distance_to_closure0 > distance_to_closure1:
-				extreme = [extreme[0],array[index]]
-			else:
-				extreme = [extreme[1],array[index]]
+	var extreme: Array = []
+	var max_distance: float = 0.0
+	for i in range(array.size()):
+		for j in range(i+1, array.size()):
+			var distance_to_closure: float = array[i].distance_to(array[j])
+			if distance_to_closure > max_distance:
+				extreme = [array[i],array[j]]
+				max_distance = distance_to_closure
 	
 	# Calcul des positions n'étant pas reprises dans le rayon du cercle centré
 	# sur les extrêmes afin de recentrer le cercle en prenant compte des autres

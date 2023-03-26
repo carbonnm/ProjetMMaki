@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "IState",
+"class": "AState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/AState.gd"
+}, {
+"base": "Node2D",
+"class": "Canvas",
+"language": "GDScript",
+"path": "res://Scripts/Canvas.gd"
+}, {
 "base": "Reference",
 "class": "GutHookScript",
 "language": "GDScript",
@@ -18,6 +28,11 @@ _global_script_classes=[ {
 "class": "GutTest",
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
+}, {
+"base": "Node",
+"class": "IState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/IState.gd"
 }, {
 "base": "Node",
 "class": "Rotation",
@@ -35,8 +50,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Title.gd"
 } ]
 _global_script_class_icons={
+"AState": "",
+"Canvas": "",
 "GutHookScript": "",
 "GutTest": "",
+"IState": "",
 "Rotation": "",
 "Stroke": "",
 "Title": ""
@@ -106,6 +124,23 @@ ZoomImage={
 DeZoomImage={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":61,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Undo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Redo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":89,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Zoom={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":16777349,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":16777347,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 undo={

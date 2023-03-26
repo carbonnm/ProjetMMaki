@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/StateMachine/States/Selection.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/StateMachine/SignalSwitcher.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/StateMachine/States/Zoom.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/StateMachine/States/Rotation.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/StateMachine/States/DragAndDrop.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/StateMachine/States/MoveCanvas.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/StateMachine/States/Rescale.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/StateMachine/States/Delete.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/StateMachine/States/Copy.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/StateMachine/States/Paste.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/StateMachine/States/Undo.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/StateMachine/States/Redo.gd" type="Script" id=15]
+
+[node name="StateManager" type="Node"]
+script = ExtResource( 1 )
+starting_state = NodePath("SignalSwitcher/Drawing")
+
+[node name="SignalSwitcher" type="Node" parent="."]
+script = ExtResource( 4 )
+zoom_node = NodePath("Zoom")
+move_canvas_node = NodePath("MoveCanvas")
+drawing_node = NodePath("Drawing")
+selection_node = NodePath("Selection")
+copy_node = NodePath("Copy")
+paste_node = NodePath("Paste")
+delete_node = NodePath("Delete")
+drag_and_drop_node = NodePath("DragAndDrop")
+rescale_node = NodePath("Rescale")
+rotation_node = NodePath("Rotation")
+undo_node = NodePath("Undo")
+redo_node = NodePath("Redo")
+
+[node name="Zoom" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 5 )
+signal_switcher_node = NodePath("..")
+
+[node name="MoveCanvas" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 8 )
+signal_switcher_node = NodePath("..")
+
+[node name="Drawing" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 2 )
+signal_switcher_node = NodePath("..")
+
+[node name="Selection" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 3 )
+signal_switcher_node = NodePath("..")
+
+[node name="Copy" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 11 )
+signal_switcher_node = NodePath("..")
+
+[node name="Paste" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 12 )
+signal_switcher_node = NodePath("..")
+
+[node name="Delete" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 10 )
+signal_switcher_node = NodePath("..")
+
+[node name="DragAndDrop" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 7 )
+signal_switcher_node = NodePath("..")
+
+[node name="Rescale" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 9 )
+signal_switcher_node = NodePath("..")
+
+[node name="Rotation" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 6 )
+signal_switcher_node = NodePath("..")
+
+[node name="Undo" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 13 )
+signal_switcher_node = NodePath("..")
+
+[node name="Redo" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 15 )
+signal_switcher_node = NodePath("..")

@@ -5,6 +5,7 @@ var c_shape: CollisionShape2D
 var shape: RectangleShape2D
 var zoom:Vector2
 var HitBoxs:Array
+var global_corners: Array
 
 var draw:bool = false
 var skipready:bool = false
@@ -71,6 +72,7 @@ center : Mean position of points in line2D.
 """
 func get_line2D_center():
 	var corners = get_line2D_corner()
+	global_corners = [corners[0]+global_position,corners[1]+global_position]
 	var upper_left = corners[0]
 	var bottom_down = corners[1]
 	return (upper_left+bottom_down)/2
@@ -101,3 +103,15 @@ func Curve2D_Transformer(_camera):
 	curve = null
 	self.CreateCollisions()
 
+func get_corners_counting_rotation():
+	var positions:Array = []
+	for point in _line.points:
+		positions.append(Vector2(cos(rotation),sin(rotation))*point + global_position)
+
+	var upper_left = -1*Vector2.INF
+	var bottom_right = Vector2.INF
+	for pos in positions:
+		upper_left = Vector2(max(upper_left.x,pos.x),max(upper_left.y,pos.y))
+		bottom_right = Vector2(min(bottom_right.x,pos.x),min(bottom_right.y,pos.y))
+	
+	return [upper_left,bottom_right]
