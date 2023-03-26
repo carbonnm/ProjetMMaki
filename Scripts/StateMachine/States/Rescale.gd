@@ -16,6 +16,3 @@ func input(event: InputEvent) -> IState:
 			canvas.Rescale.rescale(area2D_L,mouse_position,mouse_relative)
 	
 	return null
-
-func physics_process(_delta: float) -> IState:
-	return null

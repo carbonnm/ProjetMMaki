@@ -135,7 +135,7 @@ drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
-		if element[0] is AreaSelection :
+		if element[0] is AreaSelection:
 			element[0].draw = drawing
 			element[0].update()
 

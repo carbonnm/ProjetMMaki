@@ -19,8 +19,9 @@ func init(canvas: Canvas) -> void:
 		children[-1].canvas = canvas
 		children = children[-1].get_children() + children
 		children.pop_back()
-			
+	
 	change_state(get_node(starting_state))
+	previous_state = current_state
 
 """
 Function called every physics frame (every time the physic engine update). It
@@ -51,15 +52,19 @@ func input(event: InputEvent) -> void:
 
 func keyboard_input(event: InputEvent) -> void:
 	var interrupt_state = current_state.keyboard_input(event)
-	var sleeping_state = current_state
 	if interrupt_state:
+		var sleeping_state = current_state
+		previous_state = sleeping_state
 		current_state = interrupt_state
 	
 		var new_state = current_state.input(event)
 		if new_state:
+			sleeping_state.exit()
 			change_state(new_state)
-	
-	current_state = sleeping_state
+		else:
+			current_state.exit()
+			previous_state = current_state
+			current_state = sleeping_state
 
 func switch_signal(state: String) -> void:
 	var new_state = current_state.switch_signal(state)
@@ -68,7 +73,6 @@ func switch_signal(state: String) -> void:
 
 
 func switch_to_previous_state() -> void:
-	print("blob")
 	var new_state = current_state.switch_to_previous_state()
 	if new_state:
 		change_state(new_state)
@@ -86,8 +90,8 @@ func change_state(new_state: IState) -> void:
 
 	previous_state = current_state
 	current_state = new_state
-	#print(current_state)
 	current_state.enter()
+	print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
 
 
 func _on_Selection_pressed():

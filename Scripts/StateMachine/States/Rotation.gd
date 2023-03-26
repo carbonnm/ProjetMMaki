@@ -14,7 +14,5 @@ func input(event: InputEvent) -> IState:
 			var mouse_position = canvas.get_global_mouse_position()
 			var mouse_relative = event.relative
 			canvas.Rotation.rotation(area2D_L,mouse_position,mouse_relative)
-	return null
-
-func physics_process(_delta: float) -> IState:
+	
 	return null

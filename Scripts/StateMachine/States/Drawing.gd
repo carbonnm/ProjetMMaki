@@ -23,7 +23,7 @@ func input(event: InputEvent) -> IState:
 				if _current_line != null and is_instance_valid(_current_line):
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
-				return self		
+				return self
 				
 	elif event is InputEventMouseMotion:
 		if event.button_mask == BUTTON_MASK_LEFT:
