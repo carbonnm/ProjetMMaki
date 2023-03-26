@@ -386,9 +386,6 @@ margin_bottom = 20.0
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
 
-[node name="SignalSwitcher" parent="StateManager" index="0"]
-group_node = NodePath("")
-
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_text_pressed"]
