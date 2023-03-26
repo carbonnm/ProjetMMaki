@@ -335,8 +335,10 @@ func _on_PopupMenu_id_pressed(id):
 
 func create_snapshot(snapshots: Dictionary) -> Dictionary:
 	var elements: Node2D = get_match_string_node("Elements", self).duplicate()
-	#print("size snapshots", snapshots["snapshots"].size())
-	#print("snapshot", snapshots["snapshots"])
+	
+	if snapshots["current_index"] != snapshots["snapshots"].size()-1 and snapshots["snapshots"] != [] :
+		snapshots["snapshots"].resize(snapshots["current_index"]+1)
+	
 	if snapshots["snapshots"].size() <= 10:
 		snapshots["snapshots"].append(elements)
 		
