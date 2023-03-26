@@ -4,6 +4,7 @@ extends Node
 export (NodePath) var starting_state
 
 var current_state: IState
+var previous_state: IState
 
 """
 Initialize the state manager with the starting state.
@@ -65,6 +66,13 @@ func switch_signal(state: String) -> void:
 	if new_state:
 		change_state(new_state)
 
+
+func switch_to_previous_state() -> void:
+	print("blob")
+	var new_state = current_state.switch_to_previous_state()
+	if new_state:
+		change_state(new_state)
+
 """
 Update the state of the state manager.
 
@@ -75,9 +83,10 @@ new_state: The new state to assign to the state manager. (IState)
 func change_state(new_state: IState) -> void:
 	if current_state:
 		current_state.exit()
-	
+
+	previous_state = current_state
 	current_state = new_state
-	print(current_state)
+	#print(current_state)
 	current_state.enter()
 
 

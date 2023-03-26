@@ -47,6 +47,10 @@ func keyboard_input(event: InputEvent) -> IState:
 	
 	return null
 
+func switch_to_previous_state() -> IState:
+	print("previous", get_node("../../StateManager").previous_state)
+	return get_node("../../StateManager").previous_state
+
 func switch_signal(state: String) -> IState:
 	match state:
 		"MoveCanvas":

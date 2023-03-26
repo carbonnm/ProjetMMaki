@@ -21,7 +21,7 @@ starting_state = NodePath("SignalSwitcher/Drawing")
 
 [node name="SignalSwitcher" type="Node" parent="."]
 script = ExtResource( 4 )
-zoom_node = NodePath("Zoom")
+zoom_node = NodePath("Camera")
 move_canvas_node = NodePath("MoveCanvas")
 drawing_node = NodePath("Drawing")
 selection_node = NodePath("Selection")
@@ -34,7 +34,7 @@ rotation_node = NodePath("Rotation")
 undo_node = NodePath("Undo")
 redo_node = NodePath("Redo")
 
-[node name="Zoom" type="Node" parent="SignalSwitcher"]
+[node name="Camera" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
 signal_switcher_node = NodePath("..")
 

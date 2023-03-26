@@ -1,7 +1,6 @@
 extends AState
 
-
-func enter():
+func enter() -> void:
 	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/hand-regular.svg"))
 
 func input(event: InputEvent) -> IState:

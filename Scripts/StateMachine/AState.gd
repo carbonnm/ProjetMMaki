@@ -14,3 +14,6 @@ func switch_signal(state: String) -> IState:
 
 func keyboard_input(event: InputEvent) -> IState:
 	return signal_switcher.keyboard_input(event)
+
+func switch_to_previous_state() -> IState:
+	return signal_switcher.switch_to_previous_state()
