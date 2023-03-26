@@ -1,4 +1,4 @@
-extends Area2D
+class_name AreaSelection extends Area2D
 
 var size_area : Vector2
 var area_pos
@@ -36,6 +36,7 @@ Launched by the uddate function
 func _draw() -> void:
 	if draw :
 		draw_rect(Rect2(-size_area_x/2, -size_area_y/2, size_area_x, size_area_y), Color.aqua, false, 4)
+		#draw_rect(Rect2(0, 0, size_area_x, size_area_y), Color.aqua, false, 4)
 
 """
 Creation of the collisionshape
@@ -63,7 +64,6 @@ Returns :
 """
 func get_area2D_center() -> Vector2 :
 	var center = (upper_left_area + bottom_right_area + (position*2))/2
-	print("centre", center)
 	return center
 
 

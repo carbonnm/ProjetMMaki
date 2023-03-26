@@ -29,6 +29,7 @@ export (float) var linewidth = 4.0
 
 # Veriables shared between states
 var Select_rect: Area2D
+var Selection_area : Area2D
 var selected_lines: Array
 var snapshots: Dictionary = {
 	"snapshots" : [],
@@ -134,15 +135,35 @@ drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
-		if element[0] is Stroke :
-			# lancer la fonction _draw setup dans Line.gd
-			element[0].draw = drawing
-			# lance la fonction draw() de godot (update() lance draw())
-			element[0].update()
-		elif element[0] is Title :
-			#Draw function for the titles
+		if element[0] is AreaSelection :
 			element[0].draw = drawing
 			element[0].update()
+
+
+"""
+Create and append the selection area to selected_lines 
+"""
+func appendSelectionArea() -> void :
+	var corners = get_selection_area_corner()
+	var upper_left = corners[0]
+	var bottom_right = corners[1]
+	var area_size = get_position_area_size()
+	var min_x = area_size[0]
+	var min_y = area_size[1]
+	var sLines = Utils.map(selected_lines, Mimic, "get_first", [])
+	var sPosition = Utils.map(sLines, Mimic, "area2D_position", [])
+	print(sPosition)
+	var closure = Utils.get_positions_closure(sPosition)
+	var center = Utils.get_positions_mean(closure)
+		
+	var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
+	var size_x = bottom_right[0] * 2
+	var size_y = bottom_right[1] * 2
+		
+	Selection_area.set_params(min_x, min_y, size_x, size_y, upper_left, bottom_right)
+	Selection_area.set_param(center/2)
+	Selection_area.create_selection_area(selected_lines)
+
 
 
 """
@@ -150,6 +171,14 @@ Calls DrawLineContainer whith the drawing bool to true
 """
 func RetrieveArea(areas:Array):
 	selected_lines = areas.duplicate()
+	
+	Selection_area = AREASELECTION.new()
+	get_node("Elements").add_child(Selection_area)
+	appendSelectionArea()
+	
+	selected_lines.append([Selection_area, 0])
+	print("selectedLines", selected_lines)
+	
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		_action_menu.show()
