@@ -13,6 +13,7 @@ export (NodePath) var rescale_node
 export (NodePath) var rotation_node
 export (NodePath) var undo_node
 export (NodePath) var redo_node
+export (NodePath) var group_node
 
 onready var zoom: IState = get_node(zoom_node)
 onready var move_canvas: IState = get_node(move_canvas_node)
@@ -26,6 +27,7 @@ onready var rescale: IState = get_node(rescale_node)
 onready var rotation: IState = get_node(rotation_node)
 onready var undo: IState = get_node(undo_node)
 onready var redo: IState = get_node(redo_node)
+onready var group: IState = get_node(group_node)
 
 
 func keyboard_input(event: InputEvent) -> IState:
@@ -51,6 +53,7 @@ func switch_to_previous_state() -> IState:
 	return get_node("../../StateManager").previous_state
 
 func switch_signal(state: String) -> IState:
+	print("state",state)
 	match state:
 		"MoveCanvas":
 			return move_canvas
@@ -74,6 +77,9 @@ func switch_signal(state: String) -> IState:
 			return undo
 		"Redo":
 			return redo
+		"Group":
+			print(group)
+			return group
 		_:
 			return null
 

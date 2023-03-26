@@ -253,7 +253,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 314.0
+margin_right = 312.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -324,10 +324,14 @@ __meta__ = {
 
 [node name="ActionMenu" type="VBoxContainer" parent="."]
 visible = false
-margin_left = 861.0
-margin_top = 140.0
-margin_right = 982.0
-margin_bottom = 282.0
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 847.0
+margin_top = 148.0
+margin_right = 1023.0
+margin_bottom = 514.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -366,6 +370,11 @@ margin_bottom = 366.0
 text = "Rotation"
 icon = ExtResource( 19 )
 
+[node name="Group" type="Button" parent="ActionMenu"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Group"
+
 [node name="Titlemenuaddition" parent="." instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 299, 105 )
@@ -376,6 +385,9 @@ margin_right = 20.0
 margin_bottom = 20.0
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
+
+[node name="SignalSwitcher" parent="StateManager" index="0"]
+group_node = NodePath("")
 
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
@@ -402,5 +414,6 @@ margin_bottom = 20.0
 [connection signal="pressed" from="ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]
 [connection signal="pressed" from="ActionMenu/Copy" to="StateManager" method="_on_Copy_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="StateManager" method="_on_Rotation_pressed"]
+[connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 
 [editable path="StateManager"]

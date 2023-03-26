@@ -120,3 +120,7 @@ func _on_Delete_pressed():
 
 func _on_MoveCanvas_pressed():
 	switch_signal("MoveCanvas")
+
+
+func _on_Group_pressed():
+	switch_signal("Group")

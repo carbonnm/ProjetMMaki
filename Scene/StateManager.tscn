@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Copy.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/StateMachine/States/Paste.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/StateMachine/States/Undo.gd" type="Script" id=13]
+[ext_resource path="res://Scene/Group.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/StateMachine/States/Redo.gd" type="Script" id=15]
 
 [node name="StateManager" type="Node"]
@@ -33,6 +34,7 @@ rescale_node = NodePath("Rescale")
 rotation_node = NodePath("Rotation")
 undo_node = NodePath("Undo")
 redo_node = NodePath("Redo")
+group_node = NodePath("Group")
 
 [node name="Camera" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
@@ -80,4 +82,8 @@ signal_switcher_node = NodePath("..")
 
 [node name="Redo" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 15 )
+signal_switcher_node = NodePath("..")
+
+[node name="Group" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 14 )
 signal_switcher_node = NodePath("..")
