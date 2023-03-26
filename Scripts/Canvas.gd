@@ -62,7 +62,6 @@ func _ready() -> void:
 	
 	#connects the signal on new title input 
 	#and calls the function taking care of effectively creating it 
-	get_node("Titlemenuaddition").connect("new_title", self, "create_new_title")
 	
 	#Canvas name recuperation
 	var canvas_name = SceneSwitcher.get_param("namecanvas")
@@ -152,7 +151,6 @@ func appendSelectionArea() -> void :
 	var min_y = area_size[1]
 	var sLines = Utils.map(selected_lines, Mimic, "get_first", [])
 	var sPosition = Utils.map(sLines, Mimic, "area2D_position", [])
-	print(sPosition)
 	var closure = Utils.get_positions_closure(sPosition)
 	var center = Utils.get_positions_mean(closure)
 		
@@ -177,7 +175,6 @@ func RetrieveArea(areas:Array):
 	appendSelectionArea()
 	
 	selected_lines.append([Selection_area, 0])
-	print("selectedLines", selected_lines)
 	
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:

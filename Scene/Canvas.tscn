@@ -253,7 +253,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 312.0
+margin_right = 314.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -412,5 +412,6 @@ margin_bottom = 20.0
 [connection signal="pressed" from="ActionMenu/Copy" to="StateManager" method="_on_Copy_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="StateManager" method="_on_Rotation_pressed"]
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
+[connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
 
 [editable path="StateManager"]

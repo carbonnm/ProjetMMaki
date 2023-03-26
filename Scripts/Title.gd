@@ -66,8 +66,6 @@ Returns :
 center : Mean position of points in line2D.
 """
 func get_rtl_center():
-	print(_rtl.rect_global_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2))
-	print(_rtl.rect_global_position)
 	return (_rtl.rect_global_position + Vector2(_rtl.rect_size.x/2, _rtl.rect_size.y/2))
 
 """

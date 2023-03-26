@@ -37,7 +37,13 @@ delta: The time elapsed since the last physics frame, in seconds. (float)
 func physics_process(delta: float) -> IState:
 	return null
 
+func parametrized_call(args: Array) -> IState:
+	return null
+
 func switch_signal(state: String) -> IState:
+	return null
+	
+func switch_to_previous_state() -> IState:
 	return null
 
 func keyboard_input(event: InputEvent) -> IState:

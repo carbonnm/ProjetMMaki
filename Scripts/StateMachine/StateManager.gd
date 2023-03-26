@@ -71,6 +71,14 @@ func switch_signal(state: String) -> void:
 	if new_state:
 		change_state(new_state)
 
+func switch_signal_with_arguments(state: String, args: Array) -> void:
+	var new_state = current_state.switch_signal(state)
+	if new_state:
+		current_state.exit()
+		current_state = new_state
+		new_state = current_state.parametrized_call(args)
+		if new_state:
+			change_state(new_state)
 
 func switch_to_previous_state() -> void:
 	var new_state = current_state.switch_to_previous_state()
@@ -91,7 +99,7 @@ func change_state(new_state: IState) -> void:
 	previous_state = current_state
 	current_state = new_state
 	current_state.enter()
-	print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
+	#print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
 
 
 func _on_Selection_pressed():
@@ -124,3 +132,6 @@ func _on_MoveCanvas_pressed():
 
 func _on_Group_pressed():
 	switch_signal("Group")
+
+func _on_Titlemenuaddition_new_title(chosen_title):
+	switch_signal_with_arguments("CreateTitle", [chosen_title])
