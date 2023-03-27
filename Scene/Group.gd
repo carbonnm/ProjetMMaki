@@ -6,15 +6,14 @@ var ungroup : Dictionary = {
 }
 
 func enter() -> void:
-	canvas._action_menu.hide()	
+	canvas._action_menu.hide()
+	ungroup = canvas.create_snapshot(ungroup)
 #	input(null)
 	
 func exit() :
 	canvas.create_snapshot(canvas.snapshots)
 
 func input(event:InputEvent) -> IState: 
-	ungroup = canvas.create_snapshot(ungroup)
-	
 	var New_Group = Area2D.new()
 	canvas._elements.add_child(New_Group)
 	New_Group.name = "NewGroup"
@@ -63,7 +62,8 @@ func input(event:InputEvent) -> IState:
 #				New_Group.add_child(duplicate_shape)
 #	for element in element_to_copy :
 #		element[0].queue_free()
-	print("HI1")
+	canvas.selected_lines = [[New_Group,0]]
+	
 	return switch_to_previous_state()
 
 

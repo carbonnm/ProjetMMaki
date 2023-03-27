@@ -7,7 +7,6 @@ const LINE := preload("res://Scripts/Line.gd")
 func enter() -> void:
 	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/pencil-solid.svg"))
 
-
 func exit() -> void:
 	canvas.snapshots = canvas.create_snapshot(canvas.snapshots)
 

@@ -23,7 +23,7 @@ starting_state = NodePath("SignalSwitcher/Drawing")
 
 [node name="SignalSwitcher" type="Node" parent="."]
 script = ExtResource( 4 )
-zoom_node = NodePath("Camera")
+camera_node = NodePath("Camera")
 move_canvas_node = NodePath("MoveCanvas")
 drawing_node = NodePath("Drawing")
 selection_node = NodePath("Selection")

@@ -1,7 +1,7 @@
 extends IState
 
 # Selection nodes to set with the Godot engine.
-export (NodePath) var zoom_node
+export (NodePath) var camera_node
 export (NodePath) var move_canvas_node
 export (NodePath) var drawing_node
 export (NodePath) var selection_node
@@ -16,7 +16,7 @@ export (NodePath) var redo_node
 export (NodePath) var group_node
 export (NodePath) var create_title_node
 
-onready var zoom: IState = get_node(zoom_node)
+onready var camera: IState = get_node(camera_node)
 onready var move_canvas: IState = get_node(move_canvas_node)
 onready var drawing: IState = get_node(drawing_node)
 onready var selection: IState = get_node(selection_node)
@@ -38,7 +38,7 @@ func keyboard_input(event: InputEvent) -> IState:
 	var zoomC3 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_LEFT && event.alt
 	var zoomC4 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_MIDDLE
 	if zoomC1 || zoomC2 || zoomC3 || zoomC4:
-		return zoom
+		return camera
 	
 	# Pass the control to the Undo
 	if Input.is_action_just_pressed("Undo"):

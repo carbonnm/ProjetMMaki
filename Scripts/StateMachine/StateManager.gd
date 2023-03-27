@@ -56,9 +56,12 @@ func keyboard_input(event: InputEvent) -> void:
 		var sleeping_state = current_state
 		previous_state = sleeping_state
 		current_state = interrupt_state
+		current_state.enter()
 	
 		var new_state = current_state.input(event)
-		if new_state:
+		if not new_state:
+			sleeping_state.exit()
+		elif new_state != sleeping_state:
 			sleeping_state.exit()
 			change_state(new_state)
 		else:
@@ -75,6 +78,7 @@ func switch_signal_with_arguments(state: String, args: Array) -> void:
 	var new_state = current_state.switch_signal(state)
 	if new_state:
 		current_state.exit()
+		previous_state = current_state
 		current_state = new_state
 		new_state = current_state.parametrized_call(args)
 		if new_state:
@@ -128,7 +132,6 @@ func _on_Delete_pressed():
 
 func _on_MoveCanvas_pressed():
 	switch_signal("MoveCanvas")
-
 
 func _on_Group_pressed():
 	switch_signal("Group")

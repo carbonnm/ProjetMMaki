@@ -17,7 +17,6 @@ InputEventMouseMotion. (float)
 func rotation(area2D_L, mouse_position, mouse_relative):
 	# Transform Area2D_L to have an Array of Area2D's positions
 	var area2D_L_positions = Utils.map(area2D_L, Mimic, "area2D_position", [])
-	
 	# Compute the central position of the circle surronding Area2D's
 	var closure = Utils.get_positions_closure(area2D_L_positions)
 	var center = Utils.get_positions_mean(closure)

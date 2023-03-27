@@ -10,6 +10,3 @@ func input(event: InputEvent) -> IState:
 		if event.scancode == KEY_Y and Input.is_key_pressed(KEY_CONTROL):
 			canvas.reload_snapshot(canvas.snapshots["current_index"]+1,canvas.snapshots)
 	return null
-
-func physics_process(_delta: float) -> IState:
-	return null
