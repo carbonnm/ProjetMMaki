@@ -19,6 +19,7 @@ func switch_signal(state: String) -> IState:
 	return signal_switcher.switch_signal(state)
 
 func switch_to_previous_state() -> IState:
+	print("SWITCHY")
 	return signal_switcher.switch_to_previous_state()
 
 func keyboard_input(event: InputEvent) -> IState:
