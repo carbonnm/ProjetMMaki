@@ -364,14 +364,14 @@ func create_snapshot(snapshots: Dictionary) -> Dictionary:
 	
 	if snapshots["current_index"] != snapshots["snapshots"].size()-1 and snapshots["snapshots"] != [] :
 		snapshots["snapshots"].resize(snapshots["current_index"]+1)
-	
+	print(snapshots)
 	if snapshots["snapshots"].size() <= 10:
 		snapshots["snapshots"].append(elements)
-		
+	
 	else:
 		var out_of_scope: Node2D = snapshots["snapshots"][0]
 		snapshots["snapshots"].remove(0)
-		out_of_scope["snapshots"].queue_free()
+		out_of_scope.queue_free()
 		snapshots["snapshots"].append(elements)
 
 	snapshots["current_index"] = snapshots["snapshots"].size()-1
