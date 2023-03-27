@@ -6,14 +6,14 @@ var ungroup : Dictionary = {
 }
 
 func enter() -> void:
-	canvas._action_menu.hide()	
+	canvas._action_menu.hide()
+	ungroup = canvas.create_snapshot(ungroup)
 #	input(null)
 	
 func exit() :
 	canvas.create_snapshot(canvas.snapshots)
 
 func input(event:InputEvent) -> IState: 
-	ungroup = canvas.create_snapshot(ungroup)
 	
 	var New_Group = Area2D.new()
 	canvas._elements.add_child(New_Group)
@@ -40,8 +40,7 @@ func input(event:InputEvent) -> IState:
 			print("IsTitle")
 			element[0].get_parent().remove_child(element[0])
 			New_Group.add_child(element[0])
-		
-#			element[0]._line = element
+			
 	New_Group.position = New_Group.get_child(0).position
 	for child in New_Group.get_children():
 		child.position -= New_Group.position
@@ -53,17 +52,9 @@ func input(event:InputEvent) -> IState:
 				shape.position += child.position
 	
 	CenterGroup(New_Group)
-	
-#		element[0].queue_free()
-		
-#		var children = element[0].get_children()
-#		for shape in  children:
-#			if shape is CollisionShape2D :
-#				var duplicate_shape = shape.duplicate()
-#				New_Group.add_child(duplicate_shape)
-#	for element in element_to_copy :
-#		element[0].queue_free()
-	print("HI1")
+	canvas.selected_lines = [[New_Group,0]]
+	print("select",canvas.selected_lines)
+	print("new_group.position",New_Group.position)
 	return switch_to_previous_state()
 
 

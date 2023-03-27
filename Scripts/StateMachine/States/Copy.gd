@@ -4,7 +4,7 @@ var copied_lines: Array
 
 func enter() -> void:
 	canvas._action_menu.hide()
-	input(null)
+#	input(null)
 	
 func input(event: InputEvent) -> IState:
 	if canvas.selected_lines != []:
