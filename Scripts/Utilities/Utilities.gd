@@ -63,7 +63,6 @@ Returns:
 closure_positions: Array containing closure positions of the array of points. (Array)
 """
 func get_positions_closure(array:Array) -> Array:
-	print("array",array)
 	if array.size() <= 2:
 		return array
 	
