@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Scene/Group.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/StateMachine/States/Redo.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/StateMachine/States/CreateTitle.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/StateMachine/States/Fusion.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/StateMachine/States/Ungroup.gd" type="Script" id=18]
 
 [node name="StateManager" type="Node"]
 script = ExtResource( 1 )
@@ -36,6 +38,8 @@ rotation_node = NodePath("Rotation")
 undo_node = NodePath("Undo")
 redo_node = NodePath("Redo")
 group_node = NodePath("Group")
+ungroup_node = NodePath("Ungroup")
+fusion_node = NodePath("Fusion")
 create_title_node = NodePath("CreateTitle")
 
 [node name="Camera" type="Node" parent="SignalSwitcher"]
@@ -88,6 +92,14 @@ signal_switcher_node = NodePath("..")
 
 [node name="Group" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 14 )
+signal_switcher_node = NodePath("..")
+
+[node name="Ungroup" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 18 )
+signal_switcher_node = NodePath("..")
+
+[node name="Fusion" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 17 )
 signal_switcher_node = NodePath("..")
 
 [node name="CreateTitle" type="Node" parent="SignalSwitcher"]

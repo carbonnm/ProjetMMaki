@@ -14,6 +14,8 @@ export (NodePath) var rotation_node
 export (NodePath) var undo_node
 export (NodePath) var redo_node
 export (NodePath) var group_node
+export (NodePath) var ungroup_node
+export (NodePath) var fusion_node
 export (NodePath) var create_title_node
 
 onready var camera: IState = get_node(camera_node)
@@ -29,6 +31,8 @@ onready var rotation: IState = get_node(rotation_node)
 onready var undo: IState = get_node(undo_node)
 onready var redo: IState = get_node(redo_node)
 onready var group: IState = get_node(group_node)
+onready var ungroup: IState = get_node(ungroup_node) 
+onready var fusion: IState = get_node(fusion_node)
 onready var create_title: IState = get_node(create_title_node)
 
 func keyboard_input(event: InputEvent) -> IState:
@@ -79,6 +83,10 @@ func switch_signal(state: String) -> IState:
 			return redo
 		"Group":
 			return group
+		"Ungroup":
+			return ungroup
+		"Fusion":
+			return fusion
 		"CreateTitle":
 			return create_title
 		_:
