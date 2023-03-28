@@ -387,8 +387,6 @@ icon = ExtResource( 32 )
 
 [node name="Titlemenuaddition" parent="." instance=ExtResource( 8 )]
 visible = false
-position = Vector2( 299, 105 )
-scale = Vector2( 0.4, 0.4 )
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_right = 20.0

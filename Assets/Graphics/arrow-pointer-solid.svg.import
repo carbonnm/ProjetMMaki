@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow-pointer-solid.svg-57fea0a26666483dedb0aaf84d163703.stex"
+path="res://.import/arrow-pointer-solid.svg-2e376fa23f0f2d45b91bfd04701a76fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/Image/arrow-pointer-solid.svg"
-dest_files=[ "res://.import/arrow-pointer-solid.svg-57fea0a26666483dedb0aaf84d163703.stex" ]
+source_file="res://Assets/Graphics/arrow-pointer-solid.svg"
+dest_files=[ "res://.import/arrow-pointer-solid.svg-2e376fa23f0f2d45b91bfd04701a76fa.stex" ]
 
 [params]
 
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false
-svg/scale=0.1
+svg/scale=1.0

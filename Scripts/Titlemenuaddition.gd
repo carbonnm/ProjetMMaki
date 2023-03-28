@@ -1,10 +1,10 @@
-extends Node2D
+extends Control
 
 # Signal to communicate what title has been chosen
 signal new_title(chosen_title)
 var chosen_title = ""
 
-var type_title 
+var type_title 	
 
 
 func _ready():

@@ -115,8 +115,8 @@ func create_new_title(chosen_title):
 	#which was set from the retrieved position of the right-click
 	
 	var rtl = RTL.new()
-	var x_pos_title = get_node("Titlemenuaddition").position.x 
-	var y_pos_title = get_node("Titlemenuaddition").position.y 
+	var x_pos_title = get_node("Titlemenuaddition").rect_position.x 
+	var y_pos_title = get_node("Titlemenuaddition").rect_position.y 
 	var rtl_position = Vector2(x_pos_title, y_pos_title)
 	get_node("Elements").add_child(rtl)
 	rtl.set_params(true, str(chosen_title), Vector2(500, 100), rtl_position)
@@ -176,11 +176,11 @@ Calls DrawLineContainer whith the drawing bool to true
 func RetrieveArea(areas:Array):
 	selected_lines = areas.duplicate()
 	
-	Selection_area = AREASELECTION.new()
-	get_node("Elements").add_child(Selection_area)
-	appendSelectionArea()
-	
-	selected_lines.append([Selection_area, 0])
+#	Selection_area = AREASELECTION.new()
+#	get_node("Elements").add_child(Selection_area)
+#	appendSelectionArea()
+#
+#	selected_lines.append([Selection_area, 0])
 	
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
@@ -310,8 +310,8 @@ func _on_PopupMenu_id_pressed(id):
 		var _mouse_pos = get_global_mouse_position()
 		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
 		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
-		get_node("Titlemenuaddition").position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
-		get_node("Titlemenuaddition").position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
+		get_node("Titlemenuaddition").rect_position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").rect_position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
@@ -330,8 +330,8 @@ func _on_PopupMenu_id_pressed(id):
 		#Puts the title menu addition where it was clicked on the screen 
 		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
 		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
-		get_node("Titlemenuaddition").position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
-		get_node("Titlemenuaddition").position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
+		get_node("Titlemenuaddition").rect_position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").rect_position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
 		
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
@@ -351,8 +351,8 @@ func _on_PopupMenu_id_pressed(id):
 		#Puts the title menu addition where it was clicked on the screen 
 		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
 		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
-		get_node("Titlemenuaddition").position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
-		get_node("Titlemenuaddition").position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
+		get_node("Titlemenuaddition").rect_position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
+		get_node("Titlemenuaddition").rect_position.y = _camera.get_camera_position().y - (size_title_menu_y/5)
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
