@@ -96,6 +96,8 @@ func _ready() -> void:
 	
 	#sets the background color of the canvas to the chosen one in the menu
 	get_node("BackgroundColored").color = color_background
+	
+	
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
@@ -405,3 +407,20 @@ func get_match_string_node(expr: String, father: Object) -> Object:
 			return child
 			
 	return null
+
+
+func _on_Save_canvas_pressed() -> void:
+	var packed_scene = PackedScene.new()
+	
+	for child in Utils.get_all_children(_elements):
+		child.set_owner(_elements)
+	
+	packed_scene.pack(_elements)
+	ResourceSaver.save("user://my_scene.tscn", packed_scene)
+
+func LoadSave() -> void:
+	var _scene = ResourceLoader.load("user://my_scene.tscn").instance()
+	_elements.queue_free()
+	add_child(_scene)
+	move_child(_scene, 2)
+	_elements = _scene
