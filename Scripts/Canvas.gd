@@ -11,7 +11,7 @@ var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 
 # Import dynamic instances packages
-var RTL := preload("res://Scripts/Title.gd")
+var TEXTEDIT := preload("res://Scripts/Title.gd")
 var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 
 # Get references to childs 
@@ -114,16 +114,16 @@ func create_new_title(chosen_title):
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
 	
-	var rtl = RTL.new()
+	var textEdit = TEXTEDIT.new()
 	var x_pos_title = get_node("Titlemenuaddition").rect_position.x 
 	var y_pos_title = get_node("Titlemenuaddition").rect_position.y 
-	var rtl_position = Vector2(x_pos_title, y_pos_title)
-	get_node("Elements").add_child(rtl)
-	rtl.set_params(true, str(chosen_title), Vector2(500, 100), rtl_position)
+	var textEdit_position = Vector2(x_pos_title, y_pos_title)
+	get_node("Elements").add_child(textEdit)
+	textEdit.set_params(true, str(chosen_title), Vector2(500, 100), textEdit_position)
 
 	
 	var type_title = get_node("Titlemenuaddition").type_title
-	rtl.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
+	textEdit.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 
 
 """
