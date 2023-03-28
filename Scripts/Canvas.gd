@@ -134,10 +134,16 @@ drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
-		if element[0] is AreaSelection:
-			print("UPDATE")
+#		if element[0] is AreaSelection:
+#			print("UPDATE")
+#			element[0].draw = drawing
+#			element[0].update()
+		if element[0] is Stroke  or element[0] is Title:
+			# lancer la fonction _draw setup dans Line.gd
 			element[0].draw = drawing
+			# lance la fonction draw() de godot (update() lance draw())
 			element[0].update()
+			
 
 
 """
@@ -162,6 +168,7 @@ func appendSelectionArea() -> void :
 	Selection_area.set_params(min_x, min_y, size_x, size_y, upper_left, bottom_right)
 	Selection_area.set_param(center/2)
 	Selection_area.create_selection_area(selected_lines)
+	print(Selection_area.position)
 
 
 
