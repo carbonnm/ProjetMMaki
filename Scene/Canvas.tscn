@@ -364,19 +364,19 @@ margin_bottom = 366.0
 text = "Rotation"
 icon = ExtResource( 19 )
 
-[node name="Group" type="Button" parent="ActionMenu"]
-margin_top = 370.0
-margin_right = 176.0
-margin_bottom = 440.0
-text = "Grouper"
-icon = ExtResource( 6 )
-
 [node name="Fusion" type="Button" parent="ActionMenu"]
 margin_top = 444.0
 margin_right = 176.0
 margin_bottom = 514.0
 text = "Fusionner"
 icon = ExtResource( 31 )
+
+[node name="Group" type="Button" parent="ActionMenu"]
+margin_top = 370.0
+margin_right = 176.0
+margin_bottom = 440.0
+text = "Grouper"
+icon = ExtResource( 6 )
 
 [node name="Ungroup" type="Button" parent="ActionMenu"]
 margin_top = 518.0

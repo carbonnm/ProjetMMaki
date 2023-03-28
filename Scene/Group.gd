@@ -18,25 +18,20 @@ func input(event:InputEvent) -> IState:
 	canvas._elements.add_child(New_Group)
 	New_Group.name = "NewGroup"
 	
-	print(canvas.selected_lines)
 	var element_to_copy = canvas.selected_lines.slice(0, canvas.selected_lines.size()-2)
-	print("copy",element_to_copy)
 	for element in element_to_copy :
-		print("copyinloop",element_to_copy)
 #		var children = element[0].get_children()
 #		for child in children :
 #			child.get_parent().remove_child(child)
 #			New_Group.add_child(child)
 			
 		if element[0] is Stroke:
-			print("IsStroke")
 			var _line = element[0].get_child(0).duplicate()
 			element[0].get_parent().remove_child(element[0])
 			New_Group.add_child(element[0])
 			element[0]._line = _line
 		
 		if element[0] is Title:
-			print("IsTitle")
 			element[0].get_parent().remove_child(element[0])
 			New_Group.add_child(element[0])
 		
@@ -83,14 +78,11 @@ func CenterGroup(Group):
 		child.position -= Group_center
 #		if child is Stroke:
 #			child.position -= Group_center
-##			print("STROKE")
 ##			var _shapes_points = []
 ##			for index in range(child._line.points.size()):
 ##				_shapes_points.append(child._line.points[index] - Group_center)
-##			print(child._line.points)
 ##
 ##			child._line.points = _shapes_points
-##			print(child._line.points)
 #		elif child is Title:
 #			child.rect_global_position -= Group_center
 

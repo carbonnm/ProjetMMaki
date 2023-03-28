@@ -103,7 +103,6 @@ func _open_file(path, line_number):
 
 func _add_script_tree_item(script_path, script_json):
 	var path_info = _get_path_and_inner_class_name_from_test_path(script_path)
-	# print('* adding script ', path_info)
 	var item_text = script_path
 	var parent = _root
 
@@ -127,7 +126,6 @@ func _add_script_tree_item(script_path, script_json):
 
 
 func _add_assert_item(text, icon, parent_item):
-	# print('        * adding assert')
 	var assert_item = _ctrls.tree.create_item(parent_item)
 	assert_item.set_icon_max_width(0, _max_icon_width)
 	assert_item.set_text(0, text)
@@ -139,7 +137,6 @@ func _add_assert_item(text, icon, parent_item):
 
 
 func _add_test_tree_item(test_name, test_json, script_item):
-	# print('    * adding test ', test_name)
 	var no_orphans_to_show = !_show_orphans or (_show_orphans and test_json.orphans == 0)
 	if(_hide_passing and test_json['status'] == 'pass' and no_orphans_to_show):
 		return
@@ -212,7 +209,6 @@ func _load_result_tree(j):
 		# get_children returns the first child or null.  its a dumb name.
 		if(s_item.get_children() == null):
 			# var m = s_item.get_metadata(0)
-			# print('!! Deleting ', m.path, ' ', m.inner_class)
 			s_item.free()
 		else:
 			var total_text = str(test_keys.size(), ' passed')

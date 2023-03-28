@@ -135,7 +135,6 @@ drawing : bool -> launch draw function if true
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
 #		if element[0] is AreaSelection:
-#			print("UPDATE")
 #			element[0].draw = drawing
 #			element[0].update()
 		if element[0] is Stroke  or element[0] is Title:
@@ -168,7 +167,6 @@ func appendSelectionArea() -> void :
 	Selection_area.set_params(min_x, min_y, size_x, size_y, upper_left, bottom_right)
 	Selection_area.set_param(center/2)
 	Selection_area.create_selection_area(selected_lines)
-	print(Selection_area.position)
 
 
 
@@ -372,7 +370,6 @@ func create_snapshot(snapshots: Dictionary) -> Dictionary:
 	
 	if snapshots["current_index"] != snapshots["snapshots"].size()-1 and snapshots["snapshots"] != [] :
 		snapshots["snapshots"].resize(snapshots["current_index"]+1)
-	print(snapshots)
 	if snapshots["snapshots"].size() <= 10:
 		snapshots["snapshots"].append(elements)
 	
@@ -390,7 +387,6 @@ func reload_snapshot(index: int, snapshots: Dictionary) -> Dictionary:
 	print(index, snapshots)
 	if index >= 0 && index < snapshots["snapshots"].size():
 		var elements: Node2D = get_match_string_node("Elements", self)
-		print(elements)
 		elements.queue_free()
 		
 		var new_elements: Node2D = snapshots["snapshots"][index].duplicate(true)

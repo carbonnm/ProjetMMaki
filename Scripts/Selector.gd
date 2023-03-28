@@ -33,6 +33,4 @@ func _on_Area2D_area_shape_exited(_area_rid, area, _area_shape_index, _local_sha
 		_selected_area.erase([area, _area_shape_index])
 
 func _exit_tree():
-	print("yo")
-	print(_selected_area)
 	emit_signal("SendArea", _selected_area)

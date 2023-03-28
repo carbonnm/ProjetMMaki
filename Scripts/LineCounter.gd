@@ -10,5 +10,4 @@ func _process(_delta: float) -> void:
 	
 #stopped working so was replaced with assignation of Count in Main.gd
 #func _on_Node2D_Line_count(counter) -> void:
-#	print("in line counter")
 #	Count = String(counter)
