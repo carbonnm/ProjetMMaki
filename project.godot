@@ -52,7 +52,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Title",
 "language": "GDScript",
-"path": "res://Scripts/Title.gd"
+"path": "res://Classes/Title.gd"
 } ]
 _global_script_class_icons={
 "AState": "",

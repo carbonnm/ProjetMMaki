@@ -7,15 +7,13 @@ var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 # (User Customization scripts)
 var Custom := preload("res://Scripts/Customization.gd")
+var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 # (State relative scripts)
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
-
-# Import dynamic instances packages
-var TEXTEDIT := preload("res://Scripts/Title.gd")
-var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
 
 # Get references to childs 
 onready var _background := $BackgroundColored
@@ -66,29 +64,7 @@ func _physics_process(delta):
 
 
 
-#Creates the new richtextlabel node with the new wanted title
-func create_new_title(chosen_title):
-	get_node("Titlemenuaddition").visible = false
-	
-	#position of the title is the same as the title menu addition 
-	#which was set from the retrieved position of the right-click
-	
-	var textEdit = TEXTEDIT.new()
-	var x_pos_title = get_node("Titlemenuaddition").rect_position.x 
-	var y_pos_title = get_node("Titlemenuaddition").rect_position.y 
-	var textEdit_position = Vector2(x_pos_title, y_pos_title)
-	get_node("Elements").add_child(textEdit)
-	textEdit.set_params(true, str(chosen_title), Vector2(500, 100), textEdit_position)
 
-	
-	var type_title = get_node("Titlemenuaddition").type_title
-	var color_title = custom.customization["titlecolor"]
-	var title_font = custom.customization["titlefont"]
-	var color_subtitle = custom.customization["subtitlecolor"]
-	var subtitle_font = custom.customization["subtitlefont"]
-	var color_subsubtitle = custom.customization["subsubtitlecolor"]
-	var subsubtitle_font = custom.customization["subsubtitlefont"]
-	textEdit.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 
 
 """
