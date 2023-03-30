@@ -5,6 +5,8 @@ extends Node2D
 # (General scripts)
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
+# (User Customization scripts)
+var Custom := preload("res://Scripts/Customization.gd")
 # (State relative scripts)
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
@@ -33,20 +35,7 @@ var Select_rect: Area2D
 var Selection_area : Area2D
 var selected_lines: Array
 var snapshots: Node
-
-###################################################################################################
-#global variables added for default options (making testing from the Main.tscn possible without crash)
-#they should be deleted when the program is finished
-var title_font
-var subtitle_font 
-var subsubtitle_font
-var color_title 
-var color_subtitle  
-var color_subsubtitle 
-
-onready var _linecounter := get_node("CanvasLayer/HBoxContainer/LinesCounter")
-####################################################################################################
-
+var custom: Node
 
 func _ready() -> void:
 	# Initialisation
@@ -55,48 +44,9 @@ func _ready() -> void:
 	# Create the first snapshot to recover previous step
 	snapshots = Snapshots.new(self, get_match_string_node("Elements", self))
 	snapshots.create_snapshot()
-	
-	# Connect signals
-	
-	
-	#connects the signal on new title input 
-	#and calls the function taking care of effectively creating it 
-	
-	#Canvas name recuperation
-	var canvas_name = SceneSwitcher.get_param("namecanvas")
-	#Canvas font colors recuperation
-	color_title = SceneSwitcher.get_param("titlecolor")
-	color_subtitle = SceneSwitcher.get_param("subtitlecolor")
-	color_subsubtitle = SceneSwitcher.get_param("subsubtitlecolor")
-	#code for testing (avoid main.tscn crash if you don't go from homepage)
-	if not(color_title) and not(color_subtitle) and not(color_subsubtitle):
-		color_title = Color( 0, 0, 0, 1 ) 
-		color_subtitle = Color( 0, 0, 0, 1 ) 
-		color_subsubtitle = Color( 0, 0, 0, 1 ) 
-	
-	
-	#Retrieves chosen font(s) for Title, Subtitle, Sub-subtitle
-	title_font =  SceneSwitcher.get_param("titlefont")
-	subtitle_font = SceneSwitcher.get_param("subtitlefont")
-	subsubtitle_font = SceneSwitcher.get_param("subsubtitlefont")
-	#code for testing (avoid main.tscn crash if you don't go from homepage)
-	if not(title_font) and  not(subtitle_font) and  not(subsubtitle_font):
-		title_font = "res://Assets/Fonts/arial_narrow_7.ttf"
-		subtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
-		subsubtitle_font = "res://Assets/Fonts/arial_narrow_7.ttf"
-		
-	#Canvas background color recuperation (fixing the background bug)
-	var color_background 
-	#code for testing (avoid main.tscn crash if you don't go from homepage)
-	if not (SceneSwitcher.get_param("backgroundcolor")):
-		color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
-	else:
-		color_background = SceneSwitcher.get_param("backgroundcolor")
-	
-	#sets the background color of the canvas to the chosen one in the menu
-	get_node("BackgroundColored").color = color_background
-	
-	
+	# Setup canvas (Name; (sub-(sub-))Title Color/Font; Background Color
+	custom = Custom.new(SceneSwitcher)
+	get_node("BackgroundColored").color = custom.customization["backgroundcolor"]
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
@@ -107,6 +57,14 @@ func _on_BackgroundColored_gui_input(event: InputEvent):
 func _physics_process(delta):
 	states.physics_process(delta)
 	
+
+
+
+
+
+
+
+
 
 #Creates the new richtextlabel node with the new wanted title
 func create_new_title(chosen_title):
@@ -124,6 +82,12 @@ func create_new_title(chosen_title):
 
 	
 	var type_title = get_node("Titlemenuaddition").type_title
+	var color_title = custom.customization["titlecolor"]
+	var title_font = custom.customization["titlefont"]
+	var color_subtitle = custom.customization["subtitlecolor"]
+	var subtitle_font = custom.customization["subtitlefont"]
+	var color_subsubtitle = custom.customization["subsubtitlecolor"]
+	var subsubtitle_font = custom.customization["subsubtitlefont"]
 	textEdit.ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtitle, subsubtitle_font, color_subsubtitle)
 
 
