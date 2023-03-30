@@ -1,0 +1,2 @@
+addons/pythonscript/windows-64/lib/site-packages/cv2/cv2.cp38-win_amd64.pyd filter=lfs diff=lfs merge=lfs -text
+addons/pythonscript/windows-64/lib/site-packages/torch/lib/torch_cpu.dll filter=lfs diff=lfs merge=lfs -text
