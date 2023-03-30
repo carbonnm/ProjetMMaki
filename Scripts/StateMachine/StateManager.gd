@@ -38,8 +38,8 @@ func physics_process(delta: float) -> void:
 		change_state(new_state)
 
 """
-Function called to consume an input event on the parent node according to the
-current state.
+Function called to consume an background input event on the parent node 
+according to the current state.
 
 Parameters:
 -----------
@@ -50,6 +50,14 @@ func input(event: InputEvent) -> void:
 	if new_state:
 		change_state(new_state)
 
+"""
+Function called to consume a keyboard input event on the parent node according 
+to the current state.
+
+Parameters:
+-----------
+event: The input event to consume. (InputEvent)
+"""
 func keyboard_input(event: InputEvent) -> void:
 	var interrupt_state = current_state.keyboard_input(event)
 	if interrupt_state:
@@ -61,19 +69,39 @@ func keyboard_input(event: InputEvent) -> void:
 		var new_state = current_state.input(event)
 		if not new_state:
 			sleeping_state.exit()
+			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
 		elif new_state != sleeping_state:
 			sleeping_state.exit()
 			change_state(new_state)
+			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", new_state)
 		else:
 			current_state.exit()
 			previous_state = current_state
 			current_state = sleeping_state
+			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", sleeping_state)
 
+"""
+Function called to consume a switch signal on the parent node according to the 
+current state.
+
+Parameters:
+-----------
+state: The next state to switch to. (String)
+"""
 func switch_signal(state: String) -> void:
 	var new_state = current_state.switch_signal(state)
 	if new_state:
 		change_state(new_state)
 
+"""
+Function called to consume a switch signal with an argument on the parent node 
+according to the current state.
+
+Parameters:
+-----------
+state: The next state to switch to. (String)
+args: An array containing arguments. (Array)
+"""
 func switch_signal_with_arguments(state: String, args: Array) -> void:
 	var new_state = current_state.switch_signal(state)
 	if new_state:
@@ -103,7 +131,7 @@ func change_state(new_state: IState) -> void:
 	previous_state = current_state
 	current_state = new_state
 	current_state.enter()
-	print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
+	print("Previous State : ", previous_state, " - Current State : ", current_state)
 
 
 func _on_Selection_pressed():
