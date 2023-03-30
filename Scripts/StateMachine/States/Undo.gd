@@ -8,5 +8,6 @@ func enter() -> void:
 func input(event: InputEvent) -> IState:
 	if event is InputEventKey:
 		if event.scancode == KEY_Z and Input.is_key_pressed(KEY_CONTROL):
-			canvas.reload_snapshot(canvas.snapshots["current_index"]-1,canvas.snapshots)
-	return null
+			canvas._elements = canvas.snapshots.get_last_snapshot()
+			
+	return switch_to_previous_state()

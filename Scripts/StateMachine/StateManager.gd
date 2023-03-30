@@ -103,7 +103,7 @@ func change_state(new_state: IState) -> void:
 	previous_state = current_state
 	current_state = new_state
 	current_state.enter()
-	#print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
+	print("Previous State : ", previous_state, "\n", "Current State : ", current_state)
 
 
 func _on_Selection_pressed():

@@ -1,17 +1,15 @@
 extends AState
 
-var ungroup : Dictionary = {
-	"snapshots" : [],
-	"current_index" : 0
-}
+var ungroup: Node
 
 func enter() -> void:
 	canvas._action_menu.hide()
-	ungroup = canvas.create_snapshot(ungroup)
+	ungroup = canvas.Snapshots.new(self, canvas.get_match_string_node("Elements", self))
+	ungroup.create_snapshot()
 #	input(null)
 	
 func exit() :
-	canvas.create_snapshot(canvas.snapshots)
+	canvas.snapshots.create_snapshot()
 
 func input(event:InputEvent) -> IState: 
 	var New_Group = Area2D.new()

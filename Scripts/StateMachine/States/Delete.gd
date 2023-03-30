@@ -6,7 +6,7 @@ func enter() -> void:
 	input(null)
 
 func exit() -> void :
-	canvas.create_snapshot(canvas.snapshots)
+	canvas.snapshots.create_snapshot()
 
 func input(event: InputEvent) -> IState:
 	for area in canvas.selected_lines:

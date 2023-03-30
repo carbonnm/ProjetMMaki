@@ -1,7 +1,7 @@
 extends AState
 
 func exit() -> void:
-	canvas.create_snapshot(canvas.snapshots)
+	canvas.snapshots.create_snapshot()
 
 func parametrized_call(args: Array) -> IState:
 	canvas.create_new_title(args[0])

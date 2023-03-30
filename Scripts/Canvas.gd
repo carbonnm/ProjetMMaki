@@ -9,6 +9,7 @@ var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
+var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
 
 # Import dynamic instances packages
 var TEXTEDIT := preload("res://Scripts/Title.gd")
@@ -31,10 +32,7 @@ export (float) var linewidth = 4.0
 var Select_rect: Area2D
 var Selection_area : Area2D
 var selected_lines: Array
-var snapshots: Dictionary = {
-	"snapshots" : [],
-	"current_index" : 0
-}
+var snapshots: Node
 
 ###################################################################################################
 #global variables added for default options (making testing from the Main.tscn possible without crash)
@@ -55,7 +53,8 @@ func _ready() -> void:
 	# Gives states control to the state manager
 	states.init(self)
 	# Create the first snapshot to recover previous step
-	snapshots = create_snapshot(snapshots)
+	snapshots = Snapshots.new(self, get_match_string_node("Elements", self))
+	snapshots.create_snapshot()
 	
 	# Connect signals
 	
@@ -365,40 +364,6 @@ func _on_PopupMenu_id_pressed(id):
 		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
-
-
-func create_snapshot(snapshots: Dictionary) -> Dictionary:
-	var elements: Node2D = get_match_string_node("Elements", self).duplicate()
-	
-	if snapshots["current_index"] != snapshots["snapshots"].size()-1 and snapshots["snapshots"] != [] :
-		snapshots["snapshots"].resize(snapshots["current_index"]+1)
-	if snapshots["snapshots"].size() <= 10:
-		snapshots["snapshots"].append(elements)
-	
-	else:
-		var out_of_scope: Node2D = snapshots["snapshots"][0]
-		snapshots["snapshots"].remove(0)
-		out_of_scope.queue_free()
-		snapshots["snapshots"].append(elements)
-
-	snapshots["current_index"] = snapshots["snapshots"].size()-1
-	
-	return snapshots
-
-func reload_snapshot(index: int, snapshots: Dictionary) -> Dictionary:
-	print(index, snapshots)
-	if index >= 0 && index < snapshots["snapshots"].size():
-		var elements: Node2D = get_match_string_node("Elements", self)
-		elements.queue_free()
-		
-		var new_elements: Node2D = snapshots["snapshots"][index].duplicate(true)
-		self.add_child(new_elements)
-		_elements = new_elements
-		#self.selected_lines = selected_lines
-		
-		snapshots["current_index"] = index
-	
-	return snapshots
 	
 func get_match_string_node(expr: String, father: Object) -> Object:
 	var children: Array = father.get_children()

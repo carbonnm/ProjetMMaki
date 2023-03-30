@@ -5,7 +5,7 @@ func enter() -> void:
 	canvas._action_menu.hide()
 	
 func exit() -> void:
-	canvas.create_snapshot(canvas.snapshots)
+	canvas.snapshots.create_snapshot()
 
 func input(event: InputEvent) -> IState:
 	if event is InputEventMouseMotion: 
