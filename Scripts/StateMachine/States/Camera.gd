@@ -19,4 +19,4 @@ func input(event: InputEvent) -> IState:
 		if event.button_mask == BUTTON_MASK_MIDDLE:
 			canvas._camera.DragCamera(event.relative)
 
-	return null
+	return switch_to_previous_state()
