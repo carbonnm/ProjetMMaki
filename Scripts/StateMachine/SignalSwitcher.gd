@@ -35,6 +35,17 @@ onready var ungroup: IState = get_node(ungroup_node)
 onready var fusion: IState = get_node(fusion_node)
 onready var create_title: IState = get_node(create_title_node)
 
+"""
+Function called to switch the state according to the keyboard input.
+
+Parameters:
+-----------
+event: The input event to consume. (InputEvent)
+
+Returns:
+--------
+The state to switch to. (IState)
+"""
 func keyboard_input(event: InputEvent) -> IState:
 	# Pass the control to the camera
 	var zoomC1 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_UP
@@ -54,9 +65,23 @@ func keyboard_input(event: InputEvent) -> IState:
 	
 	return null
 
+"""
+Function called to switch to the previous state.
+"""
 func switch_to_previous_state() -> IState:
 	return get_node("../../StateManager").previous_state
 
+"""
+Function called to switch the state according to a signal.
+
+Parameters:
+-----------
+state: The next state to switch to. (String)
+
+Returns:
+--------
+The state to transit to. (IState)
+"""
 func switch_signal(state: String) -> IState:
 	match state:
 		"MoveCanvas":

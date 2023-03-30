@@ -86,7 +86,7 @@ current state.
 
 Parameters:
 -----------
-state: The next state to switch to. (String)
+state: The state to switch to. (String)
 """
 func switch_signal(state: String) -> void:
 	var new_state = current_state.switch_signal(state)
@@ -99,7 +99,7 @@ according to the current state.
 
 Parameters:
 -----------
-state: The next state to switch to. (String)
+state: The state to switch to. (String)
 args: An array containing arguments. (Array)
 """
 func switch_signal_with_arguments(state: String, args: Array) -> void:
@@ -112,6 +112,9 @@ func switch_signal_with_arguments(state: String, args: Array) -> void:
 		if new_state:
 			change_state(new_state)
 
+"""
+Function called to switch to the previous state.
+"""
 func switch_to_previous_state() -> void:
 	var new_state = current_state.switch_to_previous_state()
 	if new_state:
