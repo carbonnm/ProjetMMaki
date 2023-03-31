@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -34,6 +34,8 @@
 [ext_resource path="res://Scene/Themechoice.gd" type="Script" id=32]
 [ext_resource path="res://Assets/Graphics/Image/cross.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Graphics/Image/littlecross.png" type="Texture" id=34]
+[ext_resource path="res://Scene/Panel.gd" type="Script" id=35]
+[ext_resource path="res://Assets/Themes/paneloptionstyle.tres" type="StyleBox" id=36]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -284,19 +286,6 @@ border_width_bottom = 1
 border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
 corner_detail = 9
 
-[sub_resource type="StyleBoxFlat" id=59]
-bg_color = Color( 0.27451, 0.235294, 0.145098, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.213867, 0.161147, 0.0398912, 1 )
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
 [sub_resource type="DynamicFont" id=60]
 size = 42
 outline_color = Color( 0.729412, 0.321569, 0.321569, 1 )
@@ -356,6 +345,8 @@ default_font = SubResource( 63 )
 [sub_resource type="StyleBoxEmpty" id=67]
 
 [sub_resource type="StyleBoxEmpty" id=65]
+
+[sub_resource type="Theme" id=71]
 
 [node name="Newcanvasoptions" type="Node2D"]
 position = Vector2( 32, -134 )
@@ -726,7 +717,7 @@ margin_left = 67.0
 margin_top = 234.287
 margin_right = 332.0
 margin_bottom = 519.286
-custom_styles/panel = SubResource( 59 )
+custom_styles/panel = ExtResource( 36 )
 script = ExtResource( 32 )
 
 [node name="Closebutton" type="Button" parent="Page/Themechoice"]
@@ -771,6 +762,32 @@ points = PoolVector2Array( 476, 217, 635, 217 )
 width = 5.0
 default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
 
+[node name="Themesave" type="Panel" parent="Page"]
+visible = false
+margin_left = 696.0
+margin_top = 339.415
+margin_right = 937.0
+margin_bottom = 517.415
+theme = SubResource( 71 )
+custom_styles/panel = ExtResource( 36 )
+script = ExtResource( 35 )
+
+[node name="Closebutton" type="Button" parent="Page/Themesave"]
+margin_left = 193.0
+margin_top = 4.00487
+margin_right = 241.0
+margin_bottom = 50.0049
+rect_scale = Vector2( 0.842175, 0.835281 )
+theme = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/pressed = SubResource( 69 )
+custom_styles/normal = SubResource( 62 )
+
+[node name="Crossicon" type="AnimatedSprite" parent="Page/Themesave/Closebutton"]
+position = Vector2( 24.8468, 22.0898 )
+scale = Vector2( 0.0745588, 0.0729098 )
+frames = SubResource( 70 )
+
 [connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="." method="_on_Inputname_text_entered"]
 [connection signal="pressed" from="Page/Optionmenu/Inputname/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
@@ -796,3 +813,6 @@ default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
 [connection signal="mouse_entered" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_mouse_exited"]
 [connection signal="pressed" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_pressed"]
+[connection signal="button_up" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_button_up"]
+[connection signal="mouse_entered" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_mouse_entered"]
+[connection signal="mouse_exited" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_mouse_exited"]

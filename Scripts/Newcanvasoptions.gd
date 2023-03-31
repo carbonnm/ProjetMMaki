@@ -45,7 +45,8 @@ func _on_BoutonCreer_button_up():
 
 
 func _on_ButtonSave_button_up():
-	pass # Replace with function body.
+	get_node("Page/Themesave").visible = true
+	
 
 	
 
