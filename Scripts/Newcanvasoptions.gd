@@ -41,7 +41,13 @@ func _on_BoutonCreer_button_up():
 	#No name entered => Displaying message asking to enter one
 	else:
 		get_node("Page/Optionmenu/Namenotentered").visible = true
-		
+	
+
+
+func _on_ButtonSave_button_up():
+	pass # Replace with function body.
+
+	
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
 #AESTHETIC (little arrow animation on creation button hovering)
@@ -50,11 +56,27 @@ func _on_BoutonCreer_button_up():
 #launches little arrow animation on mouse entered
 func _on_BoutonCreer_mouse_entered():
 	
-	get_node("Page/Optionmenu/ContainerBoutonCreer/Littlearrow").playing = true
+	get_node("Page/ContainerBoutonCreer/Littlearrow").playing = true
 
 #stops little arrow animation on mouse entered
 func _on_BoutonCreer_mouse_exited():
-	get_node("Page/Optionmenu/ContainerBoutonCreer/Littlearrow").playing = false
+	get_node("Page/ContainerBoutonCreer/Littlearrow").playing = false
+	
+	
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+#AESTHETIC (little save icon animation on save button hovering)
+#-------------------------
+
+#launches little save icon animation on mouse entered
+
+func _on_ButtonSave_mouse_entered():
+	get_node("Page/ContainerBoutonSave/Saveicon").playing = true
+
+
+#stops little arrow animation on mouse entered
+func _on_ButtonSave_mouse_exited():
+	get_node("Page/ContainerBoutonSave/Saveicon").playing = false
 
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
@@ -139,3 +161,7 @@ func _on_Titleinputbutton_pressed():
 
 func _on_Inputname_text_entered(new_text: String) -> void:
 	_on_BoutonCreer_button_up()
+
+
+
+

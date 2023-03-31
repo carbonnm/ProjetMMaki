@@ -1,9 +1,9 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/Inputname.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Themes/buttoncanvasoptiontheme.tres" type="Theme" id=4]
 [ext_resource path="res://Assets/Graphics/homepage/arrow2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Newcanvasoptions.gd" type="Script" id=7]
@@ -21,6 +21,11 @@
 [ext_resource path="res://Assets/Graphics/Font_images/arial7_font_subsub.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Graphics/Font_images/gaby_font.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Graphics/Font_images/gaby_font_subsub.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Themes/hovertheme.tres" type="StyleBox" id=22]
+[ext_resource path="res://Assets/Graphics/Image/littlesaveicon.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Graphics/Image/saveicon.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Themes/pressedtheme.tres" type="StyleBox" id=25]
+[ext_resource path="res://Assets/Themes/normaltheme.tres" type="StyleBox" id=26]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -51,60 +56,6 @@ corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
-
-[sub_resource type="DynamicFont" id=9]
-font_data = ExtResource( 4 )
-
-[sub_resource type="Theme" id=10]
-default_font = SubResource( 9 )
-
-[sub_resource type="DynamicFont" id=11]
-size = 29
-outline_color = Color( 0.0196078, 0.054902, 0.12549, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0.788235, 0.627451, 0, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.54902, 0.478431, 0.745098, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.466667, 0.415686, 0.498039, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 0.345098, 0.286275, 0.0117647, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.905882, 0.87451, 0.815686, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 15
-shadow_size = 1
-
-[sub_resource type="SpriteFrames" id=16]
-animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [sub_resource type="DynamicFont" id=3]
 size = 61
@@ -254,6 +205,41 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.301961, 0.301961, 1 )
 
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=54]
+size = 21
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=55]
+default_font = SubResource( 54 )
+
+[sub_resource type="StyleBoxFlat" id=56]
+bg_color = Color( 0.431373, 0.380392, 0.129412, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.862745, 0.807843, 0.556863, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="SpriteFrames" id=57]
+animations = [ {
+"frames": [ ExtResource( 24 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="Shader" id=34]
 code = "shader_type canvas_item;
 
@@ -327,37 +313,6 @@ rect_pivot_offset = Vector2( 868.94, 400.74 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 7 )
-
-[node name="ContainerBoutonCreer" type="MarginContainer" parent="Page/Optionmenu"]
-margin_left = 180.368
-margin_top = 486.533
-margin_right = 630.368
-margin_bottom = 561.533
-rect_scale = Vector2( 0.87265, 0.832148 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="BoutonCreer" type="Button" parent="Page/Optionmenu/ContainerBoutonCreer"]
-margin_right = 450.0
-margin_bottom = 75.0
-theme = SubResource( 10 )
-custom_colors/font_color_disabled = Color( 0.752941, 0.756863, 0.658824, 1 )
-custom_colors/font_color_focus = Color( 0.752941, 0.756863, 0.658824, 1 )
-custom_colors/font_color = Color( 0.752941, 0.756863, 0.658824, 1 )
-custom_colors/font_color_hover = Color( 0.2, 0.203922, 0.196078, 1 )
-custom_colors/font_color_pressed = Color( 0.752941, 0.756863, 0.658824, 1 )
-custom_fonts/font = SubResource( 11 )
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 28 )
-custom_styles/normal = SubResource( 15 )
-text = "Créer une présentation"
-
-[node name="Littlearrow" type="AnimatedSprite" parent="Page/Optionmenu/ContainerBoutonCreer"]
-modulate = Color( 0.784314, 0.690196, 0.25098, 1 )
-position = Vector2( 426.288, 34.8491 )
-scale = Vector2( 0.116441, 0.105965 )
-frames = SubResource( 16 )
-frame = 1
 
 [node name="Options" type="RichTextLabel" parent="Page/Optionmenu"]
 margin_left = 255.118
@@ -554,12 +509,63 @@ theme = SubResource( 41 )
 custom_styles/normal = SubResource( 42 )
 color = Color( 0.6, 0.6, 0.6, 1 )
 
+[node name="ContainerBoutonCreer" type="MarginContainer" parent="Page"]
+margin_left = 259.0
+margin_top = 522.639
+margin_right = 709.0
+margin_bottom = 597.639
+rect_scale = Vector2( 0.87265, 0.832148 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BoutonCreer" type="Button" parent="Page/ContainerBoutonCreer"]
+margin_right = 449.0
+margin_bottom = 75.0
+theme = ExtResource( 4 )
+custom_colors/font_color_disabled = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color_focus = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color_hover = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_colors/font_color_pressed = Color( 0.752941, 0.756863, 0.658824, 1 )
+custom_styles/hover = ExtResource( 22 )
+custom_styles/pressed = ExtResource( 25 )
+custom_styles/normal = ExtResource( 26 )
+text = "Créer une présentation"
+
+[node name="Littlearrow" type="AnimatedSprite" parent="Page/ContainerBoutonCreer"]
+modulate = Color( 0.784314, 0.690196, 0.25098, 1 )
+position = Vector2( 420.558, 39.7051 )
+scale = Vector2( 0.116441, 0.105965 )
+frames = SubResource( 16 )
+frame = 1
+
+[node name="ContainerBoutonSave" type="MarginContainer" parent="Page"]
+margin_left = 660.0
+margin_top = 525.0
+margin_right = 907.0
+margin_bottom = 580.0
+rect_scale = Vector2( 1.09486, 1.06437 )
+
+[node name="ButtonSave" type="Button" parent="Page/ContainerBoutonSave"]
+margin_right = 259.0
+margin_bottom = 55.0
+theme = SubResource( 55 )
+custom_styles/hover = ExtResource( 22 )
+custom_styles/pressed = ExtResource( 25 )
+custom_styles/normal = SubResource( 56 )
+text = "    Enregistrer le thème        "
+
+[node name="Saveicon" type="AnimatedSprite" parent="Page/ContainerBoutonSave"]
+position = Vector2( 232.907, 27.8828 )
+scale = Vector2( 0.0537584, 0.0512217 )
+frames = SubResource( 57 )
+
 [node name="Colorfontsmenu" type="Panel" parent="Page"]
 material = SubResource( 35 )
 margin_left = 656.0
-margin_top = 281.344
-margin_right = 865.0
-margin_bottom = 477.344
+margin_top = 281.0
+margin_right = 874.0
+margin_bottom = 486.0
 rect_pivot_offset = Vector2( -456, -108.133 )
 theme = SubResource( 36 )
 custom_styles/panel = SubResource( 37 )
@@ -622,9 +628,6 @@ margin_bottom = 184.201
 custom_styles/normal = SubResource( 44 )
 color = Color( 0.6, 0.6, 0.6, 1 )
 
-[connection signal="button_up" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
-[connection signal="mouse_entered" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
-[connection signal="mouse_exited" from="Page/Optionmenu/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
 [connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="." method="_on_Inputname_text_entered"]
 [connection signal="pressed" from="Page/Optionmenu/Inputname/Titleinputbutton" to="." method="_on_Titleinputbutton_pressed"]
@@ -632,6 +635,12 @@ color = Color( 0.6, 0.6, 0.6, 1 )
 [connection signal="item_selected" from="Page/Optionmenu/Dropdownsubtitle" to="." method="_on_Dropdownsubtitle_item_selected"]
 [connection signal="item_selected" from="Page/Optionmenu/DropdownSubsub" to="." method="_on_DropdownSubsub_item_selected"]
 [connection signal="color_changed" from="Page/Canvascolormenu/ColorPickerButtonCanvas" to="." method="_on_ColorPickerButtonCanvas_color_changed"]
+[connection signal="button_up" from="Page/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
+[connection signal="mouse_entered" from="Page/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
+[connection signal="mouse_exited" from="Page/ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
+[connection signal="button_up" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_button_up"]
+[connection signal="mouse_entered" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_mouse_entered"]
+[connection signal="mouse_exited" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_mouse_exited"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonTitle" to="." method="_on_ColorPickerButtonTitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubtitle" to="." method="_on_ColorPickerButtonSubtitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubsubtitle" to="." method="_on_ColorPickerButtonSubsubtitle_color_changed"]
