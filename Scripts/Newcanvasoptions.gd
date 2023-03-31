@@ -48,6 +48,12 @@ func _on_ButtonSave_button_up():
 	pass # Replace with function body.
 
 	
+
+func _on_ButtonChoice_button_up():
+	get_node("Page/Themechoice").visible = true
+
+
+
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
 #AESTHETIC (little arrow animation on creation button hovering)
@@ -62,22 +68,23 @@ func _on_BoutonCreer_mouse_entered():
 func _on_BoutonCreer_mouse_exited():
 	get_node("Page/ContainerBoutonCreer/Littlearrow").playing = false
 	
-	
-#--------------------------------------------------------------------------
-#--------------------------------------------------------------------------
-#AESTHETIC (little save icon animation on save button hovering)
-#-------------------------
 
-#launches little save icon animation on mouse entered
 
 func _on_ButtonSave_mouse_entered():
 	get_node("Page/ContainerBoutonSave/Saveicon").playing = true
 
 
-#stops little arrow animation on mouse entered
+#stops little save icon  animation on mouse entered
 func _on_ButtonSave_mouse_exited():
 	get_node("Page/ContainerBoutonSave/Saveicon").playing = false
 
+func _on_ButtonChoice_mouse_entered():
+	get_node("Page/ContainerBoutonChoice/Choiceicon").playing = true
+
+#stops little save icon  animation on mouse entered
+func _on_ButtonChoice_mouse_exited():
+	get_node("Page/ContainerBoutonChoice/Choiceicon").playing = false
+	
 #--------------------------------------------------------------------------
 #--------------------------------------------------------------------------
 #Handling color-pickers (fonts and canvas'background)
@@ -161,6 +168,7 @@ func _on_Titleinputbutton_pressed():
 
 func _on_Inputname_text_entered(new_text: String) -> void:
 	_on_BoutonCreer_button_up()
+
 
 
 
