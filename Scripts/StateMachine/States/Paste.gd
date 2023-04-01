@@ -15,7 +15,7 @@ func input(event: InputEvent) -> IState:
 	var translation = -center + canvas.detached_RCC.rect_position
 	
 	for Ligne in clines:
-		var duplarea = Ligne.duplicate()
+		var duplarea = Ligne.duplicate(true)
 		duplarea.position += translation
 		canvas._elements.add_child(duplarea)
 	

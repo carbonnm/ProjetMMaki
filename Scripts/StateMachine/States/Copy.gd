@@ -8,6 +8,5 @@ func enter() -> void:
 	
 func input(event: InputEvent) -> IState:
 	if canvas.selected_lines != []:
-		copied_lines = canvas.selected_lines.duplicate()
-		copied_lines.resize(canvas.selected_lines.size()-1)
+		copied_lines = canvas.selected_lines.duplicate(true)
 	return switch_to_previous_state()
