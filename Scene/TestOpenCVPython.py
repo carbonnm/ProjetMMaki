@@ -1,8 +1,10 @@
 from godot import exposed, export
 from godot import *
+
+from PIL import image
 import cv2
 import matplotlib
-import easyocr
+import pytesseract
 
 
 @exposed
