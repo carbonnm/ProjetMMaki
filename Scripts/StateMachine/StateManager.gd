@@ -92,6 +92,9 @@ func switch_signal(state: String) -> void:
 	var new_state = current_state.switch_signal(state)
 	if new_state:
 		change_state(new_state)
+		new_state = current_state.input(null)
+		if new_state:
+			change_state(new_state)
 
 """
 Function called to consume a switch signal with an argument on the parent node 
