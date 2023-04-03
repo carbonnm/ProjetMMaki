@@ -19,7 +19,6 @@
 [ext_resource path="res://Scripts/StateMachine/States/Fusion.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/StateMachine/States/Ungroup.gd" type="Script" id=18]
 
-
 [node name="StateManager" type="Node"]
 script = ExtResource( 1 )
 starting_state = NodePath("SignalSwitcher/Drawing")

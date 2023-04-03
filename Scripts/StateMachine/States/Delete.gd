@@ -3,7 +3,6 @@ extends AState
 
 func enter() -> void:
 	canvas._action_menu.hide()
-	input(null)
 
 func exit() -> void :
 	canvas.snapshots.create_snapshot()

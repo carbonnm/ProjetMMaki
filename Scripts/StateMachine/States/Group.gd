@@ -6,7 +6,6 @@ func enter() -> void:
 	canvas._action_menu.hide()
 	ungroup = canvas.Snapshots.new(self, canvas.Utils.get_match_string_node("Elements", self))
 	ungroup.create_snapshot()
-#	input(null)
 	
 func exit() :
 	canvas.snapshots.create_snapshot()
