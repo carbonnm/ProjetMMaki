@@ -162,3 +162,18 @@ func get_match_string_node(expr: String, father: Node) -> Node:
 			return child
 			
 	return null
+
+"""
+Boolean caracteristic function.
+
+Parameters:
+-----------
+expr: Boolean expression to evaluate. (bool)
+
+Returns:
+--------
+1 if the result of expr is true, 0 else. (int)
+"""
+func bool_to_int(expr: bool) -> int:
+	if expr: return 1
+	else: return 0

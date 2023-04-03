@@ -65,6 +65,12 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Paste"):
 		return paste
 	
+	if Input.is_action_just_pressed("Delete"):
+		return delete
+	
+	if Input.is_action_just_pressed("DragAndDrop"):
+		return drag_and_drop
+	
 	if Input.is_action_just_pressed("Undo"):
 		return undo
 		
