@@ -40,7 +40,7 @@ func _ready() -> void:
 	# Gives states control to the state manager
 	states.init(self)
 	# Create the first snapshot to recover previous step
-	snapshots = Snapshots.new(self, get_match_string_node("Elements", self))
+	snapshots = Snapshots.new(self, Utils.get_match_string_node("Elements", self))
 	snapshots.create_snapshot()
 	# Setup canvas (Name; (sub-(sub-))Title Color/Font; Background Color
 	custom = Custom.new(SceneSwitcher)
@@ -54,7 +54,7 @@ func _on_BackgroundColored_gui_input(event: InputEvent):
 
 func _physics_process(delta):
 	states.physics_process(delta)
-	
+
 
 
 
@@ -304,14 +304,6 @@ func _on_PopupMenu_id_pressed(id):
 		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
-	
-func get_match_string_node(expr: String, father: Object) -> Object:
-	var children: Array = father.get_children()
-	for child in children:
-		if child.name.match("*"+expr+"*"):
-			return child
-			
-	return null
 
 
 func _on_Save_canvas_pressed() -> void:

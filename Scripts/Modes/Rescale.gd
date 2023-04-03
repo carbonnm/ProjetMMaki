@@ -1,5 +1,8 @@
 extends Node
 
+var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
+var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
+
 """
 Rescale the selected area (zoom/dezoom)
 Input :
@@ -9,8 +12,14 @@ mouse_position : Vector2 : Global mouse position.
 mouse_relative : Vector2 : The mouse position relative to the previous position (position at the last frame).
 """
 func rescale(area2D_L, mouse_position, mouse_relative):
+	var positions: Array = Utils.map(area2D_L, Mimic, "area2D_position", [])
+	var closure: Array = Utils.get_positions_closure(positions)
+	var center: Vector2 = Utils.get_positions_mean(closure)
+	var sensitivity: float = 0.01
+	var magnitude: float =  - center.distance_to(mouse_position) + center.distance_to(mouse_position+mouse_relative)
+	magnitude *= sensitivity
 	for area2D in area2D_L:
-		if mouse_position.x - mouse_relative.x < mouse_position.x  :
-			area2D.scale += Vector2(0.03, 0.03)
-		elif mouse_position - mouse_relative > mouse_position:
-			area2D.scale -= Vector2(0.03, 0.03)
+		var prev_scale: Vector2 = area2D.scale
+		var distance_to_center: Vector2 = -center + area2D.position
+		area2D.scale += Vector2(magnitude, magnitude)
+		area2D.position = center + distance_to_center/prev_scale*area2D.scale

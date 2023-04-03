@@ -142,3 +142,23 @@ func get_all_children(in_node,arr:=[]):
 	for child in in_node.get_children():
 		arr = get_all_children(child,arr)
 	return arr
+
+"""
+Get the child node that match the regex *expr*.
+
+Parameters:
+-----------
+expr: The expression to match. (String)
+father: The father node to get the child. (Node)
+
+Returns:
+--------
+The child node that match the regex *expr*.
+"""
+func get_match_string_node(expr: String, father: Node) -> Node:
+	var children: Array = father.get_children()
+	for child in children:
+		if child.name.match("*"+expr+"*"):
+			return child
+			
+	return null

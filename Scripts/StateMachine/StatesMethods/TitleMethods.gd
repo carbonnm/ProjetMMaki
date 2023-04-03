@@ -1,5 +1,6 @@
 extends Node
 
+var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var TEXTEDIT := preload("res://Classes/Title.gd")
 
 #Creates the new richtextlabel node with the new wanted title
@@ -12,7 +13,7 @@ func create_new_title(chosen_title, customization, parent_node):
 	var x_pos_title = parent_node.get_node("Titlemenuaddition").rect_position.x 
 	var y_pos_title = parent_node.get_node("Titlemenuaddition").rect_position.y 
 	var textEdit_position = Vector2(x_pos_title, y_pos_title)
-	parent_node.get_node("Elements").add_child(textEdit)
+	parent_node.Utils.get_match_string_node("Elements", parent_node).add_child(textEdit)
 	textEdit.set_params(true, str(chosen_title), Vector2(500, 100), textEdit_position)
 
 	
