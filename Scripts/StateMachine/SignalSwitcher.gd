@@ -47,19 +47,15 @@ Returns:
 The state to switch to. (IState)
 """
 func keyboard_input(event: InputEvent) -> IState:
-	# Pass the control to the camera
-	var zoomC1 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_UP
-	var zoomC2 = event is InputEventMouseButton && event.button_index == BUTTON_WHEEL_DOWN
-	var zoomC3 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_LEFT && event.alt
-	var zoomC4 = event is InputEventMouseMotion && event.button_mask == BUTTON_MASK_MIDDLE
-	if zoomC1 || zoomC2 || zoomC3 || zoomC4:
+	if Input.is_action_just_pressed("Zoom") || Input.is_action_just_pressed("Unzoom"):
 		return camera
 	
-	# Pass the control to the Undo
+	if Input.is_action_just_pressed("Move"):
+		return move_canvas
+		
 	if Input.is_action_just_pressed("Undo"):
 		return undo
-	
-	# Pass the control to the Redo
+		
 	if Input.is_action_just_pressed("Redo"):
 		return redo
 	

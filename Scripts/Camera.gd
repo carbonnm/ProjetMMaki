@@ -8,9 +8,7 @@ export var zoom_speed = 1.1
 
 signal zoom_changed(spos,szoom)
 
-func update_zoom(event, threshold):
-	var mouse_position = event.get_position()
-	
+func update_zoom(event, mouse_position, threshold):
 	if zoom > ZOOMMIN && (threshold-ZOOMMIN == Vector2.ZERO):
 			zoom_at_point(1/zoom_speed,mouse_position)
 	elif zoom < ZOOMMAX && (threshold-ZOOMMAX == Vector2.ZERO):
