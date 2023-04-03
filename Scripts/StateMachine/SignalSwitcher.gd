@@ -50,9 +50,21 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Zoom") || Input.is_action_just_pressed("Unzoom"):
 		return camera
 	
-	if Input.is_action_just_pressed("Move"):
+	if Input.is_action_just_pressed("MoveCanvas"):
 		return move_canvas
-		
+	
+	if Input.is_action_just_pressed("Drawing"):
+		return drawing
+	
+	if Input.is_action_just_pressed("Selection"):
+		return selection
+	
+	if Input.is_action_just_pressed("Copy"):
+		return copy
+	
+	if Input.is_action_just_pressed("Paste"):
+		return paste
+	
 	if Input.is_action_just_pressed("Undo"):
 		return undo
 		

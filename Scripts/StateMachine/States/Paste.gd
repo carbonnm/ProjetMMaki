@@ -1,6 +1,9 @@
 extends AState
 
+var detachedRCC_isVisible: bool = false
+
 func enter() -> void:
+	detachedRCC_isVisible = canvas.detached_RCC.visible
 	canvas.detached_RCC.hide()
 
 func exit() -> void:
@@ -11,7 +14,11 @@ func input(event: InputEvent) -> IState:
 	var clines_positions = canvas.Utils.map(clines, canvas.Mimic, "area2D_position", [])
 	var closure = canvas.Utils.get_positions_closure(clines_positions)
 	var center = canvas.Utils.get_positions_mean(closure)
-	var translation = -center + canvas.detached_RCC.rect_position
+	var translation
+	if detachedRCC_isVisible:
+		translation = -center + canvas.detached_RCC.rect_position
+	else:
+		translation = -center + canvas.get_global_mouse_position()
 	
 	for Ligne in clines:
 		var duplarea = Ligne.duplicate(true)
