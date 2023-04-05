@@ -4,9 +4,6 @@ export var sensibility: float = 400.0
 
 func enter() -> void:
 	canvas._action_menu.hide()
-
-func exit() -> void:
-	canvas.snapshots.create_snapshot()
 	
 func input(event: InputEvent) -> IState:
 	var area2D_L = canvas.Utils.map(canvas.selected_lines,canvas.Mimic,"get_first",[])
@@ -14,6 +11,9 @@ func input(event: InputEvent) -> IState:
 			
 	if event is InputEventMouseButton:
 		if not event.is_pressed() and event.button_index == BUTTON_LEFT and not Input.is_action_pressed("Zoom") and not Input.is_action_pressed("Unzoom"):
+			
+			canvas.snapshots.create_snapshot()
+			
 			return self
 			
 	if event is InputEventMouseMotion: 
@@ -41,12 +41,12 @@ func keyboard_input(event: InputEvent) -> IState:
 	var isWheelUp: bool = false
 	var isWheelDown: bool = false
 	if event is InputEventMouseButton:
-		isWheelUp = event.button_mask == BUTTON_WHEEL_UP
-		isWheelDown = event.button_mask == BUTTON_WHEEL_DOWN
+		isWheelUp = event.button_index == BUTTON_WHEEL_UP
+		isWheelDown = event.button_index == BUTTON_WHEEL_DOWN
 
 	if Input.is_action_just_released("Zoom") or Input.is_action_just_released("Unzoom"):
 		if not (isWheelUp or isWheelDown):
-			exit()
+			canvas.snapshots.create_snapshot()
 			return switch_to_previous_state()
 
-	return null
+	return .keyboard_input(event)
