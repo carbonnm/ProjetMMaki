@@ -12,7 +12,7 @@ func input(event: InputEvent) -> IState:
 	var area2D_L = canvas.Utils.map(canvas.selected_lines,canvas.Mimic,"get_first",[])
 		
 	if event is InputEventMouseButton:
-		if not event.is_pressed() and event.button_mask == BUTTON_MASK_LEFT and not Input.is_action_pressed("DragAndDrop"):
+		if not event.is_pressed() and event.button_index == BUTTON_LEFT and not Input.is_action_pressed("DragAndDrop"):
 			return self
 			
 	if event is InputEventMouseMotion: 

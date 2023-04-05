@@ -134,10 +134,10 @@ Parameters:
 new_state: The new state to assign to the state manager. (IState)
 """
 func change_state(new_state: IState) -> void:
-	if current_state and current_state != previous_state:
+	if current_state and new_state != current_state:
 		current_state.exit()
 		
-	if current_state != previous_state:
+	if new_state != current_state:
 		current_state = new_state
 	
 		current_state.enter()
