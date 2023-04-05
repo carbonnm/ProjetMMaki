@@ -74,6 +74,9 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("DragAndDrop"):
 		return drag_and_drop
 	
+	if Input.is_action_just_pressed("Rotation"):
+		return rotation
+	
 	if Input.is_action_just_pressed("Undo"):
 		return undo
 	elif event is InputEventKey and event.is_pressed():

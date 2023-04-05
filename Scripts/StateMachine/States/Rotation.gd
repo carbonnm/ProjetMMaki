@@ -6,7 +6,7 @@ func enter() -> void :
 
 func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton:
-		if not event.is_pressed():
+		if not event.is_pressed() and event.button_index == BUTTON_LEFT:
 			canvas.snapshots.create_snapshot()
 			return self
 			
