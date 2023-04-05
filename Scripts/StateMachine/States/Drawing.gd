@@ -7,6 +7,9 @@ const LINE := preload("res://Scripts/Line.gd")
 func enter() -> void:
 	Input.set_custom_mouse_cursor(load("res://Assets/Graphics/Image/pencil-solid.svg"))
 
+func exit() -> void:
+	canvas.snapshots.create_snapshot()
+
 func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
@@ -19,8 +22,6 @@ func input(event: InputEvent) -> IState:
 				if _current_line != null and is_instance_valid(_current_line):
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
-				
-				canvas.snapshots.create_snapshot()
 				
 				return self
 				

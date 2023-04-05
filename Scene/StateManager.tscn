@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/StateMachine/States/Selection.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/StateMachine/SignalSwitcher.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/StateMachine/States/Camera.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/StateMachine/States/ZoomCamera.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/StateMachine/States/Rotation.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/StateMachine/States/DragAndDrop.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/StateMachine/States/MoveCanvas.gd" type="Script" id=8]
@@ -25,7 +25,7 @@ starting_state = NodePath("SignalSwitcher/Drawing")
 
 [node name="SignalSwitcher" type="Node" parent="."]
 script = ExtResource( 4 )
-camera_node = NodePath("Camera")
+zoom_camera_node = NodePath("ZoomCamera")
 move_canvas_node = NodePath("MoveCanvas")
 drawing_node = NodePath("Drawing")
 selection_node = NodePath("Selection")
@@ -42,7 +42,7 @@ ungroup_node = NodePath("Ungroup")
 fusion_node = NodePath("Fusion")
 create_title_node = NodePath("CreateTitle")
 
-[node name="Camera" type="Node" parent="SignalSwitcher"]
+[node name="ZoomCamera" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
 signal_switcher_node = NodePath("..")
 

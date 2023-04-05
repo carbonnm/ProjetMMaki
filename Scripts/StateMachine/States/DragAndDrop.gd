@@ -5,12 +5,14 @@ export var sensibility: float = 300.0
 func enter() -> void:
 	canvas._action_menu.hide()
 
+func exit() -> void:
+	canvas.snapshots.create_snapshot()
+
 func input(event: InputEvent) -> IState:
 	var area2D_L = canvas.Utils.map(canvas.selected_lines,canvas.Mimic,"get_first",[])
 		
 	if event is InputEventMouseButton:
-		if not event.is_pressed() and not Input.is_action_pressed("DragAndDrop"):
-			canvas.snapshots.create_snapshot()
+		if not event.is_pressed() and event.button_mask == BUTTON_MASK_LEFT and not Input.is_action_pressed("DragAndDrop"):
 			return self
 			
 	if event is InputEventMouseMotion: 
@@ -42,12 +44,12 @@ func physics_process(delta: float) -> IState:
 
 func keyboard_input(event: InputEvent) -> IState:
 	
-	if not Input.is_action_pressed("DragAndDrop"):
-		canvas.snapshots.create_snapshot()
+	if Input.is_action_just_released("DragAndDrop") and not Input.is_action_pressed("DragAndDrop"):
+		exit()
 		return switch_to_previous_state()
 	
 	if Input.is_action_just_released("ui_accept"):
-		canvas.snapshots.create_snapshot()
+		exit()
 		return switch_to_previous_state()
 	
 	return null

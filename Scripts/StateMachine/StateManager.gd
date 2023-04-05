@@ -20,7 +20,8 @@ func init(canvas: Canvas) -> void:
 		children = children[-1].get_children() + children
 		children.pop_back()
 	
-	change_state(get_node(starting_state))
+	current_state = get_node(starting_state)
+	current_state.enter()
 	previous_state = current_state
 
 """
@@ -48,7 +49,10 @@ event: The input event to consume. (InputEvent)
 func input(event: InputEvent) -> void:
 	var new_state = current_state.input(event)
 	if new_state:
-		change_state(new_state)
+		if new_state == current_state:
+			current_state.exit()
+		else:
+			change_state(new_state)
 
 """
 Function called to consume a keyboard input event on the parent node according 
@@ -65,20 +69,21 @@ func keyboard_input(event: InputEvent) -> void:
 		previous_state = sleeping_state
 		current_state = interrupt_state
 		current_state.enter()
-	
+		
 		var new_state = current_state.input(event)
-		if not new_state:
-			sleeping_state.exit()
-			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
-		elif new_state != sleeping_state:
-			sleeping_state.exit()
-			change_state(new_state)
-			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", new_state)
-		else:
-			current_state.exit()
-			previous_state = current_state
-			current_state = sleeping_state
-			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", sleeping_state)
+		if new_state:
+			if new_state == current_state:
+				sleeping_state.exit()
+				print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
+			elif new_state == sleeping_state:
+				current_state.exit()
+				previous_state = current_state
+				current_state = sleeping_state
+				print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", sleeping_state)
+			elif new_state != sleeping_state:
+				sleeping_state.exit()
+				change_state(new_state)
+				print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", new_state)
 
 """
 Function called to consume a switch signal on the parent node according to the 
@@ -108,9 +113,7 @@ args: An array containing arguments. (Array)
 func switch_signal_with_arguments(state: String, args: Array) -> void:
 	var new_state = current_state.switch_signal(state)
 	if new_state:
-		current_state.exit()
-		previous_state = current_state
-		current_state = new_state
+		change_state(new_state)
 		new_state = current_state.parametrized_call(args)
 		if new_state:
 			change_state(new_state)
@@ -131,13 +134,14 @@ Parameters:
 new_state: The new state to assign to the state manager. (IState)
 """
 func change_state(new_state: IState) -> void:
-	if current_state:
+	if current_state and current_state != previous_state:
 		current_state.exit()
-
-	previous_state = current_state
-	current_state = new_state
-	current_state.enter()
-	print("Previous State : ", previous_state, " - Current State : ", current_state)
+		
+	if current_state != previous_state:
+		current_state = new_state
+	
+		current_state.enter()
+		print("Previous State : ", previous_state, " - Current State : ", current_state)
 
 
 func _on_Selection_pressed():

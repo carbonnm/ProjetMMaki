@@ -1,7 +1,7 @@
 extends IState
 
 # Selection nodes to set with the Godot engine.
-export (NodePath) var camera_node
+export (NodePath) var zoom_camera_node
 export (NodePath) var move_canvas_node
 export (NodePath) var drawing_node
 export (NodePath) var selection_node
@@ -18,7 +18,7 @@ export (NodePath) var ungroup_node
 export (NodePath) var fusion_node
 export (NodePath) var create_title_node
 
-onready var camera: IState = get_node(camera_node)
+onready var zoom_camera: IState = get_node(zoom_camera_node)
 onready var move_canvas: IState = get_node(move_canvas_node)
 onready var drawing: IState = get_node(drawing_node)
 onready var selection: IState = get_node(selection_node)
@@ -51,7 +51,7 @@ func keyboard_input(event: InputEvent) -> IState:
 		if get_node("../../StateManager").current_state == rescale:
 			return rescale
 		else:
-			return camera
+			return zoom_camera
 	
 	if Input.is_action_just_pressed("MoveCanvas"):
 		return move_canvas
