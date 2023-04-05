@@ -76,6 +76,9 @@ func keyboard_input(event: InputEvent) -> IState:
 	
 	if Input.is_action_just_pressed("Undo"):
 		return undo
+	elif event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_Z and not event.control:
+			return rescale
 		
 	if Input.is_action_just_pressed("Redo"):
 		return redo

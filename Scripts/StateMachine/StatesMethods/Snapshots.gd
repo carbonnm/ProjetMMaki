@@ -85,9 +85,7 @@ func reload_snapshot(index: int) -> Node:
 		var new_elements: Node = snapshots[index].duplicate(true)
 		parent_node.add_child(new_elements)
 		
-		#DEPRECATED
-		#prev_elements.queue_free()
-		prev_elements.hide()
+		prev_elements.queue_free()
 		
 		target_node = new_elements
 		current_index = index
