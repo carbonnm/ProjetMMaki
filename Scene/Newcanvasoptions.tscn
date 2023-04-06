@@ -808,6 +808,7 @@ width = 5.0
 default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
 
 [node name="Themesave" type="Panel" parent="Page"]
+visible = false
 margin_left = 696.0
 margin_top = 337.413
 margin_right = 937.0

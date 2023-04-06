@@ -1,19 +1,20 @@
 extends Node2D
 
 #chosen name for the new canvas
-var chosen_name = ""
+onready var chosen_name = ""
 #default colors for the fonts are black 
-var chosen_colorTitle = Color( 0, 0, 0, 1 ) 
-var chosen_colorSubtitle =  Color( 0, 0, 0, 1 ) 
-var chosen_colorSubsubtitle = Color( 0, 0, 0, 1 ) 
+onready var chosen_color_title = Color( 0, 0, 0, 1 ) 
+onready var chosen_color_subtitle =  Color( 0, 0, 0, 1 ) 
+onready var chosen_color_subsubtitle = Color( 0, 0, 0, 1 ) 
 
 #default color for the background of the canvas is antique white
-var chosen_color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
+onready var chosen_color_background = Color( 0.980392, 0.921569, 0.843137, 1 )
 
 #default font is Arial (the path)
-var chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
-var chosen_font_subtitle =  "res://Assets/Fonts/arial_narrow_7.ttf"
-var chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
+onready var chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
+onready var chosen_font_subtitle =  "res://Assets/Fonts/arial_narrow_7.ttf"
+onready var chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
+
 
 
 func _ready():
@@ -32,7 +33,7 @@ func _on_BoutonCreer_button_up():
 	if not(chosen_name ==""):
 		#passing all the arguments to the next scene
 		SceneSwitcher.change_scene("Scene/Canvas.tscn", {"namecanvas":chosen_name,
-		"titlecolor":chosen_colorTitle,"subtitlecolor":chosen_colorSubtitle,"subsubtitlecolor":chosen_colorSubsubtitle,
+		"titlecolor":chosen_color_title,"subtitlecolor":chosen_color_subtitle,"subsubtitlecolor":chosen_color_subsubtitle,
 		"backgroundcolor":chosen_color_background,
 		"titlefont":chosen_font_title,
 		"subtitlefont":chosen_font_subtitle,
@@ -96,21 +97,21 @@ func _on_ColorPickerButtonTitle_color_changed(new_color):
 	var cp_title = get_node("Page/Colorfontsmenu/ColorPickerButtonTitle")
 	#changes button to that color
 	cp_title.get_stylebox("normal").bg_color = new_color
-	chosen_colorTitle =  new_color
+	chosen_color_title =  new_color
 	
 #New color has been selected for the Sub-title
 func _on_ColorPickerButtonSubtitle_color_changed(new_color):
 	var cp_subtitle = get_node("Page/Colorfontsmenu/ColorPickerButtonSubtitle")
 	#changes button to that color
 	cp_subtitle.get_stylebox("normal").bg_color = new_color
-	chosen_colorSubtitle =  new_color
+	chosen_color_subtitle =  new_color
 
 #New color has been selected for the Sub-title
 func _on_ColorPickerButtonSubsubtitle_color_changed(new_color):
 	var cp_subsubtitle = get_node("Page/Colorfontsmenu/ColorPickerButtonSubsubtitle")
 	#changes button to that color
 	cp_subsubtitle.get_stylebox("normal").bg_color = new_color
-	chosen_colorSubsubtitle =  new_color
+	chosen_color_subsubtitle =  new_color
 
 #New color has been selected for the canvas background
 func _on_ColorPickerButtonCanvas_color_changed(new_color):
@@ -164,11 +165,6 @@ func _on_Titleinputbutton_pressed():
 	
 
 
-
-
-
-func _on_Inputname_text_entered(new_text: String) -> void:
-	_on_BoutonCreer_button_up()
 
 
 

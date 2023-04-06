@@ -81,6 +81,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneSwitcher="*res://Scripts/SceneSwitcher.gd"
+SaveLogic="*res://Scripts/SaveLogic.gd"
 
 [display]
 
