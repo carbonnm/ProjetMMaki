@@ -5,8 +5,7 @@ var color := Color.white
 var color_picker = false
 onready var screen_size_x : int = $"../BackgroundColored".rect_size.x
 onready var screen_size_y : int = $"../BackgroundColored".rect_size.y
-
-export (Vector2) var right_click_position = get_global_mouse_position()
+export (Vector2) var right_click_position
 
 func _ready() -> void:
 	color = $Color.color
@@ -15,6 +14,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == BUTTON_RIGHT:
+				right_click_position = get_global_mouse_position()
+				print(right_click_position)
 				var mouse_position : Vector2 = get_global_mouse_position()
 				if mouse_position.x > screen_size_x - rect_size.x and mouse_position.y > screen_size_y - rect_size.y :
 					rect_position.x = mouse_position.x - rect_size.x

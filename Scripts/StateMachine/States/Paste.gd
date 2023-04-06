@@ -2,8 +2,7 @@ extends AState
 
 var detachedRCC_isVisible: bool = false
 
-onready var rcc = get_node("../../../RightClickContainer")
-onready var click_pos : Vector2 = rcc.right_click_position
+#var click_pos : Vector2 = canvas.detached_RCC.right_click_position
 
 func enter() -> void:
 	detachedRCC_isVisible = canvas.detached_RCC.visible
@@ -20,9 +19,8 @@ func input(event: InputEvent) -> IState:
 	var translation
 	
 	if detachedRCC_isVisible:
-		#print(click_pos)
-		translation = -center + canvas.detached_RCC.rect_position
-		#translation = -center + click_pos
+		#translation = -center + canvas.detached_RCC.rect_position
+		translation = -center + canvas.detached_RCC.get("right_click_position")
 	else:
 		translation = -center + canvas.get_global_mouse_position()
 	
