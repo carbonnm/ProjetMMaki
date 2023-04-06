@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -38,6 +38,7 @@
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
 [ext_resource path="res://Assets/Graphics/Image/LitlleNote.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
+[ext_resource path="res://Scene/ActionMenu.gd" type="Script" id=39]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -254,7 +255,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 314.0
+margin_right = 312.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -326,6 +327,7 @@ margin_left = 775.0
 margin_top = 7.0
 margin_right = 951.0
 margin_bottom = 595.0
+script = ExtResource( 39 )
 __meta__ = {
 "_edit_group_": true
 }
