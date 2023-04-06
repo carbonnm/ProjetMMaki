@@ -40,7 +40,8 @@
 [ext_resource path="res://Assets/Themes/LINEEDITFOCUS.tres" type="StyleBox" id=38]
 [ext_resource path="res://Assets/Graphics/Image/oh hi mark.png" type="Texture" id=39]
 [ext_resource path="res://Assets/Graphics/Image/littlemark.png" type="Texture" id=40]
-[ext_resource path="res://Scene/Themenameinput.gd" type="Script" id=41]
+[ext_resource path="res://Scripts/Themenameinput.gd" type="Script" id=41]
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

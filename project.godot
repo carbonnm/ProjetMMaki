@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/IState.gd"
 }, {
+"base": "VBoxContainer",
+"class": "RightClickContainer",
+"language": "GDScript",
+"path": "res://Scripts/RightClickContainer.gd"
+}, {
 "base": "Node",
 "class": "Rotation",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_class_icons={
 "GutHookScript": "",
 "GutTest": "",
 "IState": "",
+"RightClickContainer": "",
 "Rotation": "",
 "Stroke": "",
 "Title": ""

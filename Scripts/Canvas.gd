@@ -63,10 +63,6 @@ func _physics_process(delta):
 
 
 
-
-
-
-
 """
 Draw a line to make a container around the selected lines
 Parameters :
@@ -126,13 +122,17 @@ func RetrieveArea(areas:Array):
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		var mouse_position : Vector2 = get_global_mouse_position()
-		if mouse_position.x > 848 and mouse_position.y > 284 :
-			_action_menu.rect_position = Vector2(848, 0)
-		elif mouse_position.y > 284 :
+		var background_x : int = _background.rect_size.x
+		var backrgound_y : int = _background.rect_size.y 
+		
+		if mouse_position.x > background_x - _action_menu.rect_size.x and mouse_position.y > backrgound_y - _action_menu.rect_size.y :
+			_action_menu.rect_position.x = mouse_position.x - _action_menu.rect_size.x
+			_action_menu.rect_position.y = backrgound_y - _action_menu.rect_size.y
+		elif mouse_position.y > backrgound_y - _action_menu.rect_size.y :
 			_action_menu.rect_position.x = mouse_position.x
-			_action_menu.rect_position.y = 284
-		elif mouse_position.x > 848 :
-			_action_menu.rect_position.x = 848
+			_action_menu.rect_position.y = backrgound_y - _action_menu.rect_size.y
+		elif mouse_position.x > background_x - _action_menu.rect_size.x :
+			_action_menu.rect_position.x = background_x - _action_menu.rect_size.x
 			_action_menu.rect_position.y = mouse_position.y
 		else : 
 			_action_menu.rect_position = mouse_position
