@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/testPythonOpenCV.png-ea71f5e82b43d89b7d91d8dc0b73a3f2.stex"
+path="res://.import/testPythonOpenCV.png-d5c6c09bc4f2a41b972773df973d2588.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/Image/testPythonOpenCV.png"
-dest_files=[ "res://.import/testPythonOpenCV.png-ea71f5e82b43d89b7d91d8dc0b73a3f2.stex" ]
+source_file="res://TestPython/testPythonOpenCV.png"
+dest_files=[ "res://.import/testPythonOpenCV.png-d5c6c09bc4f2a41b972773df973d2588.stex" ]
 
 [params]
 
