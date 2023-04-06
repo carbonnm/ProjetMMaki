@@ -126,7 +126,16 @@ func RetrieveArea(areas:Array):
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
 		var mouse_position : Vector2 = get_global_mouse_position()
-		_action_menu.rect_position = mouse_position
+		if mouse_position.x > 848 and mouse_position.y > 284 :
+			_action_menu.rect_position = Vector2(848, 0)
+		elif mouse_position.y > 284 :
+			_action_menu.rect_position.x = mouse_position.x
+			_action_menu.rect_position.y = 284
+		elif mouse_position.x > 848 :
+			_action_menu.rect_position.x = 848
+			_action_menu.rect_position.y = mouse_position.y
+		else : 
+			_action_menu.rect_position = mouse_position
 		_action_menu.show()
 		
 """
