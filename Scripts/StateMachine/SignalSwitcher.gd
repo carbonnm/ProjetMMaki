@@ -86,6 +86,10 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Redo"):
 		return redo
 	
+	if Input.is_action_pressed("CreateTitle"):
+		if Input.is_action_pressed("1") or Input.is_action_pressed("2") or Input.is_action_pressed("3"):
+			return create_title
+	
 	return null
 
 """
