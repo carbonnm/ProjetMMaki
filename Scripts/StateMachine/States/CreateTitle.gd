@@ -6,11 +6,11 @@ func exit() -> void:
 func input(event: InputEvent) -> IState:
 	
 	if Input.is_action_pressed("1"):
-		canvas._on_PopupMenu_id_pressed(1)
+		canvas._on_PopupMenu_id_RCC_pressed(1)
 	elif Input.is_action_pressed("2"):
-		canvas._on_PopupMenu_id_pressed(2)
+		canvas._on_PopupMenu_id_RCC_pressed(2)
 	elif Input.is_action_pressed("3"):
-		canvas._on_PopupMenu_id_pressed(3)
+		canvas._on_PopupMenu_id_RCC_pressed(3)
 	
 	return null
 

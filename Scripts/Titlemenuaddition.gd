@@ -18,6 +18,7 @@ func _on_Titleinputbutton_pressed():
 	
 	if chosen_title == "" :
 		return
+		
 	# Emit the signals
 	emit_signal("new_title",chosen_title)
 
