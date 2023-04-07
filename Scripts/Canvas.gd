@@ -237,6 +237,17 @@ func _on_Create_text_pressed():
 	
 
 
+func _on_Create_texte_RCC_pressed():
+	_pm.clear()
+	_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
+	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
+	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
+	_pm.connect("id_pressed", self, "_on_PopupMenu_id_RCC_pressed")
+	get_node("Titlemenuaddition/Inputtitle").clear()
+	var _text_popup = get_node("RightClickContainer/Create texte")
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+
+
 func _on_Draw_pressed():
 	_pm.clear()
 	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
@@ -317,6 +328,105 @@ func _on_PopupMenu_id_pressed(id):
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
 
 
+func _on_PopupMenu_id_RCC_pressed(id):
+	var _mouse_pos : Vector2 = get_global_mouse_position()
+	var size_title_menu_x : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
+	var size_title_menu_y : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
+	if id==1:
+		
+		get_node("Titlemenuaddition").type_title = 1
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Titlemenu").visible  = true
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = false
+		
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Titre"
+		
+		
+		if _mouse_pos.x > 600 and _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = _mouse_pos.x
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.x > 600 :
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = _mouse_pos.y
+		
+		else : 
+			get_node("Titlemenuaddition").rect_position = _mouse_pos
+			
+		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
+		
+		
+	elif id==2:
+		
+		get_node("Titlemenuaddition").type_title = 2
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = true
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Titlemenu").visible  = false
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous-titre"
+		
+		if _mouse_pos.x > 600 and _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = _mouse_pos.x
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.x > 600 :
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = _mouse_pos.y
+		
+		else : 
+			get_node("Titlemenuaddition").rect_position = _mouse_pos
+		
+		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
+		
+	elif id==3:
+		
+		get_node("Titlemenuaddition").type_title = 3
+		
+		#changes the appearance of the title menu addition following what's being created
+		get_node("Titlemenuaddition/Subsubtitlemenu").visible  = true
+		get_node("Titlemenuaddition/Titlemenu").visible  = false
+		get_node("Titlemenuaddition/Subtitlemenu").visible  = false
+		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Sous sous-titre"
+		
+		if _mouse_pos.x > 600 and _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.y > 400:
+			get_node("Titlemenuaddition").rect_position.x = _mouse_pos.x
+			get_node("Titlemenuaddition").rect_position.y = 400
+		
+		elif _mouse_pos.x > 600 :
+			get_node("Titlemenuaddition").rect_position.x = 600
+			get_node("Titlemenuaddition").rect_position.y = _mouse_pos.y
+		
+		else : 
+			get_node("Titlemenuaddition").rect_position = _mouse_pos
+
+		get_node("Titlemenuaddition").visible = true
+		#makes the right-click menu disappear faster
+		get_node("RightClickContainer").visible = false
+		
+	elif id==4:
+		print("Ecriture vers Dessin")
+	elif id==5:
+		print("Dessin")
+	
+	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
 func _on_Save_canvas_pressed() -> void:
 	var packed_scene = PackedScene.new()
 	
@@ -332,3 +442,4 @@ func LoadSave() -> void:
 	add_child(_scene)
 	move_child(_scene, 2)
 	_elements = _scene
+

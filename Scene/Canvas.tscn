@@ -254,7 +254,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 314.0
+margin_right = 312.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -396,7 +396,7 @@ margin_bottom = 20.0
 
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
-[connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_text_pressed"]
+[connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="RightClickContainer/Draw" to="." method="_on_Draw_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
