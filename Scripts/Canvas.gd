@@ -7,7 +7,7 @@ var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
 var Mimic := preload("res://Scripts/Utilities/BuiltInMimic.gd").new()
 # (User Customization scripts)
 var Custom := preload("res://Scripts/Customization.gd")
-var AREASELECTION := preload("res://Scripts/AreaSelection.gd")
+var AREASELECTION := load("res://Scripts/AreaSelection.gd")
 # (State relative scripts)
 var DragAndDrop := preload("res://Scripts/Modes/DragAndDrop.gd").new()
 var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
@@ -15,6 +15,7 @@ var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
 var Save := preload("res://Classes/Save.gd").new()
+var WordRecognition := preload("res://Scripts/WordRecognition.py")
 
 # Get references to childs 
 onready var _background := $BackgroundColored
@@ -256,8 +257,8 @@ func _on_Draw_pressed():
 	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
 	_pm.add_item("Dessin", PopupIds.WRITING)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	var _draw_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Draw")
-	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 154, _draw_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _draw_popup = get_node("ActionMenu")
+	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 135, _draw_popup.get_global_rect().position.y + 200, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
@@ -325,6 +326,27 @@ func _on_PopupMenu_id_pressed(id):
 		
 	elif id==4:
 		print("Ecriture vers Dessin")
+		var path = "ScreenShots" + "/screenshot.png"
+		
+		var corners : Array = get_selection_area_corner()
+		var upper_left : Vector2 = corners[0]
+		var bottom_right : Vector2 = corners[1]
+		var size_area : Vector2 = bottom_right - upper_left
+		var center_selected_lines = (bottom_right + upper_left)/2
+		
+		var capture_rect = Rect2(center_selected_lines - Vector2(50, 50), size_area + Vector2(100, 50))
+		
+		var viewport = get_viewport() 
+		var screenshot = viewport.get_texture().get_data()
+		screenshot.flip_y()
+		screenshot.get_rect(capture_rect).save_png(path)
+		
+		#var word = WordRecognition.word_recognition(path)
+		
+		#var word
+		#OS.execute("python", ["WordRecognition.py"], true, word)
+		#print(word)
+		
 	elif id==5:
 		print("Dessin")
 	
@@ -422,11 +444,6 @@ func _on_PopupMenu_id_RCC_pressed(id):
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
-		
-	elif id==4:
-		print("Ecriture vers Dessin")
-	elif id==5:
-		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
 
