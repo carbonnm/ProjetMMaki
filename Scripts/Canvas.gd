@@ -139,7 +139,12 @@ Returns : Array
 func get_selection_area_corner() :
 	var min_upper_left : Vector2 = Vector2.INF
 	var max_bottom_right : Vector2
+	var min_x : float = 1024.0
+	var min_y : float = 600.0
+	var max_x : float
+	var max_y : float
 	var points_positions : Array = []
+	
 	for element in selected_lines : 
 		if element[0] is Stroke :
 			for point in element[0]._line.points:
@@ -148,22 +153,33 @@ func get_selection_area_corner() :
 			var corners : Array = Utils.get_positions_corners(points_positions)
 			var upper_left : Vector2 = corners[0] + element[0].position
 			var bottom_right : Vector2 = corners[1] + element[0].position
-			if upper_left < min_upper_left :
-				min_upper_left = upper_left
-			if bottom_right > max_bottom_right :
-				max_bottom_right = bottom_right
+			if upper_left.x < min_x :
+				min_x = upper_left.x
+			if upper_left.y < min_y :
+				min_y = upper_left.y
+			if bottom_right.x > max_x :
+				max_x = bottom_right.x
+			if bottom_right.y > max_y :
+				max_y = bottom_right.y
 		
 		if element[0] is Title :
+			#print("Title")
 			#Check if upper_left corner of the title is smaller than the min
-			if element[0].position < min_upper_left :
-				min_upper_left = element[0].position
+			if element[0].position.x < min_x :
+				min_x = element[0].position.x
+			if element[0].position.y < min_y :
+				min_y = element[0].position.y
 			#Check if the bottom_right corner of the title is greater than the max
 			var bottom_right : Vector2 = Utils.get_child_of_type(element[0], "TextEdit").rect_size
-			if bottom_right > max_bottom_right :
-				max_bottom_right = bottom_right
+			if bottom_right.x > max_x :
+				max_x = bottom_right.x
+			if bottom_right.y > max_y :
+				max_y = bottom_right.y
 	
-	print("upper_left", min_upper_left)
-	print("bottom_right", max_bottom_right)
+	min_upper_left = Vector2(min_x, min_y)
+	max_bottom_right = Vector2(max_x, max_y)
+	#print("upper_left", min_upper_left)
+	#print("bottom_right", max_bottom_right)
 	
 	return [min_upper_left,max_bottom_right]
 
