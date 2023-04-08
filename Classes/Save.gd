@@ -26,11 +26,11 @@ func apply_global_transform(node) -> Node:
 	var dup_node = node.duplicate(true)
 	var transform: Transform2D = node.get_parent().global_transform
 	if dup_node is Control:
-		dup_node.rect_position = transform.get_origin()
-		dup_node.rect_rotation = transform.get_rotation()
-		dup_node.rect_scale = transform.get_scale()
+		dup_node.rect_position += transform.get_origin()
+		dup_node.rect_rotation += transform.get_rotation()
+		dup_node.rect_scale *= transform.get_scale()
 	if dup_node is Node2D:
-		dup_node.transform = transform
+		dup_node.transform *= transform
 	
 	return dup_node
 
