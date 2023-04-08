@@ -117,8 +117,8 @@ func appendSelectionArea() -> void :
 Calls DrawLineContainer whith the drawing bool to true
 """
 func RetrieveArea(areas:Array):
-	selected_lines = areas.duplicate()
-	
+#	selected_lines = areas.duplicate()
+#
 #	Selection_area = AREASELECTION.new()
 #	get_node("Elements").add_child(Selection_area)
 #	appendSelectionArea()
@@ -149,16 +149,23 @@ Gets the corner of the selection_area
 Returns : Array  
 """
 func get_selection_area_corner() :
-	var upper_left = Vector2.INF
-	var bottom_right = -1 * Vector2.INF
+	var min_upper_left = Vector2.INF
+	var max_bottom_right = -1 * Vector2.INF
+	var points_positions : Array = []
 	for element in selected_lines : 
 		if element[0] is Stroke :
 			for point in element[0]._line.points:
-				if Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y)) < upper_left :
-					upper_left = Vector2(min(upper_left.x,point.x),min(upper_left.y,point.y))
-				if Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y)) > bottom_right :
-					bottom_right = Vector2(max(bottom_right.x,point.x),max(bottom_right.y,point.y))
-	return [upper_left,bottom_right]
+				points_positions.append(point)
+			
+			var corners : Array = Utils.get_positions_corners(points_positions)
+			var upper_left : Vector2 = corners[0]
+			var bottom_right : Vector2 = corners[1]
+			if upper_left < min_upper_left :
+				min_upper_left = upper_left
+			if bottom_right > max_bottom_right :
+				max_bottom_right = bottom_right
+			
+	return [min_upper_left,max_bottom_right]
 	
 """
 Gets the size of the selection_area 
@@ -167,13 +174,10 @@ Returns : Vector2
 	- min_y : y coordinates of the selection area 
 """
 func get_position_area_size() -> Array :
-	var min_x
-	var min_y
-	var coord_x
-	var coord_y
-	for element in selected_lines :
-		min_x = element[0].position.x
-		min_y = element[0].position.y
+	var min_x : float = 1024.0
+	var min_y : float = 600.0
+	var coord_x : float
+	var coord_y : float
 	for element in selected_lines :
 		if element[0] is Stroke :
 			for point in element[0]._line.get_point_count():
