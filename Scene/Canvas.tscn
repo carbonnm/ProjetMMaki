@@ -184,14 +184,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 142.0
+margin_bottom = 109.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 146.0
+margin_top = 113.0
 margin_right = 153.0
-margin_bottom = 220.0
+margin_bottom = 187.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
