@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -34,7 +34,6 @@
 [ext_resource path="res://Assets/Graphics/Image/ungroup.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Graphics/Image/littlecoller.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Graphics/Image/littlesave.png" type="Texture" id=34]
-[ext_resource path="res://Assets/Graphics/Image/littleCrayon.png" type="Texture" id=35]
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
 [ext_resource path="res://Assets/Graphics/Image/LitlleNote.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
@@ -110,13 +109,6 @@ margin_right = 218.0
 margin_bottom = 108.0
 text = "Créer annotation"
 icon = ExtResource( 37 )
-
-[node name="Draw" type="Button" parent="RightClickContainer"]
-margin_top = 112.0
-margin_right = 218.0
-margin_bottom = 147.0
-text = "Dessiner"
-icon = ExtResource( 35 )
 
 [node name="Save canvas" type="Button" parent="RightClickContainer"]
 margin_top = 151.0
@@ -285,24 +277,17 @@ margin_bottom = 208.0
 text = "Créer annotation"
 icon = ExtResource( 24 )
 
-[node name="Draw" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+[node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 212.0
 margin_right = 218.0
-margin_bottom = 280.0
-text = "Dessiner"
-icon = ExtResource( 10 )
-
-[node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 284.0
-margin_right = 218.0
-margin_bottom = 354.0
+margin_bottom = 282.0
 text = "Enregistrer"
 icon = ExtResource( 18 )
 
 [node name="Paste" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 358.0
+margin_top = 286.0
 margin_right = 218.0
-margin_bottom = 428.0
+margin_bottom = 356.0
 text = "Coller"
 icon = ExtResource( 17 )
 
@@ -325,7 +310,7 @@ anchor_bottom = 0.5
 margin_left = 775.0
 margin_top = 7.0
 margin_right = 951.0
-margin_bottom = 323.0
+margin_bottom = 363.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -364,24 +349,31 @@ margin_bottom = 196.0
 text = "Rotation"
 icon = ExtResource( 19 )
 
-[node name="Fusion" type="Button" parent="ActionMenu"]
+[node name="Draw" type="Button" parent="ActionMenu"]
 margin_top = 200.0
 margin_right = 176.0
-margin_bottom = 236.0
+margin_bottom = 235.0
+text = "Magie Noire"
+icon = ExtResource( 10 )
+
+[node name="Fusion" type="Button" parent="ActionMenu"]
+margin_top = 239.0
+margin_right = 176.0
+margin_bottom = 275.0
 text = "Fusionner"
 icon = ExtResource( 31 )
 
 [node name="Group" type="Button" parent="ActionMenu"]
-margin_top = 240.0
+margin_top = 279.0
 margin_right = 176.0
-margin_bottom = 276.0
+margin_bottom = 315.0
 text = "Grouper"
 icon = ExtResource( 6 )
 
 [node name="Ungroup" type="Button" parent="ActionMenu"]
-margin_top = 280.0
+margin_top = 319.0
 margin_right = 176.0
-margin_bottom = 316.0
+margin_bottom = 355.0
 text = "Dégrouper"
 icon = ExtResource( 32 )
 
@@ -398,7 +390,6 @@ margin_bottom = 20.0
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
-[connection signal="pressed" from="RightClickContainer/Draw" to="." method="_on_Draw_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
@@ -408,7 +399,6 @@ margin_bottom = 20.0
 [connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create texte" to="." method="_on_Create_text_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Draw" to="." method="_on_Draw_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickButton" to="CanvasLayer" method="_on_RightClickButton_pressed"]
@@ -417,6 +407,7 @@ margin_bottom = 20.0
 [connection signal="pressed" from="ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]
 [connection signal="pressed" from="ActionMenu/Copy" to="StateManager" method="_on_Copy_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="StateManager" method="_on_Rotation_pressed"]
+[connection signal="pressed" from="ActionMenu/Draw" to="." method="_on_Draw_pressed"]
 [connection signal="pressed" from="ActionMenu/Fusion" to="StateManager" method="_on_Fusion_pressed"]
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]

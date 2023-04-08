@@ -256,8 +256,8 @@ func _on_Draw_pressed():
 	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
 	_pm.add_item("Dessin", PopupIds.WRITING)
 	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	var _draw_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Draw")
-	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 154, _draw_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+	var _draw_popup = get_node("ActionMenu")
+	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 135, _draw_popup.get_global_rect().position.y + 200, _pm.rect_size.x, _pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
@@ -325,6 +325,12 @@ func _on_PopupMenu_id_pressed(id):
 		
 	elif id==4:
 		print("Ecriture vers Dessin")
+		var path = str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)) + "/screenshot.png"
+		var viewport = get_viewport()
+		var screenshot = viewport.get_texture().get_data()
+		screenshot.flip_y()
+		screenshot.save_png(path)
+		
 	elif id==5:
 		print("Dessin")
 	
