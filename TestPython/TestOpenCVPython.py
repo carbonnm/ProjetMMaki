@@ -20,7 +20,7 @@ class TestOpenCVPython(Node2D):
 		Called every time the node is added to the scene.
 		Initialization here.
 		"""
-		pathImage = 'TestPython/testPythonOpenCV.png'
+		pathImage = "ScreenShots/screenshot.png"
 		im = Image.open(pathImage)
 		#image = cv2.imread(r'testPythonOpenCV.png')
 		print(pytesseract.image_to_string(im))

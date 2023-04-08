@@ -326,9 +326,15 @@ func _on_PopupMenu_id_pressed(id):
 	elif id==4:
 		print("Ecriture vers Dessin")
 		var path = str(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)) + "/screenshot.png"
-		var viewport = get_viewport()
-		var screenshot = viewport.get_texture().get_data()
+		
+		var target_viewport = get_node("Elements")
+		
+		
+		#var viewport = get_viewport()
+		var screenshot = target_viewport.get_texture().get_data()
 		screenshot.flip_y()
+		
+		
 		screenshot.save_png(path)
 		
 	elif id==5:
@@ -428,11 +434,6 @@ func _on_PopupMenu_id_RCC_pressed(id):
 		get_node("Titlemenuaddition").visible = true
 		#makes the right-click menu disappear faster
 		get_node("RightClickContainer").visible = false
-		
-	elif id==4:
-		print("Ecriture vers Dessin")
-	elif id==5:
-		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
 
