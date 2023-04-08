@@ -11,9 +11,9 @@ func set_save_nodes(nodes: Array):
 
 func save() -> Dictionary:
 	var save_dict: Dictionary = {
-		"Line2D_A": [],
-		"TextEdit_A": [],
-		"Sprite_A": []
+		"Line2D": [],
+		"TextEdit": [],
+		"Sprite": []
 	}
 		
 	save_dict = retrieve_elements(save_dict)
@@ -24,11 +24,17 @@ func save() -> Dictionary:
 func retrieve_elements(save_dict: Dictionary) -> Dictionary:
 	for node in save_nodes:
 		if node is Line2D:
-			save_dict["Line2D_A"].append(node.duplicate(true))
+			var trans_node: Line2D = node.duplicate(true)
+			trans_node.set_transform(node.global_transform)
+			save_dict["Line2D"].append(trans_node)
 		elif node is TextEdit:
-			save_dict["TextEdit_A"].append(node.duplicate(true))
+			var trans_node: TextEdit = node.duplicate(true)
+			trans_node.set_transform(node.global_transform)
+			save_dict["TextEdit"].append(trans_node)
 		elif node is Sprite:
-			save_dict["Sprite_A"].append(node.duplicate(true))
+			var trans_node: Sprite = node.duplicate(true)
+			trans_node.set_transform(node.global_transform)
+			save_dict["Sprite"].append(trans_node)
 		else:
 			set_save_nodes(save_nodes + node.get_children())
 		

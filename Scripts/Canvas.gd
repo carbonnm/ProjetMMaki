@@ -49,6 +49,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
+	if event is InputEventKey and event.scancode == KEY_KP_9:
+		var parent_node: Node = Utils.get_match_string_node("Elements", self)
+		Save.set_save_nodes([parent_node])
+		Save.save()
+		print(Save.saves[0]["Line2D"][0].position)
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
