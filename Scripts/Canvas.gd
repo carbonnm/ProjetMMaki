@@ -77,14 +77,14 @@ drawing : bool -> launch draw function if true
 """
 func DrawLineContainer(drawing:bool):
 	for element in selected_lines:
-#		if element[0] is AreaSelection:
-#			element[0].draw = drawing
-#			element[0].update()
-		if element[0] is Stroke  or element[0] is Title:
-			# lancer la fonction _draw setup dans Line.gd
+		if element[0] is AreaSelection:
 			element[0].draw = drawing
-			# lance la fonction draw() de godot (update() lance draw())
 			element[0].update()
+#		if element[0] is Stroke  or element[0] is Title:
+#			# lancer la fonction _draw setup dans Line.gd
+#			element[0].draw = drawing
+#			# lance la fonction draw() de godot (update() lance draw())
+#			element[0].update()
 			
 
 
@@ -95,20 +95,8 @@ func appendSelectionArea() -> void :
 	var corners = get_selection_area_corner()
 	var upper_left = corners[0]
 	var bottom_right = corners[1]
-	var area_size = get_position_area_size()
-	var min_x = area_size[0]
-	var min_y = area_size[1]
-	var sLines = Utils.map(selected_lines, Mimic, "get_first", [])
-	var sPosition = Utils.map(sLines, Mimic, "area2D_position", [])
-	var closure = Utils.get_positions_closure(sPosition)
-	var center = Utils.get_positions_mean(closure)
 		
-	var area_size_vec = Vector2(bottom_right[0] * 2, bottom_right[1] * 2)
-	var size_x = bottom_right[0] * 2
-	var size_y = bottom_right[1] * 2
-		
-	Selection_area.set_params(min_x, min_y, size_x, size_y, upper_left, bottom_right)
-	Selection_area.set_param(center/2)
+	Selection_area.set_params(upper_left, bottom_right)
 	Selection_area.create_selection_area(selected_lines)
 
 
@@ -117,13 +105,13 @@ func appendSelectionArea() -> void :
 Calls DrawLineContainer whith the drawing bool to true
 """
 func RetrieveArea(areas:Array):
-#	selected_lines = areas.duplicate()
-#
-#	Selection_area = AREASELECTION.new()
-#	get_node("Elements").add_child(Selection_area)
-#	appendSelectionArea()
-#
-#	selected_lines.append([Selection_area, 0])
+	selected_lines = areas.duplicate()
+
+	Selection_area = AREASELECTION.new()
+	get_node("Elements").add_child(Selection_area)
+	appendSelectionArea()
+
+	selected_lines.append([Selection_area, 0])
 	
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
@@ -149,8 +137,8 @@ Gets the corner of the selection_area
 Returns : Array  
 """
 func get_selection_area_corner() :
-	var min_upper_left = Vector2.INF
-	var max_bottom_right = -1 * Vector2.INF
+	var min_upper_left : Vector2 = Vector2.INF
+	var max_bottom_right : Vector2
 	var points_positions : Array = []
 	for element in selected_lines : 
 		if element[0] is Stroke :
@@ -158,36 +146,26 @@ func get_selection_area_corner() :
 				points_positions.append(point)
 			
 			var corners : Array = Utils.get_positions_corners(points_positions)
-			var upper_left : Vector2 = corners[0]
-			var bottom_right : Vector2 = corners[1]
+			var upper_left : Vector2 = corners[0] + element[0].position
+			var bottom_right : Vector2 = corners[1] + element[0].position
 			if upper_left < min_upper_left :
 				min_upper_left = upper_left
 			if bottom_right > max_bottom_right :
 				max_bottom_right = bottom_right
-			
-	return [min_upper_left,max_bottom_right]
+		
+		if element[0] is Title :
+			#Check if upper_left corner of the title is smaller than the min
+			if element[0].position < min_upper_left :
+				min_upper_left = element[0].position
+			#Check if the bottom_right corner of the title is greater than the max
+			var bottom_right : Vector2 = Utils.get_child_of_type(element[0], "TextEdit").rect_size
+			if bottom_right > max_bottom_right :
+				max_bottom_right = bottom_right
 	
-"""
-Gets the size of the selection_area 
-Returns : Vector2 
-	- min_x : x coordinates of the selection area
-	- min_y : y coordinates of the selection area 
-"""
-func get_position_area_size() -> Array :
-	var min_x : float = 1024.0
-	var min_y : float = 600.0
-	var coord_x : float
-	var coord_y : float
-	for element in selected_lines :
-		if element[0] is Stroke :
-			for point in element[0]._line.get_point_count():
-				coord_x = element[0].position.x + element[0]._line.get_point_position(point).x
-				coord_y = element[0].position.y + element[0]._line.get_point_position(point).y
-				if coord_x < min_x :
-					min_x = coord_x
-				if coord_y < min_y :
-					min_y = coord_y
-	return [min_x, min_y]
+	print("upper_left", min_upper_left)
+	print("bottom_right", max_bottom_right)
+	
+	return [min_upper_left,max_bottom_right]
 
 
 """

@@ -1,13 +1,12 @@
 class_name AreaSelection extends Area2D
 
 var size_area : Vector2
-var area_pos
-var size_area_x
-var size_area_y
-var min_pos_x
-var min_pos_y
-var upper_left_area
-var bottom_right_area
+var size_area_x : float
+var size_area_y : float
+var min_pos_x : float
+var min_pos_y : float
+var upper_left_area : Vector2
+var bottom_right_area : Vector2
 
 var c_shape : CollisionShape2D
 var shape : RectangleShape2D
@@ -18,24 +17,23 @@ var draw:bool = false
 """
 Set the parameters to what is desired
 """
-func set_params(min_x, min_y, size_x, size_y, upper_left, bottom_right) :
-	min_pos_x = min_x
-	min_pos_y = min_y
-	size_area_x = size_x
-	size_area_y = size_y
+func set_params(upper_left, bottom_right) :
+	min_pos_x = upper_left.x
+	min_pos_y = upper_left.y
 	upper_left_area = upper_left
 	bottom_right_area = bottom_right
+	size_area_x = bottom_right.x * 2
+	size_area_y = bottom_right.y * 2
 	size_area = Vector2(size_area_x, size_area_y)
-
-func set_param(area_position) :
-	self.position = area_position
 
 """
 Launched by the uddate function
 """
 func _draw() -> void:
 	if draw :
-		draw_rect(Rect2(-size_area_x/2, -size_area_y/2, size_area_x, size_area_y), Color.aqua, false, 4)
+		var size_rect : Vector2 = bottom_right_area - upper_left_area
+		draw_rect(Rect2(-size_rect/2, size_rect), Color.aqua, false, 4)
+		#draw_rect(Rect2(- min_pos_x, - min_pos_y, size_area_x, size_area_y), Color.aqua, false, 4)
 		#draw_rect(Rect2(0, 0, size_area_x, size_area_y), Color.aqua, false, 4)
 
 """
