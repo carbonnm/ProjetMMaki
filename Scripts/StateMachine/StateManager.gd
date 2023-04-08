@@ -68,7 +68,7 @@ func keyboard_input(event: InputEvent) -> void:
 		var new_state = current_state.input(event)
 		if new_state:
 			change_state(new_state)
-			print("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
+			#("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
 
 """
 Function called to consume a switch signal on the parent node according to the 
@@ -125,7 +125,7 @@ func change_state(new_state: IState) -> void:
 	current_state = new_state
 	
 	current_state.enter()
-	print("Previous State : ", previous_state, " - Current State : ", current_state)
+	#print("Previous State : ", previous_state, " - Current State : ", current_state)
 
 
 func _on_Selection_pressed():
