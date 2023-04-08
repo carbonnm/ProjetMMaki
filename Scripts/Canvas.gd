@@ -53,7 +53,7 @@ func _input(event: InputEvent):
 		var parent_node: Node = Utils.get_match_string_node("Elements", self)
 		Save.set_save_nodes([parent_node])
 		Save.save()
-		print(Save.saves[0]["Line2D"][0].position)
+		print(Save.saves[0]["TextEdit"][0].rect_position)
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
