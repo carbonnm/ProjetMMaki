@@ -163,14 +163,15 @@ func get_selection_area_corner() :
 				max_y = bottom_right.y
 		
 		if element[0] is Title :
-			#print("Title")
+			#Get Title position : 
+			var position_title : Vector2 = element[0].position + Utils.get_child_of_type(element[0], "TextEdit").rect_position
 			#Check if upper_left corner of the title is smaller than the min
-			if element[0].position.x < min_x :
-				min_x = element[0].position.x
-			if element[0].position.y < min_y :
-				min_y = element[0].position.y
+			if position_title.x < min_x :
+				min_x = position_title.x
+			if position_title.y < min_y :
+				min_y = position_title.y
 			#Check if the bottom_right corner of the title is greater than the max
-			var bottom_right : Vector2 = Utils.get_child_of_type(element[0], "TextEdit").rect_size
+			var bottom_right : Vector2 = position_title + Utils.get_child_of_type(element[0], "TextEdit").rect_size
 			if bottom_right.x > max_x :
 				max_x = bottom_right.x
 			if bottom_right.y > max_y :
@@ -178,8 +179,6 @@ func get_selection_area_corner() :
 	
 	min_upper_left = Vector2(min_x, min_y)
 	max_bottom_right = Vector2(max_x, max_y)
-	#print("upper_left", min_upper_left)
-	#print("bottom_right", max_bottom_right)
 	
 	return [min_upper_left,max_bottom_right]
 
