@@ -27,9 +27,10 @@ func _on_Okbutton_button_up():
 		
 		#adds the new theme to the user's saved ones
 		if not(user_data.has(name_entered)):
-			user_data[name_entered] = [[fullpicture.chosen_name,fullpicture.chosen_color_title],
-										[fullpicture.chosen_font_title,fullpicture.chosen_color_subtitle],
-										[fullpicture.chosen_font_subsubtitle,fullpicture.chosen_color_subsubtitle]]
+			user_data[name_entered] = [[fullpicture.chosen_font_title,fullpicture.chosen_color_title],
+										[fullpicture.chosen_font_subtitle,fullpicture.chosen_color_subtitle],
+										[fullpicture.chosen_font_subsubtitle,fullpicture.chosen_color_subsubtitle],
+										[fullpicture.chosen_color_background]]
 		$Themenameinput.text = ""
 		print(user_data)
 

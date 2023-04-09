@@ -53,6 +53,7 @@ func _on_ButtonSave_button_up():
 
 func _on_ButtonChoice_button_up():
 	get_node("Page/Themechoice").visible = true
+	
 
 
 
