@@ -7,6 +7,7 @@ export_presets.cfg
 *.translation
 
 #Python
+__pycache__/
 *.pyc
 
 # Mono-specific ignores

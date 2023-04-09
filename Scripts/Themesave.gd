@@ -1,7 +1,8 @@
 extends Panel
 
 
-
+onready var fullpicture = get_owner()
+onready var user_data = SaveLogic.user_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +24,15 @@ func _on_Okbutton_button_up():
 	else:
 		visible = false
 		$Themenamenotentered.visible = false
+		
+		#adds the new theme to the user's saved ones
+		if not(user_data.has(name_entered)):
+			user_data[name_entered] = [[fullpicture.chosen_font_title,fullpicture.chosen_color_title],
+										[fullpicture.chosen_font_subtitle,fullpicture.chosen_color_subtitle],
+										[fullpicture.chosen_font_subsubtitle,fullpicture.chosen_color_subsubtitle],
+										[fullpicture.chosen_color_background]]
 		$Themenameinput.text = ""
+		print(user_data)
 
 func _on_Closebutton_mouse_entered():
 	get_node("Closebutton/Crossicon").playing = true

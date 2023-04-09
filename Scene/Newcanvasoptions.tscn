@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -41,6 +41,12 @@
 [ext_resource path="res://Assets/Graphics/Image/oh hi mark.png" type="Texture" id=39]
 [ext_resource path="res://Assets/Graphics/Image/littlemark.png" type="Texture" id=40]
 [ext_resource path="res://Scripts/Themenameinput.gd" type="Script" id=41]
+<<<<<<< HEAD
+=======
+[ext_resource path="res://Scripts/CreatedThemes.gd" type="Script" id=42]
+[ext_resource path="res://Assets/Themes/themechoicetheme.tres" type="Theme" id=43]
+[ext_resource path="res://Assets/Fonts/FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=44]
+>>>>>>> bde52aa2381dba98b81f7d8d3988c529f8666a28
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -318,17 +324,92 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFont" id=63]
-size = 29
-font_data = ExtResource( 8 )
+size = 30
+font_data = ExtResource( 44 )
 
 [sub_resource type="Theme" id=64]
 default_font = SubResource( 63 )
 
-[sub_resource type="StyleBoxEmpty" id=66]
+[sub_resource type="StyleBoxEmpty" id=91]
 
-[sub_resource type="StyleBoxEmpty" id=67]
+[sub_resource type="StyleBoxEmpty" id=92]
 
-[sub_resource type="StyleBoxEmpty" id=65]
+[sub_resource type="StyleBoxEmpty" id=85]
+
+[sub_resource type="DynamicFont" id=80]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=81]
+default_font = SubResource( 80 )
+
+[sub_resource type="StyleBoxFlat" id=82]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=83]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=95]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=84]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=86]
+size = 21
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=87]
+default_font = SubResource( 86 )
+
+[sub_resource type="StyleBoxFlat" id=88]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=89]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=94]
+bg_color = Color( 0.4, 0.392157, 0.392157, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=90]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=93]
+bg_color = Color( 0.46875, 0.384594, 0.00869751, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id=71]
 
@@ -338,14 +419,6 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=75]
 default_font = SubResource( 74 )
-
-[sub_resource type="DynamicFont" id=72]
-size = 24
-outline_color = Color( 0.0431373, 0.0235294, 0.0235294, 1 )
-font_data = ExtResource( 2 )
-
-[sub_resource type="Theme" id=73]
-default_font = SubResource( 72 )
 
 [sub_resource type="StyleBoxFlat" id=76]
 bg_color = Color( 0.662745, 0.898039, 0.0784314, 1 )
@@ -539,6 +612,10 @@ items = [ "", ExtResource( 14 ), false, 0, null, "", ExtResource( 16 ), false, 1
 selected = 0
 
 [node name="Subsubtitle" type="RichTextLabel" parent="Page/Optionmenu"]
+anchor_left = -0.0336297
+anchor_top = -0.00093333
+anchor_right = 0.000310318
+anchor_bottom = -0.00093333
 margin_left = 77.7445
 margin_top = 401.504
 margin_right = 276.744
@@ -595,9 +672,9 @@ default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
 
 [node name="Colorchoicecanvas" type="RichTextLabel" parent="Page/Canvascolormenu"]
 margin_left = 12.0
-margin_top = 18.229
+margin_top = 18.0
 margin_right = 180.0
-margin_bottom = 41.229
+margin_bottom = 56.0
 theme = SubResource( 39 )
 custom_colors/default_color = Color( 0.027451, 0.0156863, 0.0156863, 1 )
 bbcode_enabled = true
@@ -698,10 +775,10 @@ theme = SubResource( 36 )
 custom_styles/panel = SubResource( 37 )
 
 [node name="Colorchoice" type="RichTextLabel" parent="Page/Colorfontsmenu"]
-margin_left = 22.0
-margin_top = 10.0118
-margin_right = 197.0
-margin_bottom = 33.0118
+margin_left = 24.0
+margin_top = 7.0
+margin_right = 240.0
+margin_bottom = 45.0
 theme = SubResource( 39 )
 custom_colors/default_color = Color( 0.027451, 0.0156863, 0.0156863, 1 )
 bbcode_enabled = true
@@ -756,19 +833,18 @@ custom_styles/normal = SubResource( 44 )
 color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Themechoice" type="Panel" parent="Page"]
-visible = false
 margin_left = 67.0
-margin_top = 234.287
-margin_right = 332.0
-margin_bottom = 519.286
+margin_top = 106.0
+margin_right = 465.0
+margin_bottom = 519.0
 custom_styles/panel = ExtResource( 36 )
 script = ExtResource( 32 )
 
 [node name="Closebutton" type="Button" parent="Page/Themechoice"]
-margin_left = 218.0
-margin_top = 8.00981
-margin_right = 266.0
-margin_bottom = 54.0098
+margin_left = 350.0
+margin_top = 9.14081
+margin_right = 398.0
+margin_bottom = 55.1408
 rect_scale = Vector2( 0.842175, 0.835281 )
 theme = SubResource( 61 )
 custom_styles/hover = SubResource( 68 )
@@ -781,30 +857,62 @@ scale = Vector2( 0.0745588, 0.0729098 )
 frames = SubResource( 70 )
 
 [node name="UNamur_theme" type="RichTextLabel" parent="Page/Themechoice"]
-margin_left = 44.0
-margin_top = 58.0
-margin_right = 277.0
-margin_bottom = 101.0
+margin_left = 23.0
+margin_top = 60.2033
+margin_right = 242.0
+margin_bottom = 117.203
 theme = SubResource( 64 )
 bbcode_enabled = true
-bbcode_text = "Thème UNamur"
-text = "Thème UNamur"
+bbcode_text = "Thèmes UNamur"
+text = "Thèmes UNamur"
 
-[node name="BoutonUNamur" type="Button" parent="Page/Themechoice"]
-margin_left = 6.0
-margin_top = 58.071
-margin_right = 249.0
-margin_bottom = 99.071
-custom_styles/hover = SubResource( 66 )
-custom_styles/pressed = SubResource( 67 )
-custom_styles/normal = SubResource( 65 )
+[node name="BoutonUnamur" type="Button" parent="Page/Themechoice"]
+margin_left = 16.0
+margin_top = 36.0
+margin_right = 218.0
+margin_bottom = 110.0
+custom_styles/hover = SubResource( 91 )
+custom_styles/pressed = SubResource( 92 )
+custom_styles/normal = SubResource( 85 )
+
+[node name="BoutonUNamurLight" type="Button" parent="Page/Themechoice"]
+margin_left = 231.0
+margin_top = 57.1996
+margin_right = 292.0
+margin_bottom = 103.2
+theme = SubResource( 81 )
+custom_styles/hover = SubResource( 82 )
+custom_styles/pressed = SubResource( 83 )
+custom_styles/focus = SubResource( 95 )
+custom_styles/normal = SubResource( 84 )
+text = "Light"
 
 [node name="Line2D3" type="Line2D" parent="Page/Themechoice"]
-position = Vector2( -460, -111.136 )
-scale = Vector2( 1.06256, 1.00491 )
+position = Vector2( -979.442, -100.966 )
+scale = Vector2( 2.11163, 1.01668 )
 points = PoolVector2Array( 476, 217, 635, 217 )
 width = 5.0
 default_color = Color( 0.721569, 0.721569, 0.729412, 1 )
+
+[node name="BoutonUnamurBold" type="Button" parent="Page/Themechoice"]
+margin_left = 299.0
+margin_top = 55.1972
+margin_right = 357.0
+margin_bottom = 103.197
+theme = SubResource( 87 )
+custom_styles/hover = SubResource( 88 )
+custom_styles/pressed = SubResource( 89 )
+custom_styles/focus = SubResource( 94 )
+custom_styles/normal = SubResource( 90 )
+text = "Bold"
+
+[node name="CreatedThemes" type="Panel" parent="Page/Themechoice"]
+margin_left = 26.0
+margin_top = 137.298
+margin_right = 378.0
+margin_bottom = 391.298
+custom_styles/panel = SubResource( 93 )
+script = ExtResource( 42 )
 
 [node name="Themesave" type="Panel" parent="Page"]
 visible = false
@@ -853,7 +961,7 @@ margin_left = 16.0
 margin_top = 45.0551
 margin_right = 220.0
 margin_bottom = 85.0551
-theme = SubResource( 73 )
+theme = ExtResource( 43 )
 custom_colors/default_color = Color( 0.984314, 0.94902, 0.682353, 1 )
 bbcode_enabled = true
 bbcode_text = "Nom du thème:"
@@ -907,9 +1015,10 @@ text = "Le thème a besoin d'un
 [connection signal="button_up" from="Page/Themechoice/Closebutton" to="Page/Themechoice" method="_on_Closebutton_button_up"]
 [connection signal="mouse_entered" from="Page/Themechoice/Closebutton" to="Page/Themechoice" method="_on_Closebutton_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Themechoice/Closebutton" to="Page/Themechoice" method="_on_Closebutton_mouse_exited"]
-[connection signal="mouse_entered" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_mouse_entered"]
-[connection signal="mouse_exited" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_mouse_exited"]
-[connection signal="pressed" from="Page/Themechoice/BoutonUNamur" to="Page/Themechoice" method="_on_BoutonUNamur_pressed"]
+[connection signal="mouse_entered" from="Page/Themechoice/BoutonUnamur" to="Page/Themechoice" method="_on_BoutonUnamur_mouse_entered"]
+[connection signal="mouse_exited" from="Page/Themechoice/BoutonUnamur" to="Page/Themechoice" method="_on_BoutonUnamur_mouse_exited"]
+[connection signal="pressed" from="Page/Themechoice/BoutonUNamurLight" to="Page/Themechoice" method="_on_BoutonUNamurLight_pressed"]
+[connection signal="pressed" from="Page/Themechoice/BoutonUnamurBold" to="Page/Themechoice" method="_on_BoutonUnamurBold_pressed"]
 [connection signal="button_up" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_button_up"]
 [connection signal="mouse_entered" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_mouse_entered"]
 [connection signal="mouse_exited" from="Page/Themesave/Closebutton" to="Page/Themesave" method="_on_Closebutton_mouse_exited"]
