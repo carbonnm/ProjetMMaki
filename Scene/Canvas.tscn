@@ -50,6 +50,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -89.0 ]
 }
+linewidth = null
 
 [node name="BackgroundColored" type="ColorRect" parent="."]
 anchor_right = 1.0

@@ -14,7 +14,6 @@ var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
-var Save := preload("res://Classes/Save.gd").new()
 var WordRecognition := preload("res://Scripts/WordRecognition.py")
 
 # Get references to childs 
@@ -50,11 +49,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
-	if event is InputEventKey and event.scancode == KEY_KP_9:
-		var parent_node: Node = Utils.get_match_string_node("Elements", self)
-		Save.set_save_nodes([parent_node])
-		Save.save()
-		print(rad2deg(Save.saves[0]["TextEdit"][0].rect_rotation))
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
