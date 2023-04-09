@@ -14,7 +14,7 @@ var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
-var Save := preload("res://Classes/Save.gd").new()
+#var Save := preload("res://Classes/Save.gd").new()
 var WordRecognition := preload("res://Scripts/WordRecognition.py")
 
 # Get references to childs 
@@ -52,9 +52,9 @@ func _input(event: InputEvent):
 	states.keyboard_input(event)
 	if event is InputEventKey and event.scancode == KEY_KP_9:
 		var parent_node: Node = Utils.get_match_string_node("Elements", self)
-		Save.set_save_nodes([parent_node])
-		Save.save()
-		print(rad2deg(Save.saves[0]["TextEdit"][0].rect_rotation))
+		#Save.set_save_nodes([parent_node])
+		#Save.save()
+		#print(rad2deg(Save.saves[0]["TextEdit"][0].rect_rotation))
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
@@ -238,8 +238,6 @@ func _on_Create_text_pressed():
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
 	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
-	
-
 
 func _on_Create_texte_RCC_pressed():
 	_pm.clear()
@@ -463,3 +461,31 @@ func LoadSave() -> void:
 	move_child(_scene, 2)
 	_elements = _scene
 
+
+
+func _on_pen_size_pressed_menu():
+	_pm.clear()
+	#_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
+	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
+	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
+	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
+	get_node("Titlemenuaddition/Inputtitle").clear()
+	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/pen_size")
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+
+
+func _on_pen_size_pressed():
+	_pm.clear()
+	_pm.get_node("HSlider").value = self.linewidth
+	_pm.get_node("HSlider").visible = true
+	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
+	get_node("Titlemenuaddition/Inputtitle").clear()
+	var _text_popup = get_node("RightClickContainer/pen_size")
+	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, 100, 100))
+	_pm.get_node("pensizecircle").set_line_size(self.linewidth)
+	_pm.get_node("pensizecircle").set_line_color(self.RCC.color)
+	_pm.get_node("pensizecircle").visible = true
+	
+func _on_HSlider_value_changed(value):
+	_pm.get_node("pensizecircle").set_line_size(value)
+	self.linewidth = value

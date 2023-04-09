@@ -76,8 +76,6 @@ custom_colors/default_color = Color( 0.611765, 0.341176, 0, 1 )
 custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
 bbcode_text = "Attention, cette action est irréversible. Etes-vous surs de vouloir continuer ?"
-visible_characters = 105
-percent_visible = 1.32911
 tab_size = 7
 text = "Attention, cette action est irréversible. Etes-vous surs de vouloir continuer ?"
 
