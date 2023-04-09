@@ -139,6 +139,16 @@ func get_adjacent_element(string: String, syntax_type: String, origin_index: int
 				return get_prev_attribute(string, origin_index)
 			else:
 				return get_next_attribute(string, origin_index)
+		"BaliseValue":
+			if reverse:
+				return get_prev_balise_value(string, origin_index)
+			else:
+				return get_next_balise_value(string, origin_index)
+		"AttributeValue":
+			if reverse:
+				return get_prev_attribute_value(string, origin_index)
+			else:
+				return get_next_attribute_value(string, origin_index)
 		_:
 			return []
 
@@ -241,6 +251,26 @@ func get_next_attribute(string: String, origin_index: int = 0) -> Array:
 		origin_index = get_next_balise(string, origin_index)[0]
 		return get_next_attribute(string, origin_index)
 
+func get_next_balise_value(string: String, origin_index: int = 0) -> Array:
+	var balise_bounds: Array = get_next_balise(string, origin_index)
+	var start: int = get_next_syntax_index(string, "Space", "", balise_bounds[0])+1
+	var balise_end: int = balise_bounds[1]
+	
+	var end: int = balise_end
+	for c in range(0,balise_end-start):
+		if not (string[balise_end - c] == "/" or string[balise_end - c] == ">"):
+			return [start,end]
+		
+		end -= 1
+	
+	return [0,0]
+
+func get_next_attribute_value(string: String, origin_index: int = 0) -> Array:
+	var attribute_bounds: Array = get_next_attribute(string, origin_index)
+	var start: int = get_next_syntax_index(string, "Quote", "", attribute_bounds[0])
+	var end: int = attribute_bounds[1]
+	return [start,end]
+
 func get_prev_line(string: String, origin_index: int = 0) -> Array:
 	origin_index = get_prev_syntax_index(string, "EndOfLine", "", origin_index)
 	origin_index = get_prev_syntax_index(string, "StartOfBalise", "", origin_index)
@@ -265,6 +295,14 @@ func get_prev_attribute(string: String, origin_index: int = 0) -> Array:
 	else:
 		origin_index = get_prev_balise(string, origin_index)[1]
 		return get_prev_attribute(string, origin_index)
+
+func get_prev_balise_value(string: String, origin_index: int = 0) -> Array:
+	origin_index = get_prev_balise(string, origin_index)[0]
+	return get_next_balise_value(string, origin_index)
+
+func get_prev_attribute_value(string: String, origin_index: int = 0) -> Array:
+	origin_index = get_prev_attribute(string, origin_index)[0]
+	return get_next_balise_value(string, origin_index)
 
 
 func create_structure() -> String:
