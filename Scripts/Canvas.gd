@@ -14,12 +14,7 @@ var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
-<<<<<<< HEAD
-#var Save := preload("res://Classes/Save.gd").new()
-var WordRecognition := preload("res://Scripts/WordRecognition.py")
-=======
 var SVG := preload("res://SavePlugin/SVGParser.gd")
->>>>>>> bde52aa2381dba98b81f7d8d3988c529f8666a28
 
 # Get references to childs 
 onready var _background := $BackgroundColored
@@ -54,13 +49,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
-<<<<<<< HEAD
-	if event is InputEventKey and event.scancode == KEY_KP_9:
-		var parent_node: Node = Utils.get_match_string_node("Elements", self)
-		#Save.set_save_nodes([parent_node])
-		#Save.save()
-		#print(rad2deg(Save.saves[0]["TextEdit"][0].rect_rotation))
-=======
 	var svg = SVG.new()
 	var svg_string = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 	svg_string += "<svg width=\"400\" height=\"400\" viewBox=\"0 0 400 400\" xmlns=\"http://www.w3.org/2000/svg\">\n"
@@ -76,7 +64,6 @@ func _input(event: InputEvent):
 	print(svg_string[origin_index])
 	print(bounds)
 	svg.display_between_bounds(svg_string, bounds)
->>>>>>> bde52aa2381dba98b81f7d8d3988c529f8666a28
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
