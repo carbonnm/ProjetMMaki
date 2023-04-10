@@ -79,9 +79,15 @@ func remove_SVG(from: int, to: int) -> void:
 # Checker ######################################################################
 ################################################################################
 
+"""
+Function that checks if the cursor is inside a balise from the SVG string.
 
-func is_inside_balise(string: String, origin_index: int = 0) -> bool:
-	if string[origin_index] == "<":
+Returns:
+--------
+True if the cursor is inside a balise, False else.
+"""
+func is_inside_balise() -> bool:
+	if SVG[cursor] == "<":
 		return true
 	
 	var c_index: Array = get_syntax_element_bounds(string, "EndOfBalise", "", origin_index)
