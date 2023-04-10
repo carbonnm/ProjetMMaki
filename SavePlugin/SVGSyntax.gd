@@ -100,7 +100,7 @@ func get_svg_text(label: String, position: Vector2, font_size: int, font_family:
 	dup_text["attribute"]["y"] = position.y
 	dup_text["attribute"]["font-size"] = font_size
 	dup_text["attribute"]["font-family"] = font_family
-	dup_text["attribute"]["fill"] = fill
+	dup_text["attribute"]["fill"] = fill.to_html()
 	return dup_text
 
 """
