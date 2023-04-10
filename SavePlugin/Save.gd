@@ -1,11 +1,15 @@
 extends Node
 
-var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
-
 export var MAX_SAVES: int = 10
 
 var save_nodes: Array = []
 var saves: Array = []
+
+func get_saves() -> Array:
+	return saves
+
+func get_current_save() -> Dictionary:
+	return saves[0]
 
 func set_save_nodes(nodes: Array):
 	save_nodes = nodes
@@ -22,7 +26,7 @@ func save() -> Dictionary:
 	
 	return save_dict
 
-func apply_global_transform(node) -> Node:
+func apply_global_transform(node: Node) -> Node:
 	var dup_node = node.duplicate(true)
 	var transform: Transform2D = node.get_parent().global_transform
 	if dup_node is Control:
@@ -38,6 +42,8 @@ func retrieve_elements(save_dict: Dictionary) -> Dictionary:
 	for node in save_nodes:
 		if node is Line2D:
 			var trans_node: Line2D = apply_global_transform(node)
+			trans_node.points = trans_node.global_transform.xform(trans_node.points)
+			trans_node.global_transform = Transform2D()
 			save_dict["Line2D"].append(trans_node)
 		elif node is TextEdit:
 			var trans_node: TextEdit = apply_global_transform(node)

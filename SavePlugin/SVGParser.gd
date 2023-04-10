@@ -4,15 +4,80 @@ extends Node
 var SVG: String = ""
 var cursor: int = 0
 
+################################################################################
+# Getters ######################################################################
+################################################################################
+
+"""
+Getter for SVG attribute.
+
+Returns:
+--------
+The SVG attribute. (String)
+"""
 func get_SVG() -> String:
 	return SVG
 
+"""
+Getter for cursor attribute.
+
+Returns:
+--------
+The cursor attribute. (int)
+"""
+func get_cursor() -> int:
+	return cursor
+
+################################################################################
+# Setters ######################################################################
+################################################################################
+
+"""
+Setter for SVG attribute.
+
+Parameters:
+-----------
+string: The string to set to SVG (String)
+"""
 func set_SVG(string: String) -> void:
 	self.SVG = string
 
+"""
+Setter for cursor attribute.
+
+Parameters:
+-----------
+index: The index to set to cursor (int)
+"""
 func set_cursor(index: int) -> void:
 	self.cursor = index
 
+"""
+Function that inserts a string at cursor position in SVG.
+
+Parameters:
+-----------
+string: The string to insert inside SVG. (String)
+"""
+func insert_SVG(string: String) -> void:
+	self.SVG.insert(cursor, string)
+
+"""
+Function that removes a substring from SVG.
+
+Parameters:
+-----------
+from: Index of the first letter to delete. (int)
+to: Index of the last letter to delete.
+"""
+func remove_SVG(from: int, to: int) -> void:
+	var SVG_begin: String = SVG.substr(0,from)
+	var SVG_end: String = SVG.substr(to+1,SVG.length()-1)
+	self.SVG = SVG_begin + SVG_end
+
+################################################################################
+# Checker ######################################################################
+################################################################################
 
 
 func is_inside_balise(string: String, origin_index: int = 0) -> bool:
@@ -98,31 +163,7 @@ func get_rsubstr_index(string: String, bounds: Array, origin_index: int = 0) -> 
 
 
 
-#func get_all_next_element(string: String, syntax_type: String, origin_index: int = 0, accu: Array = []) -> Array:
-#	var bounds: Array = get_next_element(string, syntax_type, origin_index)
-#
-#	if bounds != []:
-#		accu.append(bounds)
-#		if string.length() > bounds[1]+1:
-#			return get_all_next_element(string, syntax_type, bounds[1]+1, accu)
-#	else:
-#		return accu
-#
-#	return accu
-
-#func get_all_prev_element(string: String, syntax_type: String, origin_index: int = 0, accu: Array = []) -> Array:
-#	var bounds: Array = get_prev_element(string, syntax_type, origin_index)
-#
-#	if bounds != []:
-#		accu.append(bounds)
-#		if 0 >= bounds[0]-1:
-#			return get_all_prev_element(string, syntax_type, bounds[0]-1, accu)
-#	else:
-#		return accu
-#
-#	return accu
-
-func get_adjacent_element(string: String, syntax_type: String, origin_index: int = 0, reverse: bool = false) -> Array:
+func get_adjacent_element(string: String, syntax_type: String, element_name: String, origin_index: int = 0, reverse: bool = false) -> Array:
 	match syntax_type:
 		"Line":
 			if reverse:
@@ -150,17 +191,28 @@ func get_adjacent_element(string: String, syntax_type: String, origin_index: int
 			else:
 				return get_next_attribute_value(string, origin_index)
 		_:
-			return []
+			if reverse:
+				return get_prev_syntax_element(string, syntax_type, element_name, origin_index)
+			else:
+				return get_next_syntax_element(string, syntax_type, element_name, origin_index)
 
-func get_next_element(string: String, syntax_type: String, origin_index: int = 0) -> Array:
-	return get_adjacent_element(string, syntax_type, origin_index, false)
 
-func get_prev_element(string: String, syntax_type: String, origin_index: int = 0) -> Array:
-	return get_adjacent_element(string, syntax_type, origin_index, true)
 
-func get_current_element(string: String, syntax_type: String, origin_index: int = 0) -> Array:
-	var bounds: Array = get_next_element(string, syntax_type, origin_index)
-	return get_prev_element(string, syntax_type, origin_index)
+func get_next_element(string: String, syntax_type: String, element_name: String = "", origin_index: int = 0) -> Array:
+	var bounds: Array = get_adjacent_element(string, syntax_type, element_name, origin_index, false)
+	self.cursor = bounds[0]
+	return bounds
+
+func get_prev_element(string: String, syntax_type: String, element_name: String = "", origin_index: int = 0) -> Array:
+	var bounds: Array = get_adjacent_element(string, syntax_type, element_name, origin_index, true)
+	self.cursor = bounds[0]
+	return bounds
+
+func get_current_element(string: String, syntax_type: String, element_name: String = "", origin_index: int = 0) -> Array:
+	var bounds: Array = get_next_element(string, syntax_type, element_name, origin_index)
+	bounds = get_prev_element(string, syntax_type, element_name, bounds[0])
+	self.cursor = bounds[0]
+	return bounds
 
 
 
@@ -181,8 +233,8 @@ func get_bounds_by_syntax(syntax_type: String, element_name: String = "") -> Arr
 			start = element_name + "=\""
 			end = "\""
 		"EndOfLine":
-			start = ""
-			end = "\n"
+			start = "\n"
+			end = ""
 		"StartOfBalise":
 			start = "<"
 			end = ""
@@ -229,8 +281,15 @@ func get_prev_syntax_index(string: String, syntax_type: String, element_name: St
 
 
 
+func get_next_syntax_element(string: String, syntax_type: String, element_name: String, origin_index: int) -> Array:
+	return get_syntax_element_bounds(string, syntax_type, element_name, origin_index)
+
 func get_next_line(string: String, origin_index: int = 0) -> Array:
 	origin_index = get_next_syntax_index(string, "EndOfLine", "", origin_index)+1
+	
+	if string[origin_index] == "\n":
+		return [origin_index, origin_index]
+	
 	origin_index = get_next_syntax_index(string, "StartOfBalise", "", origin_index)
 	
 	return get_syntax_element_bounds(string, "EndOfLine", "", origin_index)
@@ -271,8 +330,19 @@ func get_next_attribute_value(string: String, origin_index: int = 0) -> Array:
 	var end: int = attribute_bounds[1]
 	return [start,end]
 
+# DEPRECATED
+func get_prev_syntax_element(string: String, syntax_type: String, element_name: String, origin_index: int) -> Array:
+	return []
+#func get_prev_syntax_element(string: String, syntax_type: String, element_name: String, origin_index: int) -> Array:
+#	var bounds: Array = get_bounds_by_syntax(s)
+#	return get_syntax_element_bounds(string, syntax_type, element_name, origin_index)
+
 func get_prev_line(string: String, origin_index: int = 0) -> Array:
 	origin_index = get_prev_syntax_index(string, "EndOfLine", "", origin_index)
+	
+	if string[origin_index-1] == "\n":
+		return [origin_index, origin_index]
+	
 	origin_index = get_prev_syntax_index(string, "StartOfBalise", "", origin_index)
 	
 	return get_syntax_element_bounds(string, "EndOfLine", "", origin_index)
@@ -308,7 +378,7 @@ func get_prev_attribute_value(string: String, origin_index: int = 0) -> Array:
 func create_structure() -> String:
 	SVG = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 	newline()
-	SVG += "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"width_value\" height=\"height_value\" viewBox=\"viewBox_value\">"
+	SVG += "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"\" height=\"\" viewBox=\"\">"
 	newline()
 	newline()
 	SVG += "</svg>"
@@ -328,3 +398,26 @@ func display_between_bounds(string: String, bounds: Array) -> void:
 
 func display_SVG(string: String) -> void:
 	print(string)
+
+func create_path_balise(line: Line2D) -> void:
+	var path_balise: String = ""
+	var d: String = PoolVector2Array_to_d_path(line.points)
+	var stroke: String = line.default_color.to_html()
+	# DEPRECATED
+	var indent: String = ""
+	
+	path_balise = indent + "<path d=\"" + d + "\" stroke=\"" + stroke + "\" fill=\"transparent\" />"
+	
+	SVG = SVG.insert(cursor, path_balise)
+	newline()
+	
+	cursor += path_balise.length() + 1
+
+func PoolVector2Array_to_d_path(points: PoolVector2Array) -> String:
+	var d: String = "M "
+	for point in points:
+		d += str(point.x) + "," + str(point.y) + " "
+		if points[0] == point:
+			d += "L "
+	
+	return d
