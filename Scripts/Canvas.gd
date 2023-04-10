@@ -14,7 +14,6 @@ var Rescale := preload("res://Scripts/Modes/Rescale.gd").new()
 var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
-var ExportToSVG := preload("res://SavePlugin/ExportToSVG.gd").new()
 
 # Get references to childs 
 onready var _background := $BackgroundColored
@@ -49,10 +48,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
-	if event is InputEventKey and event.scancode == KEY_O:
-		var node: Node = Utils.get_match_string_node("Elements", self)
-		ExportToSVG.set_save_nodes([node])
-		ExportToSVG.export_to_svg()
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)
