@@ -1,5 +1,12 @@
 extends Node
 
+var syntax: Dictionary = {
+	"balises": {
+		"xml": "",
+		"doctype": "",
+		"svg": {}
+	}
+}
 var xml: String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 var doctype: String = "<!DOCTYPE svg>"
 var svg: Dictionary = {
@@ -44,7 +51,142 @@ var image: Dictionary = {
 }
 
 """
-Function that returns an svg syntax dictionary.
+Function that returns a string witch is the construction
+formated to the SVG format.
+
+Parameters:
+-----------
+construction: The construction. (Dictionary)
+
+Returns:
+--------
+The SVG formated String. (String)
+"""
+func get_svg_string(construction: Dictionary) -> String:
+	var svg_string: String = ""
+	
+	# Travel the construction to create the svg String.
+	for balise in construction.values():
+		
+		# If construction value is a String (Balise), then 
+		# add it to svg_string and make a new line.
+		if balise is String:
+			svg_string += balise + "\n"
+		
+		# Else, its a dynamic balise to construct.
+		else:
+			if balise["children"] != []:
+				svg_string += get_balise_block_string(balise)
+			else:
+				svg_string += get_balise_string(balise)
+	
+	return svg_string
+
+"""
+Function that returns a string witch is the constructed
+balise block formated to the SVG format.
+
+Parameters:
+-----------
+balise: The balise block. (Dictionary)
+
+Returns:
+--------
+The SVG formated String. (String)
+"""
+func get_balise_block_string(balise: Dictionary) -> String:
+	var balise_block_string: String = "<" + balise["name"]
+	
+	# Travel the balise attributes to add them to the balise block.
+	balise_block_string += get_balise_attributes_string(balise)
+	
+	# Close the balise and make 2 new lines.
+	balise_block_string += ">\n\n"
+	
+	# Travel childs to add them to balise block.
+	for child in balise["children"]:
+		balise_block_string += "\t"
+		if child["children"] != []:
+			balise_block_string += get_balise_block_string(balise)
+		else:
+			balise_block_string += get_balise_string(balise)
+	
+	# Make a new line and close the balise block.
+	balise_block_string += "\n<" + balise["name"] + ">\n"
+	
+	return balise_block_string
+
+"""
+Function that returns a string witch is the constructed
+balise formated to the SVG format.
+
+Parameters:
+-----------
+balise: The balise. (Dictionary)
+
+Returns:
+--------
+The SVG formated String. (String)
+"""
+func get_balise_string(balise: Dictionary) -> String:
+	var balise_string: String = "<" + balise["name"]
+	
+	# Travel the balise attributes to add them to the balise block
+	# and close the balise.
+	balise_string += get_balise_attributes_string(balise) + ">"
+	
+	# Add label and close the enclosing balise if it is one.
+	if balise.has("label"):
+		balise_string += balise["label"]
+		balise_string += "</" + balise["name"] + ">"
+	
+	# Make a new line
+	balise_string += "\n"
+	
+	return balise_string
+
+"""
+Function that returns a string witch is the constructed
+balise attributes formated to the SVG format.
+
+Parameters:
+-----------
+balise: The attributes block. (Dictionary)
+
+Returns:
+--------
+The SVG formated String. (String)
+"""
+func get_balise_attributes_string(balise: Dictionary) -> String:
+	var balise_attributes_string: String = ""
+	
+	# Travel the balise attributes to add them to the balise block.
+	for attribute in balise["attribute"]:
+		var attribute_value: String = balise["attribute"][attribute]
+		balise_attributes_string += " " + attribute + "=\"" + attribute_value + "\""
+	
+	return balise_attributes_string
+
+"""
+Function that returns a syntax dictionary.
+
+Parameters:
+-----------
+svg_block: The svg block of the svg image. (Dictionary)
+
+Returns:
+--------
+The syntax dictionary created. (Dictionary)
+"""
+func get_syntax(svg_block: Dictionary) -> Dictionary:
+	var dup_syntax: Dictionary = syntax.duplicate(true)
+	dup_syntax["xml"] = xml
+	dup_syntax["doctype"] = doctype
+	dup_syntax["svg"] = svg_block
+	return dup_syntax
+
+"""
+Function that returns an svg dictionary.
 
 Parameters:
 -----------
@@ -52,7 +194,7 @@ size: The size of svg image. (Vector2)
 
 Returns:
 --------
-The svg syntax dictionary created. (Dictionary)
+The svg dictionary created. (Dictionary)
 """
 func get_svg(size: Vector2) -> Dictionary:
 	var dup_svg: Dictionary = svg.duplicate(true)
@@ -61,7 +203,7 @@ func get_svg(size: Vector2) -> Dictionary:
 	return dup_svg
 
 """
-Function that returns an svg path syntax dictionary.
+Function that returns an svg path dictionary.
 
 Parameters:
 -----------
@@ -70,7 +212,7 @@ fill: Color of the path. (Color - default: Color(0,0,0))
 
 Returns:
 --------
-The svg path syntax dictionary created. (Dictionary)
+The svg path dictionary created. (Dictionary)
 """
 func get_svg_path(d: PoolVector2Array, fill: Color = Color(0,0,0)) -> Dictionary:
 	var dup_path: Dictionary = path.duplicate(true)
@@ -162,3 +304,13 @@ func PoolVector2Array_to_d_path(points: PoolVector2Array) -> String:
 			d += "L "
 	
 	return d
+
+"""
+Function that displays a construction into a SVG syntax format.
+
+Parameters:
+-----------
+construction: The construction. (Dictionary)
+"""
+func display_svg_string(construction: Dictionary) -> void:
+	print(get_svg_string(construction))
