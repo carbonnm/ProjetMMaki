@@ -38,7 +38,8 @@
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
 [ext_resource path="res://Assets/Graphics/Image/LitlleNote.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
-[ext_resource path="res://Scene/pensizecircle.gd" type="Script" id=39]
+[ext_resource path="res://Scripts/pensizecircle.gd" type="Script" id=39]
+
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )

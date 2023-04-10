@@ -25,5 +25,12 @@ func themebuilding():
 			
 			
 func _on_selected(themename):
+	#setting up the theme (fonts,color,... for the new canvas )
 	print("pressed!",themename)
-	
+	fullpicture.chosen_font_title = save_file.get(themename)[0][0]
+	fullpicture.chosen_color_title = save_file.get(themename)[0][1]
+	fullpicture.chosen_font_subtitle= save_file.get(themename)[1][0]
+	fullpicture.chosen_color_subtitle= save_file.get(themename)[1][1]
+	fullpicture.chosen_font_subsubtitle = save_file.get(themename)[2][0]
+	fullpicture.chosen_color_subsubtitle = save_file.get(themename)[2][1]
+	fullpicture.chosen_color_background = save_file.get(themename)[3][0]

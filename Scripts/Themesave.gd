@@ -6,7 +6,8 @@ onready var user_data = SaveLogic.user_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print(user_data)
+	#pass # Replace with function body.
 
 
 
@@ -32,7 +33,10 @@ func _on_Okbutton_button_up():
 										[fullpicture.chosen_font_subsubtitle,fullpicture.chosen_color_subsubtitle],
 										[fullpicture.chosen_color_background]]
 		$Themenameinput.text = ""
-		print(user_data)
+		#saving the new theme
+		
+		SaveLogic.save_data()
+		
 
 func _on_Closebutton_mouse_entered():
 	get_node("Closebutton/Crossicon").playing = true
