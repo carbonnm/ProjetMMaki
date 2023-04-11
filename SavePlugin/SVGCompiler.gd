@@ -141,9 +141,11 @@ func get_save_corners(save: Dictionary) -> Array:
 		positions.append_array(line.points)
 	
 	for text_edit in save["TextEdit"]:
-		var text_origin: Vector2 = text_edit.rect_position
+		var text_shape: Vector2 = (text_edit.rect_size - text_edit.rect_position)*text_edit.rect_scale
+		var text_origin: Vector2 = text_edit.rect_position + text_edit.rect_size/2 - text_shape/2
+		var text_size: Vector2 = text_origin + text_shape
 		positions.append(text_origin)
-		positions.append(text_origin+text_edit.rect_size)
+		positions.append(text_size)
 	
 	for sprite in save["Sprite"]:
 		var sprite_origin: Vector2 = sprite.position + Vector2(0,-sprite.size.y)
