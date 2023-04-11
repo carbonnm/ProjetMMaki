@@ -50,6 +50,7 @@ The dictionary created with all Line2Ds, TextEdits and Sprites. (Dictionary)
 func save() -> Dictionary:
 	
 	var save_dict: Dictionary = {
+		"BackgroundColor": Color(0,0,0),
 		"Line2D": [],
 		"TextEdit": [],
 		"Sprite": []
@@ -113,6 +114,8 @@ func retrieve_elements(save_dict: Dictionary) -> Dictionary:
 		elif node is Sprite:
 			var trans_node: Sprite = apply_global_transform(node)
 			save_dict["Sprite"].append(trans_node)
+		elif node is ColorRect:
+			save_dict["BackgroundColor"] = node.color
 		else:
 			set_save_nodes(save_nodes + node.get_children())
 		
@@ -140,9 +143,10 @@ func apply_global_transform(node: Node) -> Node:
 	var dup_node = node.duplicate(true)
 	var transform: Transform2D = node.get_parent().global_transform
 	if dup_node is Control:
-		dup_node.rect_position += transform.get_origin()
-		dup_node.rect_rotation += transform.get_rotation()
-		dup_node.rect_scale *= transform.get_scale()
+		# Replace l'origine du control node sur son coin inférieur droit
+		dup_node.rect_position = transform.get_origin() + Vector2(-dup_node.rect_size.x/2, dup_node.rect_size.y/2)
+		dup_node.rect_rotation = transform.get_rotation()
+		dup_node.rect_scale = transform.get_scale()
 	if dup_node is Node2D:
 		dup_node.transform *= transform
 	
