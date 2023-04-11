@@ -343,16 +343,19 @@ func _on_PopupMenu_id_pressed(id):
 		screenshot.flip_y()
 		screenshot.get_rect(capture_rect).save_png(path)
 		
-		#var word = WordRecognition.word_recognition(path)
-		
-		#var word
-		#OS.execute("python", ["WordRecognition.py"], true, word)
-		#print(word)
+		word_recognition_python()
 		
 	elif id==5:
 		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
+
+
+func word_recognition_python() :
+	var global_path = ProjectSettings.globalize_path("res://")
+	OS.execute("C:/Users/Marie/AppData/Local/Microsoft/WindowsApps/python3.exe", [global_path + "Scripts/WordRecognition.py"], true)
+
 
 
 func _on_PopupMenu_id_RCC_pressed(id):

@@ -1,4 +1,4 @@
-from godot import exposed, export
+from godot import exposed, export, Node2D, Sprite, ColorRect
 from godot import *
 
 from PIL import Image
@@ -9,21 +9,15 @@ import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 @exposed
-class WordRecognition(Node):
-
-	# member variables here, example:
-	a = export(int)
-	b = export(str, default='foo')
+class WordRecognition(Node2D):
 
 	def _ready(self):
 		"""
 		Called every time the node is added to the scene.
 		Initialization here.
 		"""
-		pass
-	
-	def word_recognition(path) :
-		im = Image.open(path)
+		pathImage = "ScreenShots/screenshot.png"
+		im = Image.open(pathImage)
+		#image = cv2.imread(r'testPythonOpenCV.png')
 		print(pytesseract.image_to_string(im))
-		
-		return pytesseract.image_to_string(im)
+		print("bluh")
