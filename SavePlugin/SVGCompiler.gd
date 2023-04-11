@@ -80,7 +80,7 @@ func construct_syntax_element(save: Dictionary) -> Dictionary:
 	# Setup textEdits and add them as svg child.
 	for text_edit in save["TextEdit"]:
 		var text_label: String = text_edit.text
-		var text_position: Vector2 = text_edit.rect_position
+		var text_position: Vector2 = text_edit.rect_position + text_edit.rect_size/2
 		var text_font_size_vector: Vector2 = text_edit.get_font("font").size * text_edit.rect_scale
 		var text_font_size: int = int((text_font_size_vector.x + text_font_size_vector.y)/2)
 		var text_font_family: String = "custom-font-family" #text_edit.get_font("font").get_name()
@@ -141,7 +141,7 @@ func get_save_corners(save: Dictionary) -> Array:
 		positions.append_array(line.points)
 	
 	for text_edit in save["TextEdit"]:
-		var text_origin: Vector2 = text_edit.rect_position + Vector2(0,-text_edit.rect_size.y)
+		var text_origin: Vector2 = text_edit.rect_position
 		positions.append(text_origin)
 		positions.append(text_origin+text_edit.rect_size)
 	

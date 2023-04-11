@@ -56,7 +56,9 @@ var text: Dictionary = {
 		"font-size": 12,
 		"font-family": "custom-font-family",
 		"fill": "black",
-		"transform": "rotation(0)"
+		"text-anchor": "middle",
+		"dominant-baseline": "middle",
+		"transform": "rotate(0 0 0)"
 	},
 	"label": "",
 	"children": []
@@ -335,7 +337,9 @@ func get_svg_text(label: String, position: Vector2, font_size: int, font_family:
 	dup_text["attributes"]["font-size"] = font_size
 	dup_text["attributes"]["font-family"] = font_family
 	dup_text["attributes"]["fill"] = "#" + fill.to_html().substr(2)
-	dup_text["attributes"]["transform"] = "rotate(" + str(rotation) + ")"
+	dup_text["attributes"]["text-anchor"] = "middle"
+	dup_text["attributes"]["dominant-baseline"] = "middle"
+	dup_text["attributes"]["transform"] = "rotate(" + str(rotation) + " " + str(position.x) + " " + str(position.y) + ")"
 	return dup_text
 
 """
