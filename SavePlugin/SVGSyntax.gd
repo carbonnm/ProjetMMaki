@@ -56,6 +56,7 @@ var text: Dictionary = {
 		"font-size": 12,
 		"font-family": "custom-font-family",
 		"fill": "black",
+		"transform": "rotation(0)"
 	},
 	"label": "",
 	"children": []
@@ -326,7 +327,7 @@ Returns:
 --------
 The svg text dictionary created. (Dictionary)
 """
-func get_svg_text(label: String, position: Vector2, font_size: int, font_family: String = "custom-font-family", fill: Color = Color(0,0,0)) -> Dictionary:
+func get_svg_text(label: String, position: Vector2, font_size: int, font_family: String = "custom-font-family", fill: Color = Color(0,0,0), rotation: float = 0.0) -> Dictionary:
 	var dup_text: Dictionary = text.duplicate(true)
 	dup_text["label"] = label
 	dup_text["attributes"]["x"] = position.x
@@ -334,6 +335,7 @@ func get_svg_text(label: String, position: Vector2, font_size: int, font_family:
 	dup_text["attributes"]["font-size"] = font_size
 	dup_text["attributes"]["font-family"] = font_family
 	dup_text["attributes"]["fill"] = "#" + fill.to_html().substr(2)
+	dup_text["attributes"]["transform"] = "rotate(" + str(rotation) + ")"
 	return dup_text
 
 """
