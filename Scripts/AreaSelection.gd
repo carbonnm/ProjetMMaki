@@ -32,7 +32,8 @@ Launched by the uddate function
 func _draw() -> void:
 	if draw :
 		var size_rect : Vector2 = bottom_right_area - upper_left_area
-		draw_rect(Rect2(-size_rect/2, size_rect), Color.aqua, false, 4)
+		var margin : Vector2 = Vector2(10, 10)
+		draw_rect(Rect2(-size_rect/2 - margin, size_rect + 2 * margin), Color.aqua, false, 4)
 		#draw_rect(Rect2(- min_pos_x, - min_pos_y, size_area_x, size_area_y), Color.aqua, false, 4)
 		#draw_rect(Rect2(0, 0, size_area_x, size_area_y), Color.aqua, false, 4)
 
