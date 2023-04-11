@@ -353,8 +353,9 @@ func _on_PopupMenu_id_pressed(id):
 
 
 func word_recognition_python() :
-	var global_path = ProjectSettings.globalize_path("res://")
-	OS.execute("C:/Users/Marie/AppData/Local/Microsoft/WindowsApps/python3.exe", [global_path + "Scripts/WordRecognition.py"], true)
+	var output : Array = []
+	OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
+	print(output)
 
 
 
