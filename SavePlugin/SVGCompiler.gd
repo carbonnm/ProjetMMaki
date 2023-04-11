@@ -82,7 +82,7 @@ func construct_syntax_element(save: Dictionary) -> Dictionary:
 		var text_label: String = text_edit.text
 		var text_position: Vector2 = text_edit.rect_position
 		var text_font_size_vector: Vector2 = text_edit.get_font("font").size * text_edit.rect_scale
-		var text_font_size: int = int(Vector2.ZERO.distance_to(text_font_size_vector))
+		var text_font_size: int = (text_font_size_vector.x + text_font_size_vector.y)/2
 		var text_font_family: String = "custom-font-family" #text_edit.get_font("font").get_name()
 		var text_fill: Color = text_edit.get("custom_colors/font_color")
 		var text_edit_balise: Dictionary = SVGSyntax.get_svg_text(text_label, text_position, text_font_size, text_font_family, text_fill)

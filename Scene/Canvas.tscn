@@ -192,14 +192,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 109.0
+margin_bottom = 142.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 113.0
+margin_top = 146.0
 margin_right = 153.0
-margin_bottom = 187.0
+margin_bottom = 220.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -254,7 +254,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 312.0
+margin_right = 314.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -302,7 +302,7 @@ icon = ExtResource( 17 )
 [node name="pen_size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 360.0
 margin_right = 218.0
-margin_bottom = 395.0
+margin_bottom = 428.0
 text = "Adjust pen size"
 icon = ExtResource( 10 )
 
@@ -435,8 +435,8 @@ ticks_on_borders = true
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/pen_size" to="." method="_on_pen_size_pressed_menu"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/pen_size" to="." method="_on_pen_size_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/pen_size" to="." method="_on_pen_size_pressed_menu"]
 [connection signal="pressed" from="CanvasLayer/RightClickButton" to="CanvasLayer" method="_on_RightClickButton_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
