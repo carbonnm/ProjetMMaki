@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/AState.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "AreaSelection",
 "language": "GDScript",
 "path": "res://Scripts/AreaSelection.gd"

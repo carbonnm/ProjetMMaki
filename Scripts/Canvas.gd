@@ -335,7 +335,8 @@ func _on_PopupMenu_id_pressed(id):
 		var size_area : Vector2 = bottom_right - upper_left
 		var center_selected_lines = (bottom_right + upper_left)/2
 		
-		var capture_rect = Rect2(center_selected_lines - Vector2(50, 50), size_area + Vector2(100, 50))
+		var margin : Vector2 = Vector2(50, 50)
+		var capture_rect = Rect2(center_selected_lines + Vector2(30, 0) - margin, size_area + 2* margin)
 		
 		var viewport = get_viewport() 
 		var screenshot = viewport.get_texture().get_data()
