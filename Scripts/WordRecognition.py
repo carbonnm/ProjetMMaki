@@ -4,7 +4,6 @@ import matplotlib
 import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-#print("hehe")
 
 pathImage = "ScreenShots/screenshot.png"
 im = Image.open(pathImage)

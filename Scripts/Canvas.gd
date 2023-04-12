@@ -351,11 +351,17 @@ func _on_PopupMenu_id_pressed(id):
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
 
 
-
+"""
+Executes the Python Script that recognize the word written
+Return : 
+-----------------
+- the word written
+"""
 func word_recognition_python() :
 	var output : Array = []
 	OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
 	print(output)
+	return output
 
 
 
