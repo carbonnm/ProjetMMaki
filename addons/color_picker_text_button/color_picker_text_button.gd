@@ -122,16 +122,18 @@ func set_label_text(txt):
 
 
 func show_panel():
-	var movement_verfification = get_parent().get_parent().notyetmoved
-	if movement_verfification:
+	var specific_button = get_node("..").name
+	
+	if specific_button.match("VBoxContainer"):
 		panel.popup_centered()
-	else:
 		
+	elif specific_button.match("RightClickContainer") :
 		var mouse = get_global_mouse_position()
 		panel.rect_position.x = mouse.x
 		
 		panel.rect_position.y = mouse.y
 		panel.popup()
+		
 
 
 func panel_closed():
