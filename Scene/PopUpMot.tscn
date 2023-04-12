@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Assets/Themes/Titlemenuaddition.tres" type="Theme" id=1]
-[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/Themes/buttoncanvasoptiontheme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Themes/buttoncanvasoptiontheme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Themes/Titlemenuaddition.tres" type="Theme" id=2]
+[ext_resource path="res://Scripts/WordRecognizedPopUp.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -39,7 +40,7 @@ bg_color = Color( 0.807843, 0.0823529, 0.0823529, 1 )
 
 [sub_resource type="DynamicFont" id=13]
 size = 70
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.619608, 0.443137, 0.796078, 1 )
@@ -52,7 +53,7 @@ bg_color = Color( 0.611765, 0.917647, 0.988235, 1 )
 
 [sub_resource type="DynamicFont" id=14]
 size = 70
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.619608, 0.443137, 0.796078, 1 )
@@ -65,18 +66,22 @@ bg_color = Color( 0.611765, 0.917647, 0.988235, 1 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 92
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
-[node name="Node2D" type="Control"]
+[node name="PopUpMot" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -213.0
-margin_top = -195.0
-margin_right = -213.0
-margin_bottom = -195.0
+margin_left = -173.0
+margin_top = -155.0
+margin_right = -173.0
+margin_bottom = -155.0
 rect_scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ColorRect" type="Panel" parent="."]
 material = SubResource( 2 )
@@ -89,7 +94,7 @@ margin_left = 934.0
 margin_top = 4.0
 margin_right = 1010.0
 margin_bottom = 79.0
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
@@ -100,7 +105,7 @@ margin_left = 120.0
 margin_top = 328.0
 margin_right = 470.0
 margin_bottom = 413.0
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 13 )
 custom_styles/hover = SubResource( 7 )
@@ -113,7 +118,7 @@ margin_left = 547.5
 margin_top = 328.0
 margin_right = 932.5
 margin_bottom = 413.0
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 14 )
 custom_styles/hover = SubResource( 10 )
@@ -126,17 +131,18 @@ margin_left = 257.5
 margin_top = 32.5
 margin_right = 877.5
 margin_bottom = 237.5
-theme = ExtResource( 3 )
+theme = ExtResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = SubResource( 15 )
-visible_characters = 200
 text = "Mot Reconnu : 
 "
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="Mot" type="RichTextLabel" parent="."]
 margin_left = 265.0
 margin_top = 162.5
 margin_right = 785.0
 margin_bottom = 297.5
+
+[connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]

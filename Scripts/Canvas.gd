@@ -326,7 +326,6 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("RightClickContainer").visible = false
 		
 	elif id==4:
-		print("Ecriture vers Dessin")
 		var path = "ScreenShots" + "/screenshot.png"
 		
 		var corners : Array = get_selection_area_corner()
@@ -343,7 +342,14 @@ func _on_PopupMenu_id_pressed(id):
 		screenshot.flip_y()
 		screenshot.get_rect(capture_rect).save_png(path)
 		
-		word_recognition_python()
+		var word = word_recognition_python()
+		
+		var size_popup : Vector2 = get_node("PopUpMotConfirmation/ColorRect").get_global_rect().size
+		
+		get_node("PopUpMotConfirmation").rect_position = _camera.get_camera_position() - (size_popup/5)
+		get_node("PopUpMotConfirmation").visible = true
+		
+		
 		
 	elif id==5:
 		print("Dessin")
