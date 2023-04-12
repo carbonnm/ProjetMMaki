@@ -36,6 +36,7 @@ func _on_Okbutton_button_up():
 		#saving the new theme
 		
 		SaveLogic.save_data()
+		print("saved!", user_data)
 		
 
 func _on_Closebutton_mouse_entered():

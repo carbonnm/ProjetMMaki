@@ -24,17 +24,18 @@ func load_data():
 	#equivalent to check if instance is null in singleton pattern 
 	if not(file.file_exists(SAVE_FILE)):
 		user_data = {
-			"UnamurThemeBOLD": [["res://Assets/Fonts/ITC Avant Garde Gothic Bold.otf",Color(40, 73, 156, 1) ],
-								["res://Assets/Fonts/ITC Avant Garde Gothic Bold.otf",Color(238, 135, 148,1) ],
-								["res://Assets/Fonts/ITC Avant Garde Gothic Bold.otf",Color(255, 204, 51, 1 ) ],[Color( 0.980392, 0.921569, 0.843137, 1 )]],
-			"UnamurThemeLIGHT": [["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.otf",Color(107, 84, 163, 1) ],
-								["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.otf",Color( 50, 145, 207,1) ],
-								["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.otf",Color( 238, 135, 148) ],
+			"UnamurThemeBOLD": [["res://Assets/Fonts/ITC Avant Garde Gothic LT Bold.ttf",Color(0.16, 0.29, 0.61, 1) ],
+								["res://Assets/Fonts/ITC Avant Garde Gothic LT Bold.ttf",Color(0.93, 0.53, 0.58,1) ],
+								["res://Assets/Fonts/ITC Avant Garde Gothic LT Bold.ttf",Color(1, 0.8, 0.2, 1 )],
+								[Color( 0.980392, 0.921569, 0.843137, 1 )]],
+			"UnamurThemeLIGHT": [["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.ttf",Color(0.42, 0.33, 0.64, 1) ],
+								["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.ttf",Color( 0.2, 0.57, 0.81,1) ],
+								["res://Assets/Fonts/ITC Avant Garde Gothic LT Book Regular.ttf",Color( 0.93, 0.53, 0.58) ],
 								[Color( 0.980392, 0.921569, 0.843137, 1 )]],
 								
-			"TestTheme":[["res://Assets/Fonts/Minecraft.ttf",Color(40, 73, 156, 1)],
-						["res://Assets/Fonts/PeaberryBase.ttf",Color(238, 135, 148,1)],
-						["res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf",Color(255, 204, 51, 1 )],
+			"TestTheme":[["res://Assets/Fonts/Minecraft.ttf",Color(0.16, 0.29, 0.61, 1)],
+						["res://Assets/Fonts/PeaberryBase.ttf",Color(0.93, 0.53, 0.58,1)],
+						["res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf",Color(1, 0.8, 0.2, 1 )],
 						[Color( 0.980392, 0.921569, 0.843137, 1 )]]
 			
 								

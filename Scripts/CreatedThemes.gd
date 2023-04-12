@@ -3,6 +3,7 @@ extends Panel
 onready var save_file = SaveLogic.user_data
 onready var fullpicture = get_owner()
 onready var themecontainer = preload("res://Scene/Createdthemecontainer.tscn")
+onready var firstchild = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	themebuilding()
@@ -11,7 +12,7 @@ func _ready():
 func themebuilding():
 	#displays all of the user's created themes
 	for theme in save_file.keys():
-		if not (theme == "UnamurThemeBOLD" or theme == "UnamurThemeLIGHT"):
+		if not (theme == "UnamurThemeBOLD" or theme == "UnamurThemeLIGHT" ):
 			
 			#for themes that aren't UNamur's defaults (one that were created by the user)
 			var createdtheme = themecontainer.instance()
@@ -20,13 +21,16 @@ func themebuilding():
 			#signal magic 
 			createdtheme.connect("selected_theme", self, "_on_selected")
 			#adding the new child to the panel
-			
+			if not firstchild:
+				
+				createdtheme.rect_position.y += 75.0
+			firstchild = false
 			add_child(createdtheme)
 			
 			
 func _on_selected(themename):
 	#setting up the theme (fonts,color,... for the new canvas )
-	print("pressed!",themename)
+	#print("pressed!",themename)
 	fullpicture.chosen_font_title = save_file.get(themename)[0][0]
 	fullpicture.chosen_color_title = save_file.get(themename)[0][1]
 	fullpicture.chosen_font_subtitle= save_file.get(themename)[1][0]

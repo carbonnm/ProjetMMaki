@@ -11,7 +11,7 @@ func _ready():
 
 func _on_BoutonUNamurLight_pressed():
 	
-	print("testlight")
+	#print("testlight")
 	#Assigning the different fonts and color fonts to the selected theme
 	fullpicture.chosen_font_title = save_file.get("UnamurThemeLIGHT")[0][0]
 	fullpicture.chosen_color_title = save_file.get("UnamurThemeLIGHT")[0][1]
@@ -25,7 +25,7 @@ func _on_BoutonUNamurLight_pressed():
 
 
 func _on_BoutonUnamurBold_pressed():
-	print("testbold")
+	#print("testbold")
 	#Assigning the different fonts and color fonts to the selected theme
 	fullpicture.chosen_font_title = save_file.get("UnamurThemeBOLD")[0][0]
 	fullpicture.chosen_color_title = save_file.get("UnamurThemeBOLD")[0][1]

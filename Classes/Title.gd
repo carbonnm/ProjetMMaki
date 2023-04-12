@@ -122,8 +122,9 @@ func ChangeFont(type_title, title_font, color_title, subtitle_font, color_subtit
 		dynamic_font.size = 32
 		dynamic_font.font_data = load(subsubtitle_font)
 		_TextEdit.add_font_override("font", dynamic_font)
-		_TextEdit.set("custom_colors/font_color",color_subsubtitle)
-	
+		
+		_TextEdit.modulate = color_subsubtitle
+	print(_TextEdit.get("custom_colors/font_color"))
 	var size = _TextEdit.get_font("font").get_string_size(_TextEdit.text)
 	
 	_TextEdit.rect_size = Vector2(size.x, size.y)
