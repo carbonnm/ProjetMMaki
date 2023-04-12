@@ -347,6 +347,8 @@ func _on_PopupMenu_id_pressed(id):
 		var size_popup : Vector2 = get_node("PopUpMotConfirmation/ColorRect").get_global_rect().size
 		
 		get_node("PopUpMotConfirmation").rect_position = _camera.get_camera_position() - (size_popup/5)
+		get_node("PopUpMotConfirmation/Mot").text = word[0]
+		get_node("RightClickContainer").visible = false
 		get_node("PopUpMotConfirmation").visible = true
 		
 		
