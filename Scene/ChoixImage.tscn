@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 topleft:hint_color;
+uniform vec4 topright:hint_color;
+uniform vec4 bottomleft:hint_color;
+uniform vec4 bottomright:hint_color;
+
+void fragment() {
+	vec2 uv_corner = vec3(UV, 0.0).xy;
+	vec4 top = mix(topleft, topright, uv_corner.x);
+	vec4 bottom = mix(bottomleft, bottomright, uv_corner.x);
+	COLOR =  mix(top, bottom, uv_corner.y);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/topleft = Color( 0.47451, 0.843137, 0.988235, 1 )
+shader_param/topright = Color( 1, 0.968627, 0.478431, 1 )
+shader_param/bottomleft = Color( 1, 0.968627, 0.478431, 1 )
+shader_param/bottomright = Color( 0.627451, 0.807843, 0.827451, 1 )
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+[node name="ChoixImage" type="Control"]
+anchor_left = 0.296
+anchor_top = 0.204
+anchor_right = 0.296
+anchor_bottom = 0.204
+margin_left = -304.104
+margin_top = -121.4
+margin_right = -264.104
+margin_bottom = -81.4
+
+[node name="ColorRect" type="Panel" parent="."]
+material = SubResource( 3 )
+anchor_left = 7.6
+anchor_top = 4.175
+anchor_right = 7.6
+anchor_bottom = 4.175
+margin_left = 20.0
+margin_top = -117.0
+margin_right = 420.0
+margin_bottom = 333.0
+theme = SubResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 397.98, -1819.2 )
+scale = Vector2( 1.3, 19.95 )
+points = PoolVector2Array( 100, 96, 100, 116.5 )
+width = 5.0
+default_color = Color( 0.337255, 0.341176, 0.345098, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( 6.83061, 0 )
+scale = Vector2( 0.97852, 1 )
+points = PoolVector2Array( 732, 300, 323, 300 )
+width = 5.0
+default_color = Color( 0.439216, 0.443137, 0.47451, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 324.0
+margin_top = 50.0
+margin_right = 725.0
+margin_bottom = 96.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+visible_characters = 300
+text = "  Choisissez votre dessin"
+
+[node name="Image1" type="Sprite" parent="."]
+position = Vector2( 324, 100 )
+
+[node name="Image2" type="Sprite" parent="."]
+position = Vector2( 324, 300 )
+
+[node name="Image3" type="Sprite" parent="."]
+position = Vector2( 530, 100 )
+
+[node name="Image4" type="Sprite" parent="."]
+position = Vector2( 530, 300 )
