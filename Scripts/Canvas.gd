@@ -29,12 +29,13 @@ onready var states = $StateManager
 
 # Script exported variables
 export (float) var linewidth = 4.0
-export (Array) var selected_lines
+export (Vector2) var drawing_position
+#export (Array) var selected_lines
 
 # Veriables shared between states
 var Select_rect: Area2D
 var Selection_area : Area2D
-#var selected_lines: Array
+var selected_lines: Array
 var snapshots: Node
 var custom: Node
 
@@ -331,6 +332,7 @@ func _on_PopupMenu_id_pressed(id):
 		
 		var corners : Array = get_selection_area_corner()
 		var upper_left : Vector2 = corners[0]
+		drawing_position = upper_left
 		var bottom_right : Vector2 = corners[1]
 		var size_area : Vector2 = bottom_right - upper_left
 		var center_selected_lines = (bottom_right + upper_left)/2
@@ -476,6 +478,8 @@ func _on_PopupMenu_id_RCC_pressed(id):
 		get_node("RightClickContainer").visible = false
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
+
 
 func _on_Save_canvas_pressed() -> void:
 	var packed_scene = PackedScene.new()

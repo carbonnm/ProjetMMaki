@@ -4,13 +4,14 @@ onready var image1 = $Image1
 onready var image2 = $Image2
 onready var image3 = $Image3
 onready var image4 = $Image4
+onready var canvas = $"../"
 
 var chosen_button_icon
 
 func _on_OKButton_pressed():
 	var drawing = Sprite.new()
 	drawing.texture = chosen_button_icon
-	drawing.position = Vector2(500, 300)
+	drawing.position = canvas.drawing_position
 	get_node("../Elements").add_child(drawing)
 	visible = false
 
