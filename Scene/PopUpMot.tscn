@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/WordRecognizedPopUp.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=19]
 code = "shader_type canvas_item;
 
 uniform vec4 topleft:hint_color;
@@ -21,7 +21,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 19 )
 shader_param/topleft = Color( 0.47451, 0.843137, 0.988235, 1 )
 shader_param/topright = Color( 1, 0.968627, 0.478431, 1 )
 shader_param/bottomleft = Color( 1, 0.968627, 0.478431, 1 )
@@ -70,8 +70,9 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="Theme" id=16]
 
-[sub_resource type="DynamicFont" id=17]
-size = 70
+[sub_resource type="DynamicFont" id=20]
+size = 50
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=18]
@@ -148,16 +149,17 @@ custom_fonts/normal_font = SubResource( 15 )
 text = "Mot Reconnu : 
 "
 
-[node name="Mot" type="LineEdit" parent="."]
-margin_left = 265.0
-margin_top = 162.5
-margin_right = 785.0
-margin_bottom = 297.5
+[node name="Mot" type="RichTextLabel" parent="."]
+margin_left = 238.0
+margin_top = 163.0
+margin_right = 786.0
+margin_bottom = 298.0
 theme = SubResource( 16 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 17 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 20 )
 custom_styles/normal = SubResource( 18 )
-align = 1
+visible_characters = 200
 
 [connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
 [connection signal="pressed" from="okButton" to="." method="_on_okButton_pressed"]
+[connection signal="pressed" from="modifyButton" to="." method="_on_modifyButton_pressed"]

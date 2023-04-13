@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://Scripts/pensizecircle.gd" type="Script" id=39]
 [ext_resource path="res://Scene/PopUpMot.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Scene/ChoixImage.tscn" type="PackedScene" id=41]
+[ext_resource path="res://Scene/ModificationWord.tscn" type="PackedScene" id=42]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -398,6 +399,9 @@ icon = ExtResource( 32 )
 visible = false
 
 [node name="PopUpMotConfirmation" parent="." instance=ExtResource( 40 )]
+visible = false
+
+[node name="ModificationWord" parent="." instance=ExtResource( 42 )]
 visible = false
 
 [node name="ChoixImage" parent="." instance=ExtResource( 41 )]
