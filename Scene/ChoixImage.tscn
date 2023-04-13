@@ -79,14 +79,26 @@ custom_styles/normal = SubResource( 5 )
 visible_characters = 300
 text = "  Choisissez votre dessin"
 
-[node name="Image1" type="Sprite" parent="."]
-position = Vector2( 324, 100 )
+[node name="Image1" type="Button" parent="."]
+margin_left = 334.0
+margin_top = 103.0
+margin_right = 515.0
+margin_bottom = 292.0
 
-[node name="Image2" type="Sprite" parent="."]
-position = Vector2( 324, 300 )
+[node name="Image2" type="Button" parent="."]
+margin_left = 536.0
+margin_top = 106.0
+margin_right = 715.0
+margin_bottom = 288.0
 
-[node name="Image3" type="Sprite" parent="."]
-position = Vector2( 530, 100 )
+[node name="Image3" type="Button" parent="."]
+margin_left = 337.0
+margin_top = 313.0
+margin_right = 515.0
+margin_bottom = 486.0
 
-[node name="Image4" type="Sprite" parent="."]
-position = Vector2( 530, 300 )
+[node name="Image4" type="Button" parent="."]
+margin_left = 541.0
+margin_top = 313.0
+margin_right = 708.0
+margin_bottom = 491.0
