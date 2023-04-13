@@ -9,6 +9,11 @@ onready var canvas = $"../"
 var chosen_button_icon
 
 func _on_OKButton_pressed():
+	if not chosen_button_icon :
+		visible = false
+		get_node("../InvalidChoice").rect_position = canvas.drawing_position
+		get_node("../InvalidChoice").visible = true
+	
 	var drawing = Sprite.new()
 	drawing.texture = chosen_button_icon
 	drawing.position = canvas.drawing_position

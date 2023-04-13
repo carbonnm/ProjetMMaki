@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/WordRecognizedPopUp.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="Shader" id=19]
+[sub_resource type="Shader" id=21]
 code = "shader_type canvas_item;
 
 uniform vec4 topleft:hint_color;
@@ -21,7 +21,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 19 )
+shader = SubResource( 21 )
 shader_param/topleft = Color( 0.47451, 0.843137, 0.988235, 1 )
 shader_param/topright = Color( 1, 0.968627, 0.478431, 1 )
 shader_param/bottomleft = Color( 1, 0.968627, 0.478431, 1 )
