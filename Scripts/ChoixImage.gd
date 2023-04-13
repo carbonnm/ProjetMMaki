@@ -4,13 +4,12 @@ onready var image1 = $Image1
 onready var image2 = $Image2
 onready var image3 = $Image3
 onready var image4 = $Image4
-<<<<<<< Updated upstream
+
 onready var canvas = $"../"
 
-=======
+
 onready var one_pressed = false
 onready var current_pressed
->>>>>>> Stashed changes
 var chosen_button_icon
 
 func _on_OKButton_pressed():
