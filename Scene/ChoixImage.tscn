@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://4ImagesChoix/cookie1.png" type="Texture" id=2]
 [ext_resource path="res://4ImagesChoix/cookie3.png" type="Texture" id=3]
 [ext_resource path="res://4ImagesChoix/cookie4.png" type="Texture" id=4]
 [ext_resource path="res://4ImagesChoix/cookie2.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/ChoixImage.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -31,35 +31,110 @@ shader_param/bottomright = Color( 0.627451, 0.807843, 0.827451, 1 )
 
 [sub_resource type="Theme" id=1]
 
+[sub_resource type="StyleBoxFlat" id=17]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="DynamicFont" id=4]
-size = 35
-font_data = ExtResource( 1 )
+size = 28
+outline_size = 1
+outline_color = Color( 0.121569, 0.027451, 0.027451, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
 
 [sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.564706, 0.541176, 0.541176, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.52549, 0.623529, 0.494118, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.0588235, 0.0509804, 0.0509804, 1 )
+bg_color = Color( 0.560784, 0.486275, 0.690196, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.666667, 0.670588, 0.572549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=11]
-bg_color = Color( 0.0470588, 0.0431373, 0.0431373, 1 )
+bg_color = Color( 0.560784, 0.486275, 0.690196, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.666667, 0.670588, 0.572549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0.0470588, 0.0352941, 0.0352941, 1 )
+bg_color = Color( 0.560784, 0.486275, 0.690196, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.666667, 0.670588, 0.572549, 1 )
 
 [sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.0352941, 0.0313726, 0.0313726, 1 )
+bg_color = Color( 0.560784, 0.486275, 0.690196, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.666667, 0.670588, 0.572549, 1 )
 
 [sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 1 )
+size = 23
+font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.619608, 0.443137, 0.796078, 1 )
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.611765, 0.917647, 0.988235, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.956863, 0.952941, 0.521569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.388235, 0.396078, 0.713726, 1 )
+bg_color = Color( 0.619608, 0.443137, 0.796078, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.533333, 0.858824, 0.933333, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.611765, 0.917647, 0.988235, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.956863, 0.952941, 0.521569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=14]
+size = 29
+extra_spacing_top = 11
+font_data = ExtResource( 7 )
+
+[sub_resource type="Theme" id=15]
+default_font = SubResource( 14 )
 
 [node name="ChoixImage" type="Control"]
 anchor_left = 0.296
@@ -83,17 +158,18 @@ margin_top = -117.0
 margin_right = 420.0
 margin_bottom = 333.0
 theme = SubResource( 1 )
+custom_styles/panel = SubResource( 17 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 324.0
-margin_top = 50.0
-margin_right = 725.0
-margin_bottom = 96.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+margin_left = 334.0
+margin_top = 57.0
+margin_right = 712.0
+margin_bottom = 92.0
+custom_colors/default_color = Color( 0.964706, 0.952941, 0.513726, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 visible_characters = 300
-text = "  Choisissez votre dessin"
+text = "Choisissez votre dessin"
 
 [node name="Image1" type="Button" parent="."]
 margin_left = 332.0
@@ -130,17 +206,29 @@ icon = ExtResource( 4 )
 [node name="OKButton" type="Button" parent="."]
 margin_left = 471.0
 margin_top = 273.0
-margin_right = 579.0
-margin_bottom = 325.0
+margin_right = 577.0
+margin_bottom = 328.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
-custom_styles/hover = SubResource( 8 )
+custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 7 )
-text = "OK"
+
+[node name="DancingOk" type="RichTextLabel" parent="OKButton"]
+margin_left = 32.0
+margin_top = 4.0
+margin_right = 87.0
+margin_bottom = 53.0
+theme = SubResource( 15 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Ok"
+text = "Ok"
 
 [connection signal="pressed" from="Image1" to="." method="_on_Image1_pressed"]
 [connection signal="pressed" from="Image2" to="." method="_on_Image2_pressed"]
 [connection signal="pressed" from="Image3" to="." method="_on_Image3_pressed"]
 [connection signal="pressed" from="Image4" to="." method="_on_Image4_pressed"]
+[connection signal="mouse_entered" from="OKButton" to="." method="_on_OKButton_mouse_entered"]
+[connection signal="mouse_exited" from="OKButton" to="." method="_on_OKButton_mouse_exited"]
 [connection signal="pressed" from="OKButton" to="." method="_on_OKButton_pressed"]
