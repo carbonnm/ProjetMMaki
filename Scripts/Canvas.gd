@@ -29,11 +29,12 @@ onready var states = $StateManager
 
 # Script exported variables
 export (float) var linewidth = 4.0
+export (Array) var selected_lines
 
 # Veriables shared between states
 var Select_rect: Area2D
 var Selection_area : Area2D
-var selected_lines: Array
+#var selected_lines: Array
 var snapshots: Node
 var custom: Node
 
@@ -351,12 +352,21 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("PopUpMotConfirmation").visible = true
 		get_node("ActionMenu").visible = false
 		
+		delete_word()
 		
 		
 	elif id==5:
 		print("Dessin")
 	
 	get_node("Titlemenuaddition/Inputtitle").grab_focus()
+
+"""
+Clear the handwritten word
+"""
+func delete_word() :
+	for element in selected_lines :
+		element[0].queue_free()
+	selected_lines.clear()
 
 
 """

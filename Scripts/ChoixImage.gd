@@ -7,7 +7,6 @@ onready var image4 = $Image4
 
 var chosen_button_icon
 
-
 func _on_OKButton_pressed():
 	var drawing = Sprite.new()
 	drawing.texture = chosen_button_icon
