@@ -3,6 +3,7 @@ extends AState
 var copied_lines: Array
 
 func enter() -> void:
+	print('test')
 	canvas._action_menu.hide()
 	
 func input(event: InputEvent) -> IState:

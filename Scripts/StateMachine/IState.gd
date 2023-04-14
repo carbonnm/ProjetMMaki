@@ -3,6 +3,7 @@ extends Node
 
 var canvas: Canvas
 
+
 """
 Function called to handle initialisation logic for an IState node.
 """

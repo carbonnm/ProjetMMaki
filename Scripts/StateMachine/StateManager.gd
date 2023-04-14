@@ -164,8 +164,15 @@ func _on_Ungroup_pressed():
 func _on_Fusion_pressed():
 	switch_signal("Fusion")
 
+func _on_Pen_Size_pressed():
+	switch_signal("PenSize")
+
 func _on_Titlemenuaddition_new_title(chosen_title):
 	switch_signal_with_arguments("CreateTitle", [chosen_title])
 
 
 
+
+
+func _on_PopupMenu_popup_hide():
+	pass # Replace with function body.

@@ -11,3 +11,7 @@ func input(event: InputEvent) -> IState:
 			canvas.selected_lines = []
 			
 	return switch_to_previous_state()
+
+
+func _on_Redo_child_entered_tree(node):
+	pass # Replace with function body.

@@ -17,6 +17,8 @@ export (NodePath) var group_node
 export (NodePath) var ungroup_node
 export (NodePath) var fusion_node
 export (NodePath) var create_title_node
+export (NodePath) var pen_size_node
+
 
 onready var zoom_camera: IState = get_node(zoom_camera_node)
 onready var move_canvas: IState = get_node(move_canvas_node)
@@ -34,7 +36,7 @@ onready var group: IState = get_node(group_node)
 onready var ungroup: IState = get_node(ungroup_node) 
 onready var fusion: IState = get_node(fusion_node)
 onready var create_title: IState = get_node(create_title_node)
-
+onready var pen_size: IState = get_node(pen_size_node)
 """
 Function called to switch the state according to the keyboard input.
 
@@ -90,6 +92,9 @@ func keyboard_input(event: InputEvent) -> IState:
 		if Input.is_action_pressed("1") or Input.is_action_pressed("2") or Input.is_action_pressed("3"):
 			return create_title
 	
+#	if Input.is_action_just_pressed("PenSize"):
+#		return pen_size
+	
 	return null
 
 """
@@ -141,6 +146,10 @@ func switch_signal(state: String) -> IState:
 			return fusion
 		"CreateTitle":
 			return create_title
+		"PenSize":
+			return pen_size
 		_:
 			return null
+
+
 

@@ -24,7 +24,7 @@ onready var _elements := $Elements
 onready var detached_RCC := $RightClickContainer
 onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 onready var _action_menu := $ActionMenu
-onready var _pm = $PopupMenu
+onready var pm = $PopupMenu
 onready var states = $StateManager
 
 # Script exported variables
@@ -235,33 +235,33 @@ enum PopupIds {
 
 
 func _on_Create_text_pressed():
-	_pm.clear()
-	_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
-	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
-	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
-	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
+	pm.clear()
+	pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
+	pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
+	pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
+	pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
-	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+	pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, pm.rect_size.x, pm.rect_size.y))
 
 func _on_Create_texte_RCC_pressed():
-	_pm.clear()
-	_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
-	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
-	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
-	_pm.connect("id_pressed", self, "_on_PopupMenu_id_RCC_pressed")
+	pm.clear()
+	pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
+	pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
+	pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
+	pm.connect("id_pressed", self, "_on_PopupMenu_id_RCC_pressed")
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	var _text_popup = get_node("RightClickContainer/Create texte")
-	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
+	pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, pm.rect_size.x, pm.rect_size.y))
 
 
 func _on_Draw_pressed():
-	_pm.clear()
-	_pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
-	_pm.add_item("Dessin", PopupIds.WRITING)
-	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
+	pm.clear()
+	pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
+	pm.add_item("Dessin", PopupIds.WRITING)
+	pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
 	var _draw_popup = get_node("ActionMenu")
-	_pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 135, _draw_popup.get_global_rect().position.y + 200, _pm.rect_size.x, _pm.rect_size.y))
+	pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 135, _draw_popup.get_global_rect().position.y + 200, pm.rect_size.x, pm.rect_size.y))
 
 
 func _on_PopupMenu_id_pressed(id):
@@ -499,29 +499,9 @@ func LoadSave() -> void:
 
 
 
-func _on_pen_size_pressed_menu():
-	_pm.clear()
-	#_pm.add_item("Créer titre", PopupIds.CREATE_TITLE)
-	_pm.add_item("Créer sous-titre", PopupIds.CREATE_SUBTITLE)
-	_pm.add_item("Créer sous sous-titre", PopupIds.CREATE_SUB_SUBTITLE)
-	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	get_node("Titlemenuaddition/Inputtitle").clear()
-	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/pen_size")
-	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, _pm.rect_size.x, _pm.rect_size.y))
 
 
-func _on_pen_size_pressed():
-	_pm.clear()
-	_pm.get_node("HSlider").value = self.linewidth
-	_pm.get_node("HSlider").visible = true
-	_pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	get_node("Titlemenuaddition/Inputtitle").clear()
-	var _text_popup = get_node("RightClickContainer/pen_size")
-	_pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, 100, 100))
-	_pm.get_node("pensizecircle").set_line_size(self.linewidth)
-	_pm.get_node("pensizecircle").set_line_color(self.RCC.color)
-	_pm.get_node("pensizecircle").visible = true
-	
-func _on_HSlider_value_changed(value):
-	_pm.get_node("pensizecircle").set_line_size(value)
-	self.linewidth = value
+
+
+
+

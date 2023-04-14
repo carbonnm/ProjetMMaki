@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://Scene/ChoixImage.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Scene/ModificationWord.tscn" type="PackedScene" id=42]
 [ext_resource path="res://Scene/InvalidChoice.tscn" type="PackedScene" id=43]
+[ext_resource path="res://Scripts/StateMachine/States/pen_size.gd" type="Script" id=44]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.81, 0.81, 0.81, 1 )
@@ -130,9 +131,10 @@ margin_bottom = 227.0
 text = "Coller"
 icon = ExtResource( 33 )
 
-[node name="pen_size" type="Button" parent="RightClickContainer"]
-margin_right = 12.0
-margin_bottom = 20.0
+[node name="Pen size" type="Button" parent="RightClickContainer"]
+margin_top = 360.0
+margin_right = 218.0
+margin_bottom = 395.0
 text = "Adjust pen size"
 icon = ExtResource( 10 )
 
@@ -196,14 +198,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 142.0
+margin_bottom = 109.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 146.0
+margin_top = 113.0
 margin_right = 153.0
-margin_bottom = 220.0
+margin_bottom = 187.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -258,7 +260,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 305.0
+margin_right = 314.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -303,10 +305,10 @@ margin_bottom = 356.0
 text = "Coller"
 icon = ExtResource( 17 )
 
-[node name="pen_size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+[node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 360.0
 margin_right = 218.0
-margin_bottom = 428.0
+margin_bottom = 395.0
 text = "Adjust pen size"
 icon = ExtResource( 10 )
 
@@ -439,13 +441,20 @@ ticks_on_borders = true
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
 
+[node name="SignalSwitcher" parent="StateManager" index="0"]
+pen_size_node = NodePath("PenSize")
+
+[node name="PenSize" type="Node" parent="StateManager/SignalSwitcher" index="16"]
+script = ExtResource( 44 )
+signal_switcher_node = NodePath("..")
+
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="RightClickContainer/pen_size" to="." method="_on_pen_size_pressed"]
+[connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
@@ -455,8 +464,7 @@ ticks_on_borders = true
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/pen_size" to="." method="_on_pen_size_pressed_menu"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/pen_size" to="." method="_on_pen_size_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickButton" to="CanvasLayer" method="_on_RightClickButton_pressed"]
 [connection signal="pressed" from="ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
@@ -468,7 +476,9 @@ ticks_on_borders = true
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
 [connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
+[connection signal="popup_hide" from="PopupMenu" to="StateManager" method="_on_PopupMenu_popup_hide"]
 [connection signal="draw" from="PopupMenu/pensizecircle" to="." method="_on_pensizecircle_draw"]
-[connection signal="value_changed" from="PopupMenu/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="PopupMenu/HSlider" to="StateManager/SignalSwitcher/PenSize" method="_on_HSlider_value_changed"]
+[connection signal="child_entered_tree" from="StateManager/SignalSwitcher/Redo" to="StateManager/SignalSwitcher/Redo" method="_on_Redo_child_entered_tree"]
 
 [editable path="StateManager"]
