@@ -17,9 +17,8 @@ func _on_Titleinputbutton_pressed():
 
 	emit_signal("modified", modified_word)
 	visible = false
-	
-func _on_exitButton_pressed() -> void:
-	visible = false
+	get_node("ModifiedWord/Titleinputbutton/ArrowIcon").playing = false
+	get_node("Closebutton/Crossicon").playing = false
 
 
 func _on_ModifiedWord_text_changed(new_text : String) -> void:
@@ -28,3 +27,23 @@ func _on_ModifiedWord_text_changed(new_text : String) -> void:
 
 func _on_ModifiedWord_text_entered(new_text):
 	_on_Titleinputbutton_pressed()
+
+
+func _on_Closebutton_pressed():
+	visible = false
+	get_node("Closebutton/Crossicon").playing = false
+
+func _on_Closebutton_mouse_entered():
+	get_node("Closebutton/Crossicon").playing = true
+
+
+func _on_Closebutton_mouse_exited():
+	get_node("Closebutton/Crossicon").playing = false
+
+
+func _on_Titleinputbutton_mouse_entered():
+	get_node("ModifiedWord/Titleinputbutton/ArrowIcon").playing = true
+
+
+func _on_Titleinputbutton_mouse_exited():
+	get_node("ModifiedWord/Titleinputbutton/ArrowIcon").playing = false
