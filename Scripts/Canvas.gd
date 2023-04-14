@@ -328,7 +328,11 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("RightClickContainer").visible = false
 		
 	elif id==4:
-		var path = "ScreenShots" + "/screenshot.png"
+		get_node("ActionMenu").visible = false
+		
+		yield(get_tree().create_timer(1.0), "timeout")
+		
+		var path = "ScreenShots/screenshot.png"
 		
 		var corners : Array = get_selection_area_corner()
 		var upper_left : Vector2 = corners[0]
@@ -352,7 +356,6 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("PopUpMotConfirmation").rect_position = _camera.get_camera_position() - (size_popup/5)
 		get_node("PopUpMotConfirmation/Mot").text = word[0]
 		get_node("PopUpMotConfirmation").visible = true
-		get_node("ActionMenu").visible = false
 		
 		delete_word()
 		
