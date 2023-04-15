@@ -42,6 +42,6 @@ func input(event: InputEvent) -> IState:
 		element.get_parent().remove_child(element)
 	
 	#add the group to selected_lines
-	canvas.selected_lines = [group]
+	canvas.selected_lines = [[group,0],canvas.selected_lines[-1]]
 	return switch_to_previous_state()
 
