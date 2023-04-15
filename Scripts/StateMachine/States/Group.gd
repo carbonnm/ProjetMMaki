@@ -3,6 +3,8 @@ extends AState
 
 var groups: Array = []
 
+func exit() -> void:
+	canvas.snapshots.create_snapshot()
 
 func input(event: InputEvent) -> IState:
 	var elements: Array = canvas.Utils.map(canvas.selected_lines, canvas.Mimic, "get_first",[])
@@ -41,5 +43,6 @@ func input(event: InputEvent) -> IState:
 	
 	#add the group to selected_lines
 	canvas.selected_lines = [[group,0],canvas.selected_lines[-1]]
+	
 	return switch_to_previous_state()
 
