@@ -1,11 +1,12 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://4ImagesChoix/cookie1.png" type="Texture" id=2]
-[ext_resource path="res://4ImagesChoix/cookie3.png" type="Texture" id=3]
-[ext_resource path="res://4ImagesChoix/cookie4.png" type="Texture" id=4]
-[ext_resource path="res://4ImagesChoix/cookie2.png" type="Texture" id=5]
+[ext_resource path="res://4ImagesChoix/Cookie/cookie1.png" type="Texture" id=2]
+[ext_resource path="res://4ImagesChoix/Cookie/cookie3.png" type="Texture" id=3]
+[ext_resource path="res://4ImagesChoix/Cookie/cookie4.png" type="Texture" id=4]
+[ext_resource path="res://4ImagesChoix/Cookie/cookie2.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/ChoixImage.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=7]
+
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
