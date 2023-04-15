@@ -21,11 +21,9 @@ func input(event: InputEvent) -> IState:
 	var childs: Array = []
 	for element in elements:
 		childs += element.get_children()
-
-		
 		
 	# save ungroup elements
-	groups.append(childs)
+	groups.append(elements)
 	
 	# add childs to group
 	for child in childs:

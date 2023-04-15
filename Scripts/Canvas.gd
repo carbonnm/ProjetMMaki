@@ -114,7 +114,7 @@ func RetrieveArea(areas:Array):
 	selected_lines = areas.duplicate()
 
 	Selection_area = AREASELECTION.new()
-	get_node("Elements").add_child(Selection_area)
+	Utils.get_match_string_node("Elements",self).add_child(Selection_area)
 	appendSelectionArea()
 
 	selected_lines.append([Selection_area, 0])
