@@ -18,10 +18,18 @@ func _on_OKButton_pressed():
 		get_node("../InvalidChoice").rect_position = canvas.drawing_position
 		get_node("../InvalidChoice").visible = true
 	
+	var area = Area2D.new()
+	var c_shape = CollisionShape2D.new()
+	var r_shape = RectangleShape2D.new()
 	var drawing = Sprite.new()
 	drawing.texture = chosen_button_icon
-	drawing.position = canvas.drawing_position
-	get_node("../Elements").add_child(drawing)
+	var center : Vector2 = canvas.drawing_position + Vector2(drawing.texture.get_width()/2, drawing.texture.get_height()/2)
+	r_shape.extents = Vector2((drawing.texture.get_width())/2, (drawing.texture.get_height())/2)
+	c_shape.shape = r_shape
+	area.position = center
+	area.add_child(c_shape)
+	area.add_child(drawing)
+	get_node("../Elements").add_child(area)
 	visible = false
 
 
