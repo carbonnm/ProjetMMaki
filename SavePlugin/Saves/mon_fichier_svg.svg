@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg>
-<svg viewBox="67.888 -126.036865 827.824036 940.406982" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="1.#INF 1.#INF -1.#INF -1.#INF" xmlns="http://www.w3.org/2000/svg">
 
-<defs>
-
-	<style>
-		@font-face {
-			font-family: "custom-font-family";
-			src: url("/home/admin/Documents/GitHub/ProjetMMaki/Assets/Fonts/arial_narrow_7.ttf");
-		}
-	</style>
-
-</defs>
-
-	<rect x="67.888" y="-126.036865" width="827.824036" height="940.406982" fill="#faebd7"></rect>
-	
-	<text x="481.800049" y="344.166656" font-size="198" font-family="custom-font-family" fill="#000000" text-anchor="middle" dominant-baseline="middle" transform="rotate(0 481.800049 344.166656)">dzdezz</text>
+	<rect x="1.#INF" y="1.#INF" width="-1.#INF" height="-1.#INF" fill="#faebd7"></rect>
 
 </svg>

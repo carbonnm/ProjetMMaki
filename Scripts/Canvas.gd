@@ -55,6 +55,8 @@ func _input(event: InputEvent):
 	if event is InputEventKey and event.scancode == KEY_O:
 		var i = 1
 		if i == 1:
+			get_node("SavePopUpConfirmation").rect_position = Vector2(400, 200)
+			get_node("SavePopUpConfirmation").visible = true
 			var save_node = Utils.get_match_string_node("Elements", self)
 			var background_node = Utils.get_match_string_node("BackgroundColor", self)
 			var svg_compiler = SVGCompiler.new([save_node, background_node])

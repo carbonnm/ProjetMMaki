@@ -13,3 +13,7 @@ func _on_exitButton_pressed():
 
 func _on_cancelButton_pressed():
 	visible = false
+
+
+func _on_okButton_pressed():
+	visible = false

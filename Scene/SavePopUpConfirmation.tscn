@@ -121,4 +121,5 @@ custom_fonts/normal_font = SubResource( 29 )
 text = "Vous êtes sur le point d'enregistrer cette présentation sous format svg"
 
 [connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
+[connection signal="pressed" from="okButton" to="." method="_on_okButton_pressed"]
 [connection signal="pressed" from="cancelButton" to="." method="_on_cancelButton_pressed"]
