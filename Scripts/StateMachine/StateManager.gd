@@ -170,9 +170,8 @@ func _on_Pen_Size_pressed():
 func _on_Titlemenuaddition_new_title(chosen_title):
 	switch_signal_with_arguments("CreateTitle", [chosen_title])
 
+func _on_Pen_size_pressed():
+	switch_signal("PenSize")
 
-
-
-
-func _on_PopupMenu_popup_hide():
-	pass # Replace with function body.
+func _on_HSlider_value_changed(value):
+	switch_signal_with_arguments("PenSize", [value])
