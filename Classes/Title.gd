@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	self.add_child(_TextEdit)
 
-func set_params(bbcode_enabled, chosen_title, size_TextEdit, position_TextEdit):
+func set_params(_bbcode_enabled, chosen_title, _size_TextEdit, position_TextEdit):
 #	_TextEdit.bbcode_enabled = bbcode_enabled
 	_TextEdit.text = chosen_title
 #	_TextEdit.rect_size = size_TextEdit

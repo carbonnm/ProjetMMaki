@@ -3,7 +3,7 @@ extends AState
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	
 	if Input.is_action_pressed("1"):
 		canvas._on_PopupMenu_id_RCC_pressed(1)

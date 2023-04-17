@@ -13,7 +13,7 @@ func input(event: InputEvent) -> IState:
 			
 	return null
 
-func keyboard_input(event: InputEvent) -> IState:
+func keyboard_input(_event: InputEvent) -> IState:
 	if Input.is_action_just_released("MoveCanvas"):
 		return switch_to_previous_state()
 	

@@ -6,7 +6,7 @@ var groups: Array = []
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	var elements: Array = canvas.Utils.map(canvas.selected_lines, canvas.Mimic, "get_first",[])
 	elements = elements.slice(0,elements.size()-2)
 	var positions = canvas.Utils.map(elements, canvas.Mimic, "area2D_position", [])

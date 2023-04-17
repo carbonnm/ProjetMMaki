@@ -3,7 +3,7 @@ extends AState
 func enter() -> void:
 	canvas._action_menu.hide()
 
-func input(event:InputEvent) -> IState: 
+func input(_event:InputEvent) -> IState: 
 	var New_Group = Area2D.new()
 	canvas._elements.add_child(New_Group)
 	New_Group.name = "NewGroup"

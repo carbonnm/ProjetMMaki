@@ -21,11 +21,11 @@ func _on_Titleinputbutton_pressed():
 	get_node("Closebutton/Crossicon").playing = false
 
 
-func _on_ModifiedWord_text_changed(new_text : String) -> void:
+func _on_ModifiedWord_text_changed(_new_text : String) -> void:
 	_on_Titleinputbutton_pressed()
 
 
-func _on_ModifiedWord_text_entered(new_text):
+func _on_ModifiedWord_text_entered(_new_text):
 	_on_Titleinputbutton_pressed()
 
 

@@ -17,6 +17,9 @@ func set_line_size(new_size):
 	width = new_size / 2
 	update()
 
+func get_line_size():
+	return width
+
 func set_line_color(new_color):
 	color = new_color
 	update()

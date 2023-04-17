@@ -6,7 +6,7 @@ func enter() -> void:
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
-func input(event : InputEvent) -> IState:
+func input(_event : InputEvent) -> IState:
 	var ungrouped_groups: Array = get_node("../Group").groups	
 	var elements: Array = canvas.Utils.map(canvas.selected_lines, canvas.Mimic, "get_first",[])
 	

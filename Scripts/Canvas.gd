@@ -199,7 +199,7 @@ Is called when select button is pressed
 func DrawSelectionArea():
 	Select_rect = Area2D.new()
 	Select_rect.set_script(load("res://Scripts/Selector.gd"))
-	Select_rect.connect("SendArea", self, "RetrieveArea")
+	var _error = Select_rect.connect("SendArea", self, "RetrieveArea")
 	self.add_child(Select_rect)
 	
 	DrawLineContainer(false)
@@ -341,7 +341,7 @@ func _on_PopupMenu_id_pressed(id):
 		drawing_position = upper_left
 		var bottom_right : Vector2 = corners[1]
 		var size_area : Vector2 = bottom_right - upper_left
-		var center_selected_lines = (bottom_right + upper_left)/2
+		var _center_selected_lines = (bottom_right + upper_left)/2
 		
 		var margin : Vector2 = Vector2(50, 50)
 		var capture_rect = Rect2(upper_left - margin, size_area + 2 * margin)
@@ -384,16 +384,15 @@ Return :
 """
 func word_recognition_python() :
 	var output : Array = []
-	OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
-	print(output)
+	var _error = OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
 	return output
 
 
 
 func _on_PopupMenu_id_RCC_pressed(id):
 	var _mouse_pos : Vector2 = get_global_mouse_position()
-	var size_title_menu_x : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
-	var size_title_menu_y : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
+	var _size_title_menu_x : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
+	var _size_title_menu_y : float = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
 	if id==1:
 		
 		get_node("Titlemenuaddition").type_title = 1
@@ -493,7 +492,7 @@ func _on_Save_canvas_pressed() -> void:
 		child.set_owner(_elements)
 	
 	packed_scene.pack(_elements)
-	ResourceSaver.save("user://my_scene.tscn", packed_scene)
+	var _error = ResourceSaver.save("user://my_scene.tscn", packed_scene)
 
 func LoadSave() -> void:
 	var _scene = ResourceLoader.load("user://my_scene.tscn").instance()

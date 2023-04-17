@@ -11,7 +11,7 @@ func enter() -> void:
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	var clines = canvas.Utils.map(get_node("../Copy").copied_lines,canvas.Mimic,"get_first",[])
 	var clines_positions = canvas.Utils.map(clines, canvas.Mimic, "area2D_position", [])
 	var closure = canvas.Utils.get_positions_closure(clines_positions)

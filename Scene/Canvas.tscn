@@ -473,9 +473,7 @@ ticks_on_borders = true
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
 [connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
-[connection signal="popup_hide" from="PopupMenu" to="StateManager" method="_on_PopupMenu_popup_hide"]
-[connection signal="draw" from="PopupMenu/pensizecircle" to="." method="_on_pensizecircle_draw"]
+[connection signal="mouse_exited" from="PopupMenu" to="StateManager" method="_on_PopupMenu_mouse_exited"]
 [connection signal="value_changed" from="PopupMenu/HSlider" to="StateManager" method="_on_HSlider_value_changed"]
-[connection signal="child_entered_tree" from="StateManager/SignalSwitcher/Redo" to="StateManager/SignalSwitcher/Redo" method="_on_Redo_child_entered_tree"]
 
 [editable path="StateManager"]

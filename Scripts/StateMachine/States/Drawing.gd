@@ -14,7 +14,7 @@ func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
-				_current_line = DrawLine(_current_line)
+				_current_line = DrawLine()
 			else:
 				_current_line.Curve2D_Transformer(canvas._camera)
 				# Delete the previous line if it didn't have any points or less than 2.
@@ -34,7 +34,7 @@ func input(event: InputEvent) -> IState:
 	return null
 
 
-func DrawLine(_current_line: Area2D) -> Area2D:
+func DrawLine() -> Area2D:
 	_current_line = LINE.new()
 	canvas._elements.add_child(_current_line)
 	_current_line.Setup()

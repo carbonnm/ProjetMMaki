@@ -175,3 +175,6 @@ func _on_Pen_size_pressed():
 
 func _on_HSlider_value_changed(value):
 	switch_signal_with_arguments("PenSize", [value])
+
+func _on_PopupMenu_mouse_exited():
+	switch_signal_with_arguments("PenSize", [-1])

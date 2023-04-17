@@ -28,7 +28,7 @@ Returns:
 --------
 The next state. (Istate)
 """
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	return null
 
 """
@@ -43,7 +43,7 @@ Returns:
 --------
 The next state. (Istate)
 """
-func physics_process(delta: float) -> IState:
+func physics_process(_delta: float) -> IState:
 	return null
 
 """
@@ -57,7 +57,7 @@ Returns:
 --------
 The next state. (Istate)
 """
-func parametrized_call(args: Array) -> IState:
+func parametrized_call(_args: Array) -> IState:
 	return null
 
 """
@@ -71,7 +71,7 @@ Returns:
 --------
 The next state. (Istate)
 """
-func switch_signal(state: String) -> IState:
+func switch_signal(_state: String) -> IState:
 	return null
 
 """
@@ -92,5 +92,5 @@ Returns:
 --------
 The next state. (Istate)
 """
-func keyboard_input(event: InputEvent) -> IState:
+func keyboard_input(_event: InputEvent) -> IState:
 	return null

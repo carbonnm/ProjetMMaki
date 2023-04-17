@@ -39,11 +39,8 @@ func _draw() -> void:
 
 """
 Creation of the collisionshape
-Parameters :
-----------------
-- selected_lines : Array
 """
-func create_shape(selected_lines) -> void:
+func create_shape() -> void:
 	c_shape = CollisionShape2D.new()
 	shape = RectangleShape2D.new()
 	
@@ -80,6 +77,6 @@ Parameters :
 ----------------
 - selected_lines : Array
 """
-func create_selection_area(selected_lines) -> void:
+func create_selection_area() -> void:
 	self.center_area2D()
 	#self.create_shape(selected_lines)

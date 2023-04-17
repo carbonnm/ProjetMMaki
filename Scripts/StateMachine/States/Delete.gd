@@ -7,7 +7,7 @@ func enter() -> void:
 func exit() -> void :
 	canvas.snapshots.create_snapshot()
 
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	for area in canvas.selected_lines:
 		area[0].queue_free()
 		

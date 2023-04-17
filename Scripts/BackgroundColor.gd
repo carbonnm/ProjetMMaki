@@ -2,7 +2,7 @@ extends ColorRect
 
 
 func _ready():
-	get_node("../Camera").connect("zoom_changed", self, "UpdateBackground")
+	var _zoom_changed_signal = get_node("../Camera").connect("zoom_changed", self, "UpdateBackground")
 
 func UpdateBackground(global_position, zoom):
 	# on prend la pos de la camera ( au centre de la fenetre) et on l'offset en haut à gauche 
