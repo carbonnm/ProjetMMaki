@@ -55,7 +55,7 @@ func keyboard_input(event: InputEvent) -> IState:
 		else:
 			return zoom_camera
 	
-	if Input.is_action_just_pressed("MoveCanvas"):
+	elif Input.is_action_just_pressed("MoveCanvas") and not Input.is_action_pressed("Ungroup"):
 		return move_canvas
 	
 	if Input.is_action_just_pressed("Drawing"):
@@ -88,10 +88,12 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Redo"):
 		return redo
 	
-	if Input.is_action_just_pressed("Group"):
+	if Input.is_action_just_pressed("Group") and not Input.is_action_pressed("Ungroup"):
+		print("group")
 		return group
 	
 	if Input.is_action_just_pressed("Ungroup"):
+		print("ungroup")
 		return ungroup
 	
 	if Input.is_action_pressed("CreateTitle"):
