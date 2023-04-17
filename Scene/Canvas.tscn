@@ -477,4 +477,5 @@ ticks_on_borders = true
 [connection signal="mouse_exited" from="PopupMenu" to="StateManager" method="_on_PopupMenu_mouse_exited"]
 [connection signal="value_changed" from="PopupMenu/HSlider" to="StateManager" method="_on_HSlider_value_changed"]
 
+[editable path="SavePopUpConfirmation"]
 [editable path="StateManager"]

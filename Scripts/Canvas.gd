@@ -15,8 +15,6 @@ var Rotation := preload("res://Scripts/Modes/Rotation.gd").new()
 var CreateTitle := preload("res://Scripts/StateMachine/StatesMethods/TitleMethods.gd").new()
 var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd")
 
-var SVGCompiler := preload("res://SavePlugin/SVGCompiler.gd")
-
 # Get references to childs 
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
@@ -52,16 +50,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
-	if event is InputEventKey and event.scancode == KEY_O:
-		var i = 1
-		if i == 1:
-			get_node("SavePopUpConfirmation").rect_position = Vector2(400, 200)
-			get_node("SavePopUpConfirmation").visible = true
-			var save_node = Utils.get_match_string_node("Elements", self)
-			var background_node = Utils.get_match_string_node("BackgroundColor", self)
-			var svg_compiler = SVGCompiler.new([save_node, background_node])
-			svg_compiler.export_to_svg()
-			i += 1
  
 func _on_BackgroundColored_gui_input(event: InputEvent):
 	states.input(event)

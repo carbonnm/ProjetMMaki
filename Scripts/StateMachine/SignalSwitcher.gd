@@ -17,6 +17,7 @@ export (NodePath) var group_node
 export (NodePath) var ungroup_node
 export (NodePath) var create_title_node
 export (NodePath) var pen_size_node
+export (NodePath) var svg_save_node
 
 
 onready var zoom_camera: IState = get_node(zoom_camera_node)
@@ -35,6 +36,7 @@ onready var group: IState = get_node(group_node)
 onready var ungroup: IState = get_node(ungroup_node)
 onready var create_title: IState = get_node(create_title_node)
 onready var pen_size: IState = get_node(pen_size_node)
+onready var svg_save: IState = get_node(svg_save_node)
 
 """
 Function called to switch the state according to the keyboard input.
@@ -61,7 +63,7 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Drawing"):
 		return drawing
 	
-	if Input.is_action_just_pressed("Selection"):
+	if Input.is_action_just_pressed("Selection") and not Input.is_action_pressed("SVGSave"):
 		return selection
 	
 	if Input.is_action_just_pressed("Copy"):
@@ -102,6 +104,9 @@ func keyboard_input(event: InputEvent) -> IState:
 	
 	if Input.is_action_just_pressed("PenSize"):
 		return pen_size
+	
+	if Input.is_action_just_pressed("SVGSave"):
+		return svg_save
 	
 	return null
 
@@ -154,6 +159,8 @@ func switch_signal(state: String) -> IState:
 			return create_title
 		"PenSize":
 			return pen_size
+		"SVGSave":
+			return svg_save
 		_:
 			return null
 
