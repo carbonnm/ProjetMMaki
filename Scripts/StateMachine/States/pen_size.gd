@@ -1,5 +1,8 @@
 extends AState
 
+func exit() -> void:
+	canvas.pm.hide()
+
 func input(event: InputEvent) -> IState:
 	if not canvas.pm.visible:
 		canvas.pm.clear()
@@ -21,7 +24,6 @@ func input(event: InputEvent) -> IState:
 	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 		if not Rect2(Vector2(),canvas.pm.get_node("HSlider").rect_size).has_point(canvas.pm.get_node("HSlider").get_local_mouse_position()):
-			canvas.pm.hide()
 			return switch_to_previous_state()
 	
 	return null
@@ -39,7 +41,6 @@ func parametrized_call(args: Array) -> IState:
 		canvas.linewidth = args[0]
 	else:
 		if not Rect2(Vector2(),canvas.pm.get_node("HSlider").rect_size).has_point(canvas.pm.get_node("HSlider").get_local_mouse_position()):
-			canvas.pm.hide()
 			return switch_to_previous_state()
 	
 	return null

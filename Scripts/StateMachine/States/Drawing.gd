@@ -16,19 +16,19 @@ func input(event: InputEvent) -> IState:
 			if event.is_pressed():
 				_current_line = DrawLine()
 			else:
-				_current_line.Curve2D_Transformer(canvas._camera)
-				# Delete the previous line if it didn't have any points or less than 2.
-				# less than 2 because a bug could occure if you spam left click on a laptop
-				if _current_line != null and is_instance_valid(_current_line):
+				if _current_line and is_instance_valid(_current_line):
+					_current_line.Curve2D_Transformer(canvas._camera)
+					# Delete the previous line if it didn't have any points or less than 2.
+					# less than 2 because a bug could occure if you spam left click on a laptop:
 					if _current_line._line.points.size() <= 2:
 						_current_line.queue_free()
-				
-				canvas.snapshots.create_snapshot()
-				
-				return self
+					
+					canvas.snapshots.create_snapshot()
+					
+					return self
 				
 	elif event is InputEventMouseMotion:
-		if event.button_mask == BUTTON_MASK_LEFT and _current_line:
+		if event.button_mask == BUTTON_MASK_LEFT and _current_line and is_instance_valid(_current_line):
 			_current_line._line.add_point(canvas.get_global_mouse_position())
 			
 	return null
