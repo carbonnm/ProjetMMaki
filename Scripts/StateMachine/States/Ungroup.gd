@@ -21,12 +21,15 @@ func input(_event : InputEvent) -> IState:
 			var center = canvas.Utils.get_positions_mean(closure)
 			
 			for elem in groups:
-				canvas._elements.add_child(elem)
-#				var transform: Transform2D = element.global_transform 
-#				transform.origin -= center + elem.position
 				var transform: Transform2D = element.global_transform
 				transform.origin += (-center + elem.position)
-				elem.global_transform = transform
+				
+				elem.position = transform.get_origin()
+				elem.scale = transform.get_scale()
+				
+				canvas.Rotation.rotation_to_point(elem, center, transform.get_rotation())
+					
+				canvas._elements.add_child(elem)
 				
 			canvas._elements.remove_child(element)
 	

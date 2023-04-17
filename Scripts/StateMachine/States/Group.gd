@@ -21,18 +21,23 @@ func input(_event: InputEvent) -> IState:
 	
 	# retrieve elements from selection
 	var childs: Array = []
+	var dup_child: Node
 	for element in elements:
-		childs += element.get_children()
+		for child in element.get_children():
+			dup_child = child.duplicate(true)
+			if child is CollisionShape2D:
+				dup_child.global_transform = child.global_transform
+				dup_child.global_transform.origin -= center
+				group.add_child(dup_child)
+			else:
+				var new_area2D := Area2D.new()
+				new_area2D.add_child(dup_child)
+				new_area2D.global_transform = child.get_parent().global_transform
+				new_area2D.global_transform.origin -= center
+				group.add_child(new_area2D)
 		
 	# save ungroup elements
 	groups.append(elements)
-	
-	# add childs to group
-	for child in childs:
-		var child_copy = child.duplicate(true)
-		child_copy.global_transform= child.global_transform
-		child_copy.position -= center
-		group.add_child(child_copy)
 	
 	#add group to scene
 	canvas._elements.add_child(group)
