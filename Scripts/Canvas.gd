@@ -105,7 +105,7 @@ func appendSelectionArea() -> void :
 	var bottom_right = corners[1]
 		
 	Selection_area.set_params(upper_left, bottom_right)
-	Selection_area.create_selection_area(selected_lines)
+	Selection_area.create_selection_area()
 
 
 

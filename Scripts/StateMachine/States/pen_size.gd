@@ -12,21 +12,29 @@ func input(event: InputEvent) -> IState:
 		canvas.pm.get_node("pensizecircle").set_line_color(canvas.RCC.color)
 		canvas.pm.get_node("pensizecircle").visible = true
 	
+	
+	
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
+		if not Rect2(Vector2(),canvas.pm.get_node("HSlider").rect_size).has_point(canvas.pm.get_node("HSlider").get_local_mouse_position()):
+			canvas.pm.hide()
+			return switch_to_previous_state()
+	
+	return null
+
+func physics_process(delta: float) -> IState:
+	
+	if not canvas.pm.visible:
+		canvas.pm.visible = true
+	
 	if not Rect2(Vector2(),canvas.pm.get_node("HSlider").rect_size).has_point(canvas.pm.get_node("HSlider").get_local_mouse_position()):
-		
-		var line_size: int = canvas.pm.get_node("pensizecircle").get_line_size()
-		print(line_size)
+		var line_size: int = canvas.linewidth
 		if Input.is_action_just_released("Zoom") and line_size < 10:
 			canvas.pm.get_node("pensizecircle").set_line_size(line_size + 1)
 			canvas.linewidth = line_size + 1
 		elif Input.is_action_just_released("Unzoom") and line_size > 0:
 			canvas.pm.get_node("pensizecircle").set_line_size(line_size - 1)
 			canvas.linewidth = line_size - 1
-	
-		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
-			canvas.pm.hide()
-			return switch_to_previous_state()
-	
+		
 	return null
 
 func parametrized_call(args: Array) -> IState:
