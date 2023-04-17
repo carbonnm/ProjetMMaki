@@ -30,6 +30,7 @@ onready var states = $StateManager
 # Script exported variables
 export (float) var linewidth = 4.0
 export (Vector2) var drawing_position
+export (String) var word_recognized
 #export (Array) var selected_lines
 
 # Veriables shared between states
@@ -279,7 +280,6 @@ func _on_PopupMenu_id_pressed(id):
 		get_node("Titlemenuaddition/Inputtitle").placeholder_text = "Titre"
 		
 		#Puts the title menu addition where it was clicked on the screen 
-		var _mouse_pos = get_global_mouse_position()
 		var size_title_menu_x = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.x
 		var size_title_menu_y = get_node("Titlemenuaddition/ColorRect").get_global_rect().size.y
 		get_node("Titlemenuaddition").rect_position.x = _camera.get_camera_position().x - (size_title_menu_x/5)
@@ -352,6 +352,8 @@ func _on_PopupMenu_id_pressed(id):
 		screenshot.get_rect(capture_rect).save_png(path)
 		
 		var word = word_recognition_python()
+		word_recognized = word[0]
+		print(word_recognized)
 		
 		var size_popup : Vector2 = get_node("PopUpMotConfirmation/ColorRect").get_global_rect().size
 		
