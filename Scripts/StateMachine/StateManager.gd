@@ -65,10 +65,9 @@ func keyboard_input(event: InputEvent) -> void:
 		previous_state = sleeping_state
 		change_state(interrupt_state)
 		
-		var new_state = current_state.input(event)
-		if new_state:
-			change_state(new_state)
-			#("Interupted: ", sleeping_state, " - by: ", interrupt_state, " - Back to: ", interrupt_state)
+	var new_state = current_state.input(event)
+	if new_state:
+		change_state(new_state)
 
 """
 Function called to consume a switch signal on the parent node according to the 

@@ -8,8 +8,8 @@ signal SendArea
 
 
 func _ready():
-	connect("area_shape_entered", self, "_on_Area2D_area_shape_entered")
-	connect("area_shape_exited", self, "_on_Area2D_area_shape_exited")
+	var _enter_error = connect("area_shape_entered", self, "_on_Area2D_area_shape_entered")
+	var _exit_error = connect("area_shape_exited", self, "_on_Area2D_area_shape_exited")
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, _size), Color(0,0,100,0.1))

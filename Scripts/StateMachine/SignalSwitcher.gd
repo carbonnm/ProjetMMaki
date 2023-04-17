@@ -53,8 +53,6 @@ func keyboard_input(event: InputEvent) -> IState:
 		var current_state: IState = get_node("../../StateManager").current_state
 		if current_state == rescale or current_state == pen_size:
 			return null
-		else:
-			return zoom_camera
 	
 	if Input.is_action_just_pressed("MoveCanvas"):
 		return move_canvas
