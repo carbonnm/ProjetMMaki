@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Themes/Titlemenuaddition.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Scene/SavePopUpConfirmation.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/SavePopUpConfirmation.gd" type="Script" id=3]
 
 [sub_resource type="Shader" id=19]
 code = "shader_type canvas_item;
