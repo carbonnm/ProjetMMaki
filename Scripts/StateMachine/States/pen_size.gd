@@ -1,12 +1,6 @@
 extends AState
 
-func enter():
-	_on_pen_size_pressed()
-
 func input(event: InputEvent) -> IState:
-	return switch_to_previous_state()
-	
-func _on_pen_size_pressed():
 	canvas.pm.clear()
 	canvas.pm.get_node("HSlider").value = canvas.linewidth
 	canvas.pm.get_node("HSlider").visible = true
@@ -17,7 +11,11 @@ func _on_pen_size_pressed():
 	canvas.pm.get_node("pensizecircle").set_line_size(canvas.linewidth)
 	canvas.pm.get_node("pensizecircle").set_line_color(canvas.RCC.color)
 	canvas.pm.get_node("pensizecircle").visible = true
+	
+	return switch_to_previous_state()
 
-func _on_HSlider_value_changed(value):
-	canvas.pm.get_node("pensizecircle").set_line_size(value)
-	canvas.linewidth = value
+func parametrized_call(args: Array) -> IState:
+	canvas.pm.get_node("pensizecircle").set_line_size(args[0])
+	canvas.linewidth = args[0]
+	
+	return switch_to_previous_state()
