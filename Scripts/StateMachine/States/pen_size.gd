@@ -1,12 +1,7 @@
 extends AState
 
-var mutex: bool = false
-
-
 func input(_event: InputEvent) -> IState:
 	if not canvas.pm.visible:
-		
-		mutex = true 
 		
 		canvas.pm.clear()
 		canvas.pm.get_node("HSlider").value = canvas.linewidth
@@ -18,19 +13,19 @@ func input(_event: InputEvent) -> IState:
 		canvas.pm.get_node("pensizecircle").set_line_color(canvas.RCC.color)
 		canvas.pm.get_node("pensizecircle").visible = true
 	
-	if not Rect2(Vector2(),canvas.pm.get_node("HSlider").rect_size).has_point(canvas.pm.get_node("HSlider").get_local_mouse_position()):
-		var line_size: int = canvas.linewidth
-		if Input.is_action_just_pressed("Zoom") and line_size < 10:
-			canvas.pm.get_node("HSlider").value = line_size + 1
-		elif Input.is_action_just_pressed("Unzoom") and line_size > 0:
-			canvas.pm.get_node("HSlider").value = line_size - 1
-	
 	return null
 
 func physics_process(_delta: float) -> IState:
 	
 	if not canvas.pm.visible:
 		canvas.pm.visible = true
+	
+	if not Rect2(canvas.pm.get_node("HSlider").get_global_position(), canvas.pm.get_node("HSlider").rect_size).has_point(canvas.get_global_mouse_position()):
+		var line_size: int = canvas.linewidth
+		if Input.is_action_just_released("Zoom") and line_size < 10:
+			canvas.pm.get_node("HSlider").value = line_size + 1
+		elif Input.is_action_just_released("Unzoom") and line_size > 0:
+			canvas.pm.get_node("HSlider").value = line_size - 1
 		
 	return null
 
