@@ -28,7 +28,7 @@ func input(event: InputEvent) -> IState:
 				return self
 				
 	elif event is InputEventMouseMotion:
-		if event.button_mask == BUTTON_MASK_LEFT:
+		if event.button_mask == BUTTON_MASK_LEFT and _current_line:
 			_current_line._line.add_point(canvas.get_global_mouse_position())
 			
 	return null

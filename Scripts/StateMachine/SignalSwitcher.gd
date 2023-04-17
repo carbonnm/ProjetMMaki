@@ -50,9 +50,8 @@ The state to switch to. (IState)
 """
 func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Zoom") || Input.is_action_just_pressed("Unzoom"):
-		if get_node("../../StateManager").current_state == rescale:
-			return null
-		if get_node("../../StateManager").current_state == pen_size:
+		var current_state: IState = get_node("../../StateManager").current_state
+		if current_state == rescale or current_state == pen_size:
 			return null
 		else:
 			return zoom_camera
