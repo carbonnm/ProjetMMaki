@@ -14,7 +14,7 @@ func input(event: InputEvent) -> IState:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
-				_current_line = DrawLine()
+				_current_line = DrawLine(_current_line)
 			else:
 				if _current_line and is_instance_valid(_current_line):
 					_current_line.Curve2D_Transformer(canvas._camera)
@@ -34,7 +34,7 @@ func input(event: InputEvent) -> IState:
 	return null
 
 
-func DrawLine() -> Area2D:
+func DrawLine(_current_line) -> Area2D:
 	_current_line = LINE.new()
 	canvas._elements.add_child(_current_line)
 	_current_line.Setup()

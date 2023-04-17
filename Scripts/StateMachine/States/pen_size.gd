@@ -1,7 +1,13 @@
 extends AState
 
+var mutex: bool = false
+
+
 func input(_event: InputEvent) -> IState:
 	if not canvas.pm.visible:
+		
+		mutex = true 
+		
 		canvas.pm.clear()
 		canvas.pm.get_node("HSlider").value = canvas.linewidth
 		canvas.pm.get_node("HSlider").visible = true
