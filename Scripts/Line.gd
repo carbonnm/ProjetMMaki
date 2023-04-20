@@ -1,10 +1,8 @@
 class_name Stroke extends Area2D
 
 var _line: Line2D
-var c_shape: CollisionShape2D
-var shape: RectangleShape2D
+var hitbox: CollisionShape2D
 var zoom:Vector2
-var HitBoxs:Array
 var global_corners: Array
 
 var draw:bool = false
@@ -21,29 +19,42 @@ func set_params(lineWidth, color, _zoom):
 
 # create a collision shape for each point in the line
 func CreateCollisions():
-	
 	var Point_size: int = _line.points.size()
 	if Point_size < 2:
 		return
 	
-	HitBoxs.clear()
-	for index in range (Point_size-1):
-		HitBoxs.append(Create_Shape(_line.points[index], _line.points[index+1]))
+	# Retrive Points in line
+	var points: PoolVector2Array = _line.points
+	
+	# Compute frontiers
+	var left_side_frontier := PoolVector2Array()
+	var right_side_frontier := PoolVector2Array()
+	for index in range(points.size()):
+		var perpendicular_vector: Vector2
+		if index == 0:
+			perpendicular_vector = (-points[index] + points[index+1]).tangent().normalized()
+		else:
+			perpendicular_vector = (-points[index-1] + points[index]).tangent().normalized()
+		
+		left_side_frontier.append(points[index] + (perpendicular_vector*_line.width))
+		right_side_frontier.append(points[index] - (perpendicular_vector*_line.width))
+	
+	right_side_frontier.invert()
+	
+	# Compute perimeter
+	var frontier := left_side_frontier + right_side_frontier
+	frontier.append(left_side_frontier[0])
+	
+	Create_Shape(frontier)
 
 # create the shape
-func Create_Shape(point1:Vector2, point2:Vector2):
-	c_shape = CollisionShape2D.new()
-	shape = RectangleShape2D.new()
-	c_shape.shape = shape
-	var middle_point = point1.linear_interpolate(point2, 0.5)
-	c_shape.position = middle_point
-	shape.extents.x = point1.distance_to(point2) / 2
-	shape.extents.y = _line.width / 2
+func Create_Shape(frontier: PoolVector2Array):
+	hitbox = CollisionShape2D.new()
+	var perimeter := ConvexPolygonShape2D.new()
+	hitbox.shape = perimeter
+	perimeter.points = frontier
 	
-	var _rotation = point1.angle_to_point(point2)
-	c_shape.rotate(_rotation)
-	
-	self.add_child(c_shape)
+	self.add_child(hitbox)
 	
 func _draw() -> void:
 	if draw:
@@ -93,7 +104,7 @@ func center_area2D_to_center(line_points):
 # change the point in the ligne to make it more smooth by using an algorithm
 func Curve2D_Transformer(_camera):
 	var curve = Curve2D.new()
-	curve.bake_interval = 4.0 * _camera.zoom.x
+	curve.bake_interval = 1.0 * _camera.zoom.x
 	for point in self._line.points:
 		curve.add_point(point)
 	var new_points = curve.get_baked_points()
