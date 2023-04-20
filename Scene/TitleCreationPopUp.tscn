@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/CreateSubSubTitleButton.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/CreateTitleButton.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/CreateSubTitleButton.gd" type="Script" id=3]
+
+[node name="TitleCreation" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CreateTitleButton" type="Button" parent="."]
+margin_right = 147.0
+margin_bottom = 20.0
+text = "Créer titre"
+script = ExtResource( 2 )
+
+[node name="CreateSubTitleButton" type="Button" parent="."]
+margin_top = 24.0
+margin_right = 147.0
+margin_bottom = 44.0
+text = "Créer sous-titre"
+script = ExtResource( 3 )
+
+[node name="CreateSubSubTitleButton" type="Button" parent="."]
+margin_top = 48.0
+margin_right = 147.0
+margin_bottom = 68.0
+text = "Créer sous-sous-titre"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="CreateTitleButton" to="CreateTitleButton" method="_on_CreateTitleButton_pressed"]
+[connection signal="pressed" from="CreateSubTitleButton" to="CreateSubTitleButton" method="_on_CreateSubTitleButton_pressed"]
+[connection signal="pressed" from="CreateSubSubTitleButton" to="CreateSubSubTitleButton" method="_on_CreateSubSubTitleButton_pressed"]

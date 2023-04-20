@@ -181,3 +181,11 @@ func _on_HSlider_value_changed(value):
 func _on_PopupMenu_mouse_exited():
 	switch_signal_with_arguments("PenSize", [-1])
 
+func _on_CreateTitleButton_create_title_button(type):
+	switch_signal_with_arguments("CreateTitle", [type])
+
+func _on_CreateSubTitleButton_create_sub_title_button(type):
+	switch_signal_with_arguments("CreateTitle", [type])
+
+func _on_CreateSubSubTitleButton_create_sub_sub_title_button(type):
+	switch_signal_with_arguments("CreateTitle", [type])

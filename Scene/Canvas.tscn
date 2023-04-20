@@ -43,7 +43,7 @@
 [ext_resource path="res://Scene/ChoixImage.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Scene/ModificationWord.tscn" type="PackedScene" id=42]
 [ext_resource path="res://Scene/InvalidChoice.tscn" type="PackedScene" id=43]
-[ext_resource path="res://TitleCreationPopUp.tscn" type="PackedScene" id=44]
+[ext_resource path="res://Scene/TitleCreationPopUp.tscn" type="PackedScene" id=44]
 [ext_resource path="res://Scene/SavePopUpConfirmation.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Assets/Graphics/Image/littleCrayon.png" type="Texture" id=46]
 
@@ -478,7 +478,11 @@ ticks_on_borders = true
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
 [connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
+[connection signal="create_title_button" from="TitleCreationPopUp/CreateTitleButton" to="StateManager" method="_on_CreateTitleButton_create_title_button"]
+[connection signal="create_sub_title_button" from="TitleCreationPopUp/CreateSubTitleButton" to="StateManager" method="_on_CreateSubTitleButton_create_sub_title_button"]
+[connection signal="create_sub_sub_title_button" from="TitleCreationPopUp/CreateSubSubTitleButton" to="StateManager" method="_on_CreateSubSubTitleButton_create_sub_sub_title_button"]
 [connection signal="mouse_exited" from="PopupMenu" to="StateManager" method="_on_PopupMenu_mouse_exited"]
 [connection signal="value_changed" from="PopupMenu/HSlider" to="StateManager" method="_on_HSlider_value_changed"]
 
+[editable path="TitleCreationPopUp"]
 [editable path="StateManager"]
