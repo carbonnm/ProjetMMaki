@@ -10,7 +10,6 @@ func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
 func input(_event: InputEvent) -> IState:
-	print(typeof(canvas.Select_rect))
 	if len(canvas.selected_lines) != 0:
 	
 		var elements: Array = canvas.Utils.map(canvas.selected_lines, canvas.Mimic, "get_first",[])
