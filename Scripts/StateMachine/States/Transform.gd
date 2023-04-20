@@ -42,3 +42,8 @@ func input(event: InputEvent) -> IState:
 		return switch_to_previous_state()
 		
 	return null
+
+func keyboard_input(event: InputEvent) -> IState:
+	return null
+
+
