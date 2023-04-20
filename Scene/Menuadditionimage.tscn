@@ -1,0 +1,157 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scripts/Menuadditionimage.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/Image/littlecross.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/Image/cross.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="Shader" id=97]
+code = "shader_type canvas_item;
+
+uniform vec4 topleft:hint_color;
+uniform vec4 topright:hint_color;
+uniform vec4 bottomleft:hint_color;
+uniform vec4 bottomright:hint_color;
+
+void fragment() {
+	vec2 uv_corner = vec3(UV, 0.0).xy;
+	vec4 top = mix(topleft, topright, uv_corner.x);
+	vec4 bottom = mix(bottomleft, bottomright, uv_corner.x);
+	COLOR =  mix(top, bottom, uv_corner.y);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=98]
+shader = SubResource( 97 )
+shader_param/topleft = Color( 0.431373, 0.886275, 0.235294, 1 )
+shader_param/topright = Color( 0.886275, 0.847059, 0.231373, 1 )
+shader_param/bottomleft = Color( 0.847059, 0.654902, 0.0352941, 1 )
+shader_param/bottomright = Color( 0.427451, 0.87451, 0.956863, 1 )
+
+[sub_resource type="Theme" id=99]
+
+[sub_resource type="StyleBoxFlat" id=100]
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="DynamicFont" id=96]
+size = 42
+outline_color = Color( 0.729412, 0.321569, 0.321569, 1 )
+extra_spacing_top = 2
+extra_spacing_bottom = -5
+extra_spacing_char = -4
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=101]
+default_font = SubResource( 96 )
+
+[sub_resource type="StyleBoxFlat" id=102]
+bg_color = Color( 0.756863, 0.321569, 0.321569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.752941, 0.0980392, 0.0980392, 1 )
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=103]
+
+[sub_resource type="StyleBoxFlat" id=104]
+bg_color = Color( 0.756863, 0.321569, 0.321569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.760742, 0.180528, 0.180528, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="SpriteFrames" id=105]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="DynamicFont" id=106]
+size = 50
+outline_size = 1
+outline_color = Color( 0.752941, 0.74902, 0.729412, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=107]
+default_font = SubResource( 106 )
+
+[sub_resource type="StyleBoxFlat" id=108]
+bg_color = Color( 0.270588, 0.25098, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0.360784, 0.364706, 0.0352941, 0.6 )
+shadow_size = 5
+
+[node name="Menuadditionimage" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="Panel" parent="."]
+material = SubResource( 98 )
+margin_left = 128.0
+margin_top = 7.0
+margin_right = 900.0
+margin_bottom = 608.0
+rect_scale = Vector2( 0.947384, 0.935375 )
+theme = SubResource( 99 )
+custom_styles/panel = SubResource( 100 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Closebutton" type="Button" parent="ColorRect"]
+margin_left = 693.0
+margin_top = 11.0
+margin_right = 741.0
+margin_bottom = 57.0
+rect_scale = Vector2( 1.52134, 1.38269 )
+theme = SubResource( 101 )
+custom_styles/hover = SubResource( 102 )
+custom_styles/pressed = SubResource( 103 )
+custom_styles/normal = SubResource( 104 )
+
+[node name="Crossicon" type="AnimatedSprite" parent="ColorRect/Closebutton"]
+position = Vector2( 24.8468, 22.0898 )
+scale = Vector2( 0.0745588, 0.0729098 )
+frames = SubResource( 105 )
+
+[node name="Titre" type="RichTextLabel" parent="ColorRect"]
+margin_left = 36.9438
+margin_top = 121.876
+margin_right = 448.944
+margin_bottom = 183.876
+theme = SubResource( 107 )
+custom_colors/default_color = Color( 0.270588, 0.25098, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Choix du mot :"
+text = "Choix du mot :"
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect"]
+margin_left = 450.715
+margin_top = 120.807
+margin_right = 709.714
+margin_bottom = 177.807
+custom_styles/normal = SubResource( 108 )
+
+[connection signal="button_up" from="ColorRect/Closebutton" to="." method="_on_Closebutton_button_up"]
+[connection signal="mouse_entered" from="ColorRect/Closebutton" to="." method="_on_Closebutton_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect/Closebutton" to="." method="_on_Closebutton_mouse_exited"]
