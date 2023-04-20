@@ -1,10 +1,19 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Menuadditionimage.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/Image/littlecross.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Graphics/Image/cross.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Graphics/Image/littlesaveicon.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Graphics/Image/saveicon.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Themes/okimagesprite.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://Assets/Graphics/Image/littlemark.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Graphics/Image/oh hi mark.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Themes/normal_image.tres" type="StyleBox" id=12]
+[ext_resource path="res://Scene/NouveaumotInput.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="Shader" id=97]
 code = "shader_type canvas_item;
@@ -37,6 +46,9 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id=110]
+bg_color = Color( 0.811765, 0.945098, 0.945098, 1 )
+
 [sub_resource type="DynamicFont" id=96]
 size = 42
 outline_color = Color( 0.729412, 0.321569, 0.321569, 1 )
@@ -62,6 +74,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=103]
+bg_color = Color( 0.882353, 0.164706, 0.164706, 1 )
 
 [sub_resource type="StyleBoxFlat" id=104]
 bg_color = Color( 0.756863, 0.321569, 0.321569, 1 )
@@ -87,20 +100,118 @@ animations = [ {
 [sub_resource type="DynamicFont" id=106]
 size = 50
 outline_size = 1
-outline_color = Color( 0.752941, 0.74902, 0.729412, 1 )
+outline_color = Color( 0.647059, 0.74902, 0.266667, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="Theme" id=107]
 default_font = SubResource( 106 )
 
+[sub_resource type="DynamicFont" id=109]
+size = 26
+font_data = ExtResource( 6 )
+
 [sub_resource type="StyleBoxFlat" id=108]
 bg_color = Color( 0.270588, 0.25098, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.576471, 0.768627, 0.427451, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color( 0.360784, 0.364706, 0.0352941, 0.6 )
 shadow_size = 5
+
+[sub_resource type="SpriteFrames" id=118]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "dance",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=119]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "dance",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=120]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "dance",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=115]
+size = 33
+outline_color = Color( 0.109804, 0.0666667, 0.0666667, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=111]
+default_font = SubResource( 115 )
+
+[sub_resource type="StyleBoxFlat" id=112]
+bg_color = Color( 0.603922, 0.564706, 0.0431373, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=113]
+bg_color = Color( 0.270588, 0.25098, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=114]
+bg_color = Color( 0.270588, 0.25098, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=116]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="SpriteFrames" id=117]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=121]
+size = 20
+font_data = ExtResource( 14 )
+
+[sub_resource type="Theme" id=122]
+default_font = SubResource( 121 )
 
 [node name="Menuadditionimage" type="Node2D"]
 script = ExtResource( 1 )
@@ -118,11 +229,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Panel" type="Panel" parent="ColorRect"]
+margin_left = 15.0
+margin_top = 31.0
+margin_right = 746.0
+margin_bottom = 554.0
+custom_styles/panel = SubResource( 110 )
+
 [node name="Closebutton" type="Button" parent="ColorRect"]
-margin_left = 693.0
-margin_top = 11.0
-margin_right = 741.0
-margin_bottom = 57.0
+margin_left = 698.766
+margin_right = 745.766
+margin_bottom = 46.0
 rect_scale = Vector2( 1.52134, 1.38269 )
 theme = SubResource( 101 )
 custom_styles/hover = SubResource( 102 )
@@ -135,23 +252,127 @@ scale = Vector2( 0.0745588, 0.0729098 )
 frames = SubResource( 105 )
 
 [node name="Titre" type="RichTextLabel" parent="ColorRect"]
-margin_left = 36.9438
-margin_top = 121.876
-margin_right = 448.944
-margin_bottom = 183.876
+margin_left = 32.7217
+margin_top = 52.3854
+margin_right = 444.722
+margin_bottom = 114.385
 theme = SubResource( 107 )
 custom_colors/default_color = Color( 0.270588, 0.25098, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "Choix du mot :"
 text = "Choix du mot :"
 
-[node name="LineEdit" type="LineEdit" parent="ColorRect"]
-margin_left = 450.715
-margin_top = 120.807
-margin_right = 709.714
-margin_bottom = 177.807
+[node name="NouveaumotInput" type="LineEdit" parent="ColorRect"]
+margin_left = 428.548
+margin_top = 53.4545
+margin_right = 687.548
+margin_bottom = 110.455
+custom_colors/font_color = Color( 0.984314, 0.984314, 0.984314, 1 )
+custom_fonts/font = SubResource( 109 )
 custom_styles/normal = SubResource( 108 )
+align = 1
+max_length = 20
+placeholder_text = "Nouveau mot "
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="Image4" type="Button" parent="ColorRect"]
+margin_left = 70.721
+margin_top = 271.549
+margin_right = 259.721
+margin_bottom = 397.549
+rect_pivot_offset = Vector2( 131.942, 85.5272 )
+custom_styles/normal = ExtResource( 12 )
+
+[node name="Okimagedance4" type="AnimatedSprite" parent="ColorRect"]
+visible = false
+position = Vector2( 165.719, 335.694 )
+scale = Vector2( 0.143666, 0.148624 )
+frames = SubResource( 118 )
+
+[node name="Image3" type="Button" parent="ColorRect"]
+margin_left = 267.051
+margin_top = 404.116
+margin_right = 456.051
+margin_bottom = 530.116
+rect_pivot_offset = Vector2( 131.942, 85.5272 )
+custom_styles/normal = ExtResource( 12 )
+
+[node name="Okimagedance3" type="AnimatedSprite" parent="ColorRect"]
+visible = false
+position = Vector2( 368.383, 471.469 )
+scale = Vector2( 0.150106, 0.144254 )
+frames = SubResource( 119 )
+
+[node name="Image2" type="Button" parent="ColorRect"]
+margin_left = 461.27
+margin_top = 275.825
+margin_right = 650.27
+margin_bottom = 401.825
+rect_pivot_offset = Vector2( 131.942, 85.5272 )
+custom_styles/normal = ExtResource( 12 )
+
+[node name="Okimagedance2" type="AnimatedSprite" parent="ColorRect"]
+visible = false
+position = Vector2( 558.705, 342.09 )
+scale = Vector2( 0.171848, 0.162983 )
+frames = SubResource( 120 )
+playing = true
+
+[node name="Image1" type="Button" parent="ColorRect"]
+margin_left = 264.94
+margin_top = 146.465
+margin_right = 453.94
+margin_bottom = 272.465
+rect_pivot_offset = Vector2( 131.942, 85.5272 )
+custom_styles/normal = ExtResource( 12 )
+
+[node name="Okimagedance" type="AnimatedSprite" parent="ColorRect"]
+visible = false
+position = Vector2( -250.416, 292.754 )
+scale = Vector2( 0.15474, 0.157613 )
+frames = ExtResource( 9 )
+offset = Vector2( 3936.53, -524.338 )
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+margin_left = 484.492
+margin_top = 536.683
+margin_right = 746.492
+margin_bottom = 580.683
+
+[node name="Okbutton" type="Button" parent="ColorRect/MarginContainer"]
+margin_right = 262.0
+margin_bottom = 44.0
+theme = SubResource( 111 )
+custom_colors/font_color = Color( 0.803922, 0.890196, 0.890196, 1 )
+custom_styles/hover = SubResource( 112 )
+custom_styles/pressed = SubResource( 113 )
+custom_styles/focus = SubResource( 114 )
+custom_styles/normal = SubResource( 116 )
+text = "Confirmer"
+
+[node name="Saveicon" type="AnimatedSprite" parent="ColorRect/MarginContainer"]
+position = Vector2( 240.662, 22.4512 )
+scale = Vector2( 0.0537584, 0.0512217 )
+frames = SubResource( 117 )
+
+[node name="Tryagain" type="RichTextLabel" parent="ColorRect"]
+margin_left = 10.5554
+margin_top = 551.651
+margin_right = 480.555
+margin_bottom = 627.651
+theme = SubResource( 122 )
+custom_colors/default_color = Color( 0.45098, 0.0588235, 0.0588235, 1 )
+bbcode_enabled = true
 
 [connection signal="button_up" from="ColorRect/Closebutton" to="." method="_on_Closebutton_button_up"]
 [connection signal="mouse_entered" from="ColorRect/Closebutton" to="." method="_on_Closebutton_mouse_entered"]
 [connection signal="mouse_exited" from="ColorRect/Closebutton" to="." method="_on_Closebutton_mouse_exited"]
+[connection signal="text_changed" from="ColorRect/NouveaumotInput" to="ColorRect/NouveaumotInput" method="_on_NouveaumotInput_text_changed"]
+[connection signal="button_up" from="ColorRect/Image4" to="." method="_on_Image4_button_up"]
+[connection signal="button_up" from="ColorRect/Image3" to="." method="_on_Image3_button_up"]
+[connection signal="button_up" from="ColorRect/Image2" to="." method="_on_Image2_button_up"]
+[connection signal="button_up" from="ColorRect/Image1" to="." method="_on_Image1_button_up"]
+[connection signal="button_up" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_button_up"]
+[connection signal="mouse_entered" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_exited"]
