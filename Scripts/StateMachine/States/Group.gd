@@ -3,6 +3,9 @@ extends AState
 
 var groups: Array = []
 
+func enter() -> void :
+	canvas._action_menu.hide()
+
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
