@@ -830,6 +830,7 @@ custom_styles/normal = SubResource( 44 )
 color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Themechoice" type="Panel" parent="Page"]
+visible = false
 margin_left = 67.0
 margin_top = 106.0
 margin_right = 465.0
