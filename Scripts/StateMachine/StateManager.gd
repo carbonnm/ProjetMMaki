@@ -124,7 +124,7 @@ func change_state(new_state: IState) -> void:
 	current_state = new_state
 	
 	current_state.enter()
-	#print("Previous State : ", previous_state, " - Current State : ", current_state)
+	print("Previous State : ", previous_state, " - Current State : ", current_state)
 
 
 func _on_Selection_pressed():
@@ -165,15 +165,19 @@ func _on_Fusion_pressed():
 
 func _on_Pen_Size_pressed():
 	switch_signal("PenSize")
+	
+func _on_Draw_pressed():
+	switch_signal("Transform")
+	
+func _on_Pen_size_pressed():
+	switch_signal("PenSize")
 
 func _on_Titlemenuaddition_new_title(chosen_title):
 	switch_signal_with_arguments("CreateTitle", [chosen_title])
-
-func _on_Pen_size_pressed():
-	switch_signal("PenSize")
 
 func _on_HSlider_value_changed(value):
 	switch_signal_with_arguments("PenSize", [value])
 
 func _on_PopupMenu_mouse_exited():
 	switch_signal_with_arguments("PenSize", [-1])
+

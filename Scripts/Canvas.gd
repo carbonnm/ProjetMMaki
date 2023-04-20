@@ -29,6 +29,7 @@ onready var states = $StateManager
 export (float) var linewidth = 4.0
 export (Vector2) var drawing_position
 export (String) var word_recognized
+
 #export (Array) var selected_lines
 
 # Veriables shared between states
@@ -244,15 +245,7 @@ func _on_Create_texte_RCC_pressed():
 	get_node("Titlemenuaddition/Inputtitle").clear()
 	var _text_popup = get_node("RightClickContainer/Create texte")
 	pm.popup(Rect2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y, pm.rect_size.x, pm.rect_size.y))
-
-
-func _on_Draw_pressed():
-	pm.clear()
-	pm.add_item("Ecriture -> Dessin", PopupIds.WRITING_DRAWING)
-	pm.add_item("Dessin", PopupIds.WRITING)
-	pm.connect("id_pressed", self, "_on_PopupMenu_id_pressed")
-	var _draw_popup = get_node("ActionMenu")
-	pm.popup(Rect2(_draw_popup.get_global_rect().position.x - 135, _draw_popup.get_global_rect().position.y + 200, pm.rect_size.x, pm.rect_size.y))
+	
 
 
 func _on_PopupMenu_id_pressed(id):
@@ -319,37 +312,6 @@ func _on_PopupMenu_id_pressed(id):
 		
 	elif id==4:
 		get_node("ActionMenu").visible = false
-		
-		yield(get_tree().create_timer(1.0), "timeout")
-		
-		var path = "ScreenShots/screenshot.png"
-		
-		var corners : Array = get_selection_area_corner()
-		var upper_left : Vector2 = corners[0]
-		drawing_position = upper_left
-		var bottom_right : Vector2 = corners[1]
-		var size_area : Vector2 = bottom_right - upper_left
-		var _center_selected_lines = (bottom_right + upper_left)/2
-		
-		var margin : Vector2 = Vector2(50, 50)
-		var capture_rect = Rect2(upper_left - margin, size_area + 2 * margin)
-		
-		var viewport = get_viewport() 
-		var screenshot = viewport.get_texture().get_data()
-		screenshot.flip_y()
-		screenshot.get_rect(capture_rect).save_png(path)
-		
-		var word = word_recognition_python()
-		word_recognized = word[0]
-		print(word_recognized)
-		
-		var size_popup : Vector2 = get_node("PopUpMotConfirmation/ColorRect").get_global_rect().size
-		
-		get_node("PopUpMotConfirmation").rect_position = _camera.get_camera_position() - (size_popup/5)
-		get_node("PopUpMotConfirmation/Mot").text = word[0]
-		get_node("PopUpMotConfirmation").visible = true
-		
-		delete_word()
 		
 		
 	elif id==5:
