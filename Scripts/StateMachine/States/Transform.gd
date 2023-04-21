@@ -6,7 +6,7 @@ func enter() -> void:
 func exit() -> void:
 	canvas.snapshots.create_snapshot()
 
-func input(event: InputEvent) -> IState:
+func input(_event: InputEvent) -> IState:
 	#yield(get_tree().create_timer(1.0), "timeout")
 	if canvas.word_recognized == "":	
 		var path = "ScreenShots/screenshot.png"
@@ -43,7 +43,7 @@ func input(event: InputEvent) -> IState:
 		
 	return null
 
-func keyboard_input(event: InputEvent) -> IState:
+func keyboard_input(_event: InputEvent) -> IState:
 	return null
 
 

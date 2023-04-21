@@ -62,7 +62,7 @@ func input(_event: InputEvent) -> IState:
 	canvas.get_node("Titlemenuaddition/Inputtitle").grab_focus()
 	return null
 
-func physics_process(delta: float) -> IState:
+func physics_process(_delta: float) -> IState:
 	if canvas.get_node("Titlemenuaddition").visible == false:
 		return switch_to_previous_state()
 	return null
@@ -136,7 +136,7 @@ func parametrized_call(args: Array) -> IState:
 	canvas.get_node("Titlemenuaddition/Inputtitle").grab_focus()
 	return null
 
-func keyboard_input(event: InputEvent) -> IState:
+func keyboard_input(_event: InputEvent) -> IState:
 	var TMA: Control = canvas.get_node("Titlemenuaddition")
 	if TMA.visible:
 		if Input.is_action_just_pressed("ui_cancel"):
