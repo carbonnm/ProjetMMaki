@@ -8,7 +8,7 @@ func enter():
 	canvas.get_node("SavePopUpConfirmation").rect_position = viewport_center
 	canvas.get_node("SavePopUpConfirmation").visible = true
 
-func physics_process(delta) -> IState:
+func physics_process(_delta) -> IState:
 	var spuc: Node = canvas.get_node("SavePopUpConfirmation")
 	
 	if spuc.validation:
