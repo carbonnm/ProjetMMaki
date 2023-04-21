@@ -44,6 +44,7 @@ ungroup_node = NodePath("Ungroup")
 create_title_node = NodePath("CreateTitle")
 pen_size_node = NodePath("PenSize")
 svg_save_node = NodePath("SVGSave")
+transform_node = NodePath("Transform")
 
 [node name="ZoomCamera" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
