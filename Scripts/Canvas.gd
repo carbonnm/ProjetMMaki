@@ -151,7 +151,7 @@ func get_selection_area_corner() :
 				elif child.shape is ConvexPolygonShape2D:
 					child_positions = child.shape.points
 				
-				child_positions = element.global_transform.xform(child_positions)
+				child_positions = child.global_transform.xform(child_positions)
 				
 				positions += child_positions
 	

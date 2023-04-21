@@ -451,9 +451,6 @@ ticks_on_borders = true
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
 
-[node name="SignalSwitcher" parent="StateManager" index="0"]
-transform_node = NodePath("")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
@@ -463,8 +460,8 @@ shape = SubResource( 3 )
 [connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
+[connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
