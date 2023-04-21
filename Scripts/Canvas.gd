@@ -135,51 +135,27 @@ Gets the corner of the selection_area
 Returns : Array  
 """
 func get_selection_area_corner() :
-	var min_upper_left : Vector2 = Vector2.INF
-	var max_bottom_right : Vector2
-	var min_x : float = 1024.0
-	var min_y : float = 600.0
-	var max_x : float
-	var max_y : float
-	var points_positions : Array = []
+	var elements: Array = Utils.map(selected_lines, Mimic, "get_first", [])
 	
-	for element in selected_lines : 
-		if element[0] is Stroke :
-			for point in element[0]._line.points:
-				points_positions.append(point)
-			
-			var corners : Array = Utils.get_positions_corners(points_positions)
-			var upper_left : Vector2 = corners[0] + element[0].position
-			var bottom_right : Vector2 = corners[1] + element[0].position
-			if upper_left.x < min_x :
-				min_x = upper_left.x
-			if upper_left.y < min_y :
-				min_y = upper_left.y
-			if bottom_right.x > max_x :
-				max_x = bottom_right.x
-			if bottom_right.y > max_y :
-				max_y = bottom_right.y
-		
-		if element[0] is Title :
-			#Get Title position : 
-			var position_title : Vector2 = element[0].position + Utils.get_child_of_type(element[0], "TextEdit").rect_position
-			#Check if upper_left corner of the title is smaller than the min
-			if position_title.x < min_x :
-				min_x = position_title.x
-			if position_title.y < min_y :
-				min_y = position_title.y
-			#Check if the bottom_right corner of the title is greater than the max
-			var bottom_right : Vector2 = position_title + Utils.get_child_of_type(element[0], "TextEdit").rect_size
-			if bottom_right.x > max_x :
-				max_x = bottom_right.x
-			if bottom_right.y > max_y :
-				max_y = bottom_right.y
+	var positions := PoolVector2Array()
+	for element in elements:
+		var children: Array = element.get_children()
+		for child in children:
+			var child_positions := PoolVector2Array()
+			if child is CollisionShape2D:
+				if child.shape is RectangleShape2D:
+					child_positions.append(child.position - child.shape.extents)
+					child_positions.append(child.position + child.shape.extents)
+					child_positions.append(child.position + Vector2(child.shape.extents.x, -child.shape.extents.y))
+					child_positions.append(child.position + Vector2(-child.shape.extents.x, child.shape.extents.y))
+				elif child.shape is ConvexPolygonShape2D:
+					child_positions = child.shape.points
+				
+				child_positions = element.global_transform.xform(child_positions)
+				
+				positions += child_positions
 	
-	min_upper_left = Vector2(min_x, min_y)
-	max_bottom_right = Vector2(max_x, max_y)
-	
-	return [min_upper_left,max_bottom_right]
-
+	return Utils.get_positions_corners(positions)
 
 """
 Draw the geometrical selection area around the selected lines 

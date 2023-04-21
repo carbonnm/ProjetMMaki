@@ -202,14 +202,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 138.0
+margin_bottom = 142.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 142.0
+margin_top = 146.0
 margin_right = 153.0
-margin_bottom = 216.0
+margin_bottom = 220.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -264,7 +264,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 312.0
+margin_right = 314.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -312,7 +312,7 @@ icon = ExtResource( 17 )
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 360.0
 margin_right = 218.0
-margin_bottom = 424.0
+margin_bottom = 428.0
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
 
@@ -450,6 +450,9 @@ tick_count = 10
 ticks_on_borders = true
 
 [node name="StateManager" parent="." instance=ExtResource( 12 )]
+
+[node name="SignalSwitcher" parent="StateManager" index="0"]
+transform_node = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )

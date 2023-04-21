@@ -25,7 +25,6 @@ func input(_event: InputEvent) -> IState:
 		group.global_transform = transform
 	
 	# retrieve elements from selection
-		var childs: Array = []
 		var dup_child: Node
 		for element in elements:
 			for child in element.get_children():
