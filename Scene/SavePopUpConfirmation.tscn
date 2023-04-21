@@ -59,23 +59,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -173.0
-margin_top = -155.0
-margin_right = -173.0
-margin_bottom = -155.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -512.0
+margin_bottom = -300.0
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="Panel" parent="."]
 material = SubResource( 20 )
-margin_right = 368.0
-margin_bottom = 171.0
+margin_left = -184.0
+margin_top = -84.0
+margin_right = 184.0
+margin_bottom = 87.0
 
 [node name="exitButton" type="Button" parent="."]
 material = SubResource( 21 )
-margin_left = 331.0
-margin_top = -2.0
-margin_right = 407.0
-margin_bottom = 73.0
+margin_left = 145.0
+margin_top = -83.0
+margin_right = 221.0
+margin_bottom = -8.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 1 )
 custom_styles/hover = SubResource( 22 )
@@ -84,10 +86,10 @@ custom_styles/normal = SubResource( 24 )
 text = "X"
 
 [node name="okButton" type="Button" parent="."]
-margin_left = 27.0
-margin_top = 124.0
-margin_right = 315.0
-margin_bottom = 200.0
+margin_left = -159.0
+margin_top = 31.0
+margin_right = 129.0
+margin_bottom = 107.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -98,10 +100,10 @@ custom_styles/normal = SubResource( 28 )
 text = "Continuer"
 
 [node name="cancelButton" type="Button" parent="."]
-margin_left = 196.0
-margin_top = 123.0
-margin_right = 470.0
-margin_bottom = 199.0
+margin_left = 16.0
+margin_top = 30.0
+margin_right = 290.0
+margin_bottom = 106.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -112,10 +114,10 @@ custom_styles/normal = SubResource( 28 )
 text = "Annuler"
 
 [node name="WarningText" type="RichTextLabel" parent="."]
-margin_left = 22.0
-margin_top = 12.0
-margin_right = 376.0
-margin_bottom = 117.0
+margin_left = -170.0
+margin_top = -73.0
+margin_right = 184.0
+margin_bottom = 32.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = SubResource( 29 )
 text = "Vous êtes sur le point d'enregistrer cette présentation sous format svg"
