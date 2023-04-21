@@ -37,11 +37,13 @@ func input(event: InputEvent) -> IState:
 		
 		canvas.delete_word()
 		return null
-		
+	return null
+
+func physics_process(delta: float) -> IState:
 	if canvas.get_node("ChoixImage").visible == true:
 		return switch_to_previous_state()
-		
 	return null
+
 
 func keyboard_input(event: InputEvent) -> IState:
 	return null
