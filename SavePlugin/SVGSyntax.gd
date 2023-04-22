@@ -101,11 +101,11 @@ func get_svg_string(construction: Dictionary) -> String:
 		# Else, its a dynamic balise to construct.
 		else:
 			if balise["children"] != []:
-				svg_string += get_balise_block_string(balise)
+				svg_string += get_balise_block_string(balise) + "\n\n"
 			else:
 				svg_string += get_balise_string(balise)
 	
-	return svg_string
+	return svg_string.left(svg_string.length() - 2)
 
 """
 Function that returns a string witch is the constructed
@@ -123,34 +123,37 @@ func get_balise_block_string(balise: Dictionary) -> String:
 	var balise_block_string: String = "<" + balise["name"]
 	
 	# Travel the balise attributes to add them to the balise block.
-	balise_block_string += get_balise_attributes_string(balise)
+	var balise_attribute_string: String = get_balise_attributes_string(balise)
+	if balise_attribute_string != "":
+		balise_block_string += " " + balise_attribute_string
+	balise_block_string += ">"
 	
-	# Close the balise and make 2 new lines.
-	balise_block_string += ">\n\n"
+	# Make 2 new lines.
+	balise_block_string += "\n\n"
 	
 	# Travels balise block values to add same level balises block.
 	for key in balise:
 		if balise[key] is Dictionary and balise[key].size() != 0 and key != "attributes":
-			balise_block_string += get_balise_block_string(balise[key]) + "\n"
+			balise_block_string += get_balise_block_string(balise[key]) + "\n\n"
 	
 	# Travel childs to add them to balise block.
 	var index: int = 0
 	for child in balise["children"]:
-		balise_block_string += "\t"
-		
 		# Make a new line if precedent balise was not the same kind of balise
 		if index > 0 and child["name"] != balise["children"][index-1]["name"]:
-			balise_block_string += "\n\t"
+			balise_block_string += "\n"
+		
+		balise_block_string += "\t"
 		
 		if child["children"] != []:
-			balise_block_string += get_balise_block_string(child)
+			balise_block_string += get_balise_block_string(child) + "\n\n"
 		else:
-			balise_block_string += get_balise_string(child)
+			balise_block_string += get_balise_string(child) + "\n"
 		
 		index += 1
 	
 	# Make a new line and close the balise block.
-	balise_block_string += "\n</" + balise["name"] + ">\n"
+	balise_block_string += "\n</" + balise["name"] + ">"
 	
 	return balise_block_string
 
@@ -171,7 +174,10 @@ func get_balise_string(balise: Dictionary) -> String:
 	
 	# Travel the balise attributes to add them to the balise block
 	# and close the balise.
-	balise_string += get_balise_attributes_string(balise) + ">"
+	var balise_attribute_string: String = get_balise_attributes_string(balise)
+	if balise_attribute_string != "":
+		balise_string += " " + balise_attribute_string
+	balise_string += ">"
 	
 	# Add label if it exists one.
 	if balise.has("label"):
@@ -183,9 +189,6 @@ func get_balise_string(balise: Dictionary) -> String:
 	
 	# Close the balise.
 	balise_string += "</" + balise["name"] + ">"
-	
-	# Make a new line
-	balise_string += "\n"
 	
 	return balise_string
 
@@ -207,9 +210,9 @@ func get_balise_attributes_string(balise: Dictionary) -> String:
 	# Travel the balise attributes to add them to the balise block.
 	for attribute in balise["attributes"]:
 		var attribute_value: String = str(balise["attributes"][attribute])
-		balise_attributes_string += " " + attribute + "=\"" + attribute_value + "\""
+		balise_attributes_string += attribute + "=\"" + attribute_value + "\"" + " "
 	
-	return balise_attributes_string
+	return balise_attributes_string.left(balise_attributes_string.length() - 1)
 
 """
 Function that returns a syntax dictionary.
