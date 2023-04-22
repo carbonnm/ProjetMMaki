@@ -413,10 +413,15 @@ Returns:
 The converted positions. (String)
 """
 func PoolVector2Array_to_d_path(points: PoolVector2Array) -> String:
+	if points.size() == 0:
+		return ""
+	
 	var d: String = "M "
 	for point in points:
-		d += str(point.x) + "," + str(point.y) + " "
-		if points[0] == point:
+		d += str(point.x) + "," + str(point.y)
+		if points[-1] != point:
+			d += " "
+		if points[0] == point and points.size() != 1:
 			d += "L "
 	
 	return d
