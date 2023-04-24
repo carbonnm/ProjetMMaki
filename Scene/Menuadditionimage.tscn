@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/Graphics/Image/littlemark.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Graphics/Image/oh hi mark.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Themes/normal_image.tres" type="StyleBox" id=12]
-[ext_resource path="res://Scene/NouveaumotInput.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/NouveaumotInput.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="Shader" id=97]
