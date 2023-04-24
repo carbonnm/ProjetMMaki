@@ -28,6 +28,7 @@ func _input(event: InputEvent) -> void:
 					rect_position.y = mouse_position.y
 				else : 
 					rect_position = mouse_position
+				self.rect_scale = Vector2(get_parent()._camera.zoom.x, get_parent()._camera.zoom.y)
 				show()
 			if event.button_index == BUTTON_LEFT:
 				if color_picker:
