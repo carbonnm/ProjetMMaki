@@ -24,6 +24,7 @@ onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 onready var _action_menu := $ActionMenu
 onready var pm = $PopupMenu
 onready var states = $StateManager
+onready var PanelVisibility := get_node("CanvasLayer")
 
 # Script exported variables
 export (float) var linewidth = 4.0
@@ -234,6 +235,8 @@ func _on_Save_canvas_pressed() -> void:
 	
 	packed_scene.pack(_elements)
 	var _error = ResourceSaver.save("user://my_scene.tscn", packed_scene)
+	PanelVisibility.hide_rightclick_panel()
+	
 
 func LoadSave() -> void:
 	var _scene = ResourceLoader.load("user://my_scene.tscn").instance()

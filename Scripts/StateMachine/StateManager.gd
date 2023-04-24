@@ -5,6 +5,7 @@ export (NodePath) var starting_state
 
 var current_state: IState
 var previous_state: IState
+onready var canvas = get_parent().get_node("CanvasLayer")
 
 """
 Initialize the state manager with the starting state.
@@ -129,15 +130,19 @@ func change_state(new_state: IState) -> void:
 
 func _on_Selection_pressed():
 	switch_signal("Selection")
+	canvas.hide_settings_panel()
 
 func _on_Drawing_pressed():
 	switch_signal("Drawing")
+	canvas.hide_settings_panel()
 
 func _on_Copy_pressed():
 	switch_signal("Copy")
+	canvas.hide_rightclick_panel()
 
 func _on_Paste_pressed():
 	switch_signal("Paste")
+	canvas.hide_rightclick_panel()
 
 func _on_Drag_And_Drop_pressed():
 	switch_signal("DragAndDrop")
@@ -153,6 +158,7 @@ func _on_Delete_pressed():
 
 func _on_MoveCanvas_pressed():
 	switch_signal("MoveCanvas")
+	canvas.hide_settings_panel()
 
 func _on_Group_pressed():
 	switch_signal("Group")
@@ -165,6 +171,7 @@ func _on_Fusion_pressed():
 
 func _on_Pen_Size_pressed():
 	switch_signal("PenSize")
+	canvas.hide_rightclick_panel()
 	
 func _on_Draw_pressed():
 	switch_signal("Transform")
@@ -183,9 +190,15 @@ func _on_PopupMenu_mouse_exited():
 
 func _on_CreateTitleButton_create_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
+	canvas.hide_rightclick_panel()
 
 func _on_CreateSubTitleButton_create_sub_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
+	canvas.hide_rightclick_panel()
 
 func _on_CreateSubSubTitleButton_create_sub_sub_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
+	canvas.hide_rightclick_panel()
+
+func _on_Create_annotation_pressed():
+	canvas.hide_rightclick_panel()
