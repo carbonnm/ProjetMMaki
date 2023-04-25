@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duck1.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud7.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud5.png" type="Texture" id=16]
+[ext_resource path="res://Scene/FileDialogPopUp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud3.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud4.png" type="Texture" id=19]
 
@@ -131,7 +132,7 @@ animations = [ {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "default",
-"speed": 5.0
+"speed": 3.0
 } ]
 
 [sub_resource type="DynamicFont" id=48]
@@ -269,6 +270,8 @@ visible = false
 position = Vector2( 58, 11 )
 scale = Vector2( 1, 0.998777 )
 
+[node name="Pop_up" parent="." instance=ExtResource( 17 )]
+
 [node name="Nothingtoseehere" type="HBoxContainer" parent="."]
 visible = false
 margin_left = 16.0
@@ -289,7 +292,7 @@ margin_bottom = -7.0
 theme = SubResource( 49 )
 custom_colors/default_color = Color( 0.368627, 0.305882, 0.027451, 1 )
 bbcode_enabled = true
-bbcode_text = "[rainbow freq = 0.0 sat=0.6 val = 0.2] En cas de problèmes, je suis toujours là pour discuter ! [/rainbow]"
+bbcode_text = "[tornado] En cas de problèmes, je suis toujours là pour discuter ! [/tornado]"
 text = " En cas de problèmes, je suis toujours là pour discuter ! "
 
 [connection signal="button_up" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
@@ -298,3 +301,4 @@ text = " En cas de problèmes, je suis toujours là pour discuter ! "
 [connection signal="mouse_entered" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_mouse_exited"]
 [connection signal="pressed" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_pressed"]
+[connection signal="chosen_image" from="Pop_up" to="Menuadditionimage" method="_on_Pop_up_chosen_image"]

@@ -4,6 +4,7 @@ extends Node2D
 onready var chosen_word = ""
 onready var images = []
 var image
+var current_selected_png
 
 func _on_Closebutton_mouse_exited():
 	get_node("ColorRect/Closebutton/Crossicon").playing = false
@@ -19,13 +20,18 @@ func _on_Closebutton_button_up():
 	visible = false
 
 
-
 func _on_Image1_button_up():
 	#SELECTION DE L'IMAGE
+	var popup= get_owner().get_node("Pop_up")
+	popup.visible = true
+	popup.get_node("FileDialog").show()
+	yield(get_tree().create_timer(20), "timeout")
 	#DOITÊTRE UN .PNG
 	#si image sélectionnée != .png
-	#get_node("ColorRect/Tryagain").bbcode_text = "Les images doivent être au format [shake] .png! [/shake]"
-	#get_node("ColorRect/Image1")["custom_styles/normal"].bg_color = Color("a72404")
+	if not is_png():
+		
+		get_node("ColorRect/Tryagain").bbcode_text = "Les images doivent être au format [shake] .png! [/shake]"
+		get_node("ColorRect/Image1")["custom_styles/normal"].bg_color = Color("a72404")
 	
 	#else
 	#AJOUT DANS LISTE IMAGE
@@ -33,7 +39,6 @@ func _on_Image1_button_up():
 	
 	#modification apparence
 	#get_node("ColorRect/Image1")["custom_styles/normal"].bg_color = Color("8de51b")
-	
 	
 	#Apparition du OK 
 	#var okimage = get_node("ColorRect/Okimagedance")
@@ -48,6 +53,10 @@ func _on_Image1_button_up():
 
 func _on_Image2_button_up():
 	#SELECTION DE L'IMAGE
+	var popup= get_owner().get_node("Pop_up")
+	popup.visible = true
+	popup.get_node("FileDialog").show()
+	
 	#DOITÊTRE UN .PNG
 	#si image sélectionnée != .png
 	#get_node("ColorRect/Tryagain").bbcode_text = "Les images doivent être au format [shake] .png! [/shake]"
@@ -73,6 +82,9 @@ func _on_Image2_button_up():
 func _on_Image3_button_up():
 	#SELECTION DE L'IMAGE
 	
+	var popup= get_owner().get_node("Pop_up")
+	popup.visible = true
+	popup.get_node("FileDialog").show()
 	
 	#DOITÊTRE UN .PNG
 	#si image sélectionnée != .png
@@ -99,6 +111,9 @@ func _on_Image3_button_up():
 func _on_Image4_button_up():
 	#SELECTION DE L'IMAGE
 	
+	var popup= get_owner().get_node("Pop_up")
+	popup.visible = true
+	popup.get_node("FileDialog").show()
 	
 	#DOITÊTRE UN .PNG
 	#si image sélectionnée != .png
@@ -158,6 +173,7 @@ func _on_Okbutton_mouse_exited():
 	get_node("ColorRect/MarginContainer/Saveicon").playing = false
 
 
+
 func _on_FileDialog_file_selected(path):
 	var image_file = File.new()
 	image_file.open(path, File.READ)
@@ -165,3 +181,15 @@ func _on_FileDialog_file_selected(path):
 	var path_texture = image_file.get_path()
 	var texture = load(path_texture)
 	$ColorRect/Image1.set_button_icon(texture)
+
+
+func is_png():
+	return current_selected_png
+#receives the selected images' path and checks whether it's a .png
+func _on_Pop_up_chosen_image(paths):
+	
+	current_selected_png = paths[0].ends_with(".png")
+	
+	print("signalworked ",current_selected_png)
+
+
