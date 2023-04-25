@@ -129,10 +129,10 @@ default_font = SubResource( 45 )
 
 [sub_resource type="SpriteFrames" id=47]
 animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "default",
-"speed": 3.0
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=48]
