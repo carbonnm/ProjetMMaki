@@ -39,20 +39,20 @@ func set_save_nodes(nodes: Array) -> void:
 
 """
 Function that save previously specified nodes and their children 
-into a dictionary containing all Line2Ds, TextEdits and Sprites.
+into a dictionary containing all Line2Ds, Labels and Sprites.
 It adds the dictionary to saves Array. Then returns the dictionary 
 created.
 
 Returns:
 --------
-The dictionary created with all Line2Ds, TextEdits and Sprites. (Dictionary)
+The dictionary created with all Line2Ds, Labels and Sprites. (Dictionary)
 """
 func save() -> Dictionary:
 	
 	var save_dict: Dictionary = {
 		"BackgroundColor": Color(0,0,0),
 		"Line2D": [],
-		"TextEdit": [],
+		"Label": [],
 		"Sprite": []
 	}
 	
@@ -88,7 +88,7 @@ func erase_save(index: int) -> void:
 		saves.remove(index)
 
 """
-Function that retrieve and arrange Line2D, TextEdit and Sprite
+Function that retrieve and arrange Line2D, Label and Sprite
 elements from specified nodes to insert them in a dictionary
 Then returns the dictionary.
 
@@ -98,7 +98,7 @@ save_dict: The dictionary to complete. (Dictionary)
 
 Returns:
 --------
-The dictionary created with all Line2Ds, TextEdits and Sprites. (Dictionary)
+The dictionary created with all Line2Ds, Labels and Sprites. (Dictionary)
 """
 func retrieve_elements(save_dict: Dictionary) -> Dictionary:
 	
@@ -108,9 +108,9 @@ func retrieve_elements(save_dict: Dictionary) -> Dictionary:
 			trans_node.points = trans_node.global_transform.xform(trans_node.points)
 			trans_node.global_transform = Transform2D()
 			save_dict["Line2D"].append(trans_node)
-		elif node is TextEdit:
-			var trans_node: TextEdit = apply_global_transform(node)
-			save_dict["TextEdit"].append(trans_node)
+		elif node is Label:
+			var trans_node: Label = apply_global_transform(node)
+			save_dict["Label"].append(trans_node)
 		elif node is Sprite:
 			var trans_node: Sprite = apply_global_transform(node)
 			save_dict["Sprite"].append(trans_node)
