@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -8,6 +8,16 @@
 [ext_resource path="res://Assets/Graphics/homepage/arrow1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/Apple Japanese Keyboard.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scene/Menuadditionimage.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/cloud6.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/duckeyeclosemouthclose.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/duckeyeclose.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/duck.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/duck1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/cloud7.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/cloud5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/cloud3.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/cloud4.png" type="Texture" id=19]
 
 [sub_resource type="Gradient" id=13]
 offsets = PoolRealArray( 0, 0.740741, 1 )
@@ -115,6 +125,21 @@ font_data = ExtResource( 8 )
 
 [sub_resource type="Theme" id=46]
 default_font = SubResource( 45 )
+
+[sub_resource type="SpriteFrames" id=47]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=48]
+size = 42
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=49]
+default_font = SubResource( 48 )
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 2 )
@@ -238,6 +263,34 @@ custom_colors/default_color = Color( 0.631373, 0.0509804, 0.0509804, 1 )
 bbcode_enabled = true
 bbcode_text = " [shake rate=15 level=9] Fonctionalité pas encore implémentée, sorry  [/shake] "
 text = "  Fonctionalité pas encore implémentée, sorry   "
+
+[node name="Menuadditionimage" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 58, 11 )
+scale = Vector2( 1, 0.998777 )
+
+[node name="Nothingtoseehere" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 403.0
+margin_right = 339.0
+margin_bottom = 584.0
+
+[node name="Notaneasteregg" type="AnimatedSprite" parent="Nothingtoseehere"]
+position = Vector2( 84, 127 )
+scale = Vector2( 0.456693, 0.472917 )
+frames = SubResource( 47 )
+
+[node name="Duckspeak" type="RichTextLabel" parent="Nothingtoseehere/Notaneasteregg"]
+margin_left = -195.0
+margin_top = -188.0
+margin_right = 499.0
+margin_bottom = -7.0
+theme = SubResource( 49 )
+custom_colors/default_color = Color( 0.368627, 0.305882, 0.027451, 1 )
+bbcode_enabled = true
+bbcode_text = "[rainbow freq = 0.0 sat=0.6 val = 0.2] En cas de problèmes, je suis toujours là pour discuter ! [/rainbow]"
+text = " En cas de problèmes, je suis toujours là pour discuter ! "
 
 [connection signal="button_up" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
 [connection signal="mouse_entered" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
