@@ -7,6 +7,5 @@ func _ready():
 
 
 
-
-func _on_FileDialog_files_selected(paths):
-	pass # Replace with function body.
+func _on_FileDialog_file_selected(path):
+	var image = load(path)

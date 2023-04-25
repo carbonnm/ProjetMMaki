@@ -3,6 +3,7 @@ extends Node2D
 #new chosen word
 onready var chosen_word = ""
 onready var images = []
+var image
 
 func _on_Closebutton_mouse_exited():
 	get_node("ColorRect/Closebutton/Crossicon").playing = false
@@ -38,7 +39,12 @@ func _on_Image1_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance")
 	#okimage.visible=true
 	#okimage.play("dance")
-	pass
+	
+	
+	#Open de la scène avec le folder qui s'ouvre
+	$FileDialog.set_current_path("C://Users/")
+	$FileDialog.show()
+	$FileDialog.invalidate()
 
 func _on_Image2_button_up():
 	#SELECTION DE L'IMAGE
@@ -59,7 +65,9 @@ func _on_Image2_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance2")
 	#okimage.visible=true
 	#okimage.play("dance")
-	pass 
+	$FileDialog.set_current_path("C://Users/")
+	$FileDialog.show()
+	$FileDialog.invalidate()
 
 
 func _on_Image3_button_up():
@@ -83,7 +91,9 @@ func _on_Image3_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance3")
 	#okimage.visible=true
 	#okimage.play("dance")
-	pass 
+	$FileDialog.set_current_path("C://Users/")
+	$FileDialog.show()
+	$FileDialog.invalidate() 
 
 
 func _on_Image4_button_up():
@@ -109,7 +119,9 @@ func _on_Image4_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance4")
 	#okimage.visible=true
 	#okimage.play("dance")
-	pass 
+	$FileDialog.set_current_path("C://Users/")
+	$FileDialog.show()
+	$FileDialog.invalidate() 
 
 
 
@@ -145,3 +157,11 @@ func _on_Okbutton_mouse_entered():
 func _on_Okbutton_mouse_exited():
 	get_node("ColorRect/MarginContainer/Saveicon").playing = false
 
+
+func _on_FileDialog_file_selected(path):
+	var image_file = File.new()
+	image_file.open(path, File.READ)
+	image_file.close()
+	var path_texture = image_file.get_path()
+	var texture = load(path_texture)
+	$ColorRect/Image1.set_button_icon(texture)
