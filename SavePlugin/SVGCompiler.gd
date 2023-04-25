@@ -44,8 +44,8 @@ func export_to_svg() -> void:
 func construct_syntax_element(save: Dictionary) -> Dictionary:
 	# Setup style balise.
 	var defs_balise: Dictionary
-	if save["TextEdit"] != []:
-		var custom_svg_style_path: String = ProjectSettings.globalize_path(save["TextEdit"][0].get_font("font").font_data.font_path)
+	if save["Label"] != []:
+		var custom_svg_style_path: String = ProjectSettings.globalize_path(save["Label"][0].get_font("font").font_data.font_path)
 		var style_balise: Dictionary = SVGSyntax.get_svg_style(custom_svg_style_path)
 		# Setup defs and add the style balise to him.
 		defs_balise = SVGSyntax.get_defs()
@@ -77,8 +77,8 @@ func construct_syntax_element(save: Dictionary) -> Dictionary:
 		var path_balise: Dictionary = SVGSyntax.get_svg_path(path_d, path_stroke, path_stroke_width)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, path_balise)
 	
-	# Setup textEdits and add them as svg child.
-	for text_edit in save["TextEdit"]:
+	# Setup Labels and add them as svg child.
+	for text_edit in save["Label"]:
 		var text_label: String = text_edit.text
 		var text_position: Vector2 = text_edit.rect_position + text_edit.rect_size/2
 		var text_font_size_vector: Vector2 = text_edit.get_font("font").size * text_edit.rect_scale
@@ -140,7 +140,7 @@ func get_save_corners(save: Dictionary) -> Array:
 	for line in save["Line2D"]:
 		positions.append_array(line.points)
 	
-	for text_edit in save["TextEdit"]:
+	for text_edit in save["Label"]:
 		var text_shape: Vector2 = (text_edit.rect_size - text_edit.rect_position)*text_edit.rect_scale
 		var text_origin: Vector2 = text_edit.rect_position + text_edit.rect_size/2 - text_shape/2
 		var text_size: Vector2 = text_origin + text_shape

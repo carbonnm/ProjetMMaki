@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -23,20 +23,17 @@
 [ext_resource path="res://Assets/Graphics/Image/sélection.png" type="Texture" id=21]
 [ext_resource path="res://Scripts/LineCounter.gd" type="Script" id=22]
 [ext_resource path="res://addons/color_picker_text_button/styleboxflat.tres" type="StyleBox" id=23]
-[ext_resource path="res://Assets/Graphics/Image/annotation.png" type="Texture" id=24]
 [ext_resource path="res://addons/color_picker_text_button/color_picker_text_button.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/BackgroundColor.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/Options.gd" type="Script" id=28]
 [ext_resource path="res://Assets/Graphics/Image/RightClick.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Graphics/Image/hand_icon.svg" type="Texture" id=30]
-[ext_resource path="res://Assets/Graphics/Image/fusionner.png" type="Texture" id=31]
 [ext_resource path="res://Assets/Graphics/Image/ungroup.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Graphics/Image/littlecoller.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Graphics/Image/littlesave.png" type="Texture" id=34]
 [ext_resource path="res://maki_theme.tres" type="Theme" id=35]
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
-[ext_resource path="res://Assets/Graphics/Image/LitlleNote.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
 [ext_resource path="res://Scripts/pensizecircle.gd" type="Script" id=39]
 [ext_resource path="res://Scene/PopUpMot.tscn" type="PackedScene" id=40]
@@ -111,13 +108,6 @@ margin_right = 218.0
 margin_bottom = 68.0
 text = "Créer texte"
 icon = ExtResource( 36 )
-
-[node name="Create annotation" type="Button" parent="RightClickContainer"]
-margin_top = 72.0
-margin_right = 218.0
-margin_bottom = 108.0
-text = "Créer annotation"
-icon = ExtResource( 37 )
 
 [node name="Save canvas" type="Button" parent="RightClickContainer"]
 margin_top = 112.0
@@ -200,14 +190,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 138.0
+margin_bottom = 109.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 142.0
+margin_top = 113.0
 margin_right = 153.0
-margin_bottom = 216.0
+margin_bottom = 187.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -286,31 +276,24 @@ margin_bottom = 134.0
 text = "Créer texte"
 icon = ExtResource( 3 )
 
-[node name="Create annotation" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
+[node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 138.0
 margin_right = 218.0
 margin_bottom = 208.0
-text = "Créer annotation"
-icon = ExtResource( 24 )
-
-[node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 212.0
-margin_right = 218.0
-margin_bottom = 282.0
 text = "Enregistrer"
 icon = ExtResource( 18 )
 
 [node name="Paste" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 286.0
+margin_top = 212.0
 margin_right = 218.0
-margin_bottom = 356.0
+margin_bottom = 282.0
 text = "Coller"
 icon = ExtResource( 17 )
 
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 360.0
+margin_top = 286.0
 margin_right = 218.0
-margin_bottom = 424.0
+margin_bottom = 321.0
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
 
@@ -379,13 +362,6 @@ margin_bottom = 235.0
 text = "Transformer"
 icon = ExtResource( 46 )
 
-[node name="Fusion" type="Button" parent="ActionMenu"]
-margin_top = 239.0
-margin_right = 176.0
-margin_bottom = 275.0
-text = "Fusionner"
-icon = ExtResource( 31 )
-
 [node name="Group" type="Button" parent="ActionMenu"]
 margin_top = 279.0
 margin_right = 176.0
@@ -452,18 +428,16 @@ ticks_on_borders = true
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
 [connection signal="color_changed" from="RightClickContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
-[connection signal="pressed" from="RightClickContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="RightClickContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
+[connection signal="pressed" from="RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
 [connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="RightClickContainer" method="_on_Color_color_changed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create texte" to="." method="_on_Create_text_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create annotation" to="." method="_on_Create_annotation_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="." method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
@@ -474,7 +448,6 @@ ticks_on_borders = true
 [connection signal="pressed" from="ActionMenu/Copy" to="StateManager" method="_on_Copy_pressed"]
 [connection signal="pressed" from="ActionMenu/Rotation" to="StateManager" method="_on_Rotation_pressed"]
 [connection signal="pressed" from="ActionMenu/Draw" to="StateManager" method="_on_Draw_pressed"]
-[connection signal="pressed" from="ActionMenu/Fusion" to="StateManager" method="_on_Fusion_pressed"]
 [connection signal="pressed" from="ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
 [connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
