@@ -190,14 +190,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 109.0
+margin_bottom = 138.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 113.0
+margin_top = 142.0
 margin_right = 153.0
-margin_bottom = 187.0
+margin_bottom = 216.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -293,7 +293,7 @@ icon = ExtResource( 17 )
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 286.0
 margin_right = 218.0
-margin_bottom = 321.0
+margin_bottom = 350.0
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
 

@@ -14,6 +14,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == BUTTON_RIGHT:
+				if get_node("../ActionMenu").visible == true :
+					get_node("../ActionMenu").visible = false
+					get_node("..").selected_lines.clear()
+					#get_node("..").Select_rect.free()
+					get_node("..").Selection_area.free()
 				right_click_position = get_global_mouse_position()
 				#print(right_click_position)
 				var mouse_position : Vector2 = get_global_mouse_position()
