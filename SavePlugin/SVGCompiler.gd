@@ -89,12 +89,11 @@ func construct_syntax_element(save: Dictionary) -> Dictionary:
 		var text_edit_balise: Dictionary = SVGSyntax.get_svg_text(text_label, text_position, text_font_size, text_font_family, text_fill, text_rotation)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, text_edit_balise)
 	
-	# DEPRECATED
 	# Setup sprites and add them as svg child.
 	for sprite in save["Sprite"]:
-		var image_position: Vector2 = Vector2.ZERO
-		var image_size: Vector2 = Vector2.ZERO
-		var image_href: String = ""
+		var image_position: Vector2 = sprite.position - sprite.get_rect().size/2
+		var image_size: Vector2 = sprite.get_rect().size
+		var image_href: String = ProjectSettings.globalize_path(sprite.texture.resource_path)
 		var sprite_balise: Dictionary = SVGSyntax.get_svg_image(image_position, image_size, image_href)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, sprite_balise)
 	
@@ -148,8 +147,8 @@ func get_save_corners(save: Dictionary) -> Array:
 		positions.append(text_size)
 	
 	for sprite in save["Sprite"]:
-		var sprite_origin: Vector2 = sprite.position + Vector2(0,-sprite.size.y)
+		var sprite_origin: Vector2 = sprite.position - sprite.get_rect().size/2
 		positions.append(sprite_origin)
-		positions.append(sprite_origin+sprite.size)
+		positions.append(sprite_origin+sprite.get_rect().size)
 	
 	return Utils.get_positions_corners(positions)
