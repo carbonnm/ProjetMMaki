@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/commande1.png-86a38ee67d822953c05dbb76391816b2.stex"
+path="res://.import/commande1.png-cff31e73ae353c7ea5e57a471b8698a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Commande/commande1.png"
-dest_files=[ "res://.import/commande1.png-86a38ee67d822953c05dbb76391816b2.stex" ]
+source_file="res://4ImagesChoix/commande/commande1.png"
+dest_files=[ "res://.import/commande1.png-cff31e73ae353c7ea5e57a471b8698a7.stex" ]
 
 [params]
 
