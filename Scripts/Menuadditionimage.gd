@@ -22,17 +22,20 @@ func _on_Closebutton_button_up():
 
 func _on_Image1_button_up():
 	#SELECTION DE L'IMAGE
-	$FileDialog.set_current_path("C://Users/")
+	
 	var popup= get_owner().get_node("Pop_up")
+	var dialog = popup.get_node("FileDialog")
+
+	dialog.show()
 	popup.visible = true
-	popup.get_node("FileDialog").show()
-	yield(get_tree().create_timer(20), "timeout")
+	
+	#yield(get_tree().create_timer(20), "timeout")
 	#DOITÊTRE UN .PNG
 	#si image sélectionnée != .png
-	if not is_png():
+	#if not is_png():
 		
-		get_node("ColorRect/Tryagain").bbcode_text = "Les images doivent être au format [shake] .png! [/shake]"
-		get_node("ColorRect/Image1")["custom_styles/normal"].bg_color = Color("a72404")
+	#	get_node("ColorRect/Tryagain").bbcode_text = "Les images doivent être au format [shake] .png! [/shake]"
+	#	get_node("ColorRect/Image1")["custom_styles/normal"].bg_color = Color("a72404")
 	
 	#else
 	#AJOUT DANS LISTE IMAGE
@@ -165,7 +168,7 @@ func _on_Okbutton_mouse_exited():
 
 
 
-func _on_FileDialog_file_selected(path):
+func _on_FileDialog_files_selected(path):
 	var image_file = File.new()
 	image_file.open(path, File.READ)
 	image_file.close()

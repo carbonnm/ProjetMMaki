@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/FileDialogPopUp.gd" type="Script" id=1]
+[ext_resource path="res://Scene/Ok_menu.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Fond" type="Panel"]
-visible = false
 margin_top = 2.0
 margin_right = 1023.0
 margin_bottom = 606.0
@@ -22,5 +22,8 @@ window_title = "Open File(s)"
 resizable = true
 mode = 1
 access = 2
+
+[node name="Ok_menu" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [connection signal="files_selected" from="FileDialog" to="." method="_on_FileDialog_files_selected"]
