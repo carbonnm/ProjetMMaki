@@ -15,3 +15,6 @@ func _on_FileDialog_files_selected(paths):
 	#emits the signal that will be received by the Menuadditionimagescript
 	emit_signal("chosen_image",paths)
 	visible = false
+
+
+
