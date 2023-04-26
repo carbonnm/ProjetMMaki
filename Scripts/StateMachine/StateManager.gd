@@ -202,3 +202,6 @@ func _on_CreateSubSubTitleButton_create_sub_sub_title_button(type):
 
 func _on_Create_annotation_pressed():
 	canvas.hide_rightclick_panel()
+
+func _on_Save_canvas_pressed():
+	switch_signal("SVGSave")

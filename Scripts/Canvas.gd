@@ -225,31 +225,3 @@ func word_recognition_python() :
 	var output : Array = []
 	var _error = OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
 	return output
-	
-
-func _on_Save_canvas_pressed() -> void:
-	var packed_scene = PackedScene.new()
-	
-	for child in Utils.get_all_children(_elements):
-		child.set_owner(_elements)
-	
-	packed_scene.pack(_elements)
-	var _error = ResourceSaver.save("user://my_scene.tscn", packed_scene)
-	PanelVisibility.hide_rightclick_panel()
-	
-
-func LoadSave() -> void:
-	var _scene = ResourceLoader.load("user://my_scene.tscn").instance()
-	_elements.queue_free()
-	add_child(_scene)
-	move_child(_scene, 2)
-	_elements = _scene
-
-
-
-
-
-
-
-
-
