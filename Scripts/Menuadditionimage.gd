@@ -22,6 +22,7 @@ func _on_Closebutton_button_up():
 
 func _on_Image1_button_up():
 	#SELECTION DE L'IMAGE
+	$FileDialog.set_current_path("C://Users/")
 	var popup= get_owner().get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
@@ -47,12 +48,10 @@ func _on_Image1_button_up():
 	
 	
 	#Open de la scène avec le folder qui s'ouvre
-	$FileDialog.set_current_path("C://Users/")
-	$FileDialog.show()
-	$FileDialog.invalidate()
 
 func _on_Image2_button_up():
 	#SELECTION DE L'IMAGE
+	$FileDialog.set_current_path("C://Users/")
 	var popup= get_owner().get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
@@ -74,14 +73,12 @@ func _on_Image2_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance2")
 	#okimage.visible=true
 	#okimage.play("dance")
-	$FileDialog.set_current_path("C://Users/")
-	$FileDialog.show()
-	$FileDialog.invalidate()
+
 
 
 func _on_Image3_button_up():
 	#SELECTION DE L'IMAGE
-	
+	$FileDialog.set_current_path("C://Users/")
 	var popup= get_owner().get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
@@ -103,14 +100,11 @@ func _on_Image3_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance3")
 	#okimage.visible=true
 	#okimage.play("dance")
-	$FileDialog.set_current_path("C://Users/")
-	$FileDialog.show()
-	$FileDialog.invalidate() 
 
 
 func _on_Image4_button_up():
 	#SELECTION DE L'IMAGE
-	
+	$FileDialog.set_current_path("C://Users/")
 	var popup= get_owner().get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
@@ -134,9 +128,6 @@ func _on_Image4_button_up():
 	#var okimage = get_node("ColorRect/Okimagedance4")
 	#okimage.visible=true
 	#okimage.play("dance")
-	$FileDialog.set_current_path("C://Users/")
-	$FileDialog.show()
-	$FileDialog.invalidate() 
 
 
 
