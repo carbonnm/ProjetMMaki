@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/RUBBER DUCK.mp3-2bc776f5fe3218d46a85a698373c1542.mp3str"
+
+[deps]
+
+source_file="res://Assets/RUBBER DUCK.mp3"
+dest_files=[ "res://.import/RUBBER DUCK.mp3-2bc776f5fe3218d46a85a698373c1542.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
