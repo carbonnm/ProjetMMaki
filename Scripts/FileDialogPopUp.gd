@@ -5,7 +5,7 @@ signal too_many_selected
 
 func _ready():
 	$FileDialog.set_current_path("C://Users/")
-	$FileDialog.show()
+	#$FileDialog.show()
 	$FileDialog.invalidate()
 
 

@@ -152,4 +152,5 @@ position = Vector2( 24.8468, 22.0898 )
 scale = Vector2( 0.0745588, 0.0729098 )
 frames = SubResource( 110 )
 
+[connection signal="pressed" from="Ok_button" to="." method="_on_Ok_button_pressed"]
 [connection signal="pressed" from="Closebutton" to="." method="_on_Closebutton_pressed"]

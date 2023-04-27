@@ -15,10 +15,9 @@ func _on_Closebutton_mouse_entered():
 
 
 func _on_Closebutton_button_up():
+	visible = false
 	get_node("ColorRect/Closebutton/Crossicon").playing = false
 	get_node("ColorRect/MarginContainer/Saveicon").playing = false
-	visible = false
-
 
 func _on_Image1_button_up():
 	#SELECTION DE L'IMAGE

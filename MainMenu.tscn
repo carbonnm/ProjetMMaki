@@ -281,6 +281,7 @@ position = Vector2( 58, 11 )
 scale = Vector2( 1, 0.998777 )
 
 [node name="Pop_up" parent="." instance=ExtResource( 17 )]
+visible = false
 
 [node name="Nothingtoseehere" type="HBoxContainer" parent="."]
 visible = false

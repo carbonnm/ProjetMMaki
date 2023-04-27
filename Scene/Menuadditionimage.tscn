@@ -49,7 +49,7 @@ corner_radius_bottom_left = 25
 [sub_resource type="StyleBoxFlat" id=110]
 bg_color = Color( 0.811765, 0.945098, 0.945098, 1 )
 
-[sub_resource type="DynamicFont" id=123]
+[sub_resource type="DynamicFont" id=96]
 size = 42
 outline_color = Color( 0.729412, 0.321569, 0.321569, 1 )
 extra_spacing_top = 2
@@ -58,7 +58,7 @@ extra_spacing_char = -4
 font_data = ExtResource( 4 )
 
 [sub_resource type="Theme" id=101]
-default_font = SubResource( 123 )
+default_font = SubResource( 96 )
 
 [sub_resource type="StyleBoxFlat" id=102]
 bg_color = Color( 0.756863, 0.321569, 0.321569, 1 )
