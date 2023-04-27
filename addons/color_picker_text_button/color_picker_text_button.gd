@@ -127,7 +127,7 @@ func show_panel():
 	if specific_button.match("VBoxContainer"):
 		panel.popup_centered()
 		
-	elif specific_button.match("RightClickContainer") :
+	elif specific_button.match("CanvasLayer/RightClickContainer") :
 		var mouse = get_global_mouse_position()
 		panel.rect_position.x = mouse.x
 		

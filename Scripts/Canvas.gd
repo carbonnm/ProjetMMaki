@@ -19,9 +19,9 @@ var Snapshots := preload("res://Scripts/StateMachine/StatesMethods/Snapshots.gd"
 onready var _background := $BackgroundColored
 onready var _camera := $Camera
 onready var _elements := $Elements
-onready var detached_RCC := $RightClickContainer
+onready var detached_RCC := $CanvasLayer/RightClickContainer
 onready var RCC := $CanvasLayer/Panel2/VBoxContainer
-onready var _action_menu := $ActionMenu
+onready var _action_menu := $CanvasLayer/ActionMenu
 onready var pm = $PopupMenu
 onready var states = $StateManager
 onready var PanelVisibility := get_node("CanvasLayer")
@@ -115,9 +115,9 @@ func RetrieveArea(areas:Array):
 	
 	DrawLineContainer(true)
 	if selected_lines.size() != 0:
-		var mouse_position : Vector2 = get_global_mouse_position()
-		var background_x : int = _background.rect_size.x
-		var backrgound_y : int = _background.rect_size.y 
+		var mouse_position : Vector2 = $CanvasLayer/ActionMenu.get_global_mouse_position()
+		var background_x : int = 1024
+		var backrgound_y : int = 600
 		
 		if mouse_position.x > background_x - _action_menu.rect_size.x and mouse_position.y > backrgound_y - _action_menu.rect_size.y :
 			_action_menu.rect_position.x = mouse_position.x - _action_menu.rect_size.x
@@ -201,7 +201,7 @@ func _on_Create_text_pressed():
 	get_node("TitleCreationPopUp").visible = true
 
 func _on_Create_texte_RCC_pressed():
-	var _text_popup = get_node("RightClickContainer/Create texte")
+	var _text_popup = get_node("CanvasLayer/RightClickContainer/Create texte")
 	get_node("TitleCreationPopUp").rect_global_position = Vector2(_text_popup.get_global_rect().position.x - 153, _text_popup.get_global_rect().position.y)
 	get_node("TitleCreationPopUp").visible = true
 	

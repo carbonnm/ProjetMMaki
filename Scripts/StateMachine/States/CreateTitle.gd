@@ -58,7 +58,7 @@ func input(_event: InputEvent) -> IState:
 		#makes the right-click menu disappear faster
 	
 	canvas.get_node("TitleCreationPopUp").visible = false
-	canvas.get_node("RightClickContainer").visible = false
+	canvas.get_node("CanvasLayer/RightClickContainer").visible = false
 	canvas.get_node("Titlemenuaddition/Inputtitle").grab_focus()
 	return null
 
@@ -89,7 +89,7 @@ func parametrized_call(args: Array) -> IState:
 			canvas.get_node("Titlemenuaddition").visible = true
 			#makes the right-click menu disappear faster
 			canvas.get_node("TitleCreationPopUp").visible = false
-			canvas.get_node("RightClickContainer").visible = false
+			canvas.get_node("CanvasLayer/RightClickContainer").visible = false
 		
 		if args[0] == 2:
 			canvas.get_node("Titlemenuaddition").type_title = 2
@@ -109,7 +109,7 @@ func parametrized_call(args: Array) -> IState:
 			canvas.get_node("Titlemenuaddition").visible = true
 			#makes the right-click menu disappear faster
 			canvas.get_node("TitleCreationPopUp").visible = false
-			canvas.get_node("RightClickContainer").visible = false
+			canvas.get_node("CanvasLayer/RightClickContainer").visible = false
 			
 		if args[0] == 3:
 			canvas.get_node("Titlemenuaddition").type_title = 3
@@ -129,7 +129,7 @@ func parametrized_call(args: Array) -> IState:
 			canvas.get_node("Titlemenuaddition").visible = true
 			#makes the right-click menu disappear faster
 			canvas.get_node("TitleCreationPopUp").visible = false
-			canvas.get_node("RightClickContainer").visible = false
+			canvas.get_node("CanvasLayer/RightClickContainer").visible = false
 		
 	else :
 		canvas.CreateTitle.create_new_title(args[0], canvas.custom.customization, canvas)

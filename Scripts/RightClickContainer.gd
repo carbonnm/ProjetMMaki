@@ -3,8 +3,8 @@ extends VBoxContainer
 
 var color := Color.white
 var color_picker = false
-onready var screen_size_x : int = $"../BackgroundColored".rect_size.x
-onready var screen_size_y : int = $"../BackgroundColored".rect_size.y
+onready var screen_size_x : int = $"../../BackgroundColored".rect_size.x
+onready var screen_size_y : int = $"../../BackgroundColored".rect_size.y
 export (Vector2) var right_click_position
 
 func _ready() -> void:
@@ -16,9 +16,9 @@ func _input(event: InputEvent) -> void:
 			if event.button_index == BUTTON_RIGHT:
 				if get_node("../ActionMenu").visible == true :
 					get_node("../ActionMenu").visible = false
-					get_node("..").selected_lines.clear()
-					#get_node("..").Select_rect.free()
-					get_node("..").Selection_area.free()
+					get_node("../..").selected_lines.clear()
+					#get_node("../..").Select_rect.free()
+					get_node("../..").Selection_area.free()
 				right_click_position = get_global_mouse_position()
 				#print(right_click_position)
 				var mouse_position : Vector2 = get_global_mouse_position()
@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 					rect_position.y = mouse_position.y
 				else : 
 					rect_position = mouse_position
-				self.rect_scale = Vector2(get_parent()._camera.zoom.x, get_parent()._camera.zoom.y)
+#				self.rect_scale = Vector2(get_parent().get_parent()._camera.zoom.x, get_parent().get_parent()._camera.zoom.y)
 				show()
 			if event.button_index == BUTTON_LEFT:
 				if color_picker:
