@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://Scripts/CreatedThemes.gd" type="Script" id=42]
 [ext_resource path="res://Assets/Themes/themechoicetheme.tres" type="Theme" id=43]
 [ext_resource path="res://Assets/Fonts/FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=44]
+[ext_resource path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" type="Script" id=45]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -990,6 +991,12 @@ bbcode_text = "Le thème a besoin d'un
  [rainbow freq=1.0 sat=1 val=2]nom[/rainbow]  !"
 text = "Le thème a besoin d'un       
  nom  !"
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Page"]
+margin_top = 610.0
+margin_right = 1024.0
+margin_bottom = 910.0
+script = ExtResource( 45 )
 
 [connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
 [connection signal="text_entered" from="Page/Optionmenu/Inputname" to="." method="_on_Inputname_text_entered"]
