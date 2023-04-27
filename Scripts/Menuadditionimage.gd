@@ -167,14 +167,6 @@ func _on_Okbutton_mouse_exited():
 
 
 
-func _on_FileDialog_files_selected(path):
-	var image_file = File.new()
-	image_file.open(path, File.READ)
-	image_file.close()
-	var path_texture = image_file.get_path()
-	var texture = load(path_texture)
-	$ColorRect/Image1.set_button_icon(texture)
-
 
 func is_png():
 	return current_selected_png
@@ -186,3 +178,32 @@ func _on_Pop_up_chosen_image(paths):
 	print("signalworked ",current_selected_png)
 
 
+
+
+func _on_FileDialog_files_selected(paths):
+	if(paths.size()>1):
+		emit_signal("too_many_selected")
+	else:
+		if not (paths[0].ends_with(".png")):
+			#checks whether it's a png 
+			emit_signal("png_ko")
+		else:
+			
+			var dir = Directory.new()
+			dir.open("res://Assets")
+			
+			var image_file = File.new()
+			image_file.open(paths[0], File.READ)
+			image_file.close()
+			
+			
+			dir.copy(paths[0], "res://Assets/temporary_dir/duckeyeclosemouthclose.png")
+			print(image_file)
+			
+			
+			get_node("../Pop_up/Ok_menu").visible = true
+			#emits the signal that will be received by the Menuadditionimagescript
+			#emit_signal("chosen_image",paths)
+			#visible = false
+			#print(paths)
+			

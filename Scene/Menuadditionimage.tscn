@@ -386,4 +386,4 @@ access = 2
 [connection signal="button_up" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_button_up"]
 [connection signal="mouse_entered" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_entered"]
 [connection signal="mouse_exited" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_exited"]
-[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_FileDialog_files_selected"]
