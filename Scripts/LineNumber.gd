@@ -5,4 +5,4 @@ extends Label
 
 func _process(delta: float) -> void:
 	set("custom_colors/font_color", Color(0,0,0))
-	set_text("Number of Line : ") #+ String(Lines_count))
+	#set_text("Number of Line : ") #+ String(Lines_count))
