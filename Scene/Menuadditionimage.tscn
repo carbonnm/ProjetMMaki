@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scripts/Menuadditionimage.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/Image/littlecross.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/Themes/normal_image.tres" type="StyleBox" id=12]
 [ext_resource path="res://Scripts/NouveaumotInput.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Scene/FileDialogPopUp.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Shader" id=97]
 code = "shader_type canvas_item;
@@ -365,15 +366,9 @@ theme = SubResource( 122 )
 custom_colors/default_color = Color( 0.45098, 0.0588235, 0.0588235, 1 )
 bbcode_enabled = true
 
-[node name="FileDialog" type="FileDialog" parent="."]
-margin_left = 166.0
-margin_top = 138.0
-margin_right = 803.0
-margin_bottom = 504.0
-rect_min_size = Vector2( 150, 52.5 )
-window_title = "Open a File"
-mode = 0
-access = 2
+[node name="Pop_up" parent="." instance=ExtResource( 15 )]
+visible = false
+mouse_filter = 2
 
 [connection signal="button_up" from="ColorRect/Closebutton" to="." method="_on_Closebutton_button_up"]
 [connection signal="mouse_entered" from="ColorRect/Closebutton" to="." method="_on_Closebutton_mouse_entered"]
@@ -386,4 +381,3 @@ access = 2
 [connection signal="button_up" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_button_up"]
 [connection signal="mouse_entered" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_entered"]
 [connection signal="mouse_exited" from="ColorRect/MarginContainer/Okbutton" to="." method="_on_Okbutton_mouse_exited"]
-[connection signal="files_selected" from="FileDialog" to="." method="_on_FileDialog_files_selected"]

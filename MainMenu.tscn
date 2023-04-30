@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duck1.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud7.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud5.png" type="Texture" id=16]
-[ext_resource path="res://Scene/FileDialogPopUp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud3.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud4.png" type="Texture" id=19]
 [ext_resource path="res://Assets/RUBBER DUCK.mp3" type="AudioStream" id=20]
@@ -279,10 +278,6 @@ text = "  Fonctionalité pas encore implémentée, sorry   "
 visible = false
 position = Vector2( 58, 11 )
 scale = Vector2( 1, 0.998777 )
-
-[node name="Pop_up" parent="." instance=ExtResource( 17 )]
-visible = false
-mouse_filter = 2
 
 [node name="Nothingtoseehere" type="HBoxContainer" parent="."]
 visible = false

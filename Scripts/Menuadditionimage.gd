@@ -22,7 +22,7 @@ func _on_Closebutton_button_up():
 func _on_Image1_button_up():
 	#SELECTION DE L'IMAGE
 	
-	var popup= get_owner().get_node("Pop_up")
+	var popup = get_node("Pop_up")
 	var dialog = popup.get_node("FileDialog")
 
 	dialog.show()
@@ -53,8 +53,8 @@ func _on_Image1_button_up():
 
 func _on_Image2_button_up():
 	#SELECTION DE L'IMAGE
-	$FileDialog.set_current_path("C://Users/")
-	var popup= get_owner().get_node("Pop_up")
+	#$FileDialog.set_current_path("C://Users/")
+	var popup = get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
 	
@@ -80,8 +80,8 @@ func _on_Image2_button_up():
 
 func _on_Image3_button_up():
 	#SELECTION DE L'IMAGE
-	$FileDialog.set_current_path("C://Users/")
-	var popup= get_owner().get_node("Pop_up")
+	#$FileDialog.set_current_path("C://Users/")
+	var popup = get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
 	
@@ -106,8 +106,8 @@ func _on_Image3_button_up():
 
 func _on_Image4_button_up():
 	#SELECTION DE L'IMAGE
-	$FileDialog.set_current_path("C://Users/")
-	var popup= get_owner().get_node("Pop_up")
+	#$FileDialog.set_current_path("C://Users/")
+	var popup = get_node("Pop_up")
 	popup.visible = true
 	popup.get_node("FileDialog").show()
 	
