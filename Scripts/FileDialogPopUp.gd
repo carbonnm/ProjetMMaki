@@ -26,8 +26,15 @@ func _on_FileDialog_files_selected(paths):
 			image_file.close()
 			
 			
-			dir.copy(paths[0], "res://Assets/temporary_dir/duckeyeclosemouthclose.png")
-			print(image_file)
+			#dir.copy(paths[0], "res://Assets/temporary_dir/duckeyeclosemouthclose.png")
+			if get_node("../../Menuadditionimage").selected_button == 1:
+				dir.copy(paths[0], "res://Assets/temporary_dir/temp1.png")
+			if get_node("../../Menuadditionimage").selected_button == 2:
+				dir.copy(paths[0], "res://Assets/temporary_dir/temp2.png")
+			if get_node("../../Menuadditionimage").selected_button == 3:
+				dir.copy(paths[0], "res://Assets/temporary_dir/temp3.png")
+			if get_node("../../Menuadditionimage").selected_button == 4:
+				dir.copy(paths[0], "res://Assets/temporary_dir/temp4.png")
 			
 			
 			get_node("Ok_menu").visible = true
