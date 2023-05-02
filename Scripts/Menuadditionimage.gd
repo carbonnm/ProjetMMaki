@@ -151,19 +151,20 @@ func _on_Okbutton_button_up():
 	#si il n'y a pas 4 images dans la liste
 		#if images.size() != 4
 		# #get_node("ColorRect/Tryagain").bbcode_text = "Vous devez sélectionner [shake] 4 [/shake] images!"
-	
-		#else
-		var dir = Directory.new()
-		dir.make_dir("res://4ImagesChoix/" + chosen_word)
-		dir.open("res://4ImagesChoix/" + chosen_word)
-		dir.copy(get_node("Pop_up").path1, "res://4ImagesChoix/" + chosen_word +"/" + chosen_word + "1.png")
-		dir.copy(get_node("Pop_up").path2, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "2.png")
-		dir.copy(get_node("Pop_up").path3, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "3.png")
-		dir.copy(get_node("Pop_up").path4, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "4.png")
+		if get_node("ColorRect/Image1/TextureRect").texture == null or get_node("ColorRect/Image2/TextureRect").texture == null or get_node("ColorRect/Image3/TextureRect").texture == null or get_node("ColorRect/Image4/TextureRect").texture == null:
+			get_node("ColorRect/Tryagain").bbcode_text = "Vous devez sélectionner [shake] 4 [/shake] images!"
+		else :
+			var dir = Directory.new()
+			dir.make_dir("res://4ImagesChoix/" + chosen_word)
+			dir.open("res://4ImagesChoix/" + chosen_word)
+			dir.copy(get_node("Pop_up").path1, "res://4ImagesChoix/" + chosen_word +"/" + chosen_word + "1.png")
+			dir.copy(get_node("Pop_up").path2, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "2.png")
+			dir.copy(get_node("Pop_up").path3, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "3.png")
+			dir.copy(get_node("Pop_up").path4, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "4.png")
 		#créer un nouveau répertoire avec le mot (lui enlever les accents?)
 		#renommer les images
 		#les ajouter dans le répertoire crée 
-	
+			visible = false
 	
 	#si aucun mot n'a été entré
 	else:
