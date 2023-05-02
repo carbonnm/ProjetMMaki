@@ -3,6 +3,11 @@ signal chosen_image(paths)
 signal png_ko
 signal too_many_selected
 
+export (String) var path1
+export (String) var path2
+export (String) var path3
+export (String) var path4
+
 func _ready():
 	$FileDialog.set_current_path("C://Users/")
 	#$FileDialog.show()
@@ -18,12 +23,16 @@ func _on_FileDialog_files_selected(paths):
 			emit_signal("png_ko")
 		else:
 			if get_node("../../Menuadditionimage").selected_button == 1:
+				path1 = paths[0]
 				get_node("../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 2:
+				path2 = paths[0]
 				get_node("../../Menuadditionimage/ColorRect/Image2/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 3:
+				path3 = paths[0]
 				get_node("../../Menuadditionimage/ColorRect/Image3/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 4:
+				path4 = paths[0]
 				get_node("../../Menuadditionimage/ColorRect/Image4/TextureRect").texture = load_external_img(paths[0])
 			
 			

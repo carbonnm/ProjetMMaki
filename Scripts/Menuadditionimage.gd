@@ -141,7 +141,7 @@ func _on_Image4_button_up():
 func _on_Okbutton_button_up():
 	
 	chosen_word = get_node("ColorRect/NouveaumotInput").new_name
-	if not (chosen_word==""):
+	if not (chosen_word == ""):
 		pass
 	#check si mot existe pas encore dans répertoires 
 	#si ko
@@ -153,6 +153,13 @@ func _on_Okbutton_button_up():
 		# #get_node("ColorRect/Tryagain").bbcode_text = "Vous devez sélectionner [shake] 4 [/shake] images!"
 	
 		#else
+		var dir = Directory.new()
+		dir.make_dir("res://4ImagesChoix/" + chosen_word)
+		dir.open("res://4ImagesChoix/" + chosen_word)
+		dir.copy(get_node("Pop_up").path1, "res://4ImagesChoix/" + chosen_word +"/" + chosen_word + "1.png")
+		dir.copy(get_node("Pop_up").path2, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "2.png")
+		dir.copy(get_node("Pop_up").path3, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "3.png")
+		dir.copy(get_node("Pop_up").path4, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "4.png")
 		#créer un nouveau répertoire avec le mot (lui enlever les accents?)
 		#renommer les images
 		#les ajouter dans le répertoire crée 
