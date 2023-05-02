@@ -22,6 +22,10 @@ nodes: Nodes to save. (Array)
 func _init(nodes: Array) -> void:
 	save_nodes = nodes
 
+"""
+Function that save nodes, construct the SVG syntax and create the
+SVG file.
+"""
 func export_to_svg() -> void:
 	# Create a save of specified nodes.
 	var save: Dictionary = save()
@@ -41,60 +45,37 @@ func export_to_svg() -> void:
 		file.store_string(svg_string)
 		file.close()
 
+"""
+Function that construct a SVG syntax dictionary.
+
+Parameters:
+-----------
+save: Elements to create the syntax from. (Dictionary)
+
+Returns:
+--------
+The SVG syntax dictionary (Dictionary)
+"""
 func construct_syntax_element(save: Dictionary) -> Dictionary:
-	# Setup style balise.
-	var defs_balise: Dictionary
-	if save["Label"] != []:
-		var custom_svg_style_path: String = ProjectSettings.globalize_path(save["Label"][0].get_font("font").font_data.font_path)
-		var style_balise: Dictionary = SVGSyntax.get_svg_style(custom_svg_style_path)
-		# Setup defs and add the style balise to him.
-		defs_balise = SVGSyntax.get_defs()
-		defs_balise = SVGSyntax.add_svg_child(defs_balise, style_balise)
-	else:
-		defs_balise = {}
+	# Setup defs balise.
+	var defs_balise: Dictionary = setup_defs_balise(save)
 	
 	# Setup svg balise.
-	var svg_viewbox: Array = get_save_corners(save)
-	var origin: Vector2 = svg_viewbox[0]
-	var size: Vector2 = svg_viewbox[1] - svg_viewbox[0]
-	# Add a Margin
-	var margin: Vector2 = Vector2(max(size.x/10, MIN_MARGIN.x), max(size.y/10, MIN_MARGIN.y))
-	origin -= margin
-	size += 2*margin
-	var svg_balise: Dictionary = SVGSyntax.get_svg(origin, size, defs_balise)
-	
-	# Setup a svg rectangle for the image background and add it to svg childs.
-	var background_color: Color = save["BackgroundColor"]
-	var rect_balise: Dictionary = SVGSyntax.get_svg_rect(origin, size, background_color)
-	svg_balise = SVGSyntax.add_svg_child(svg_balise, rect_balise)
+	var svg_balise: Dictionary = setup_svg_balise(save, defs_balise)
 	
 	# Setup paths balises and add them as svg child.
 	for line in save["Line2D"]:
-		var path_d: PoolVector2Array = line.points
-		var path_stroke: Color = line.default_color
-		var path_stroke_width_vector: Vector2 = Vector2(line.width,line.width) * line.scale
-		var path_stroke_width: int = int(path_stroke_width_vector.distance_to(Vector2.ZERO))
-		var path_balise: Dictionary = SVGSyntax.get_svg_path(path_d, path_stroke, path_stroke_width)
+		var path_balise: Dictionary = setup_path_balise(line)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, path_balise)
 	
 	# Setup Labels and add them as svg child.
 	for text_edit in save["Label"]:
-		var text_label: String = text_edit.text
-		var text_position: Vector2 = text_edit.rect_position + text_edit.rect_size/2
-		var text_font_size_vector: Vector2 = text_edit.get_font("font").size * text_edit.rect_scale
-		var text_font_size: int = int((text_font_size_vector.x + text_font_size_vector.y)/2)
-		var text_font_family: String = "custom-font-family" #text_edit.get_font("font").get_name()
-		var text_fill: Color = text_edit.get("custom_colors/font_color")
-		var text_rotation: float = rad2deg(text_edit.rect_rotation)
-		var text_edit_balise: Dictionary = SVGSyntax.get_svg_text(text_label, text_position, text_font_size, text_font_family, text_fill, text_rotation)
+		var text_edit_balise: Dictionary = setup_text_edit_balise(text_edit)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, text_edit_balise)
 	
 	# Setup sprites and add them as svg child.
 	for sprite in save["Sprite"]:
-		var image_position: Vector2 = sprite.position - sprite.get_rect().size/2
-		var image_size: Vector2 = sprite.get_rect().size
-		var image_href: String = ProjectSettings.globalize_path(sprite.texture.resource_path)
-		var sprite_balise: Dictionary = SVGSyntax.get_svg_image(image_position, image_size, image_href)
+		var sprite_balise: Dictionary = setup_sprite_balise(sprite)
 		svg_balise = SVGSyntax.add_svg_child(svg_balise, sprite_balise)
 	
 	# Setup the syntax bloc with the previously setup svg balise
@@ -152,3 +133,118 @@ func get_save_corners(save: Dictionary) -> Array:
 		positions.append(sprite_origin+sprite.get_rect().size)
 	
 	return Utils.get_positions_corners(positions)
+
+"""
+Function that setup the defs balise syntax.
+
+Parameters:
+-----------
+save: Elements to create the syntax from. (Dictionary)
+
+Returns:
+--------
+The defs balise syntax dictionary. (Dictionary)
+"""
+func setup_defs_balise(save: Dictionary) -> Dictionary:
+	# Setup style balise.
+	var defs_balise: Dictionary
+	if save["Label"] != []:
+		# Setup Style balise
+		var custom_svg_style_path: String = ProjectSettings.globalize_path(save["Label"][0].get_font("font").font_data.font_path)
+		var style_balise: Dictionary = SVGSyntax.get_svg_style(custom_svg_style_path)
+		# Setup defs and add the style balise to him.
+		defs_balise = SVGSyntax.get_defs()
+		defs_balise = SVGSyntax.add_svg_child(defs_balise, style_balise)
+	else:
+		defs_balise = {}
+	
+	return defs_balise
+
+"""
+Function that setup the svg balise syntax.
+
+Parameters:
+-----------
+save: Elements to create the syntax from. (Dictionary)
+defs: Defs balise syntax dictionary. (Dictionary)
+
+Returns:
+--------
+The svg balise syntax dictionary. (Dictionary)
+"""
+func setup_svg_balise(save: Dictionary, defs_balise: Dictionary) -> Dictionary:
+	var svg_viewbox: Array = get_save_corners(save)
+	var origin: Vector2 = svg_viewbox[0]
+	var size: Vector2 = svg_viewbox[1] - svg_viewbox[0]
+	# Add a Margin
+	var margin: Vector2 = Vector2(max(size.x/10, MIN_MARGIN.x), max(size.y/10, MIN_MARGIN.y))
+	origin -= margin
+	size += 2*margin
+	
+	var svg_balise: Dictionary = SVGSyntax.get_svg(origin, size, defs_balise)
+	
+	# Setup a svg rectangle for the image background and add it to svg childs.
+	var background_color: Color = save["BackgroundColor"]
+	var rect_balise: Dictionary = SVGSyntax.get_svg_rect(origin, size, background_color)
+	svg_balise = SVGSyntax.add_svg_child(svg_balise, rect_balise)
+	
+	return svg_balise
+
+"""
+Function that setup a path balise syntax.
+
+Parameters:
+-----------
+line: Line to make the path balise. (Line2D)
+
+Returns:
+--------
+The path balise syntax dictionary. (Dictionary)
+"""
+func setup_path_balise(line: Line2D) -> Dictionary:
+	var path_d: PoolVector2Array = line.points
+	var path_stroke: Color = line.default_color
+	var path_stroke_width_vector: Vector2 = Vector2(line.width,line.width) * line.scale
+	var path_stroke_width: int = int(path_stroke_width_vector.distance_to(Vector2.ZERO))
+	
+	return SVGSyntax.get_svg_path(path_d, path_stroke, path_stroke_width)
+
+"""
+Function that setup a text edit balise syntax.
+
+Parameters:
+-----------
+text_edit: Text edit to make the text edit balise. (Object)
+
+Returns:
+--------
+The text edit balise syntax dictionary. (Dictionary)
+"""
+func setup_text_edit_balise(text_edit: Object) -> Dictionary:
+	var text_label: String = text_edit.text
+	var text_position: Vector2 = text_edit.rect_position + text_edit.rect_size/2
+	var text_font_size_vector: Vector2 = text_edit.get_font("font").size * text_edit.rect_scale
+	var text_font_size: int = int((text_font_size_vector.x + text_font_size_vector.y)/2)
+	var text_font_family: String = "custom-font-family" #text_edit.get_font("font").get_name()
+	var text_fill: Color = text_edit.get("custom_colors/font_color")
+	var text_rotation: float = rad2deg(text_edit.rect_rotation)
+	
+	return SVGSyntax.get_svg_text(text_label, text_position, text_font_size, text_font_family, text_fill, text_rotation)
+
+"""
+Function that setup a sprite balise syntax.
+
+Parameters:
+-----------
+sprite: Sprite to make the sprite balise. (Sprite)
+
+Returns:
+--------
+The sprite balise syntax dictionary. (Dictionary)
+"""
+func setup_sprite_balise(sprite: Sprite) -> Dictionary:
+	var image_position: Vector2 = sprite.position - sprite.get_rect().size/2
+	var image_size: Vector2 = sprite.get_rect().size
+	var image_href: String = ProjectSettings.globalize_path(sprite.texture.resource_path)
+	
+	return SVGSyntax.get_svg_image(image_position, image_size, image_href)
