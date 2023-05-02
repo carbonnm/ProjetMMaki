@@ -181,3 +181,15 @@ func _on_Pop_up_chosen_image(paths):
 	current_selected_png = paths[0].ends_with(".png")
 	
 	print("signalworked ",current_selected_png)
+
+
+func _on_FileDialog_file_selected(path):
+	get_node("ColorRect/Image1/TextureRect").texture = load_external_img(path)
+	
+func load_external_img(path):
+	var img = Image.new()
+	img.load(ProjectSettings.globalize_path(path))
+	var texture = ImageTexture.new()
+	texture.create_from_image(img, Texture.FLAG_MIPMAPS)
+	
+	return texture

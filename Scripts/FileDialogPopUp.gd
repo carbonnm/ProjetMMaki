@@ -17,30 +17,28 @@ func _on_FileDialog_files_selected(paths):
 			#checks whether it's a png 
 			emit_signal("png_ko")
 		else:
-			
-			var dir = Directory.new()
-			dir.open("res://Assets")
-			
-			var image_file = File.new()
-			image_file.open(paths[0], File.READ)
-			image_file.close()
-			
-			
-			#dir.copy(paths[0], "res://Assets/temporary_dir/duckeyeclosemouthclose.png")
 			if get_node("../../Menuadditionimage").selected_button == 1:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp1.png")
+				get_node("../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 2:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp2.png")
+				get_node("../../Menuadditionimage/ColorRect/Image2/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 3:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp3.png")
+				get_node("../../Menuadditionimage/ColorRect/Image3/TextureRect").texture = load_external_img(paths[0])
 			if get_node("../../Menuadditionimage").selected_button == 4:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp4.png")
+				get_node("../../Menuadditionimage/ColorRect/Image4/TextureRect").texture = load_external_img(paths[0])
 			
 			
-			get_node("Ok_menu").visible = true
+			#get_node("Ok_menu").visible = true
 			#emits the signal that will be received by the Menuadditionimagescript
 			#emit_signal("chosen_image",paths)
 			#visible = false
 			#print(paths)
 			
 
+
+func load_external_img(path):
+	var img = Image.new()
+	img.load(ProjectSettings.globalize_path(path))
+	var texture = ImageTexture.new()
+	texture.create_from_image(img, Texture.FLAG_MIPMAPS)
+	
+	return texture

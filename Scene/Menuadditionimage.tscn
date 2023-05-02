@@ -285,6 +285,12 @@ margin_bottom = 397.549
 rect_pivot_offset = Vector2( 131.942, 85.5272 )
 custom_styles/normal = ExtResource( 12 )
 
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Image4"]
+margin_left = 4.0
+margin_top = 6.0
+margin_right = 188.0
+margin_bottom = 121.0
+
 [node name="Okimagedance4" type="AnimatedSprite" parent="ColorRect"]
 visible = false
 position = Vector2( 165.719, 335.694 )
@@ -298,6 +304,11 @@ margin_right = 456.051
 margin_bottom = 530.116
 rect_pivot_offset = Vector2( 131.942, 85.5272 )
 custom_styles/normal = ExtResource( 12 )
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Image3"]
+margin_top = 4.0
+margin_right = 190.0
+margin_bottom = 123.0
 
 [node name="Okimagedance3" type="AnimatedSprite" parent="ColorRect"]
 visible = false
@@ -313,6 +324,10 @@ margin_bottom = 401.825
 rect_pivot_offset = Vector2( 131.942, 85.5272 )
 custom_styles/normal = ExtResource( 12 )
 
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Image2"]
+margin_right = 190.0
+margin_bottom = 121.0
+
 [node name="Okimagedance2" type="AnimatedSprite" parent="ColorRect"]
 visible = false
 position = Vector2( 558.705, 342.09 )
@@ -327,6 +342,10 @@ margin_right = 453.94
 margin_bottom = 272.465
 rect_pivot_offset = Vector2( 131.942, 85.5272 )
 custom_styles/normal = ExtResource( 12 )
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Image1"]
+margin_right = 186.0
+margin_bottom = 125.0
 
 [node name="Okimagedance" type="AnimatedSprite" parent="ColorRect"]
 visible = false
