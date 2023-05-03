@@ -2,35 +2,17 @@ extends Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if get_node("../../../Menuadditionimage").selected_button == 1:
-		var texture = load("res://Assets/temporary_dir/temp1.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("Image_placeholder").set_button_icon(text)
-	if get_node("../../../Menuadditionimage").selected_button == 2:
-		var texture = load("res://Assets/temporary_dir/temp2.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("Image_placeholder").set_button_icon(text)
-	if get_node("../../../Menuadditionimage").selected_button == 3:
-		var texture = load("res://Assets/temporary_dir/temp3.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("Image_placeholder").set_button_icon(text)
-	if get_node("../../../Menuadditionimage").selected_button == 4:
-		var texture = load("res://Assets/temporary_dir/temp4.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("Image_placeholder").set_button_icon(text)
+	pass
 
+
+func load_external_img(path):
+	var img = Image.new()
+	img.load(ProjectSettings.globalize_path(path))
+	var texture = ImageTexture.new()
+	texture.create_from_image(img, Texture.FLAG_MIPMAPS)
+	texture.set_size_override(Vector2(189, 126))
+	
+	return texture
 
 
 func _on_Closebutton_pressed():
@@ -40,31 +22,11 @@ func _on_Closebutton_pressed():
 func _on_Ok_button_pressed():
 	#print(get_node("../../../Menuadditionimage").selected_button)
 	if get_node("../../../Menuadditionimage").selected_button == 1:
-		var texture = load("res://Assets/temporary_dir/temp1.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("../../../Menuadditionimage/ColorRect/Image1").set_button_icon(text)
+		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path1)
 	if get_node("../../../Menuadditionimage").selected_button == 2:
-		var texture = load("res://Assets/temporary_dir/temp2.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("../../../Menuadditionimage/ColorRect/Image2").set_button_icon(text)
+		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path2)
 	if get_node("../../../Menuadditionimage").selected_button == 3:
-		var texture = load("res://Assets/temporary_dir/temp3.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("../../../Menuadditionimage/ColorRect/Image3").set_button_icon(text)
+		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path3)
 	if get_node("../../../Menuadditionimage").selected_button == 4:
-		var texture = load("res://Assets/temporary_dir/temp4.png")
-		var image = texture.get_data()
-		image.resize(189, 126)
-		var text = ImageTexture.new()
-		text.create_from_image(image)
-		get_node("../../../Menuadditionimage/ColorRect/Image4").set_button_icon(text)
+		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path4)
 	visible = false

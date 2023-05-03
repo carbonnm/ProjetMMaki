@@ -24,19 +24,19 @@ func _on_FileDialog_files_selected(paths):
 		else:
 			if get_node("../../Menuadditionimage").selected_button == 1:
 				path1 = paths[0]
-				get_node("../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(paths[0])
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path1)
 			if get_node("../../Menuadditionimage").selected_button == 2:
 				path2 = paths[0]
-				get_node("../../Menuadditionimage/ColorRect/Image2/TextureRect").texture = load_external_img(paths[0])
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path2)
 			if get_node("../../Menuadditionimage").selected_button == 3:
 				path3 = paths[0]
-				get_node("../../Menuadditionimage/ColorRect/Image3/TextureRect").texture = load_external_img(paths[0])
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path3)
 			if get_node("../../Menuadditionimage").selected_button == 4:
 				path4 = paths[0]
-				get_node("../../Menuadditionimage/ColorRect/Image4/TextureRect").texture = load_external_img(paths[0])
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path4)
 			
 			
-			#get_node("Ok_menu").visible = true
+			get_node("Ok_menu").visible = true
 			#emits the signal that will be received by the Menuadditionimagescript
 			#emit_signal("chosen_image",paths)
 			#visible = false
