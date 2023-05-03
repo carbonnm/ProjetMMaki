@@ -49,6 +49,6 @@ func load_external_img(path):
 	img.load(ProjectSettings.globalize_path(path))
 	var texture = ImageTexture.new()
 	texture.create_from_image(img, Texture.FLAG_MIPMAPS)
-	texture.set_size_override(Vector2(189, 126))
+	texture.set_size_override(Vector2(1024, 1024))
 	
 	return texture
