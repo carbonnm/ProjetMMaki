@@ -4,7 +4,7 @@ export var mainScene : PackedScene
 var donetimer = false
 func _ready():
 	var timer = Timer.new()
-	timer.wait_time = 10
+	timer.wait_time = 180
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	add_child(timer) #to process
 	timer.start() #to start
