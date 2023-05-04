@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[node name="Fond" type="Panel"]
+[node name="Pop_up" type="Panel"]
 margin_top = 2.0
 margin_right = 1023.0
 margin_bottom = 606.0

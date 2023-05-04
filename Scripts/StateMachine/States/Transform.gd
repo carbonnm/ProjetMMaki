@@ -3,8 +3,6 @@ extends AState
 func enter() -> void:
 	canvas._action_menu.hide()
 
-func exit() -> void:
-	canvas.snapshots.create_snapshot()
 
 func input(_event: InputEvent) -> IState:
 	#yield(get_tree().create_timer(1.0), "timeout")
@@ -41,6 +39,7 @@ func input(_event: InputEvent) -> IState:
 
 func physics_process(delta: float) -> IState:
 	if canvas.get_node("ChoixImage").visible == true:
+		canvas.snapshots.create_snapshot()
 		return switch_to_previous_state()
 	return null
 

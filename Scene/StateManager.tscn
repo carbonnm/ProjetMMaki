@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/StateMachine/StateManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine/States/Drawing.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scripts/StateMachine/States/Ungroup.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/StateMachine/States/pen_size.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/StateMachine/States/Transform.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/StateMachine/States/ColorPicker.gd" type="Script" id=21]
 
 [node name="StateManager" type="Node"]
 script = ExtResource( 1 )
@@ -45,6 +46,7 @@ create_title_node = NodePath("CreateTitle")
 pen_size_node = NodePath("PenSize")
 svg_save_node = NodePath("SVGSave")
 transform_node = NodePath("Transform")
+color_picker_node = NodePath("ColorPicker")
 
 [node name="ZoomCamera" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 5 )
@@ -116,4 +118,8 @@ signal_switcher_node = NodePath("..")
 
 [node name="Transform" type="Node" parent="SignalSwitcher"]
 script = ExtResource( 20 )
+signal_switcher_node = NodePath("..")
+
+[node name="ColorPicker" type="Node" parent="SignalSwitcher"]
+script = ExtResource( 21 )
 signal_switcher_node = NodePath("..")

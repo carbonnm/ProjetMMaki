@@ -205,3 +205,6 @@ func _on_Create_annotation_pressed():
 
 func _on_Save_canvas_pressed():
 	switch_signal("SVGSave")
+
+func _on_Color_pressed():
+	switch_signal('ColorPicker')

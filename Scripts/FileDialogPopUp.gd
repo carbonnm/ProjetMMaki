@@ -3,10 +3,17 @@ signal chosen_image(paths)
 signal png_ko
 signal too_many_selected
 
+export (String) var path1
+export (String) var path2
+export (String) var path3
+export (String) var path4
+
 func _ready():
-	$FileDialog.set_current_path("C://Users/")
-	#$FileDialog.show()
+	var name : String = OS.get_environment("USERNAME")
+	#print(name)
 	$FileDialog.invalidate()
+	$FileDialog.set_current_path("C://Users/"+ name + "/Downloads/")
+	#$FileDialog.show()
 
 
 func _on_FileDialog_files_selected(paths):
@@ -17,24 +24,18 @@ func _on_FileDialog_files_selected(paths):
 			#checks whether it's a png 
 			emit_signal("png_ko")
 		else:
-			
-			var dir = Directory.new()
-			dir.open("res://Assets")
-			
-			var image_file = File.new()
-			image_file.open(paths[0], File.READ)
-			image_file.close()
-			
-			
-			#dir.copy(paths[0], "res://Assets/temporary_dir/duckeyeclosemouthclose.png")
 			if get_node("../../Menuadditionimage").selected_button == 1:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp1.png")
+				path1 = paths[0]
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path1)
 			if get_node("../../Menuadditionimage").selected_button == 2:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp2.png")
+				path2 = paths[0]
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path2)
 			if get_node("../../Menuadditionimage").selected_button == 3:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp3.png")
+				path3 = paths[0]
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path3)
 			if get_node("../../Menuadditionimage").selected_button == 4:
-				dir.copy(paths[0], "res://Assets/temporary_dir/temp4.png")
+				path4 = paths[0]
+				get_node("Ok_menu/Image_placeholder").texture = load_external_img(path4)
 			
 			
 			get_node("Ok_menu").visible = true
@@ -44,3 +45,12 @@ func _on_FileDialog_files_selected(paths):
 			#print(paths)
 			
 
+
+func load_external_img(path):
+	var img = Image.new()
+	img.load(ProjectSettings.globalize_path(path))
+	var texture = ImageTexture.new()
+	texture.create_from_image(img, Texture.FLAG_MIPMAPS)
+	texture.set_size_override(Vector2(1024, 1024))
+	
+	return texture

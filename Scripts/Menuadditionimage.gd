@@ -141,8 +141,7 @@ func _on_Image4_button_up():
 func _on_Okbutton_button_up():
 	
 	chosen_word = get_node("ColorRect/NouveaumotInput").new_name
-	if not (chosen_word==""):
-		pass
+	if not (chosen_word == ""):
 	#check si mot existe pas encore dans répertoires 
 	#si ko
 	#get_node("ColorRect/Tryagain").bbcode_text = "Le mot [shake] .png! [/shake] a déjà été ajouté!"
@@ -151,12 +150,29 @@ func _on_Okbutton_button_up():
 	#si il n'y a pas 4 images dans la liste
 		#if images.size() != 4
 		# #get_node("ColorRect/Tryagain").bbcode_text = "Vous devez sélectionner [shake] 4 [/shake] images!"
-	
-		#else
-		#créer un nouveau répertoire avec le mot (lui enlever les accents?)
-		#renommer les images
-		#les ajouter dans le répertoire crée 
-	
+		if get_node("ColorRect/Image1/TextureRect").texture == null or get_node("ColorRect/Image2/TextureRect").texture == null or get_node("ColorRect/Image3/TextureRect").texture == null or get_node("ColorRect/Image4/TextureRect").texture == null:
+			get_node("ColorRect/Tryagain").bbcode_text = "Vous devez sélectionner [shake] 4 [/shake] images!"
+		else :
+			var dir = Directory.new()
+			dir.make_dir("res://4ImagesChoix/" + chosen_word)
+			dir.open("res://4ImagesChoix/" + chosen_word)
+			dir.copy(get_node("Pop_up").path1, "res://4ImagesChoix/" + chosen_word +"/" + chosen_word + "1.png")
+			dir.copy(get_node("Pop_up").path2, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "2.png")
+			dir.copy(get_node("Pop_up").path3, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "3.png")
+			dir.copy(get_node("Pop_up").path4, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "4.png")
+			
+			dir.list_dir_begin()
+			while true:
+				var file_name = dir.get_next()
+				if file_name == "":
+					break
+				else :
+					pass
+			dir.list_dir_end()
+			#Change the size of the images to 180X180 to fit later
+			
+		
+			visible = false
 	
 	#si aucun mot n'a été entré
 	else:
@@ -181,3 +197,4 @@ func _on_Pop_up_chosen_image(paths):
 	current_selected_png = paths[0].ends_with(".png")
 	
 	print("signalworked ",current_selected_png)
+
