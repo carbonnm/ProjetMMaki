@@ -24,9 +24,9 @@ func _on_Ok_button_pressed():
 	if get_node("../../../Menuadditionimage").selected_button == 1:
 		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path1)
 	if get_node("../../../Menuadditionimage").selected_button == 2:
-		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path2)
+		get_node("../../../Menuadditionimage/ColorRect/Image2/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path2)
 	if get_node("../../../Menuadditionimage").selected_button == 3:
-		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path3)
+		get_node("../../../Menuadditionimage/ColorRect/Image3/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path3)
 	if get_node("../../../Menuadditionimage").selected_button == 4:
-		get_node("../../../Menuadditionimage/ColorRect/Image1/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path4)
+		get_node("../../../Menuadditionimage/ColorRect/Image4/TextureRect").texture = load_external_img(get_node("../../../Menuadditionimage/Pop_up").path4)
 	visible = false
