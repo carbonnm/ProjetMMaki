@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clef usb4.png-af47e5871ad84ccc3225a5fb95aae689.stex"
+path="res://.import/souris1.png-842e010f9de0844fa3a1ddced11ac7ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Cle usb/clef usb4.png"
-dest_files=[ "res://.import/clef usb4.png-af47e5871ad84ccc3225a5fb95aae689.stex" ]
+source_file="res://4ImagesChoix/Souris/souris1.png"
+dest_files=[ "res://.import/souris1.png-842e010f9de0844fa3a1ddced11ac7ba.stex" ]
 
 [params]
 
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=0
+size_limit=180
 detect_3d=false
 svg/scale=1.0

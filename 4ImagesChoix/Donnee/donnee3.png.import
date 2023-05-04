@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Data_Base.webp-2e165ee5e0c72a7396844f631bcf2f3a.stex"
+path="res://.import/donnee3.png-ebd53469a9a813d97df9e86cb2df942c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Balise/Data_Base.webp"
-dest_files=[ "res://.import/Data_Base.webp-2e165ee5e0c72a7396844f631bcf2f3a.stex" ]
+source_file="res://4ImagesChoix/Donnee/donnee3.png"
+dest_files=[ "res://.import/donnee3.png-ebd53469a9a813d97df9e86cb2df942c.stex" ]
 
 [params]
 
@@ -30,6 +30,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=0
+size_limit=180
 detect_3d=false
 svg/scale=1.0

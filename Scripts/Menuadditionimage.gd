@@ -142,7 +142,6 @@ func _on_Okbutton_button_up():
 	
 	chosen_word = get_node("ColorRect/NouveaumotInput").new_name
 	if not (chosen_word == ""):
-		pass
 	#check si mot existe pas encore dans répertoires 
 	#si ko
 	#get_node("ColorRect/Tryagain").bbcode_text = "Le mot [shake] .png! [/shake] a déjà été ajouté!"
@@ -161,9 +160,18 @@ func _on_Okbutton_button_up():
 			dir.copy(get_node("Pop_up").path2, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "2.png")
 			dir.copy(get_node("Pop_up").path3, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "3.png")
 			dir.copy(get_node("Pop_up").path4, "res://4ImagesChoix/" + chosen_word + "/" + chosen_word + "4.png")
-		#créer un nouveau répertoire avec le mot (lui enlever les accents?)
-		#renommer les images
-		#les ajouter dans le répertoire crée 
+			
+			dir.list_dir_begin()
+			while true:
+				var file_name = dir.get_next()
+				if file_name == "":
+					break
+				else :
+					pass
+			dir.list_dir_end()
+			#Change the size of the images to 180X180 to fit later
+			
+		
 			visible = false
 	
 	#si aucun mot n'a été entré

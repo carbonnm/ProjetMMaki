@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Caractère3.png-012d17bc9e07c9be39f9b6566fb278c0.stex"
+path="res://.import/Debit4.png-ae09e683af7585bcdb6877edd5b46610.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Caractère/Caractère3.png"
-dest_files=[ "res://.import/Caractère3.png-012d17bc9e07c9be39f9b6566fb278c0.stex" ]
+source_file="res://4ImagesChoix/Debit/Debit4.png"
+dest_files=[ "res://.import/Debit4.png-ae09e683af7585bcdb6877edd5b46610.stex" ]
 
 [params]
 

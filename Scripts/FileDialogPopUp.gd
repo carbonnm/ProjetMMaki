@@ -11,9 +11,9 @@ export (String) var path4
 func _ready():
 	var name : String = OS.get_environment("USERNAME")
 	#print(name)
+	$FileDialog.invalidate()
 	$FileDialog.set_current_path("C://Users/"+ name + "/Downloads/")
 	#$FileDialog.show()
-	$FileDialog.invalidate()
 
 
 func _on_FileDialog_files_selected(paths):
