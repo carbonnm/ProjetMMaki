@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Scene/Menuadditionimage.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud6.png" type="Texture" id=10]
-[ext_resource path="res://Assets/temporary_dir/duckeyeclosemouthclose.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/duckeyeclosemouthclose.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duckeyeclose.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duck.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duck1.png" type="Texture" id=14]
@@ -50,7 +50,7 @@ use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.682353, 0.670588, 0.329412, 1 )
+bg_color = Color( 0.478431, 0.313726, 0.0156863, 1 )
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -130,7 +130,7 @@ default_font = SubResource( 45 )
 
 [sub_resource type="SpriteFrames" id=47]
 animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "default",
 "speed": 5.0
@@ -172,25 +172,24 @@ texture = ExtResource( 4 )
 position = Vector2( 13, 92 )
 scale = Vector2( 3.52578, 6.0247 )
 amount = 15
-lifetime = 0.9
 speed_scale = 0.1
-randomness = 0.24
+randomness = 0.33
 lifetime_randomness = 0.44
 emission_shape = 2
 emission_rect_extents = Vector2( 300, 1 )
 spread = 180.0
 gravity = Vector2( 0, 111 )
-color = Color( 0.333333, 0.701961, 0.180392, 1 )
+color = Color( 0.427451, 0.847059, 0.109804, 1 )
 color_ramp = SubResource( 13 )
 hue_variation = 0.51
 hue_variation_random = 0.55
 
 [node name="Titre" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 288.0
-margin_top = 172.0
-margin_right = 544.0
-margin_bottom = 244.0
+margin_left = 277.0
+margin_top = 36.0
+margin_right = 618.0
+margin_bottom = 155.0
 rect_scale = Vector2( 1.89974, 3.01013 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -198,9 +197,11 @@ theme = SubResource( 8 )
 custom_colors/default_color = Color( 1, 0.560784, 0.560784, 1 )
 custom_constants/table_vseparation = -1
 bbcode_enabled = true
-bbcode_text = "[wave amp=9]MMaki[/wave]"
+bbcode_text = "
+[wave  amp=50.0 freq=1.70]MMaki[/wave]"
 tab_size = 1
-text = "MMaki"
+text = "
+MMaki"
 
 [node name="ContainerBoutonCreer" type="MarginContainer" parent="."]
 margin_left = 319.0
@@ -247,7 +248,7 @@ margin_bottom = 75.0
 custom_colors/font_color_disabled = Color( 0.372549, 0.427451, 0.337255, 1 )
 custom_colors/font_color_focus = Color( 0.423529, 0.560784, 0.333333, 1 )
 custom_colors/font_color = Color( 0.423529, 0.560784, 0.333333, 1 )
-custom_colors/font_color_hover = Color( 0.423529, 0.560784, 0.333333, 1 )
+custom_colors/font_color_hover = Color( 0.866667, 0.952941, 0.811765, 1 )
 custom_colors/font_color_pressed = Color( 0.423529, 0.560784, 0.333333, 1 )
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
@@ -291,6 +292,7 @@ script = ExtResource( 21 )
 position = Vector2( 84, 127 )
 scale = Vector2( 0.456693, 0.472917 )
 frames = SubResource( 47 )
+speed_scale = 0.7
 
 [node name="Duckspeak" type="RichTextLabel" parent="Nothingtoseehere/Notaneasteregg"]
 margin_left = -195.0
