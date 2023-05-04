@@ -25,6 +25,8 @@ onready var _action_menu := $CanvasLayer/ActionMenu
 onready var pm = $PopupMenu
 onready var states = $StateManager
 onready var PanelVisibility := get_node("CanvasLayer")
+onready var _text_popup_rcc = get_node("CanvasLayer/RightClickContainer/Create texte")
+
 
 # Script exported variables
 export (float) var linewidth = 4.0
@@ -59,12 +61,6 @@ func _on_BackgroundColored_gui_input(event: InputEvent):
 
 func _physics_process(delta):
 	states.physics_process(delta)
-
-
-
-
-
-
 
 
 
@@ -197,12 +193,16 @@ func UpdateSelectionArea():
 
 func _on_Create_text_pressed():
 	var _text_popup = get_node("CanvasLayer/Panel2/VBoxContainer/Create texte")
-	get_node("TitleCreationPopUp").rect_global_position = Vector2(_text_popup.get_global_rect().position.x - 154, _text_popup.get_global_rect().position.y)
+	var viewport_size = get_viewport_rect().size
+	var camera_position = _camera.position
+	var camera_right_edge = camera_position.x + viewport_size.x / 2.0
+	var camera_top_edge = camera_position.y - viewport_size.y / 2.0
+
+	get_node("TitleCreationPopUp").rect_global_position = Vector2(camera_right_edge-_text_popup.get_global_rect().size.x-153, camera_top_edge+184)
 	get_node("TitleCreationPopUp").visible = true
 
 func _on_Create_texte_RCC_pressed():
-	var _text_popup = get_node("CanvasLayer/RightClickContainer/Create texte")
-	get_node("TitleCreationPopUp").rect_global_position = Vector2(_text_popup.get_global_rect().position.x - 153, _text_popup.get_global_rect().position.y)
+	get_node("TitleCreationPopUp").rect_global_position = Vector2((_text_popup_rcc.get_global_rect().position.x - 153), _text_popup_rcc.get_global_rect().position.y)
 	get_node("TitleCreationPopUp").visible = true
 	
 
