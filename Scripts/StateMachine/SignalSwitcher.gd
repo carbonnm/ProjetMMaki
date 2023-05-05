@@ -115,8 +115,8 @@ func keyboard_input(event: InputEvent) -> IState:
 	if Input.is_action_just_pressed("Transform"):
 		return transform
 	
-	if Input.is_action_just_pressed("ColorPicker"):
-		return color_picker
+#	if Input.is_action_just_pressed("ColorPicker"):
+#		return color_picker
 	
 	return null
 

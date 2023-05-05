@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
@@ -30,11 +30,13 @@
 [ext_resource path="res://Scripts/Options.gd" type="Script" id=28]
 [ext_resource path="res://Assets/Graphics/Image/RightClick.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Graphics/Image/hand_icon.svg" type="Texture" id=30]
+[ext_resource path="res://Scene/ZoomMenuButton.gd" type="Script" id=31]
 [ext_resource path="res://Assets/Graphics/Image/ungroup.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Graphics/Image/littlecoller.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Graphics/Image/littlesave.png" type="Texture" id=34]
 [ext_resource path="res://maki_theme.tres" type="Theme" id=35]
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=37]
 [ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
 [ext_resource path="res://Scripts/pensizecircle.gd" type="Script" id=39]
 [ext_resource path="res://Scene/PopUpMot.tscn" type="PackedScene" id=40]
@@ -51,6 +53,18 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 37 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.898039, 0.847059, 0.847059, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="Canvas" type="Node2D"]
 script = ExtResource( 2 )
@@ -136,14 +150,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 138.0
+margin_bottom = 109.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 142.0
+margin_top = 113.0
 margin_right = 153.0
-margin_bottom = 216.0
+margin_bottom = 187.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -239,7 +253,7 @@ icon = ExtResource( 17 )
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 286.0
 margin_right = 218.0
-margin_bottom = 350.0
+margin_bottom = 321.0
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
 
@@ -369,6 +383,51 @@ margin_bottom = 315.0
 text = "Dégrouper"
 icon = ExtResource( 32 )
 
+[node name="ZoomMenuButton" type="Control" parent="CanvasLayer"]
+margin_left = 742.0
+margin_top = 1.0
+margin_right = 881.0
+margin_bottom = 37.0
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="More" type="Button" parent="CanvasLayer/ZoomMenuButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -20.0
+text = "+"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Less" type="Button" parent="CanvasLayer/ZoomMenuButton"]
+anchor_bottom = 1.0
+margin_right = 20.0
+text = "-"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ZoomText" type="Label" parent="CanvasLayer/ZoomMenuButton"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -17.0
+margin_right = -20.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Titlemenuaddition" parent="." instance=ExtResource( 8 )]
 visible = false
 
@@ -441,8 +500,8 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Save canvas" to="StateManager" method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]
@@ -451,6 +510,8 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Draw" to="StateManager" method="_on_Draw_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
+[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/More" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), true ]]
+[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/Less" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), false ]]
 [connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
 [connection signal="create_title_button" from="TitleCreationPopUp/CreateTitleButton" to="StateManager" method="_on_CreateTitleButton_create_title_button"]
 [connection signal="create_sub_title_button" from="TitleCreationPopUp/CreateSubTitleButton" to="StateManager" method="_on_CreateSubTitleButton_create_sub_title_button"]

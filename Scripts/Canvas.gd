@@ -52,6 +52,7 @@ func _ready() -> void:
 	# Setup canvas (Name; (sub-(sub-))Title Color/Font; Background Color
 	custom = Custom.new(SceneSwitcher)
 	get_node("BackgroundColored").color = custom.customization["backgroundcolor"]
+	$CanvasLayer/ZoomMenuButton.cam = _camera
 
 func _input(event: InputEvent):
 	states.keyboard_input(event)
@@ -225,3 +226,6 @@ func word_recognition_python() :
 	var output : Array = []
 	var _error = OS.execute("python", ["Scripts/WordRecognition.py"], true, output)
 	return output
+
+
+
