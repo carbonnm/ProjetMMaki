@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reseau neurone2.png-a6e934ef129b312686057cb540def793.stex"
+path="res://.import/Mot4.png-edbaf481a7e54de2e39c55b547fe7ad0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Reseau de neurones/reseau neurone2.png"
-dest_files=[ "res://.import/reseau neurone2.png-a6e934ef129b312686057cb540def793.stex" ]
+source_file="res://4ImagesChoix/Mot/Mot4.png"
+dest_files=[ "res://.import/Mot4.png-edbaf481a7e54de2e39c55b547fe7ad0.stex" ]
 
 [params]
 
