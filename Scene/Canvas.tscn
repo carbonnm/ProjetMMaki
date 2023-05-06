@@ -1,9 +1,8 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/zoom.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Graphics/Image/text.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Themes/Theme_rightclick.tres" type="StyleBox" id=4]
 [ext_resource path="res://Assets/Graphics/Image/couleur.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Graphics/Image/grouper.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/FPS CHECK.gd" type="Script" id=7]
@@ -22,9 +21,7 @@
 [ext_resource path="res://Scripts/CanvasLayer.gd" type="Script" id=20]
 [ext_resource path="res://Assets/Graphics/Image/sélection.png" type="Texture" id=21]
 [ext_resource path="res://Scripts/LineCounter.gd" type="Script" id=22]
-[ext_resource path="res://addons/color_picker_text_button/styleboxflat.tres" type="StyleBox" id=23]
 [ext_resource path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" type="Script" id=24]
-[ext_resource path="res://addons/color_picker_text_button/color_picker_text_button.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/Position_Mouse.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/BackgroundColor.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/Options.gd" type="Script" id=28]
@@ -37,7 +34,6 @@
 [ext_resource path="res://maki_theme.tres" type="Theme" id=35]
 [ext_resource path="res://Assets/Graphics/Image/Littletext.png" type="Texture" id=36]
 [ext_resource path="res://Assets/Fonts/arial_narrow_7.ttf" type="DynamicFontData" id=37]
-[ext_resource path="res://Assets/Graphics/Image/littlecouleur.png" type="Texture" id=38]
 [ext_resource path="res://Scripts/pensizecircle.gd" type="Script" id=39]
 [ext_resource path="res://Scene/PopUpMot.tscn" type="PackedScene" id=40]
 [ext_resource path="res://Scene/ChoixImage.tscn" type="PackedScene" id=41]
@@ -46,13 +42,6 @@
 [ext_resource path="res://Scene/TitleCreationPopUp.tscn" type="PackedScene" id=44]
 [ext_resource path="res://Scene/SavePopUpConfirmation.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Assets/Graphics/Image/littleCrayon.png" type="Texture" id=46]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.81, 0.81, 0.81, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="DynamicFont" id=4]
 size = 24
@@ -129,37 +118,40 @@ anchor_bottom = 1.0
 margin_left = -224.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -76.5
-margin_top = -71.0
-margin_right = 76.5
-margin_bottom = 71.0
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Selection" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_right = 153.0
-margin_bottom = 70.0
+margin_top = 200.0
+margin_right = 179.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 64 )
 text = "Sélectionner"
 icon = ExtResource( 21 )
+expand_icon = true
 
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 74.0
-margin_right = 153.0
-margin_bottom = 142.0
+margin_top = 268.0
+margin_right = 179.0
+margin_bottom = 332.0
+rect_min_size = Vector2( 0, 64 )
 text = "Dessiner"
 icon = ExtResource( 10 )
+expand_icon = true
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 146.0
-margin_right = 153.0
-margin_bottom = 216.0
+margin_top = 336.0
+margin_right = 179.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 64 )
 text = "Déplacer"
 icon = ExtResource( 30 )
+expand_icon = true
 
 [node name="Settings" type="Button" parent="CanvasLayer"]
 margin_right = 38.0
@@ -176,86 +168,66 @@ margin_left = 1024.0
 margin_right = 1248.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -112.0
-margin_top = -289.0
-margin_right = 106.0
-margin_bottom = 213.0
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+alignment = 1
 script = ExtResource( 28 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Color" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_right = 218.0
-margin_bottom = 60.0
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = ExtResource( 23 )
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/Panel2/VBoxContainer"]
+margin_top = 132.0
+margin_right = 179.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 64, 64 )
+expand_icon = true
+color = Color( 0.909804, 0.698039, 0.133333, 1 )
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel2/VBoxContainer/ColorPickerButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+text = "Changer Couleur"
 icon = ExtResource( 5 )
-script = ExtResource( 25 )
-text_value = "Changer couleur"
-style = ExtResource( 23 )
-color = Color( 0.909804, 0.698039, 0.133333, 1 )
-light_text_color = Color( 0, 0, 0, 1 )
-dark_text_color = Color( 1, 1, 1, 1 )
-text_color_flip_threshold = 1.0
-fresh = false
-
-[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer/Panel2/VBoxContainer/Color"]
-margin_right = 298.0
-margin_bottom = 288.0
-
-[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 314.0
-margin_bottom = 466.0
-color = Color( 0.909804, 0.698039, 0.133333, 1 )
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel2/VBoxContainer/Color"]
-margin_right = 218.0
-margin_bottom = 60.0
-mouse_filter = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/Panel2/VBoxContainer/Color/CenterContainer"]
-margin_left = 57.0
-margin_top = 23.0
-margin_right = 160.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Changer couleur"
+expand_icon = true
 
 [node name="Create texte" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 64.0
-margin_right = 218.0
-margin_bottom = 134.0
+margin_top = 200.0
+margin_right = 179.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 64 )
 text = "Créer texte"
 icon = ExtResource( 3 )
+expand_icon = true
 
 [node name="Save canvas" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 138.0
-margin_right = 218.0
-margin_bottom = 208.0
+margin_top = 268.0
+margin_right = 179.0
+margin_bottom = 332.0
+rect_min_size = Vector2( 0, 64 )
 text = "Enregistrer"
 icon = ExtResource( 18 )
+expand_icon = true
 
 [node name="Paste" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 212.0
-margin_right = 218.0
-margin_bottom = 282.0
+margin_top = 336.0
+margin_right = 179.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 64 )
 text = "Coller"
 icon = ExtResource( 17 )
+expand_icon = true
 
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
-margin_top = 286.0
-margin_right = 218.0
-margin_bottom = 354.0
+margin_top = 404.0
+margin_right = 179.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 0, 64 )
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
+expand_icon = true
 
 [node name="RightClickButton" type="Button" parent="CanvasLayer"]
 margin_left = 986.0
@@ -268,7 +240,6 @@ __meta__ = {
 }
 
 [node name="RightClickContainer" type="VBoxContainer" parent="CanvasLayer"]
-visible = false
 margin_right = 218.0
 margin_bottom = 230.0
 script = ExtResource( 15 )
@@ -276,49 +247,56 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Color" type="Button" parent="CanvasLayer/RightClickContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/RightClickContainer"]
 margin_right = 218.0
-margin_bottom = 28.0
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = ExtResource( 23 )
-icon = ExtResource( 38 )
-script = ExtResource( 25 )
-text_value = "Changer couleur"
-style = ExtResource( 23 )
+margin_bottom = 36.0
+rect_min_size = Vector2( 64, 36 )
+expand_icon = true
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
-light_text_color = Color( 0, 0, 0, 1 )
-dark_text_color = Color( 1, 1, 1, 1 )
-text_color_flip_threshold = 1.0
-fresh = false
+
+[node name="Button" type="Button" parent="CanvasLayer/RightClickContainer/ColorPickerButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+text = "Changer Couleur"
+icon = ExtResource( 5 )
+expand_icon = true
 
 [node name="Create texte" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 32.0
+margin_top = 40.0
 margin_right = 218.0
-margin_bottom = 68.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 0, 36 )
 text = "Créer texte"
 icon = ExtResource( 36 )
+expand_icon = true
 
 [node name="Save canvas" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 72.0
+margin_top = 80.0
 margin_right = 218.0
-margin_bottom = 108.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 36 )
 text = "Enregistrer"
 icon = ExtResource( 34 )
+expand_icon = true
 
 [node name="Paste" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 112.0
+margin_top = 120.0
 margin_right = 218.0
-margin_bottom = 148.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 36 )
 text = "Coller"
 icon = ExtResource( 33 )
+expand_icon = true
 
 [node name="Pen size" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 152.0
+margin_top = 160.0
 margin_right = 218.0
-margin_bottom = 187.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 0, 36 )
 text = "Taille d'écriture"
 icon = ExtResource( 46 )
+expand_icon = true
 
 [node name="ActionMenu" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
@@ -384,10 +362,10 @@ text = "Dégrouper"
 icon = ExtResource( 32 )
 
 [node name="ZoomMenuButton" type="Control" parent="CanvasLayer"]
-margin_left = 742.0
-margin_top = 1.0
-margin_right = 881.0
-margin_bottom = 37.0
+margin_left = 648.0
+margin_top = 2.0
+margin_right = 787.0
+margin_bottom = 38.0
 script = ExtResource( 31 )
 __meta__ = {
 "_edit_group_": true
@@ -488,15 +466,17 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings" to="CanvasLayer" method="_on_Button_pressed"]
-[connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="CanvasLayer/RightClickContainer" method="_on_Color_color_changed"]
-[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Color" to="StateManager" method="_on_Color_pressed"]
+[connection signal="color_changed" from="CanvasLayer/Panel2/VBoxContainer/ColorPickerButton" to="CanvasLayer/RightClickContainer" method="_on_ColorPickerButton_color_changed"]
+[connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/ColorPickerButton" to="StateManager" method="_on_ColorPickerButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Create texte" to="." method="_on_Create_text_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Save canvas" to="StateManager" method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel2/VBoxContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickButton" to="CanvasLayer" method="_on_RightClickButton_pressed"]
-[connection signal="color_changed" from="CanvasLayer/RightClickContainer/Color" to="CanvasLayer/RightClickContainer" method="_on_Color_color_changed"]
-[connection signal="pressed" from="CanvasLayer/RightClickContainer/Color" to="StateManager" method="_on_Color_pressed"]
+[connection signal="color_changed" from="CanvasLayer/RightClickContainer/ColorPickerButton" to="CanvasLayer/RightClickContainer" method="_on_ColorPickerButton_color_changed"]
+[connection signal="popup_closed" from="CanvasLayer/RightClickContainer/ColorPickerButton" to="CanvasLayer/RightClickContainer" method="_on_ColorPickerButton_popup_closed"]
+[connection signal="pressed" from="CanvasLayer/RightClickContainer/ColorPickerButton" to="CanvasLayer/RightClickContainer" method="_on_ColorPickerButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightClickContainer/ColorPickerButton" to="StateManager" method="_on_ColorPickerButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Save canvas" to="StateManager" method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]

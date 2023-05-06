@@ -38,7 +38,7 @@ func DrawLine() -> Area2D:
 	_current_line = LINE.new()
 	canvas._elements.add_child(_current_line)
 	_current_line.Setup()
-	_current_line.set_params(canvas.linewidth * canvas._camera.zoom.x, canvas.RCC.color, canvas._camera.zoom)
+	_current_line.set_params(canvas.linewidth * canvas._camera.zoom.x, canvas.detached_RCC.color, canvas._camera.zoom)
 	_current_line._line.add_point(canvas.get_global_mouse_position())
 	
 	return _current_line
