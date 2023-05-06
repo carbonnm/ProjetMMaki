@@ -150,14 +150,14 @@ icon = ExtResource( 21 )
 [node name="Drawing" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 margin_top = 74.0
 margin_right = 153.0
-margin_bottom = 109.0
+margin_bottom = 142.0
 text = "Dessiner"
 icon = ExtResource( 10 )
 
 [node name="MoveCanvas" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 113.0
+margin_top = 146.0
 margin_right = 153.0
-margin_bottom = 187.0
+margin_bottom = 216.0
 text = "Déplacer"
 icon = ExtResource( 30 )
 
@@ -212,7 +212,7 @@ margin_bottom = 288.0
 [node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Panel2/VBoxContainer/Color/PopupPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 312.0
+margin_right = 314.0
 margin_bottom = 466.0
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -253,7 +253,7 @@ icon = ExtResource( 17 )
 [node name="Pen size" type="Button" parent="CanvasLayer/Panel2/VBoxContainer"]
 margin_top = 286.0
 margin_right = 218.0
-margin_bottom = 321.0
+margin_bottom = 354.0
 text = "Taille d'écriture"
 icon = ExtResource( 10 )
 
@@ -500,8 +500,8 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Save canvas" to="StateManager" method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]

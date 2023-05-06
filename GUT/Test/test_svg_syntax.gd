@@ -196,7 +196,6 @@ func test_get_svg_string():
 	var syntax: Dictionary = {"xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>","doctype": "<!DOCTYPE svg>","svg": svg}
 	# Act
 	var result: String = _save.get_svg_string(syntax)
-	print(result)
 	# Assert
 	var expected_result: String = "<?xml version=\"1.0\" encoding=\"UTF-8\".>.*\n.*"
 	expected_result += "<!DOCTYPE svg>.*\n.*"

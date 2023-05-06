@@ -8,4 +8,4 @@ margin_bottom = 605.0
 rect_min_size = Vector2( 740, 250 )
 script = ExtResource( 1 )
 _run_on_load = true
-_directory1 = "res://GUT/Test/Unit"
+_directory1 = "res://GUT/Test"
