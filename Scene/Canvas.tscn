@@ -373,19 +373,25 @@ __meta__ = {
 }
 
 [node name="More" type="Button" parent="CanvasLayer/ZoomMenuButton"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -20.0
-text = "+"
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -18.0
+margin_right = 20.0
+margin_bottom = 18.0
+text = "-"
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Less" type="Button" parent="CanvasLayer/ZoomMenuButton"]
-anchor_bottom = 1.0
-margin_right = 20.0
-text = "-"
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -18.0
+margin_bottom = 18.0
+text = "+"
 __meta__ = {
 "_edit_group_": true
 }
@@ -481,8 +487,8 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Create texte" to="." method="_on_Create_texte_RCC_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Save canvas" to="StateManager" method="_on_Save_canvas_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Paste" to="StateManager" method="_on_Paste_pressed"]
-[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_Size_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightClickContainer/Pen size" to="StateManager" method="_on_Pen_size_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Delete" to="StateManager" method="_on_Delete_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Drag And Drop" to="StateManager" method="_on_Drag_And_Drop_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Rescale" to="StateManager" method="_on_Rescale_pressed"]
