@@ -29,6 +29,15 @@ func keyboard_input(_event: InputEvent) -> IState:
 		if Input.is_action_just_pressed("ui_cancel"):
 			spuc.hide()
 			return switch_to_previous_state()
+			
+		if Input.is_action_just_pressed("ui_accept"):
+			var save_node = canvas.Utils.get_match_string_node("Elements", canvas)
+			var background_node = canvas.Utils.get_match_string_node("BackgroundColor", canvas)
+			var svg_compiler = SVGCompiler.new([save_node, background_node])
+			svg_compiler.export_to_svg()
+			
+			spuc.hide()
+			return switch_to_previous_state()
 		
 		return null
 	
