@@ -2,13 +2,13 @@ class_name RightClickContainer
 extends VBoxContainer
 
 var color := Color.white
-var color_picker = false
+var color_picker := false
 onready var screen_size_x : int = $"../../BackgroundColored".rect_size.x
 onready var screen_size_y : int = $"../../BackgroundColored".rect_size.y
 export (Vector2) var right_click_position
 
 func _ready() -> void:
-	color = $Color.color
+	color = $ColorPickerButton.color
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -51,12 +51,18 @@ func _input(event: InputEvent) -> void:
 				if left || right || top || bottom:
 					hide()
 
-#func _on_Color_pressed() -> void:
-#	color_picker = true
 
-func _on_Color_color_changed(_color: Color) -> void:
+func _on_ColorPickerButton_color_changed(_color: Color) -> void:
 	color = _color
+	$ColorPickerButton.color = _color
+	$"../Panel2/VBoxContainer/ColorPickerButton".color = _color
 
-#func _on_Color_popup_hide() -> void:
-#	color_picker = false
-#	hide()
+
+func _on_ColorPickerButton_pressed() -> void:
+	color_picker = true
+
+
+func _on_ColorPickerButton_popup_closed() -> void:
+	color_picker = false
+	hide()
+	
