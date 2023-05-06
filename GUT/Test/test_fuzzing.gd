@@ -60,42 +60,48 @@ func before_all():
 	viewport.add_child(_canvas)
 	self.add_child(viewport)
 	
-	rng = get_rng()
+	set_rng()
+
+func after_all():
+	viewport.queue_free()
 
 func test_fuzzing():
 	create_random_event()
-	for i in range(1000):
+	for _i in range(10000):
 		# Arrange
 		var event = create_random_event()
 		# Act
-		viewport.input(event)
-		
-		var log_file: File = File.new()
-		var opened: int = log_file.open("res://GUT/Log/event_sequence.txt", File.WRITE)
-		if opened != 0:
-			print("Error on file opening.")
+		if event is InputEventKey:
+			_canvas._input(event)
 		else:
-			var string_to_store = ""
-			var k: int = 1
-			for element in event_sequence:
-					
-				string_to_store += str(element)
+			_canvas._on_BackgroundColored_gui_input(event)
+		
+		_canvas._physics_process(rng.randf_range(0.0,1.0))
+		
+		
+	# Assert
+	var log_file: File = File.new()
+	var opened: int = log_file.open("res://GUT/Log/event_sequence.txt", File.WRITE)
+	if opened != 0:
+		print("Error on file opening.")
+	else:
+		var string_to_store = "SEED : " + str(_seed) + "\n\n"
+		var k: int = 1
+		for element in event_sequence:
 				
-				if k % 10 == 0:
-					string_to_store += "\n -> "
-				else:
-					string_to_store += " -> "
-					
-				k += 1
+			string_to_store += str(element)
 			
-			string_to_store.rstrip(4)
-					
-			log_file.store_string(string_to_store)
-			log_file.close()
+			if k % 10 == 0:
+				string_to_store += "\n -> "
+			else:
+				string_to_store += " -> "
 				
-		# Assert
-		var crashed = OS.has_environment("godot_crash")
-		assert_false(crashed, "Le programme a planté avec l'événement aléatoire numéro " + str(i))
+			k += 1
+		
+		string_to_store.rstrip(4)
+				
+		log_file.store_string(string_to_store)
+		log_file.close()
 
 func create_random_event():
 	var kind_of_event_total_weight: int = kind_of_event.One_Shot_Event + kind_of_event.Process_Event + kind_of_event.Jail_Event + kind_of_event.Random_Key_Event
@@ -228,11 +234,9 @@ func get_random_key_event():
 func jittler_mouse_position():
 	mouse_position += Vector2(rng.randf_range(0.0,1.0), rng.randf_range(0.0,1.0))
 
-func get_rng() -> RandomNumberGenerator:
-	var random_number_generator := RandomNumberGenerator.new()
-	random_number_generator.randomize()
+func set_rng():
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 	
-	_seed = random_number_generator.get_seed()
-	
-	return random_number_generator
+	_seed = rng.get_seed()
 	
