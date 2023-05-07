@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Balise2.png-d35d3bf5c45b51fcf3a93ca0563bd4c0.stex"
+path="res://.import/balise2.png-89d3a5b2f4a9ec42d6bab2e9289ffdf0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Balise/Balise2.png"
-dest_files=[ "res://.import/Balise2.png-d35d3bf5c45b51fcf3a93ca0563bd4c0.stex" ]
+source_file="res://4ImagesChoix/Balise/balise2.png"
+dest_files=[ "res://.import/balise2.png-89d3a5b2f4a9ec42d6bab2e9289ffdf0.stex" ]
 
 [params]
 
