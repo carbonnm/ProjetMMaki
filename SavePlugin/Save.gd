@@ -1,3 +1,4 @@
+class_name Save
 extends Node
 
 export var MAX_SAVES: int = 10
@@ -150,5 +151,3 @@ func apply_global_transform(node: Node) -> Node:
 		dup_node.transform *= transform
 	
 	return dup_node
-
-
