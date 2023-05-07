@@ -44,6 +44,7 @@ func _on_Titleinputbutton_pressed():
 	get_node("../ChoixImage").visible = true
 	
 	canvas.word_recognized = ""
+	get_node("ModifiedWord").clear()
 
 
 func load_external_img(path):
