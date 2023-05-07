@@ -1,5 +1,7 @@
 extends AState
 
+export (Vector2) var upper_left
+
 func enter() -> void:
 	canvas._action_menu.hide()
 
@@ -7,11 +9,11 @@ func enter() -> void:
 func input(_event: InputEvent) -> IState:
 	#yield(get_tree().create_timer(1.0), "timeout")
 	if canvas.word_recognized == "":	
-		var path = "ScreenShots/screenshot.png"
-			
+		var path = "ScreenShots/screenshot.png"	
 		var corners : Array = canvas.get_selection_area_corner()
-		var upper_left : Vector2 = corners[0]
-		canvas.drawing_position = upper_left
+		upper_left = corners[0]
+		if upper_left != Vector2.INF:
+			canvas.drawing_position = upper_left
 		var bottom_right : Vector2 = corners[1]
 		var size_area : Vector2 = bottom_right - upper_left
 		var _center_selected_lines = (bottom_right + upper_left)/2

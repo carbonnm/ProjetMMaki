@@ -6,6 +6,7 @@ onready var image3 = $Image3
 onready var image4 = $Image4
 
 onready var canvas = $"../"
+onready var transform = $"../StateManager/SignalSwitcher/Transform"
 
 
 onready var one_pressed = false
@@ -23,6 +24,7 @@ func _on_OKButton_pressed():
 	var r_shape = RectangleShape2D.new()
 	var drawing = Sprite.new()
 	drawing.texture = chosen_button_icon
+	
 	var center : Vector2 = canvas.drawing_position + Vector2(drawing.texture.get_width()/2, drawing.texture.get_height()/2)
 	r_shape.extents = Vector2((drawing.texture.get_width())/2, (drawing.texture.get_height())/2)
 	c_shape.shape = r_shape
