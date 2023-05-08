@@ -190,15 +190,15 @@ func _on_PopupMenu_mouse_exited():
 
 func _on_CreateTitleButton_create_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
-	canvas.hide_rightclick_panel()
+	
 
 func _on_CreateSubTitleButton_create_sub_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
-	canvas.hide_rightclick_panel()
+	
 
 func _on_CreateSubSubTitleButton_create_sub_sub_title_button(type):
 	switch_signal_with_arguments("CreateTitle", [type])
-	canvas.hide_rightclick_panel()
+	
 
 func _on_Create_annotation_pressed():
 	canvas.hide_rightclick_panel()
