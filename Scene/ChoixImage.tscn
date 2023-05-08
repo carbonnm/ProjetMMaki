@@ -186,6 +186,7 @@ margin_right = 522.0
 margin_bottom = 293.0
 custom_styles/pressed = SubResource( 10 )
 custom_styles/normal = SubResource( 18 )
+expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Image1"]
 margin_right = 192.0
@@ -198,6 +199,7 @@ margin_right = 719.0
 margin_bottom = 292.0
 custom_styles/pressed = SubResource( 11 )
 custom_styles/normal = SubResource( 19 )
+expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Image2"]
 margin_right = 191.0
@@ -210,6 +212,7 @@ margin_right = 522.0
 margin_bottom = 493.0
 custom_styles/pressed = SubResource( 12 )
 custom_styles/normal = SubResource( 20 )
+expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Image3"]
 margin_right = 196.0
@@ -222,6 +225,7 @@ margin_right = 719.0
 margin_bottom = 493.0
 custom_styles/pressed = SubResource( 13 )
 custom_styles/normal = SubResource( 21 )
+expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Image4"]
 margin_right = 191.0

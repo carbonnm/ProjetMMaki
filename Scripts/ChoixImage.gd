@@ -1,10 +1,9 @@
 extends Control
 
-onready var image1 = $Image1/TextureRect
-onready var image2 = $Image2/TextureRect
-onready var image3 = $Image3/TextureRect
-onready var image4 = $Image4/TextureRect
-
+onready var image1 = $Image1
+onready var image2 = $Image2
+onready var image3 = $Image3
+onready var image4 = $Image4
 onready var canvas = $"../"
 
 
@@ -38,7 +37,7 @@ func _on_Image1_pressed():
 	if one_pressed:
 		get_node(current_pressed).modulate = Color(1.00,1.00,1.00,1)
 	one_pressed = true
-	chosen_button_icon = image1.texture
+	chosen_button_icon = image1.icon
 	get_node("Image1").modulate = Color(0.57,0.52,0.52,1)
 	current_pressed = "Image1"
 
@@ -46,7 +45,7 @@ func _on_Image2_pressed():
 	if one_pressed:
 		get_node(current_pressed).modulate = Color(1.00,1.00,1.00,1)
 	one_pressed = true
-	chosen_button_icon = image2.texture
+	chosen_button_icon = image2.icon
 	get_node("Image2").modulate = Color(0.57,0.52,0.52,1)
 	current_pressed = "Image2"
 
@@ -55,7 +54,7 @@ func _on_Image3_pressed():
 	if one_pressed:
 		get_node(current_pressed).modulate = Color(1.00,1.00,1.00,1)
 	one_pressed = true
-	chosen_button_icon = image3.texture
+	chosen_button_icon = image3.icon
 	get_node("Image3").modulate = Color(0.57,0.52,0.52,1)
 	current_pressed = "Image3"
 
@@ -63,7 +62,7 @@ func _on_Image4_pressed():
 	if one_pressed:
 		get_node(current_pressed).modulate = Color(1.00,1.00,1.00,1)
 	one_pressed = true
-	chosen_button_icon = image4.texture
+	chosen_button_icon = image4.icon
 	get_node("Image4").modulate = Color(0.57,0.52,0.52,1)
 	current_pressed = "Image4"
 	
