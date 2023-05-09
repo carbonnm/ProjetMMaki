@@ -378,7 +378,7 @@ anchor_bottom = 0.5
 margin_top = -18.0
 margin_right = 20.0
 margin_bottom = 18.0
-text = "-"
+text = "+"
 __meta__ = {
 "_edit_group_": true
 }
@@ -391,7 +391,7 @@ anchor_bottom = 0.5
 margin_left = -20.0
 margin_top = -18.0
 margin_bottom = 18.0
-text = "+"
+text = "-"
 __meta__ = {
 "_edit_group_": true
 }
