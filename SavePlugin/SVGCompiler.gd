@@ -36,9 +36,21 @@ func export_to_svg() -> void:
 	# Create the SVG string.
 	var svg_string: String = SVGSyntax.get_svg_string(construction)
 	
+	var path = ""
+	if OS.has_feature("editor"):
+		# Exécuté depuis l'éditeur.
+		# Le chemin `path` contiendra le chemin absolu vers le fichier `hello.txt` à la racine du projet.
+		path = ProjectSettings.globalize_path(SAVE_FILE)
+	else:
+		# Exécuté depuis le projet exporté.
+		# Le chemin `path` contiendra le chemin absolu vers le fichier `hello.txt` avec l'exécutable.
+		# Ça n'est *pas* la identique à `ProjectSettings.globalize_path()` avec un chemin `res://`,
+		# mais c'est assez proche dans le principe.
+		path = OS.get_executable_path().get_base_dir().plus_file("../../SavePlugin/Saves/mon_fichier_svg.svg")
+	
 	# Create the SVG file.
 	var file: File = File.new()
-	var opened: int = file.open(SAVE_FILE, File.WRITE)
+	var opened: int = file.open(path, File.WRITE)
 	if opened != 0:
 		print("Error on file opening.")
 	else:
