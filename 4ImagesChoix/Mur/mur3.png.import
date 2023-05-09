@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mur3.png-10039eaf264b97ca4e8f019d3952e10a.stex"
+path="res://.import/mur3.png-bfc94ab27a6e1283a87692bb0ed6773b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Mur/mur3.png"
-dest_files=[ "res://.import/mur3.png-10039eaf264b97ca4e8f019d3952e10a.stex" ]
+source_file="res://4ImagesChoix/mur/mur3.png"
+dest_files=[ "res://.import/mur3.png-bfc94ab27a6e1283a87692bb0ed6773b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/adresse url4.png-bd77d018c69ad1345a281728767f42f2.stex"
+path="res://.import/adresse url4.png-4bf0b226f630844093573b79711e13f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Adresse url/adresse url4.png"
-dest_files=[ "res://.import/adresse url4.png-bd77d018c69ad1345a281728767f42f2.stex" ]
+source_file="res://4ImagesChoix/adresse url/adresse url4.png"
+dest_files=[ "res://.import/adresse url4.png-4bf0b226f630844093573b79711e13f4.stex" ]
 
 [params]
 

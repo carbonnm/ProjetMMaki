@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boucle1.png-4dd2fe120baa27dfbefd2c8524fa8710.stex"
+path="res://.import/boucle1.png-f9ba14a614dd1ae0ead196a9c8d57605.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Boucle/boucle1.png"
-dest_files=[ "res://.import/boucle1.png-4dd2fe120baa27dfbefd2c8524fa8710.stex" ]
+source_file="res://4ImagesChoix/boucle/boucle1.png"
+dest_files=[ "res://.import/boucle1.png-f9ba14a614dd1ae0ead196a9c8d57605.stex" ]
 
 [params]
 

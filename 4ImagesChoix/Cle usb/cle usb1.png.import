@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cle usb1.png-d0215f1a1fc0617240a5e8e349e7e2a7.stex"
+path="res://.import/cle usb1.png-e671feafb02cd365d393d25d69a79d98.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Cle usb/cle usb1.png"
-dest_files=[ "res://.import/cle usb1.png-d0215f1a1fc0617240a5e8e349e7e2a7.stex" ]
+source_file="res://4ImagesChoix/cle usb/cle usb1.png"
+dest_files=[ "res://.import/cle usb1.png-e671feafb02cd365d393d25d69a79d98.stex" ]
 
 [params]
 

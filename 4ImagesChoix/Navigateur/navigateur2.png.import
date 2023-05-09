@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/navigateur2.png-6cfbd96dd3c660467af5d8385b7543e5.stex"
+path="res://.import/navigateur2.png-00bfe747743396bc80968e36ce03fdbd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Navigateur/navigateur2.png"
-dest_files=[ "res://.import/navigateur2.png-6cfbd96dd3c660467af5d8385b7543e5.stex" ]
+source_file="res://4ImagesChoix/navigateur/navigateur2.png"
+dest_files=[ "res://.import/navigateur2.png-00bfe747743396bc80968e36ce03fdbd.stex" ]
 
 [params]
 

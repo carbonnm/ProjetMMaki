@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/classeur4.png-46047ee1f5fd2acc6dbed04eb638de8a.stex"
+path="res://.import/classeur4.png-c25267fac4a9af6b0bf791aad726802a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Classeur/classeur4.png"
-dest_files=[ "res://.import/classeur4.png-46047ee1f5fd2acc6dbed04eb638de8a.stex" ]
+source_file="res://4ImagesChoix/classeur/classeur4.png"
+dest_files=[ "res://.import/classeur4.png-c25267fac4a9af6b0bf791aad726802a.stex" ]
 
 [params]
 

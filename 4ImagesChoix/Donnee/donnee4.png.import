@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/donnee4.png-1dcc1b0b1fbd1307daf3678f8b760e59.stex"
+path="res://.import/donnee4.png-3d7f71e0f30871be05d9ab6f10f24b74.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Donnee/donnee4.png"
-dest_files=[ "res://.import/donnee4.png-1dcc1b0b1fbd1307daf3678f8b760e59.stex" ]
+source_file="res://4ImagesChoix/donnee/donnee4.png"
+dest_files=[ "res://.import/donnee4.png-3d7f71e0f30871be05d9ab6f10f24b74.stex" ]
 
 [params]
 

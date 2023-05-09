@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/connexion4.png-e7dd5980767602f3ec5a22c3a67a6419.stex"
+path="res://.import/connexion4.png-30ed10645bd787119c892dc02a5afa14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Connexion/connexion4.png"
-dest_files=[ "res://.import/connexion4.png-e7dd5980767602f3ec5a22c3a67a6419.stex" ]
+source_file="res://4ImagesChoix/connexion/connexion4.png"
+dest_files=[ "res://.import/connexion4.png-30ed10645bd787119c892dc02a5afa14.stex" ]
 
 [params]
 

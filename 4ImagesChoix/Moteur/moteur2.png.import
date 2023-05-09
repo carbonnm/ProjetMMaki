@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moteur2.png-a8c88f740d9fd20d77cbc05ab925e54e.stex"
+path="res://.import/moteur2.png-fa721dc044092e0435e284dc5a0e21af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Moteur/moteur2.png"
-dest_files=[ "res://.import/moteur2.png-a8c88f740d9fd20d77cbc05ab925e54e.stex" ]
+source_file="res://4ImagesChoix/moteur/moteur2.png"
+dest_files=[ "res://.import/moteur2.png-fa721dc044092e0435e284dc5a0e21af.stex" ]
 
 [params]
 

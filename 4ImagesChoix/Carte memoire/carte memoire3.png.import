@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/carte memoire3.png-5c4e4f36020d8f031c7086e3a6b3a66e.stex"
+path="res://.import/carte memoire3.png-89b06d41942eb3863e230515cd3451d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Carte memoire/carte memoire3.png"
-dest_files=[ "res://.import/carte memoire3.png-5c4e4f36020d8f031c7086e3a6b3a66e.stex" ]
+source_file="res://4ImagesChoix/carte memoire/carte memoire3.png"
+dest_files=[ "res://.import/carte memoire3.png-89b06d41942eb3863e230515cd3451d6.stex" ]
 
 [params]
 

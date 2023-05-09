@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/architecture3.png-4b6ea837e8df40ffc4edecb44c03dcad.stex"
+path="res://.import/architecture3.png-acb843c2b5dfb6b4988b3018086dc61d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Architecture/architecture3.png"
-dest_files=[ "res://.import/architecture3.png-4b6ea837e8df40ffc4edecb44c03dcad.stex" ]
+source_file="res://4ImagesChoix/architecture/architecture3.png"
+dest_files=[ "res://.import/architecture3.png-acb843c2b5dfb6b4988b3018086dc61d.stex" ]
 
 [params]
 

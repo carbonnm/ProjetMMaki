@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bus1.png-0878c942ed0ae21ca5f5dca5d4867838.stex"
+path="res://.import/bus1.png-f4a6a94ec4af50f0dd7c9c3074e64057.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Bus/bus1.png"
-dest_files=[ "res://.import/bus1.png-0878c942ed0ae21ca5f5dca5d4867838.stex" ]
+source_file="res://4ImagesChoix/bus/bus1.png"
+dest_files=[ "res://.import/bus1.png-f4a6a94ec4af50f0dd7c9c3074e64057.stex" ]
 
 [params]
 

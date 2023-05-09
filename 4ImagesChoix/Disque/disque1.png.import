@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/disque1.png-80f3b6b25cdd53ad8775cd6ec2e26167.stex"
+path="res://.import/disque1.png-a0af16213c326ac44766ab8fd6945413.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Disque/disque1.png"
-dest_files=[ "res://.import/disque1.png-80f3b6b25cdd53ad8775cd6ec2e26167.stex" ]
+source_file="res://4ImagesChoix/disque/disque1.png"
+dest_files=[ "res://.import/disque1.png-a0af16213c326ac44766ab8fd6945413.stex" ]
 
 [params]
 

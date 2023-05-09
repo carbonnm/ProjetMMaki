@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CPU3.png-dac865ed9bca1a9f11972eaacd96f21f.stex"
+path="res://.import/cpu3.png-91ee8c862d76add993a9db9adf355ec2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/CPU/CPU3.png"
-dest_files=[ "res://.import/CPU3.png-dac865ed9bca1a9f11972eaacd96f21f.stex" ]
+source_file="res://4ImagesChoix/cpu/cpu3.png"
+dest_files=[ "res://.import/cpu3.png-91ee8c862d76add993a9db9adf355ec2.stex" ]
 
 [params]
 

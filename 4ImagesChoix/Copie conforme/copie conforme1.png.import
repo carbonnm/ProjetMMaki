@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/copie conforme1.png-689ff91856073b9a1a3b6067eff9486c.stex"
+path="res://.import/copie conforme1.png-e6fcfe8fd6f2ad92b95cccba0f5f6a07.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Copie conforme/copie conforme1.png"
-dest_files=[ "res://.import/copie conforme1.png-689ff91856073b9a1a3b6067eff9486c.stex" ]
+source_file="res://4ImagesChoix/copie conforme/copie conforme1.png"
+dest_files=[ "res://.import/copie conforme1.png-e6fcfe8fd6f2ad92b95cccba0f5f6a07.stex" ]
 
 [params]
 

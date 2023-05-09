@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/onglet2.png-674b9eb8ae06eb0e7855b5d33db2d485.stex"
+path="res://.import/onglet2.png-beefa7451564a0ecaf06381565eb083a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Onglet/onglet2.png"
-dest_files=[ "res://.import/onglet2.png-674b9eb8ae06eb0e7855b5d33db2d485.stex" ]
+source_file="res://4ImagesChoix/onglet/onglet2.png"
+dest_files=[ "res://.import/onglet2.png-beefa7451564a0ecaf06381565eb083a.stex" ]
 
 [params]
 

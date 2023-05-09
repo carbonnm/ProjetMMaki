@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mot3.png-49b04e103d10ccdc012f51c8a454416f.stex"
+path="res://.import/mot3.png-8749bf8bcc87a042f534f6296cda2a9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Mot/Mot3.png"
-dest_files=[ "res://.import/Mot3.png-49b04e103d10ccdc012f51c8a454416f.stex" ]
+source_file="res://4ImagesChoix/mot/mot3.png"
+dest_files=[ "res://.import/mot3.png-8749bf8bcc87a042f534f6296cda2a9c.stex" ]
 
 [params]
 

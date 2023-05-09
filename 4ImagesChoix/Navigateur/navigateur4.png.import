@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/navigateur4.png-eac2e6f322bba77c2fb91d48d638aadd.stex"
+path="res://.import/navigateur4.png-a41e312ecf58225ae1bdcf7d1e6f3fd0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Navigateur/navigateur4.png"
-dest_files=[ "res://.import/navigateur4.png-eac2e6f322bba77c2fb91d48d638aadd.stex" ]
+source_file="res://4ImagesChoix/navigateur/navigateur4.png"
+dest_files=[ "res://.import/navigateur4.png-a41e312ecf58225ae1bdcf7d1e6f3fd0.stex" ]
 
 [params]
 

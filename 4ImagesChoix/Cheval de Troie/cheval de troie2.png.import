@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cheval de troie2.png-0454ad1bae2512af55b1b6da567de103.stex"
+path="res://.import/cheval de troie2.png-2eb95dd6b2ea14b0f35565f4e5b8dde6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Cheval de Troie/cheval de troie2.png"
-dest_files=[ "res://.import/cheval de troie2.png-0454ad1bae2512af55b1b6da567de103.stex" ]
+source_file="res://4ImagesChoix/cheval de troie/cheval de troie2.png"
+dest_files=[ "res://.import/cheval de troie2.png-2eb95dd6b2ea14b0f35565f4e5b8dde6.stex" ]
 
 [params]
 

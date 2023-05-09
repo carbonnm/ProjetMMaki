@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bibliotheque4.png-31fb91ea9ebbdd7594dc1b3d346794ae.stex"
+path="res://.import/bibliotheque4.png-155a5b7daee57e5d0e3c0bd232a4f921.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Bibliotheque/bibliotheque4.png"
-dest_files=[ "res://.import/bibliotheque4.png-31fb91ea9ebbdd7594dc1b3d346794ae.stex" ]
+source_file="res://4ImagesChoix/bibliotheque/bibliotheque4.png"
+dest_files=[ "res://.import/bibliotheque4.png-155a5b7daee57e5d0e3c0bd232a4f921.stex" ]
 
 [params]
 

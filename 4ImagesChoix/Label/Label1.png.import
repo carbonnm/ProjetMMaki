@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Label1.png-d47abd50df4dac51527fbe7e605fa667.stex"
+path="res://.import/label1.png-78db149da1462e0e5712d8e62b4edf2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Label/Label1.png"
-dest_files=[ "res://.import/Label1.png-d47abd50df4dac51527fbe7e605fa667.stex" ]
+source_file="res://4ImagesChoix/label/label1.png"
+dest_files=[ "res://.import/label1.png-78db149da1462e0e5712d8e62b4edf2d.stex" ]
 
 [params]
 

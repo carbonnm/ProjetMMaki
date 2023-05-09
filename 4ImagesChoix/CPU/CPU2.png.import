@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CPU2.png-e2fe758182301735d6c1da1d9f31eb67.stex"
+path="res://.import/cpu2.png-05955c391fe9dbdd7333974a33dda6ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/CPU/CPU2.png"
-dest_files=[ "res://.import/CPU2.png-e2fe758182301735d6c1da1d9f31eb67.stex" ]
+source_file="res://4ImagesChoix/cpu/cpu2.png"
+dest_files=[ "res://.import/cpu2.png-05955c391fe9dbdd7333974a33dda6ea.stex" ]
 
 [params]
 

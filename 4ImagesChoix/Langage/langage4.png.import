@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/langage4.png-0722da3dad78cb62bec76caabd7ea134.stex"
+path="res://.import/langage4.png-336caf1ebb09f5fb3f90f56d6106de27.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Langage/langage4.png"
-dest_files=[ "res://.import/langage4.png-0722da3dad78cb62bec76caabd7ea134.stex" ]
+source_file="res://4ImagesChoix/langage/langage4.png"
+dest_files=[ "res://.import/langage4.png-336caf1ebb09f5fb3f90f56d6106de27.stex" ]
 
 [params]
 

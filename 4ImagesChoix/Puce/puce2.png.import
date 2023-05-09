@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/puce2.png-b1c466be19469a86ae912980b739c919.stex"
+path="res://.import/puce2.png-7e77cbb7e040e2ce4c240bd13e8080c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Puce/puce2.png"
-dest_files=[ "res://.import/puce2.png-b1c466be19469a86ae912980b739c919.stex" ]
+source_file="res://4ImagesChoix/puce/puce2.png"
+dest_files=[ "res://.import/puce2.png-7e77cbb7e040e2ce4c240bd13e8080c0.stex" ]
 
 [params]
 

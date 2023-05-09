@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/souris1.png-842e010f9de0844fa3a1ddced11ac7ba.stex"
+path="res://.import/souris1.png-8bdef95ec0dbca69ffef8a7f5eb5ed51.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/Souris/souris1.png"
-dest_files=[ "res://.import/souris1.png-842e010f9de0844fa3a1ddced11ac7ba.stex" ]
+source_file="res://4ImagesChoix/souris/souris1.png"
+dest_files=[ "res://.import/souris1.png-8bdef95ec0dbca69ffef8a7f5eb5ed51.stex" ]
 
 [params]
 
