@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Modes/Rotation.gd"
 }, {
+"base": "Node",
+"class": "Save",
+"language": "GDScript",
+"path": "res://SavePlugin/Save.gd"
+}, {
 "base": "Area2D",
 "class": "Stroke",
 "language": "GDScript",
@@ -68,6 +73,7 @@ _global_script_class_icons={
 "IState": "",
 "RightClickContainer": "",
 "Rotation": "",
+"Save": "",
 "Stroke": "",
 "Title": ""
 }

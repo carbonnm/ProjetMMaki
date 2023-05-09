@@ -7,6 +7,9 @@ onready var image4 = $Image4
 onready var canvas = $"../"
 
 
+var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
+
+
 onready var one_pressed = false
 onready var current_pressed
 var chosen_button_icon
@@ -28,7 +31,7 @@ func _on_OKButton_pressed():
 	area.position = center
 	area.add_child(c_shape)
 	area.add_child(drawing)
-	get_node("../Elements").add_child(area)
+	get_parent().Utils.get_match_string_node("Elements", get_parent()).add_child(area)
 	visible = false
 
 
