@@ -77,3 +77,7 @@ func _on_OKButton_mouse_entered():
 
 func _on_OKButton_mouse_exited():
 	get_node("OKButton/DancingOk").bbcode_text = "Ok"
+
+
+func _on_exitButton_pressed():
+	visible = false

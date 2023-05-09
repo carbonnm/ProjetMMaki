@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
+[ext_resource path="res://Assets/Themes/Titlemenuaddition.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/ChoixImage.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=7]
 
@@ -144,6 +145,17 @@ font_data = ExtResource( 7 )
 [sub_resource type="Theme" id=15]
 default_font = SubResource( 14 )
 
+[sub_resource type="ShaderMaterial" id=22]
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.807843, 0.0823529, 0.0823529, 1 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.807843, 0.0823529, 0.0823529, 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.807843, 0.0823529, 0.0823529, 1 )
+
 [node name="ChoixImage" type="Control"]
 anchor_left = 0.296
 anchor_top = 0.204
@@ -169,10 +181,10 @@ theme = SubResource( 1 )
 custom_styles/panel = SubResource( 17 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 334.0
-margin_top = 57.0
-margin_right = 712.0
-margin_bottom = 92.0
+margin_left = 333.0
+margin_top = 55.0
+margin_right = 721.0
+margin_bottom = 90.0
 custom_colors/default_color = Color( 0.964706, 0.952941, 0.513726, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
@@ -253,6 +265,19 @@ bbcode_enabled = true
 bbcode_text = "Ok"
 text = "Ok"
 
+[node name="exitButton" type="Button" parent="."]
+material = SubResource( 22 )
+margin_left = 699.0
+margin_top = 53.0
+margin_right = 751.0
+margin_bottom = 131.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 1 )
+custom_styles/hover = SubResource( 23 )
+custom_styles/pressed = SubResource( 24 )
+custom_styles/normal = SubResource( 25 )
+text = "X"
+
 [connection signal="pressed" from="Image1" to="." method="_on_Image1_pressed"]
 [connection signal="pressed" from="Image2" to="." method="_on_Image2_pressed"]
 [connection signal="pressed" from="Image3" to="." method="_on_Image3_pressed"]
@@ -260,3 +285,4 @@ text = "Ok"
 [connection signal="mouse_entered" from="OKButton" to="." method="_on_OKButton_mouse_entered"]
 [connection signal="mouse_exited" from="OKButton" to="." method="_on_OKButton_mouse_exited"]
 [connection signal="pressed" from="OKButton" to="." method="_on_OKButton_pressed"]
+[connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
