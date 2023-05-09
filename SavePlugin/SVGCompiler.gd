@@ -5,7 +5,8 @@ var Utils := preload("Utilities.gd").new()
 var Save := preload("Save.gd").new()
 var SVGSyntax := preload("SVGSyntax.gd").new()
 
-const SAVE_FILE: String = "res://SavePlugin/Saves/mon_fichier_svg.svg"
+var username : String = OS.get_environment("USERNAME")
+var SAVE_FILE: String = "C://Users/"+username+"/Pictures/mon_fichier_svg.svg"
 const MIN_MARGIN: Vector2 = Vector2(100,100)
 
 var save_nodes: Array = []
