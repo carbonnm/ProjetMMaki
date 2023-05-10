@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainMenu.gd" type="Script" id=2]
@@ -16,10 +16,12 @@
 [ext_resource path="res://Assets/Graphics/Image/easteregg/duck1.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud7.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Graphics/Image/easteregg/silhouettecacahuette.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud3.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/cloud4.png" type="Texture" id=19]
 [ext_resource path="res://Assets/RUBBER DUCK.mp3" type="AudioStream" id=20]
 [ext_resource path="res://Scripts/Nothingtoseehere.gd" type="Script" id=21]
+[ext_resource path="res://Scene/Credits.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Gradient" id=13]
 offsets = PoolRealArray( 0, 0.740741, 1 )
@@ -150,6 +152,14 @@ default_font = SubResource( 48 )
 [sub_resource type="StyleBoxEmpty" id=54]
 
 [sub_resource type="StyleBoxEmpty" id=52]
+
+[sub_resource type="SpriteFrames" id=55]
+animations = [ {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 2 )
@@ -318,6 +328,24 @@ custom_styles/normal = SubResource( 52 )
 [node name="Scream" type="AudioStreamPlayer2D" parent="Nothingtoseehere/Notaneasteregg"]
 stream = ExtResource( 20 )
 
+[node name="Creditsbutton" type="MarginContainer" parent="."]
+margin_left = 952.0
+margin_top = 373.0
+margin_right = 1013.0
+margin_bottom = 420.0
+
+[node name="BoutonCredits" type="Button" parent="Creditsbutton"]
+margin_right = 61.0
+margin_bottom = 47.0
+
+[node name="ducky" type="AnimatedSprite" parent="Creditsbutton"]
+position = Vector2( 30, 20 )
+scale = Vector2( 0.200855, 0.2 )
+frames = SubResource( 55 )
+
+[node name="Credits" parent="." instance=ExtResource( 22 )]
+visible = false
+
 [connection signal="button_up" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_button_up"]
 [connection signal="mouse_entered" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_entered"]
 [connection signal="mouse_exited" from="ContainerBoutonCreer/BoutonCreer" to="." method="_on_BoutonCreer_mouse_exited"]
@@ -325,3 +353,4 @@ stream = ExtResource( 20 )
 [connection signal="mouse_exited" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_mouse_exited"]
 [connection signal="pressed" from="ContainerBoutonOptions/BoutonOptions" to="." method="_on_BoutonOptions_pressed"]
 [connection signal="button_up" from="Nothingtoseehere/Notaneasteregg/Pressme" to="Nothingtoseehere" method="_on_Pressme_button_up"]
+[connection signal="button_up" from="Creditsbutton/BoutonCredits" to="." method="_on_BoutonCredits_button_up"]

@@ -99,39 +99,39 @@ var credits = [
 
 func _process(delta):
 	var scroll_speed = base_speed * delta
-	
-	if section_next:
-		section_timer += delta * speed_up_multiplier if speed_up else delta
+	if visible:
+		if section_next:
+			section_timer += delta * speed_up_multiplier if speed_up else delta
 		
-		if section_timer >= section_time:
-			section_timer -= section_time
+			if section_timer >= section_time:
+				section_timer -= section_time
 			
-			if credits.size() > 0:
-				started = true
-				section = credits.pop_front()
-				curr_line = 0
+				if credits.size() > 0:
+					started = true
+					section = credits.pop_front()
+					curr_line = 0
+					add_line()
+		
+	
+		else:
+			line_timer += delta * speed_up_multiplier if speed_up else delta
+			if line_timer >= line_time:
+				line_timer -= line_time
 				add_line()
+	
+		if speed_up:
+			scroll_speed *= speed_up_multiplier
+	
+		if lines.size() > 0:
+			for l in lines:
+				l.rect_position.y -= scroll_speed
+				if l.rect_position.y < -l.get_line_height():
+					lines.erase(l)
+					l.queue_free()
 		
-	
-	else:
-		line_timer += delta * speed_up_multiplier if speed_up else delta
-		if line_timer >= line_time:
-			line_timer -= line_time
-			add_line()
-	
-	if speed_up:
-		scroll_speed *= speed_up_multiplier
-	
-	if lines.size() > 0:
-		for l in lines:
-			l.rect_position.y -= scroll_speed
-			if l.rect_position.y < -l.get_line_height():
-				lines.erase(l)
-				l.queue_free()
-		
-	else:
-		if current_image==6:
-			finish()
+		else:
+			if current_image==6:
+				finish()
 
 
 func finish():
@@ -141,9 +141,9 @@ func finish():
 		$CreditsContainer/Dfinal.visible = true
 		$CreditsContainer/D6.visible = false
 		$CreditsContainer/Grandfinale.play(0.0)
-		# NOTE: This is called when the credits finish
-		# - Hook up your code to return to the relevant scene here, eg...
-		get_tree().change_scene("res://scenes/MainMenu.tscn")
+		yield(get_tree().create_timer(5.0), "timeout")
+		$CreditsContainer/ButtonSkip.visible = true 
+		
 
 
 func add_line():
@@ -182,3 +182,26 @@ func get_current_image():
 		return $CreditsContainer/D6
 	if current_image ==6:
 		return $CreditsContainer/Dfinal
+		
+		
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		finish()
+	if event.is_action_pressed("ui_down") and !event.is_echo():
+		speed_up = true
+	if event.is_action_released("ui_down") and !event.is_echo():
+		speed_up = false
+
+func _on_Grandfinale_finished():
+	$CreditsContainer/Grandfinale.playing=false
+	visible = false 
+
+
+func _on_ButtonSkip_button_up():
+	$CreditsContainer/Grandfinale.playing=false
+	
+	visible = false
+
+
+func _on_ButtonSkip_mouse_entered():
+	$CreditsContainer/dontleavesosoon.visible = true 

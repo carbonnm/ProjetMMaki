@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Graphics/Image/Credits/duck1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Graphics/Image/Credits/bigboi.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scripts/Credits.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Fonts/Apple Japanese Keyboard.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/Graphics/Image/easteregg/Grandfinale.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Fonts/Huglove.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
@@ -25,6 +26,22 @@ font_data = ExtResource( 10 )
 
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 25
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 39
+outline_color = Color( 0.780392, 0.262745, 0.262745, 1 )
+use_mipmaps = true
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
 
 [node name="Credits" type="Node2D"]
 script = ExtResource( 9 )
@@ -104,3 +121,28 @@ MMAKI"
 
 [node name="Grandfinale" type="AudioStreamPlayer2D" parent="CreditsContainer"]
 stream = ExtResource( 11 )
+
+[node name="ButtonSkip" type="Button" parent="CreditsContainer"]
+visible = false
+margin_left = 681.0
+margin_top = 208.0
+margin_right = 899.0
+margin_bottom = 307.0
+theme = SubResource( 8 )
+text = "Menu d'accueil"
+
+[node name="dontleavesosoon" type="RichTextLabel" parent="CreditsContainer"]
+visible = false
+margin_left = 642.0
+margin_top = 162.0
+margin_right = 989.0
+margin_bottom = 244.0
+theme = SubResource( 6 )
+custom_colors/default_color = Color( 0.901961, 0.215686, 0.215686, 1 )
+bbcode_enabled = true
+bbcode_text = "[shake rate=15 level=9]Don't leave so soon ! [/shake]"
+text = "Don't leave so soon ! "
+
+[connection signal="finished" from="CreditsContainer/Grandfinale" to="." method="_on_Grandfinale_finished"]
+[connection signal="button_up" from="CreditsContainer/ButtonSkip" to="." method="_on_ButtonSkip_button_up"]
+[connection signal="mouse_entered" from="CreditsContainer/ButtonSkip" to="." method="_on_ButtonSkip_mouse_entered"]

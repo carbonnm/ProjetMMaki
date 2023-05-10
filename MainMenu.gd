@@ -63,3 +63,8 @@ func _on_BoutonOptions_pressed():
 	$Menuadditionimage.visible = true
 
 
+
+
+func _on_BoutonCredits_button_up():
+	if not $Credits.visible :
+		$Credits.visible = true
