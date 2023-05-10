@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tablette4.png-bb41665842b7a11c7378e9abb36844a6.stex"
+path="res://.import/tablette4.png-29d9574419b68f763854c2cb86e2d235.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/tablette/tablette4.png"
-dest_files=[ "res://.import/tablette4.png-bb41665842b7a11c7378e9abb36844a6.stex" ]
+source_file="res://4ImagesChoix/Tablette/tablette4.png"
+dest_files=[ "res://.import/tablette4.png-29d9574419b68f763854c2cb86e2d235.stex" ]
 
 [params]
 

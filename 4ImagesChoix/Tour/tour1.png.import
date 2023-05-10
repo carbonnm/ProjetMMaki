@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tour1.png-65e2b3231fdc9fc9c5b7522f6957c6b8.stex"
+path="res://.import/tour1.png-1de2b257447f937f572f71eba84e67e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/tour/tour1.png"
-dest_files=[ "res://.import/tour1.png-65e2b3231fdc9fc9c5b7522f6957c6b8.stex" ]
+source_file="res://4ImagesChoix/Tour/tour1.png"
+dest_files=[ "res://.import/tour1.png-1de2b257447f937f572f71eba84e67e3.stex" ]
 
 [params]
 

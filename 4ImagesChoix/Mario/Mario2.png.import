@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mario2.png-4c0928a2b19b89c6416600a788d68833.stex"
+path="res://.import/Mario2.png-1f9e713b7c71bbe024716ae2f1fc60b1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/mario/Mario2.png"
-dest_files=[ "res://.import/Mario2.png-4c0928a2b19b89c6416600a788d68833.stex" ]
+source_file="res://4ImagesChoix/Mario/Mario2.png"
+dest_files=[ "res://.import/Mario2.png-1f9e713b7c71bbe024716ae2f1fc60b1.stex" ]
 
 [params]
 

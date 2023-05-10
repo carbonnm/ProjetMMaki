@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/menu4.png-652d6ddc691ec85ff5524b68df18135c.stex"
+path="res://.import/menu4.png-0be6c8915d3a67f35714ca6e705ea603.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/menu/menu4.png"
-dest_files=[ "res://.import/menu4.png-652d6ddc691ec85ff5524b68df18135c.stex" ]
+source_file="res://4ImagesChoix/Menu/menu4.png"
+dest_files=[ "res://.import/menu4.png-0be6c8915d3a67f35714ca6e705ea603.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/poids1.png-89bddccf02b6103f511b912289f16f0e.stex"
+path="res://.import/poids1.png-3d124be29e3cd7bbf510bc5ace23832c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/poids/poids1.png"
-dest_files=[ "res://.import/poids1.png-89bddccf02b6103f511b912289f16f0e.stex" ]
+source_file="res://4ImagesChoix/Poids/poids1.png"
+dest_files=[ "res://.import/poids1.png-3d124be29e3cd7bbf510bc5ace23832c.stex" ]
 
 [params]
 

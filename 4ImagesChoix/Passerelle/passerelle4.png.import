@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/passerelle4.png-e5a79a2d855799a47a1e813687a88d4b.stex"
+path="res://.import/passerelle4.png-8a7a851105384b212642108fc3b522a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/passerelle/passerelle4.png"
-dest_files=[ "res://.import/passerelle4.png-e5a79a2d855799a47a1e813687a88d4b.stex" ]
+source_file="res://4ImagesChoix/Passerelle/passerelle4.png"
+dest_files=[ "res://.import/passerelle4.png-8a7a851105384b212642108fc3b522a4.stex" ]
 
 [params]
 

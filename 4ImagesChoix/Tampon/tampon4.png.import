@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tampon4.png-379b471bcd3630fdb09a191395b8cc60.stex"
+path="res://.import/tampon4.png-f6f57613885282902bb8b857023b7c95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/tampon/tampon4.png"
-dest_files=[ "res://.import/tampon4.png-379b471bcd3630fdb09a191395b8cc60.stex" ]
+source_file="res://4ImagesChoix/Tampon/tampon4.png"
+dest_files=[ "res://.import/tampon4.png-f6f57613885282902bb8b857023b7c95.stex" ]
 
 [params]
 

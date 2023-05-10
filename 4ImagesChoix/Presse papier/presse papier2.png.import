@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/presse papier2.png-dadc6d9bb0583bce5173d997139acd7f.stex"
+path="res://.import/presse papier2.png-3d9fecf89a9dcbc35ff096df5c894122.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/presse papier/presse papier2.png"
-dest_files=[ "res://.import/presse papier2.png-dadc6d9bb0583bce5173d997139acd7f.stex" ]
+source_file="res://4ImagesChoix/Presse papier/presse papier2.png"
+dest_files=[ "res://.import/presse papier2.png-3d9fecf89a9dcbc35ff096df5c894122.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/base de donnees4.png-06586aee77f507d4e3ba5d0d4e490381.stex"
+path="res://.import/base de donnees4.png-55a705e450a266ca0992358a0d80af43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/base de donnee/base de donnees4.png"
-dest_files=[ "res://.import/base de donnees4.png-06586aee77f507d4e3ba5d0d4e490381.stex" ]
+source_file="res://4ImagesChoix/Base de donnee/base de donnees4.png"
+dest_files=[ "res://.import/base de donnees4.png-55a705e450a266ca0992358a0d80af43.stex" ]
 
 [params]
 

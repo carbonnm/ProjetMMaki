@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chemin3.png-cafdc71199a7a61d1bc7f0143b74f733.stex"
+path="res://.import/chemin3.png-6b3b087683858786b10f4cd9260a5cd6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/chemin/chemin3.png"
-dest_files=[ "res://.import/chemin3.png-cafdc71199a7a61d1bc7f0143b74f733.stex" ]
+source_file="res://4ImagesChoix/Chemin/chemin3.png"
+dest_files=[ "res://.import/chemin3.png-6b3b087683858786b10f4cd9260a5cd6.stex" ]
 
 [params]
 

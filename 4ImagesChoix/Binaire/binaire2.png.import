@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/binaire2.png-367624eaddfd53ea744e6dcea6e353ad.stex"
+path="res://.import/binaire2.png-1460c8e0e8695d5b41c3d91a3d2c57da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/binaire/binaire2.png"
-dest_files=[ "res://.import/binaire2.png-367624eaddfd53ea744e6dcea6e353ad.stex" ]
+source_file="res://4ImagesChoix/Binaire/binaire2.png"
+dest_files=[ "res://.import/binaire2.png-1460c8e0e8695d5b41c3d91a3d2c57da.stex" ]
 
 [params]
 

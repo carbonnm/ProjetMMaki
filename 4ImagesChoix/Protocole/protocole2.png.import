@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/protocole2.png-d8f5f91cdc3fdcf5666dbd1fc4fcb6bb.stex"
+path="res://.import/protocole2.png-1e36ab91cbfaeb63a5ea1a691ce1244c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/protocole/protocole2.png"
-dest_files=[ "res://.import/protocole2.png-d8f5f91cdc3fdcf5666dbd1fc4fcb6bb.stex" ]
+source_file="res://4ImagesChoix/Protocole/protocole2.png"
+dest_files=[ "res://.import/protocole2.png-1e36ab91cbfaeb63a5ea1a691ce1244c.stex" ]
 
 [params]
 

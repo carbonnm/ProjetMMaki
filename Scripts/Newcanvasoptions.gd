@@ -15,7 +15,17 @@ onready var chosen_font_title = "res://Assets/Fonts/arial_narrow_7.ttf"
 onready var chosen_font_subtitle =  "res://Assets/Fonts/arial_narrow_7.ttf"
 onready var chosen_font_subsubtitle = "res://Assets/Fonts/arial_narrow_7.ttf"
 
-
+onready var dic_random_title ={
+	0: "La boule magique",
+	1: "Power-up-Points",
+	2: "Cassoulet des Pirates",
+	3:"Ceci n'est pas une Jojo réf",
+	4: "Exposé des avantages et inconvénients des pommes de terre",
+	5: "Enterrement de Dédé",
+	6: "Dernière dent de lait de José", 
+	7: "Pato de plastico", 
+	8: "Penser à reprendre du liquide vaisselle"
+}
 
 func _ready():
 	
@@ -167,7 +177,15 @@ func _on_Titleinputbutton_pressed():
 
 
 
-
-
-
-
+func _on_Randombutton_button_up():
+	var anim_node = get_node("Page/Randomtitlebutton/Diceicon")
+	anim_node.playing = true
+	yield(get_tree().create_timer(1.5), "timeout")
+	anim_node.playing= false
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var number_random = rng.randi_range(0, dic_random_title.size()-1)
+	get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
+	print(dic_random_title[number_random])
+	
+	

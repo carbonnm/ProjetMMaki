@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://Assets/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/Perfect DOS VGA 437 Win.ttf" type="DynamicFontData" id=2]
@@ -45,6 +45,10 @@
 [ext_resource path="res://Assets/Themes/themechoicetheme.tres" type="Theme" id=43]
 [ext_resource path="res://Assets/Fonts/FiraSansCondensed-ExtraLight.ttf" type="DynamicFontData" id=44]
 [ext_resource path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" type="Script" id=45]
+[ext_resource path="res://Assets/Graphics/Image/dice3.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Graphics/Image/dice.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Graphics/Image/dice2.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Graphics/Image/dice4.png" type="Texture" id=49]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -222,6 +226,61 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=57]
 animations = [ {
 "frames": [ ExtResource( 24 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=98]
+bg_color = Color( 0.74902, 0.709804, 0.0901961, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.137255, 0.176471, 0.345098, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=99]
+bg_color = Color( 0.137255, 0.176471, 0.345098, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.74902, 0.709804, 0.0901961, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=100]
+bg_color = Color( 0.74902, 0.709804, 0.0901961, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.137255, 0.176471, 0.345098, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=101]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.760784, 0.752941, 0.607843, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="SpriteFrames" id=97]
+animations = [ {
+"frames": [ ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 46 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -525,8 +584,7 @@ size_flags_horizontal = 4
 theme = SubResource( 20 )
 custom_styles/focus = ExtResource( 38 )
 custom_styles/normal = ExtResource( 37 )
-align = 1
-max_length = 22
+max_length = 50
 context_menu_enabled = false
 clear_button_enabled = true
 placeholder_text = "    Entrez le nom de votre nouveau canvas"
@@ -762,6 +820,26 @@ position = Vector2( 232.907, 27.8828 )
 scale = Vector2( 0.0537584, 0.0512217 )
 frames = SubResource( 57 )
 
+[node name="Randomtitlebutton" type="MarginContainer" parent="Page"]
+margin_left = 563.0
+margin_top = 103.126
+margin_right = 632.0
+margin_bottom = 168.126
+
+[node name="Randombutton" type="Button" parent="Page/Randomtitlebutton"]
+margin_right = 69.0
+margin_bottom = 65.0
+custom_styles/hover = SubResource( 98 )
+custom_styles/pressed = SubResource( 99 )
+custom_styles/focus = SubResource( 100 )
+custom_styles/normal = SubResource( 101 )
+
+[node name="Diceicon" type="AnimatedSprite" parent="Page/Randomtitlebutton"]
+modulate = Color( 0.913725, 0.937255, 0.721569, 1 )
+position = Vector2( 36, 31.038 )
+scale = Vector2( 0.229318, 0.200496 )
+frames = SubResource( 97 )
+
 [node name="Colorfontsmenu" type="Panel" parent="Page"]
 material = SubResource( 35 )
 margin_left = 656.0
@@ -994,8 +1072,8 @@ text = "Le thème a besoin d'un
 
 [node name="OnscreenKeyboard" type="PanelContainer" parent="Page"]
 margin_top = 610.0
-margin_right = 1024.0
-margin_bottom = 910.0
+margin_right = 649.0
+margin_bottom = 807.0
 script = ExtResource( 45 )
 
 [connection signal="text_changed" from="Page/Optionmenu/Inputname" to="Page/Optionmenu/Inputname" method="_on_Inputname_text_changed"]
@@ -1014,6 +1092,7 @@ script = ExtResource( 45 )
 [connection signal="button_up" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_button_up"]
 [connection signal="mouse_entered" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_mouse_entered"]
 [connection signal="mouse_exited" from="Page/ContainerBoutonSave/ButtonSave" to="." method="_on_ButtonSave_mouse_exited"]
+[connection signal="button_up" from="Page/Randomtitlebutton/Randombutton" to="." method="_on_Randombutton_button_up"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonTitle" to="." method="_on_ColorPickerButtonTitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubtitle" to="." method="_on_ColorPickerButtonSubtitle_color_changed"]
 [connection signal="color_changed" from="Page/Colorfontsmenu/ColorPickerButtonSubsubtitle" to="." method="_on_ColorPickerButtonSubsubtitle_color_changed"]

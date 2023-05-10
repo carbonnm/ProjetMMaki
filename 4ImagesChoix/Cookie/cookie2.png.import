@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cookie2.png-a2c3598956f1e838c31819ae8123fea4.stex"
+path="res://.import/cookie2.png-7b2fc037baacdcd681d35d749f040bfb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/cookie/cookie2.png"
-dest_files=[ "res://.import/cookie2.png-a2c3598956f1e838c31819ae8123fea4.stex" ]
+source_file="res://4ImagesChoix/Cookie/cookie2.png"
+dest_files=[ "res://.import/cookie2.png-7b2fc037baacdcd681d35d749f040bfb.stex" ]
 
 [params]
 

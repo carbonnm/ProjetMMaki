@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/binaire1.png-9d72e3f197a150b2ddd157282c77220e.stex"
+path="res://.import/binaire1.png-94dbf8fbbcdc8597ffc72f6414208ad3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/binaire/binaire1.png"
-dest_files=[ "res://.import/binaire1.png-9d72e3f197a150b2ddd157282c77220e.stex" ]
+source_file="res://4ImagesChoix/Binaire/binaire1.png"
+dest_files=[ "res://.import/binaire1.png-94dbf8fbbcdc8597ffc72f6414208ad3.stex" ]
 
 [params]
 

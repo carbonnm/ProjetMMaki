@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cybersecurite2.png-0a21a608ef24a3576560afce930b4180.stex"
+path="res://.import/cybersecurite2.png-61fe59457631cd8dcdc1219a255a1559.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/cybersecurite/cybersecurite2.png"
-dest_files=[ "res://.import/cybersecurite2.png-0a21a608ef24a3576560afce930b4180.stex" ]
+source_file="res://4ImagesChoix/Cybersecurite/cybersecurite2.png"
+dest_files=[ "res://.import/cybersecurite2.png-61fe59457631cd8dcdc1219a255a1559.stex" ]
 
 [params]
 

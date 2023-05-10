@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/corbeille1.png-3f4212e68ea4faaa423c82c3a0bfc626.stex"
+path="res://.import/corbeille1.png-2d09859bcf5a3c981cf7c45c13e7ed6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/corbeille/corbeille1.png"
-dest_files=[ "res://.import/corbeille1.png-3f4212e68ea4faaa423c82c3a0bfc626.stex" ]
+source_file="res://4ImagesChoix/Corbeille/corbeille1.png"
+dest_files=[ "res://.import/corbeille1.png-2d09859bcf5a3c981cf7c45c13e7ed6a.stex" ]
 
 [params]
 

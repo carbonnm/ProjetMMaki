@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/neurone1.png-b16b7ef6116c617199c475ae6ec263e3.stex"
+path="res://.import/neurone1.png-abc16714b9733ae2adfefc3f5f97e21f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/neurone/neurone1.png"
-dest_files=[ "res://.import/neurone1.png-b16b7ef6116c617199c475ae6ec263e3.stex" ]
+source_file="res://4ImagesChoix/Neurone/neurone1.png"
+dest_files=[ "res://.import/neurone1.png-abc16714b9733ae2adfefc3f5f97e21f.stex" ]
 
 [params]
 

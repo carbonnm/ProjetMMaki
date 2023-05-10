@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hameconnage3.png-9ab3b7beee65232afbeb3da16b9ac9fc.stex"
+path="res://.import/hameconnage3.png-2d543b0c7630d7818bb7ddfb8b2b02ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/hameconnage/hameconnage3.png"
-dest_files=[ "res://.import/hameconnage3.png-9ab3b7beee65232afbeb3da16b9ac9fc.stex" ]
+source_file="res://4ImagesChoix/Hameconnage/hameconnage3.png"
+dest_files=[ "res://.import/hameconnage3.png-2d543b0c7630d7818bb7ddfb8b2b02ef.stex" ]
 
 [params]
 

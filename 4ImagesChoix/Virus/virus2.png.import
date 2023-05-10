@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/virus2.png-085fc7320e9754c6f6489aa5f275ad96.stex"
+path="res://.import/virus2.png-c608d9c40449507524c950e9266eeda9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/virus/virus2.png"
-dest_files=[ "res://.import/virus2.png-085fc7320e9754c6f6489aa5f275ad96.stex" ]
+source_file="res://4ImagesChoix/Virus/virus2.png"
+dest_files=[ "res://.import/virus2.png-c608d9c40449507524c950e9266eeda9.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nuage1.png-2f3bbf87777cb9c319c161d35120c275.stex"
+path="res://.import/Nuage1.png-a3f5d29e909b7fef1747f21479c9566b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/nuage/nuage1.png"
-dest_files=[ "res://.import/nuage1.png-2f3bbf87777cb9c319c161d35120c275.stex" ]
+source_file="res://4ImagesChoix/Nuage/Nuage1.png"
+dest_files=[ "res://.import/Nuage1.png-a3f5d29e909b7fef1747f21479c9566b.stex" ]
 
 [params]
 

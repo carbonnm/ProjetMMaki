@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hub3.png-6d2e60da8a35748d55d62a55ccccca0e.stex"
+path="res://.import/hub3.png-be74f1b101b73c7db1584052ed8d8525.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/hub/hub3.png"
-dest_files=[ "res://.import/hub3.png-6d2e60da8a35748d55d62a55ccccca0e.stex" ]
+source_file="res://4ImagesChoix/Hub/hub3.png"
+dest_files=[ "res://.import/hub3.png-be74f1b101b73c7db1584052ed8d8525.stex" ]
 
 [params]
 

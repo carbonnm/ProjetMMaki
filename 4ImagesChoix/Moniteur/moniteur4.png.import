@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moniteur4.png-e75c43a5be0a422087c5ad4ce6116500.stex"
+path="res://.import/moniteur4.png-0c659b334ca9942eb590332eaa60d446.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://4ImagesChoix/moniteur/moniteur4.png"
-dest_files=[ "res://.import/moniteur4.png-e75c43a5be0a422087c5ad4ce6116500.stex" ]
+source_file="res://4ImagesChoix/Moniteur/moniteur4.png"
+dest_files=[ "res://.import/moniteur4.png-0c659b334ca9942eb590332eaa60d446.stex" ]
 
 [params]
 
