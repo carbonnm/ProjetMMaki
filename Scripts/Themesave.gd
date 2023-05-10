@@ -6,8 +6,7 @@ onready var user_data = SaveLogic.user_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(user_data)
-	#pass # Replace with function body.
+	pass # Replace with function body.
 
 
 
@@ -36,7 +35,7 @@ func _on_Okbutton_button_up():
 		#saving the new theme
 		
 		SaveLogic.save_data()
-		print("saved!", user_data)
+		#print("saved!", user_data)
 		
 
 func _on_Closebutton_mouse_entered():
