@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MMaki.apple-touch-icon.png-5194fdcf8affc39eb2be015d23a3705f.stex"
+path="res://.import/slideduck.png-f9ba6cbc9d4837e5c660cef6948cec9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MMaki.apple-touch-icon.png"
-dest_files=[ "res://.import/MMaki.apple-touch-icon.png-5194fdcf8affc39eb2be015d23a3705f.stex" ]
+source_file="res://Assets/Graphics/Image/Credits/slideduck.png"
+dest_files=[ "res://.import/slideduck.png-f9ba6cbc9d4837e5c660cef6948cec9c.stex" ]
 
 [params]
 

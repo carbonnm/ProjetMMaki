@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MMaki.icon.png-15204df2195c0dc7fd18c304617b81fc.stex"
+path="res://.import/bigboi.png-f27536f73a0ccd5665b44ec1e01d89c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MMaki.icon.png"
-dest_files=[ "res://.import/MMaki.icon.png-15204df2195c0dc7fd18c304617b81fc.stex" ]
+source_file="res://Assets/Graphics/Image/Credits/bigboi.png"
+dest_files=[ "res://.import/bigboi.png-f27536f73a0ccd5665b44ec1e01d89c4.stex" ]
 
 [params]
 

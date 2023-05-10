@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/duckeyeclose.png-3829ed44fdd71ad1430a1d1e650058d1.stex"
+path="res://.import/successduck.png-e1c8e10bece5d42b3a60d87bb6ddb4fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://duckeyeclose.png"
-dest_files=[ "res://.import/duckeyeclose.png-3829ed44fdd71ad1430a1d1e650058d1.stex" ]
+source_file="res://Assets/Graphics/Image/Credits/successduck.png"
+dest_files=[ "res://.import/successduck.png-e1c8e10bece5d42b3a60d87bb6ddb4fb.stex" ]
 
 [params]
 

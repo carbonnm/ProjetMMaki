@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Grandfinale.mp3-667d1f3a9364e60519eb130c175f1f4f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Graphics/Image/easteregg/Grandfinale.mp3"
+dest_files=[ "res://.import/Grandfinale.mp3-667d1f3a9364e60519eb130c175f1f4f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
