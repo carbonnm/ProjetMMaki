@@ -186,5 +186,6 @@ func _on_Randombutton_button_up():
 	rng.randomize()
 	var number_random = rng.randi_range(0, dic_random_title.size()-1)
 	get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
+	get_node("Page/Optionmenu/Inputname").new_name = dic_random_title[number_random] 
 	
 	
