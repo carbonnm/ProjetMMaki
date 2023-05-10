@@ -1,12 +1,14 @@
 from PIL import Image
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
 pathImage = "ScreenShots/screenshot.png"
 
-im = Image.open(pathImage)
+im = Image.open(pathImage).convert('L')
 
-jpg_im = im.convert("RGB")
+width, height = im.size
 
-print(pytesseract.image_to_string(jpg_im))
+im = im.resize((width*5, height*5))
+
+text = pytesseract.image_to_string(im).replace("\n", " ").strip()
+
+print(text, end="")
