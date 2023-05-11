@@ -119,7 +119,7 @@ tab_size = 2
 text = "
 MMAKI"
 
-[node name="Grandfinale" type="AudioStreamPlayer2D" parent="CreditsContainer"]
+[node name="Grandfinale" type="AudioStreamPlayer" parent="CreditsContainer"]
 stream = ExtResource( 11 )
 
 [node name="ButtonSkip" type="Button" parent="CreditsContainer"]
