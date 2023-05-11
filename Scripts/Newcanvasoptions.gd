@@ -47,7 +47,27 @@ onready var dic_random_title ={
 	28:"Eulogy for Kenny Mccormick at 9pm",
 	29:"Kyrat's special crab rangoon recipe",
 	30:"42 raisons de se mettre à Rodin",
-	31:"Petit curieux, il n'y a rien à trouver ici"
+	31:"Petit curieux, il n'y a rien à trouver ici",
+	32:"Visite de routine chez le Dr Maison",
+	33:"Visit of a condo in Wisteria Lane",
+	34:"Savez-vous VRAIMENT planter les choux?",
+	35:"Reprendre des croquettes pour Schrodinger",
+	36: "Cours de cuisine chez le Dr Lecter",
+	37:"Kamoulox!",
+	38:"C'est pas faux.",
+	39:"Mon petit cette paix est ce pour quoi luttent...",
+	40:"Squalalah, nous sommes partis",
+	41:"Saucisse",
+	42: "Ammener le Blackbird au contôle technique",
+	43:"Speedrun any % syllabus de compléxité ",
+	44:"Doom walkthrough by VincentduI30",
+	45:"It's MMAKI not Maki",
+	46:"Roullette russe, choix des options de master 2",
+	47:"Sugar.Honey.Ice.Tea",
+	48:"Friend.Not.Atrocious.Freaks",
+	49:"Geocaching: trouver la motivation",
+	50:"Planter les piments à côté du basilic",
+	51:"Écouter de l'A.S.M.R. ou du Heavy metal?"
 }
 
 func _ready():
