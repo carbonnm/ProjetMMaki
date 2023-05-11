@@ -3,7 +3,7 @@ extends Control
 var cam 
 
 
-onready var zoomLabel = $ZoomText
+onready var zoomLabel = $HBoxContainer/ZoomText
 
 func _ready() -> void:
 	display_zoom_value(null,Vector2(1,1))

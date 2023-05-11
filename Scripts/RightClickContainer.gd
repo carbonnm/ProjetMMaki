@@ -50,6 +50,7 @@ func _input(event: InputEvent) -> void:
 
 				if left || right || top || bottom:
 					hide()
+					$"../TitleCreationPopUp".hide()
 
 
 func _on_ColorPickerButton_color_changed(_color: Color) -> void:

@@ -259,6 +259,7 @@ margin_left = 32.0
 margin_top = 4.0
 margin_right = 87.0
 margin_bottom = 53.0
+mouse_filter = 2
 theme = SubResource( 15 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true

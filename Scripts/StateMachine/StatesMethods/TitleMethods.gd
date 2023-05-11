@@ -7,17 +7,17 @@ var TEXTEDIT := preload("res://Classes/Title.gd")
 func create_new_title(chosen_title, customization, parent_node):
 	#position of the title is the same as the title menu addition 
 	#which was set from the retrieved position of the right-click
-	parent_node.get_node("Titlemenuaddition").visible = false
+	parent_node.get_node("CanvasLayer/Titlemenuaddition").visible = false
 	
 	var textEdit = TEXTEDIT.new()
-	var x_pos_title = parent_node.get_node("Titlemenuaddition").rect_position.x 
-	var y_pos_title = parent_node.get_node("Titlemenuaddition").rect_position.y 
+	var x_pos_title = parent_node.get_node("CanvasLayer/Titlemenuaddition").rect_position.x 
+	var y_pos_title = parent_node.get_node("CanvasLayer/Titlemenuaddition").rect_position.y 
 	var textEdit_position = Vector2(x_pos_title, y_pos_title)
 	parent_node.Utils.get_match_string_node("Elements", parent_node).add_child(textEdit)
 	textEdit.set_params(true, str(chosen_title), Vector2(500, 100), textEdit_position)
 
 	
-	var type_title = parent_node.get_node("Titlemenuaddition").type_title
+	var type_title = parent_node.get_node("CanvasLayer/Titlemenuaddition").type_title
 	var color_title = customization["titlecolor"]
 	var title_font = customization["titlefont"]
 	var color_subtitle = customization["subtitlecolor"]

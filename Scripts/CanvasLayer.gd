@@ -41,13 +41,14 @@ func hide_settings_panel():
 		
 
 func hide_rightclick_panel():
-	var tween = get_tree().create_tween()
-	tween.tween_property($Panel2, "rect_position:x", $Panel2.rect_position.x + $Panel2.rect_size.x, 0.3)
-	rightclick_visible = false
-	
-	_tween2_active = true
-	yield(tween, "finished")
-	_tween2_active = false
+	if rightclick_visible:
+		var tween = get_tree().create_tween()
+		tween.tween_property($Panel2, "rect_position:x", $Panel2.rect_position.x + $Panel2.rect_size.x, 0.3)
+		rightclick_visible = false
+		
+		_tween2_active = true
+		yield(tween, "finished")
+		_tween2_active = false
 
 
 func _on_RightClickButton_pressed():

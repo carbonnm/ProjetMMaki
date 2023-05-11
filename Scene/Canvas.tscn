@@ -82,6 +82,33 @@ script = ExtResource( 13 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 20 )
 
+[node name="TitleCreationPopUp" parent="CanvasLayer" instance=ExtResource( 44 )]
+visible = false
+margin_right = 147.0
+margin_bottom = 68.0
+
+[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer"]
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="pensizecircle" type="Node2D" parent="CanvasLayer/PopupMenu"]
+visible = false
+scale = Vector2( 5, 5 )
+script = ExtResource( 39 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/PopupMenu"]
+visible = false
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 25.0
+theme = ExtResource( 35 )
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 40.0
 margin_right = 468.0
@@ -154,8 +181,8 @@ icon = ExtResource( 30 )
 expand_icon = true
 
 [node name="Settings" type="Button" parent="CanvasLayer"]
-margin_right = 38.0
-margin_bottom = 35.0
+margin_right = 64.0
+margin_bottom = 64.0
 icon = ExtResource( 9 )
 expand_icon = true
 __meta__ = {
@@ -230,9 +257,10 @@ icon = ExtResource( 10 )
 expand_icon = true
 
 [node name="RightClickButton" type="Button" parent="CanvasLayer"]
-margin_left = 986.0
-margin_right = 1024.0
-margin_bottom = 35.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
+margin_bottom = 64.0
 icon = ExtResource( 29 )
 expand_icon = true
 __meta__ = {
@@ -250,8 +278,8 @@ __meta__ = {
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/RightClickContainer"]
 margin_right = 218.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 64, 36 )
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 expand_icon = true
 color = Color( 0.909804, 0.698039, 0.133333, 1 )
 
@@ -264,37 +292,37 @@ icon = ExtResource( 5 )
 expand_icon = true
 
 [node name="Create texte" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 40.0
+margin_top = 68.0
 margin_right = 218.0
-margin_bottom = 76.0
-rect_min_size = Vector2( 0, 36 )
+margin_bottom = 132.0
+rect_min_size = Vector2( 0, 64 )
 text = "Créer texte"
 icon = ExtResource( 36 )
 expand_icon = true
 
 [node name="Save canvas" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 80.0
+margin_top = 136.0
 margin_right = 218.0
-margin_bottom = 116.0
-rect_min_size = Vector2( 0, 36 )
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 64 )
 text = "Enregistrer"
 icon = ExtResource( 34 )
 expand_icon = true
 
 [node name="Paste" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 120.0
+margin_top = 204.0
 margin_right = 218.0
-margin_bottom = 156.0
-rect_min_size = Vector2( 0, 36 )
+margin_bottom = 268.0
+rect_min_size = Vector2( 0, 64 )
 text = "Coller"
 icon = ExtResource( 33 )
 expand_icon = true
 
 [node name="Pen size" type="Button" parent="CanvasLayer/RightClickContainer"]
-margin_top = 160.0
+margin_top = 272.0
 margin_right = 218.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 0, 36 )
+margin_bottom = 336.0
+rect_min_size = Vector2( 0, 64 )
 text = "Taille d'écriture"
 icon = ExtResource( 46 )
 expand_icon = true
@@ -309,101 +337,154 @@ __meta__ = {
 
 [node name="Delete" type="Button" parent="CanvasLayer/ActionMenu"]
 margin_right = 176.0
-margin_bottom = 36.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 text = "Supprimer"
 icon = ExtResource( 14 )
+expand_icon = true
 
 [node name="Drag And Drop" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 40.0
+margin_top = 68.0
 margin_right = 176.0
-margin_bottom = 76.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 64, 64 )
 text = "Déplacer"
 icon = ExtResource( 16 )
+expand_icon = true
 
 [node name="Rescale" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 80.0
+margin_top = 136.0
 margin_right = 176.0
-margin_bottom = 116.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 64, 64 )
 text = "Changer la taille"
 icon = ExtResource( 1 )
+expand_icon = true
 
 [node name="Copy" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 120.0
+margin_top = 204.0
 margin_right = 176.0
-margin_bottom = 156.0
+margin_bottom = 268.0
+rect_min_size = Vector2( 64, 64 )
 text = "Copier"
 icon = ExtResource( 11 )
+expand_icon = true
 
 [node name="Rotation" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 160.0
+margin_top = 272.0
 margin_right = 176.0
-margin_bottom = 196.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 64, 64 )
 text = "Rotation"
 icon = ExtResource( 19 )
+expand_icon = true
 
 [node name="Draw" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 200.0
+margin_top = 340.0
 margin_right = 176.0
-margin_bottom = 235.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 64, 64 )
 text = "Transformer"
 icon = ExtResource( 46 )
+expand_icon = true
 
 [node name="Group" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 239.0
+margin_top = 408.0
 margin_right = 176.0
-margin_bottom = 275.0
+margin_bottom = 472.0
+rect_min_size = Vector2( 64, 64 )
 text = "Grouper"
 icon = ExtResource( 6 )
+expand_icon = true
 
 [node name="Ungroup" type="Button" parent="CanvasLayer/ActionMenu"]
-margin_top = 279.0
+margin_top = 476.0
 margin_right = 176.0
-margin_bottom = 315.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 64, 64 )
 text = "Dégrouper"
 icon = ExtResource( 32 )
+expand_icon = true
+
+[node name="Titlemenuaddition" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
+margin_left = -200.0
+margin_top = -224.0
+margin_right = -200.0
+margin_bottom = -224.0
+
+[node name="PopUpMotConfirmation" parent="CanvasLayer" instance=ExtResource( 40 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = -224.0
+margin_right = -203.0
+margin_bottom = -224.0
+
+[node name="ModificationWord" parent="CanvasLayer" instance=ExtResource( 42 )]
+visible = false
+margin_left = -192.0
+margin_top = -244.0
+margin_right = -192.0
+margin_bottom = -244.0
+
+[node name="ChoixImage" parent="CanvasLayer" instance=ExtResource( 41 )]
+visible = false
+margin_left = -319.104
+margin_top = -122.4
+margin_right = -279.104
+margin_bottom = -82.4
+
+[node name="InvalidChoice" parent="CanvasLayer" instance=ExtResource( 43 )]
+visible = false
+margin_left = -169.0
+margin_top = -110.0
+margin_right = -169.0
+margin_bottom = -110.0
+
+[node name="SavePopUpConfirmation" parent="CanvasLayer" instance=ExtResource( 45 )]
+visible = false
+margin_left = -2.0
+margin_top = 7.0
+margin_right = -2.0
+margin_bottom = 7.0
 
 [node name="ZoomMenuButton" type="Control" parent="CanvasLayer"]
-margin_left = 648.0
-margin_top = 2.0
-margin_right = 787.0
-margin_bottom = 38.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -69.5
+margin_right = 69.5
+margin_bottom = 36.0
 script = ExtResource( 31 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="More" type="Button" parent="CanvasLayer/ZoomMenuButton"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -18.0
-margin_right = 20.0
-margin_bottom = 18.0
-text = "+"
-__meta__ = {
-"_edit_group_": true
-}
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ZoomMenuButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -112.0
+margin_right = 112.0
+margin_bottom = 48.0
+custom_constants/separation = 0
 
-[node name="Less" type="Button" parent="CanvasLayer/ZoomMenuButton"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -18.0
-margin_bottom = 18.0
+[node name="Less" type="Button" parent="CanvasLayer/ZoomMenuButton/HBoxContainer"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 text = "-"
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ZoomText" type="Label" parent="CanvasLayer/ZoomMenuButton"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -17.0
-margin_right = -20.0
-margin_bottom = 18.0
+[node name="ZoomText" type="Label" parent="CanvasLayer/ZoomMenuButton/HBoxContainer"]
+margin_left = 48.0
+margin_right = 176.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 48 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 custom_styles/normal = SubResource( 3 )
@@ -413,62 +494,30 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Titlemenuaddition" parent="." instance=ExtResource( 8 )]
-visible = false
+[node name="More" type="Button" parent="CanvasLayer/ZoomMenuButton/HBoxContainer"]
+margin_left = 176.0
+margin_right = 224.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+text = "+"
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="PopUpMotConfirmation" parent="." instance=ExtResource( 40 )]
-visible = false
-
-[node name="ModificationWord" parent="." instance=ExtResource( 42 )]
-visible = false
-
-[node name="ChoixImage" parent="." instance=ExtResource( 41 )]
-visible = false
-margin_left = -306.0
-margin_top = -135.0
-margin_right = -266.0
-margin_bottom = -95.0
-
-[node name="InvalidChoice" parent="." instance=ExtResource( 43 )]
-visible = false
-
-[node name="SavePopUpConfirmation" parent="." instance=ExtResource( 45 )]
-visible = false
-
-[node name="TitleCreationPopUp" parent="." instance=ExtResource( 44 )]
-visible = false
-
-[node name="PopupMenu" type="PopupMenu" parent="."]
-margin_right = 20.0
-margin_bottom = 20.0
-
-[node name="pensizecircle" type="Node2D" parent="PopupMenu"]
-visible = false
-scale = Vector2( 5, 5 )
-script = ExtResource( 39 )
-
-[node name="HSlider" type="HSlider" parent="PopupMenu"]
-visible = false
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 85.0
-margin_bottom = 25.0
-theme = ExtResource( 35 )
-min_value = 1.0
-max_value = 10.0
-value = 1.0
-tick_count = 10
-ticks_on_borders = true
-
-[node name="StateManager" parent="." instance=ExtResource( 12 )]
-
-[node name="OnscreenKeyboard" type="PanelContainer" parent="."]
+[node name="OnscreenKeyboard" type="PanelContainer" parent="CanvasLayer"]
 margin_top = 610.0
 margin_right = 1024.0
 margin_bottom = 910.0
 script = ExtResource( 24 )
 
+[node name="StateManager" parent="." instance=ExtResource( 12 )]
+
 [connection signal="gui_input" from="BackgroundColored" to="." method="_on_BackgroundColored_gui_input"]
+[connection signal="create_title_button" from="CanvasLayer/TitleCreationPopUp/CreateTitleButton" to="StateManager" method="_on_CreateTitleButton_create_title_button"]
+[connection signal="create_sub_title_button" from="CanvasLayer/TitleCreationPopUp/CreateSubTitleButton" to="StateManager" method="_on_CreateSubTitleButton_create_sub_title_button"]
+[connection signal="create_sub_sub_title_button" from="CanvasLayer/TitleCreationPopUp/CreateSubSubTitleButton" to="StateManager" method="_on_CreateSubSubTitleButton_create_sub_sub_title_button"]
+[connection signal="mouse_exited" from="CanvasLayer/PopupMenu" to="StateManager" method="_on_PopupMenu_mouse_exited"]
+[connection signal="value_changed" from="CanvasLayer/PopupMenu/HSlider" to="StateManager" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Selection" to="StateManager" method="_on_Selection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Drawing" to="StateManager" method="_on_Drawing_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/MoveCanvas" to="StateManager" method="_on_MoveCanvas_pressed"]
@@ -497,14 +546,9 @@ script = ExtResource( 24 )
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Draw" to="StateManager" method="_on_Draw_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Group" to="StateManager" method="_on_Group_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionMenu/Ungroup" to="StateManager" method="_on_Ungroup_pressed"]
-[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/More" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), true ]]
-[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/Less" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), false ]]
-[connection signal="new_title" from="Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
-[connection signal="create_title_button" from="TitleCreationPopUp/CreateTitleButton" to="StateManager" method="_on_CreateTitleButton_create_title_button"]
-[connection signal="create_sub_title_button" from="TitleCreationPopUp/CreateSubTitleButton" to="StateManager" method="_on_CreateSubTitleButton_create_sub_title_button"]
-[connection signal="create_sub_sub_title_button" from="TitleCreationPopUp/CreateSubSubTitleButton" to="StateManager" method="_on_CreateSubSubTitleButton_create_sub_sub_title_button"]
-[connection signal="mouse_exited" from="PopupMenu" to="StateManager" method="_on_PopupMenu_mouse_exited"]
-[connection signal="value_changed" from="PopupMenu/HSlider" to="StateManager" method="_on_HSlider_value_changed"]
+[connection signal="new_title" from="CanvasLayer/Titlemenuaddition" to="StateManager" method="_on_Titlemenuaddition_new_title"]
+[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/HBoxContainer/Less" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), false ]]
+[connection signal="pressed" from="CanvasLayer/ZoomMenuButton/HBoxContainer/More" to="Camera" method="update_zoom" binds= [ false, Vector2( 512, 300 ), true ]]
 
-[editable path="TitleCreationPopUp"]
+[editable path="CanvasLayer/TitleCreationPopUp"]
 [editable path="StateManager"]

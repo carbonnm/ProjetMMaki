@@ -4,7 +4,7 @@ onready var image1 = $Image1
 onready var image2 = $Image2
 onready var image3 = $Image3
 onready var image4 = $Image4
-onready var canvas = $"../"
+onready var canvas = $"../../"
 
 
 var Utils := preload("res://Scripts/Utilities/Utilities.gd").new()
@@ -19,6 +19,7 @@ func _on_OKButton_pressed():
 		visible = false
 		get_node("../InvalidChoice").rect_position = canvas.drawing_position
 		get_node("../InvalidChoice").visible = true
+		return
 	
 	var area = Area2D.new()
 	var c_shape = CollisionShape2D.new()
@@ -31,7 +32,7 @@ func _on_OKButton_pressed():
 	area.position = center
 	area.add_child(c_shape)
 	area.add_child(drawing)
-	get_parent().Utils.get_match_string_node("Elements", get_parent()).add_child(area)
+	get_parent().get_parent().Utils.get_match_string_node("Elements", get_parent().get_parent()).add_child(area)
 	visible = false
 
 

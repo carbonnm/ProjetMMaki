@@ -1,6 +1,6 @@
 extends Control
 
-onready var canvas = $"../"
+onready var canvas = $"../../"
 onready var image1 = $"../ChoixImage/Image1"
 onready var image2 = $"../ChoixImage/Image2"
 onready var image3 = $"../ChoixImage/Image3"
@@ -17,7 +17,6 @@ func _ready():
 
 func _on_Titleinputbutton_pressed():
 	modified_word = get_node("ModifiedWord").chosen
-	print(modified_word)
 	
 	if modified_word == "":
 		return
@@ -44,7 +43,7 @@ func _on_Titleinputbutton_pressed():
 	
 	
 	var size_pop_up : Vector2 = get_node("../ChoixImage/ColorRect").get_global_rect().size
-	get_node("../ChoixImage").rect_position = get_node("../Camera").get_camera_position() - size_pop_up - Vector2(120, -200)
+	get_node("../ChoixImage").rect_position = get_node("../../Camera").get_camera_position() - size_pop_up - Vector2(120, -200)
 	get_node("../ChoixImage").visible = true
 	
 	canvas.word_recognized = ""

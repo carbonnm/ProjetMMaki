@@ -128,7 +128,13 @@ func _hideKeyboard(keyData=null):
 	if current_scene == "Newcanvasoptions":
 		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(rect_position.x,get_viewport().get_visible_rect().size.y + 10), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
 	elif current_scene == "Canvas":
-		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(get_parent().get_node("Camera").get_camera_position().x - 512,get_viewport().get_visible_rect().size.y + 10), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
+#		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(get_parent().get_parent().get_node("Camera").get_camera_position().x - 512,get_viewport().get_visible_rect().size.y + 10), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tweenPosition.interpolate_property(self,"rect_position",
+				rect_position,
+				Vector2(0, 600),
+				tweenSpeed,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT)
 	
 	tweenPosition.start()
 	#grab_focus()
@@ -142,7 +148,13 @@ func _showKeyboard(keyData=null):
 	if current_scene == "Newcanvasoptions":
 		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(rect_position.x,get_viewport().get_visible_rect().size.y-rect_size.y), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
 	elif current_scene == "Canvas":
-		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(get_parent().get_node("Camera").get_camera_position().x - 512, get_parent().get_node("Camera").get_camera_screen_center().y + 100), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
+#		tweenPosition.interpolate_property(self,"rect_position",rect_position, Vector2(get_parent().get_parent().get_node("Camera").get_camera_position().x - 512, get_parent().get_parent().get_node("Camera").get_camera_screen_center().y), tweenSpeed, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tweenPosition.interpolate_property(self,"rect_position",
+				rect_position,
+				Vector2(0, 600 - rect_size.y),
+				tweenSpeed,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT)
 	tweenPosition.start()
 	emit_signal("visibilityChanged",true)
 

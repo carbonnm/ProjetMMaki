@@ -171,13 +171,14 @@ func _on_Fusion_pressed():
 
 func _on_Pen_Size_pressed():
 	switch_signal("PenSize")
-	canvas.hide_rightclick_panel()
+
 	
 func _on_Draw_pressed():
 	switch_signal("Transform")
 	
 func _on_Pen_size_pressed():
 	switch_signal("PenSize")
+	canvas.hide_settings_panel()
 
 func _on_Titlemenuaddition_new_title(chosen_title):
 	switch_signal_with_arguments("CreateTitle", [chosen_title])

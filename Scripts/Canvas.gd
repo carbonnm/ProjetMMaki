@@ -22,7 +22,7 @@ onready var _elements := $Elements
 onready var detached_RCC := $CanvasLayer/RightClickContainer
 onready var RCC := $CanvasLayer/Panel2/VBoxContainer
 onready var _action_menu := $CanvasLayer/ActionMenu
-onready var pm = $PopupMenu
+onready var pm = $CanvasLayer/PopupMenu
 onready var states = $StateManager
 onready var PanelVisibility := get_node("CanvasLayer")
 onready var _text_popup_rcc = get_node("CanvasLayer/RightClickContainer/Create texte")
@@ -199,12 +199,12 @@ func _on_Create_text_pressed():
 	var camera_right_edge = camera_position.x + viewport_size.x / 2.0
 	var camera_top_edge = camera_position.y - viewport_size.y / 2.0
 
-	get_node("TitleCreationPopUp").rect_global_position = Vector2(camera_right_edge-_text_popup.get_global_rect().size.x-153, camera_top_edge+184)
-	get_node("TitleCreationPopUp").visible = true
+	get_node("CanvasLayer/TitleCreationPopUp").rect_global_position = Vector2(camera_right_edge-_text_popup.get_global_rect().size.x-153, camera_top_edge+184)
+	get_node("CanvasLayer/TitleCreationPopUp").visible = true
 
 func _on_Create_texte_RCC_pressed():
-	get_node("TitleCreationPopUp").rect_global_position = Vector2((_text_popup_rcc.get_global_rect().position.x - 153), _text_popup_rcc.get_global_rect().position.y)
-	get_node("TitleCreationPopUp").visible = true
+	get_node("CanvasLayer/TitleCreationPopUp").rect_global_position = Vector2((_text_popup_rcc.get_global_rect().position.x - 153), _text_popup_rcc.get_global_rect().position.y)
+	get_node("CanvasLayer/TitleCreationPopUp").visible = true
 	
 
 """
