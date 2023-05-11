@@ -53,11 +53,11 @@ var credits = [
 		"Testers",
 		"------------------",
 		"",
-		"Name 1",
+		"BARBIEUX Arthur",
 		"",
-		"Name 2",
+		"POLET Simon",
 		"",
-		"Name 3"
+
 	],[
 		"Tools used",
 		"--------------------",
