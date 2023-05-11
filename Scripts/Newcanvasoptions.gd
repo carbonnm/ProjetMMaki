@@ -232,5 +232,10 @@ func _on_Randombutton_button_up():
 		already_seen.append(number_random)
 		get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
 		get_node("Page/Optionmenu/Inputname").new_name = dic_random_title[number_random] 
-	
-	
+	else: 
+		#second chance before having to push on the dice icon again
+		number_random = rng.randi_range(0, dic_random_title.size()-1)
+		if not(number_random in already_seen):
+			already_seen.append(number_random)
+			get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
+			get_node("Page/Optionmenu/Inputname").new_name = dic_random_title[number_random] 
