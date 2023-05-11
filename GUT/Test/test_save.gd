@@ -12,7 +12,7 @@ func after_each():
 	_save.free()
 
 
-func test_get_saves():
+func test_get_saves_full():
 	# Arrange
 	_save.saves.append("Test 1")
 	_save.saves.append("Test 2")
@@ -21,9 +21,17 @@ func test_get_saves():
 	var result = _save.get_saves()
 	# Assert
 	assert_eq(result, ["Test 1", "Test 2", "Test 3"], "Get_error")
+	
+func test_get_saves_empty():
+	# Arrange
+
+	# Act
+	var result = _save.get_saves()
+	# Assert
+	assert_eq(result, [], "Get_error")
 
 
-func test_get_last_save():
+func test_get_last_save_full():
 	# Arrange
 	_save.saves.append("Test 1")
 	_save.saves.append("Test 2")
@@ -33,6 +41,15 @@ func test_get_last_save():
 	# Assert
 	assert_eq(result, "Test 1", "Get_error")
 	#crash when empty Array
+
+#func test_get_last_save_empty():
+#	# Arrange
+#
+#	# Act
+#	var result = _save.get_last_save()
+#	# Assert
+#	assert_eq(result, {}, "Get_error")
+#	#crash when empty Array
 
 
 func test_set_save_nodes():
@@ -67,7 +84,7 @@ func test_add_saves():
 	assert_eq_deep(shallow_copy, deep_copy)
 	
 	
-func test_erase_save():
+func test_erase_save_full():
 	# Arrange
 	_save.saves.append("Test 1")
 	_save.saves.append("Test 2")
@@ -77,6 +94,15 @@ func test_erase_save():
 	_save.erase_save(1)
 	# Assert
 	assert_eq(_save.saves, ["Test 1","Test 3"], "not deletd correctly")
+
+func test_erase_save_empty():
+	# Arrange
+
+	# Act
+	_save.erase_save(5)
+	_save.erase_save(1)
+	# Assert
+	assert_eq(_save.saves, [], "not deletd correctly")
 	
 	
 func test_retrieve_elements():

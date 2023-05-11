@@ -18,12 +18,16 @@ func get_saves() -> Array:
 
 """
 Function that returns the last save made.
+If there is no save, return and empty Dictionary.
 
 Returns:
 --------
 The last save made. (Dictionary)
 """
 func get_last_save() -> Dictionary:
+	if saves == [] : 
+		return {}
+		
 	return saves[0]
 
 """
