@@ -329,18 +329,18 @@ custom_styles/normal = SubResource( 52 )
 stream = ExtResource( 20 )
 
 [node name="Creditsbutton" type="MarginContainer" parent="."]
-margin_left = 952.0
-margin_top = 373.0
-margin_right = 1013.0
-margin_bottom = 420.0
+margin_left = 986.0
+margin_top = 403.0
+margin_right = 1017.0
+margin_bottom = 434.0
 
 [node name="BoutonCredits" type="Button" parent="Creditsbutton"]
-margin_right = 61.0
-margin_bottom = 47.0
+margin_right = 31.0
+margin_bottom = 31.0
 
 [node name="ducky" type="AnimatedSprite" parent="Creditsbutton"]
-position = Vector2( 30, 20 )
-scale = Vector2( 0.200855, 0.2 )
+position = Vector2( 15, 16 )
+scale = Vector2( 0.114316, 0.115116 )
 frames = SubResource( 55 )
 
 [node name="Credits" parent="." instance=ExtResource( 22 )]
