@@ -16,7 +16,7 @@ func physics_process(_delta) -> IState:
 		var save_node = canvas.Utils.get_match_string_node("Elements", canvas)
 		var background_node = canvas.Utils.get_match_string_node("BackgroundColor", canvas)
 		var svg_compiler = SVGCompiler.new([save_node, background_node])
-		svg_compiler.export_to_svg()
+		svg_compiler.export_to_svg(canvas.custom.customization["canvasname"])
 	
 	if spuc.visible:
 		return null
@@ -35,7 +35,7 @@ func keyboard_input(_event: InputEvent) -> IState:
 			var save_node = canvas.Utils.get_match_string_node("Elements", canvas)
 			var background_node = canvas.Utils.get_match_string_node("BackgroundColor", canvas)
 			var svg_compiler = SVGCompiler.new([save_node, background_node])
-			svg_compiler.export_to_svg()
+			svg_compiler.export_to_svg(canvas.custom.customization["canvasname"])
 			
 			spuc.hide()
 			return switch_to_previous_state()

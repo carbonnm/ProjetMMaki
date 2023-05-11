@@ -6,7 +6,7 @@ var Save := preload("Save.gd").new()
 var SVGSyntax := preload("SVGSyntax.gd").new()
 
 var username : String = OS.get_environment("USERNAME")
-var SAVE_FILE: String = "C://Users/"+username+"/Pictures/mon_fichier_svg.svg"
+var SAVE_FILE: String = "C://Users/"+username+"/Pictures/"
 const MIN_MARGIN: Vector2 = Vector2(100,100)
 
 var save_nodes: Array = []
@@ -27,7 +27,7 @@ func _init(nodes: Array) -> void:
 Function that save nodes, construct the SVG syntax and create the
 SVG file.
 """
-func export_to_svg() -> void:
+func export_to_svg(filename := "my_svg") -> void:
 	# Create a save of specified nodes.
 	var save: Dictionary = save()
 	
@@ -41,7 +41,8 @@ func export_to_svg() -> void:
 	if OS.has_feature("editor"):
 		# Exécuté depuis l'éditeur.
 		# Le chemin `path` contiendra le chemin absolu vers le fichier `hello.txt` à la racine du projet.
-		path = ProjectSettings.globalize_path(SAVE_FILE)
+		var _save_file = SAVE_FILE + filename + ".svg"
+		path = ProjectSettings.globalize_path(_save_file)
 	else:
 		# Exécuté depuis le projet exporté.
 		# Le chemin `path` contiendra le chemin absolu vers le fichier `hello.txt` avec l'exécutable.

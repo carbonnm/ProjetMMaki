@@ -1,7 +1,5 @@
 extends Node
 
-var scene_switcher: SceneSwitcher
-
 var customization: Dictionary = {
 	"canvasname": "Canvas",
 	"titlecolor": Color(0,0,0,1),
@@ -13,12 +11,11 @@ var customization: Dictionary = {
 	"backgroundcolor": Color(0.980392, 0.921569, 0.843137, 1)
 }
 
-func _init(sceneSwitcher: SceneSwitcher):
-	scene_switcher = sceneSwitcher
-	
+func _init():
 	for attributes in customization.keys():
 		set_value(attributes)
 
 func set_value(key: String):
-	if scene_switcher.get_param(key):
-		customization[key] = scene_switcher.get_param(key)
+	print(SceneSwitcher.get_param(key))
+	if SceneSwitcher.get_param(key):
+		customization[key] = SceneSwitcher.get_param(key)

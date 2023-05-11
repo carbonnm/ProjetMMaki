@@ -50,7 +50,7 @@ func _ready() -> void:
 	snapshots = Snapshots.new(self, Utils.get_match_string_node("Elements", self))
 	snapshots.create_snapshot()
 	# Setup canvas (Name; (sub-(sub-))Title Color/Font; Background Color
-	custom = Custom.new(SceneSwitcher)
+	custom = Custom.new()
 	get_node("BackgroundColored").color = custom.customization["backgroundcolor"]
 	$CanvasLayer/ZoomMenuButton.cam = _camera
 
