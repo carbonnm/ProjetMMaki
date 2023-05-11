@@ -59,7 +59,7 @@ onready var dic_random_title ={
 	40:"Squalalah, nous sommes partis",
 	41:"Saucisse",
 	42: "Ammener le Blackbird au contôle technique",
-	43:"Speedrun any % syllabus de compléxité ",
+	43:"Speedrun any % - syllabus de compléxité ",
 	44:"Doom walkthrough by VincentduI30",
 	45:"It's MMAKI not Maki",
 	46:"Roullette russe, choix des options de master 2",
@@ -69,7 +69,7 @@ onready var dic_random_title ={
 	50:"Planter les piments à côté du basilic",
 	51:"Écouter de l'A.S.M.R. ou du Heavy metal?"
 }
-
+onready var already_seen = []
 func _ready():
 	
 	pass 
@@ -228,7 +228,9 @@ func _on_Randombutton_button_up():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var number_random = rng.randi_range(0, dic_random_title.size()-1)
-	get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
-	get_node("Page/Optionmenu/Inputname").new_name = dic_random_title[number_random] 
+	if not(number_random in already_seen):
+		already_seen.append(number_random)
+		get_node("Page/Optionmenu/Inputname").text = dic_random_title[number_random]
+		get_node("Page/Optionmenu/Inputname").new_name = dic_random_title[number_random] 
 	
 	
