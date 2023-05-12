@@ -48,7 +48,7 @@ var credits = [
 		"  Art/U.I.",
 		"--------------------",
 		"",
-		"   Artist Name"
+		"   MICHAUX Manon"
 	],[
 		"Testers",
 		"------------------",
@@ -78,7 +78,7 @@ var credits = [
 	],[
 		"Special thanks",
 		"------------------------",
-		"",
+		"BERG Lucas for your pull request",
 		"'Every member of this team ",
 		"",
 		"",
