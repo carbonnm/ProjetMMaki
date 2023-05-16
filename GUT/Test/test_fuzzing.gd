@@ -64,17 +64,17 @@ func before_all():
 
 func after_all():
 	viewport.queue_free()
+	self.queue_free()
 
 func test_fuzzing():
 	create_random_event()
-	for _i in range(1000):
+	for _i in range(10000):
 		# Arrange
 		var event = create_random_event()
+		
 		# Act
-		if event is InputEventKey:
+		if event != null:
 			_canvas._input(event)
-		else:
-			_canvas._on_BackgroundColored_gui_input(event)
 		
 		_canvas._physics_process(rng.randf_range(0.0,1.0))
 		
@@ -179,22 +179,34 @@ func get_random_one_shot_event():
 			
 		one_shot_event.Macro_Ctrl_Plus:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_PLUS))
-			return InputFactory.action_down("Zoom")
+			Input.action_press("Zoom")
+			Input.action_release("Zoom")
+			return null
 		one_shot_event.Macro_Ctrl_Minus:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_MINUS))
-			return InputFactory.action_down("Unzoom")
+			Input.action_press("Unzoom")
+			Input.action_release("Unzoom")
+			return null
 		one_shot_event.Macro_Ctrl_C:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_C))
-			return InputFactory.action_down("Copy")
+			Input.action_press("Copy")
+			Input.action_release("Copy")
+			return null
 		one_shot_event.Macro_Ctrl_V:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_V))
-			return InputFactory.action_down("Paste")
+			Input.action_press("Paste")
+			Input.action_release("Paste")
+			return null
 		one_shot_event.Macro_Ctrl_Y:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_Y))
-			return InputFactory.action_down("Redo")
+			Input.action_press("Redo")
+			Input.action_release("Redo")
+			return null
 		one_shot_event.Macro_Ctrl_Z:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_Z))
-			return InputFactory.action_down("Undo")
+			Input.action_press("Undo")
+			Input.action_release("Undo")
+			return null
 		
 		one_shot_event.Mouse_Roll_Up:
 			event_sequence.append("Wheel Up")
@@ -224,7 +236,9 @@ func get_jail_event():
 	
 	else:
 		event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_S))
-		return InputFactory.action_down("Save")
+		Input.action_press("SVGSave")
+		Input.action_release("SVGSave")
+		return null
 
 func get_random_key_event():
 	var random_key: int = rng.randi_range(0,255)
