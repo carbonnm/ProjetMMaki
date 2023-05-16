@@ -147,9 +147,6 @@ func test_retrieve_elements():
 	
 	# Assert
 	assert_eq_deep(result_hash, expected_hash)
-	
-	# Free Elements
-	node.queue_free()
 
 func test_apply_global_transform():
 	# Arrange
@@ -164,9 +161,6 @@ func test_apply_global_transform():
 	
 	# Act
 	var result = _save.apply_global_transform(label)
-	
-	# Free Ressources
-	node.queue_free()
 	
 	# Assert
 	assert_eq(result.rect_position, Vector2(50,50), "not the same position.")

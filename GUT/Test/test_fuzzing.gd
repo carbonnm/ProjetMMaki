@@ -68,7 +68,7 @@ func after_all():
 
 func test_fuzzing():
 	create_random_event()
-	for _i in range(10000):
+	for _i in range(100000):
 		# Arrange
 		var event = create_random_event()
 		
