@@ -67,8 +67,21 @@ func after_all():
 	self.queue_free()
 
 func test_fuzzing():
+	var seed_file: File = File.new()
+	var opened: int = seed_file.open("res://GUT/Log/event_sequence.txt", File.WRITE)
+	if opened != 0:
+		print("Error on file opening.")
+	else:
+		var string_to_store = "SEED : " + str(_seed) + "\n\n"
+	
+		seed_file.store_string(string_to_store)
+		seed_file.close()
+	
+		
 	create_random_event()
-	for _i in range(100000):
+	
+	
+	for _i in range(1000000):
 		# Arrange
 		var event = create_random_event()
 		
@@ -77,16 +90,16 @@ func test_fuzzing():
 			_canvas._input(event)
 		
 		_canvas._physics_process(rng.randf_range(0.0,1.0))
-		
-		
+	
 	# Assert
 	var log_file: File = File.new()
-	var opened: int = log_file.open("res://GUT/Log/event_sequence.txt", File.WRITE)
+	opened = log_file.open("res://GUT/Log/event_sequence.txt", File.WRITE)
 	if opened != 0:
 		print("Error on file opening.")
 	else:
 		var string_to_store = "SEED : " + str(_seed) + "\n\n"
 		var k: int = 1
+		event_sequence = event_sequence.slice(-100,event_sequence.size()-1)
 		for element in event_sequence:
 				
 			string_to_store += str(element)

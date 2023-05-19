@@ -129,6 +129,20 @@ func test_PoolVector2Array_to_d_path_with_one_element():
 	# Assert
 	assert_eq(result, "M " + str(vector.x) + "," + str(vector.y), "Invalid one element string returned.")
 
+func test_PoolVector2Array_to_d_path_with_two_elements():
+	# Arrange
+	var pool_vector2_array := PoolVector2Array()
+	var vector1: Vector2 = Vector2(randf(), randf())
+	var vector2: Vector2 = Vector2(randf(), randf())
+	pool_vector2_array.append(vector1)
+	pool_vector2_array.append(vector2)
+	# Act
+	var result: String = _save.PoolVector2Array_to_d_path(pool_vector2_array)
+	# Assert
+	var expected_result: String = "M " + str(vector1.x) + "," + str(vector1.y)
+	expected_result +=  " L " + str(vector2.x) + "," + str(vector2.y)
+	assert_eq(result, expected_result, "Invalid two elements string returned.")
+
 func test_PoolVector2Array_to_d_path_with_multiple_elements():
 	# Arrange
 	var pool_vector2_array := PoolVector2Array()
