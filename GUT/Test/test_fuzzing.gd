@@ -80,14 +80,14 @@ func test_fuzzing():
 		
 	create_random_event()
 	
-	
-	for _i in range(1000000):
+	for _i in range(100000000):
 		# Arrange
 		var event = create_random_event()
 		
 		# Act
-		if event != null:
-			_canvas._input(event)
+		_canvas._input(event)
+		
+		release_actions()
 		
 		_canvas._physics_process(rng.randf_range(0.0,1.0))
 	
@@ -155,19 +155,19 @@ func get_random_one_shot_event():
 			return InputFactory.key_down(KEY_SPACE)
 		one_shot_event.Key_D:
 			event_sequence.append(OS.get_scancode_string(KEY_D))
-			return InputFactory.key_down(KEY_D)
+			Input.action_press("Drawing")
 		one_shot_event.Key_F:
 			event_sequence.append(OS.get_scancode_string(KEY_F))
-			return InputFactory.key_down(KEY_F)
+			Input.action_press("PenSize")
 		one_shot_event.Key_G:
 			event_sequence.append(OS.get_scancode_string(KEY_G))
-			return InputFactory.key_down(KEY_G)
+			Input.action_press("Group")
 		one_shot_event.Key_R:
 			event_sequence.append(OS.get_scancode_string(KEY_R))
-			return InputFactory.key_down(KEY_R)
+			Input.action_press("Rotation")
 		one_shot_event.Key_S:
 			event_sequence.append(OS.get_scancode_string(KEY_S))
-			return InputFactory.key_down(KEY_S)
+			Input.action_press("Selection")
 		one_shot_event.Key_Z:
 			event_sequence.append(OS.get_scancode_string(KEY_Z))
 			return InputFactory.key_down(KEY_Z)
@@ -193,32 +193,26 @@ func get_random_one_shot_event():
 		one_shot_event.Macro_Ctrl_Plus:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_PLUS))
 			Input.action_press("Zoom")
-			Input.action_release("Zoom")
 			return null
 		one_shot_event.Macro_Ctrl_Minus:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_MINUS))
 			Input.action_press("Unzoom")
-			Input.action_release("Unzoom")
 			return null
 		one_shot_event.Macro_Ctrl_C:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_C))
 			Input.action_press("Copy")
-			Input.action_release("Copy")
 			return null
 		one_shot_event.Macro_Ctrl_V:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_V))
 			Input.action_press("Paste")
-			Input.action_release("Paste")
 			return null
 		one_shot_event.Macro_Ctrl_Y:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_Y))
 			Input.action_press("Redo")
-			Input.action_release("Redo")
 			return null
 		one_shot_event.Macro_Ctrl_Z:
 			event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_Z))
 			Input.action_press("Undo")
-			Input.action_release("Undo")
 			return null
 		
 		one_shot_event.Mouse_Roll_Up:
@@ -245,12 +239,11 @@ func get_jail_event():
 	
 	if random == 1:
 		event_sequence.append("Enter")
-		return InputFactory.key_down(KEY_ENTER)
+		Input.action_press("ui_accept")
 	
 	else:
 		event_sequence.append(OS.get_scancode_string(KEY_MASK_CTRL) + OS.get_scancode_string(KEY_S))
 		Input.action_press("SVGSave")
-		Input.action_release("SVGSave")
 		return null
 
 func get_random_key_event():
@@ -266,4 +259,18 @@ func set_rng():
 	rng.randomize()
 	
 	_seed = rng.get_seed()
-	
+
+func release_actions():
+	Input.action_release("SVGSave")
+	Input.action_release("Undo")
+	Input.action_release("Redo")
+	Input.action_release("Paste")
+	Input.action_release("Copy")
+	Input.action_release("Unzoom")
+	Input.action_release("Zoom")
+	Input.action_release("ui_accept")
+	Input.action_release("Drawing")
+	Input.action_release("Selection")
+	Input.action_press("PenSize")
+	Input.action_press("Rotation")
+	Input.action_press("Group")
