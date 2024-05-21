@@ -98,7 +98,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/color_picker_text_button/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gdnative]
 
